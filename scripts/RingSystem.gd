@@ -2,6 +2,7 @@ extends Node2D
 tool
 
 const RING_RADIUS := 40
+const RING_WIDTH := 20
 
 export(int) var rings
 

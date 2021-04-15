@@ -70,14 +70,15 @@ texture = ExtResource( 4 )
 script = ExtResource( 1 )
 radians_per_slot = 0.0156298
 
-[node name="FactoryTemplate" type="StaticBody2D" parent="."]
-visible = false
+[node name="Factories" type="Node2D" parent="."]
+pause_mode = 2
+
+[node name="FactoryTemplate" type="Area2D" parent="."]
+pause_mode = 2
 script = ExtResource( 3 )
-inner_radius = 320.0
-outer_radius = 335.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FactoryTemplate"]
-polygon = PoolVector2Array( 320, 0, 320, 0, 320, 0, 320, 0, 320, 0, 320, 0, 320, 0, 320, 0, 320, 0, 320, 0, 320, 0, 320, 0, 320, 0, 320, 0, 320, 0, 320, 0, 320, 0, 320, 0, 320, 0, 320, 0, 320, 0, 320, 0, 320, 0, 320, 0, 320, 0, 320, 0, 320, 0, 320, 0, 320, 0, 320, 0, 320, 0, 320, 0, 320, 0, 335, 0, 335, 0, 335, 0, 335, 0, 335, 0, 335, 0, 335, 0, 335, 0, 335, 0, 335, 0, 335, 0, 335, 0, 335, 0, 335, 0, 335, 0, 335, 0, 335, 0, 335, 0, 335, 0, 335, 0, 335, 0, 335, 0, 335, 0, 335, 0, 335, 0, 335, 0, 335, 0, 335, 0, 335, 0, 335, 0, 335, 0, 335, 0, 335, 0 )
+polygon = PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
 
 [node name="Line2D" type="Line2D" parent="."]
 visible = false
@@ -86,3 +87,6 @@ default_color = Color( 0.24, 0.0768, 0.14208, 1 )
 
 [node name="Outline" type="Node2D" parent="."]
 script = ExtResource( 5 )
+
+[connection signal="area_entered" from="FactoryTemplate" to="FactoryTemplate" method="_on_FactoryTemplate_area_entered"]
+[connection signal="area_exited" from="FactoryTemplate" to="FactoryTemplate" method="_on_FactoryTemplate_area_exited"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://images/circle_05.png" type="Texture" id=1]
 [ext_resource path="res://images/spacefield_a-000.png" type="Texture" id=2]
@@ -7,30 +7,32 @@
 [ext_resource path="res://scripts/InjectorMultimesh.gd" type="Script" id=5]
 [ext_resource path="res://scripts/InjectionSystem.gd" type="Script" id=6]
 [ext_resource path="res://scenes/Ring.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scripts/Shields.gd" type="Script" id=8]
+[ext_resource path="res://scenes/Shield.tscn" type="PackedScene" id=9]
 
-[sub_resource type="QuadMesh" id=8]
+[sub_resource type="QuadMesh" id=1]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=9]
+[sub_resource type="MultiMesh" id=2]
 instance_count = 9
-mesh = SubResource( 8 )
-transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, -295, 1, 0, 0, 1, -84.2857, -295, 1, 0, 0, 1, -168.571, -295, 1, 0, 0, 1, -252.857, -295, 1, 0, 0, 1, -337.143, -295, 1, 0, 0, 1, -421.429, -295, 1, 0, 0, 1, -505.714, -295, 1, 0, 0, 1, -590, -295, 1, 0, 0, 1, -674.286, -295 )
+mesh = SubResource( 1 )
+transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, -295, 1, 0, 0, 1, -84.2856, -295, 1, 0, 0, 1, -168.571, -295, 1, 0, 0, 1, -252.857, -295, 1, 0, 0, 1, -337.143, -295, 1, 0, 0, 1, -421.428, -295, 1, 0, 0, 1, -505.714, -295, 1, 0, 0, 1, -589.999, -295, 1, 0, 0, 1, -674.285, -295 )
 
-[sub_resource type="QuadMesh" id=10]
+[sub_resource type="QuadMesh" id=3]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=11]
+[sub_resource type="MultiMesh" id=4]
 instance_count = 9
-mesh = SubResource( 10 )
-transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, -290, 1, 0, 0, 1, -82.8571, -290, 1, 0, 0, 1, -165.714, -290, 1, 0, 0, 1, -248.571, -290, 1, 0, 0, 1, -331.429, -290, 1, 0, 0, 1, -414.286, -290, 1, 0, 0, 1, -497.143, -290, 1, 0, 0, 1, -580, -290, 1, 0, 0, 1, -662.857, -290 )
+mesh = SubResource( 3 )
+transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, -290, 1, 0, 0, 1, -82.8571, -290, 1, 0, 0, 1, -165.714, -290, 1, 0, 0, 1, -248.571, -290, 1, 0, 0, 1, -331.428, -290, 1, 0, 0, 1, -414.285, -290, 1, 0, 0, 1, -497.142, -290, 1, 0, 0, 1, -579.999, -290, 1, 0, 0, 1, -662.857, -290 )
 
-[sub_resource type="QuadMesh" id=12]
+[sub_resource type="QuadMesh" id=5]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=13]
+[sub_resource type="MultiMesh" id=6]
 instance_count = 9
-mesh = SubResource( 12 )
-transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, -285, 1, 0, 0, 1, -81.4286, -285, 1, 0, 0, 1, -162.857, -285, 1, 0, 0, 1, -244.286, -285, 1, 0, 0, 1, -325.714, -285, 1, 0, 0, 1, -407.143, -285, 1, 0, 0, 1, -488.571, -285, 1, 0, 0, 1, -570, -285, 1, 0, 0, 1, -651.429, -285 )
+mesh = SubResource( 5 )
+transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, -285, 1, 0, 0, 1, -81.4285, -285, 1, 0, 0, 1, -162.857, -285, 1, 0, 0, 1, -244.285, -285, 1, 0, 0, 1, -325.714, -285, 1, 0, 0, 1, -407.142, -285, 1, 0, 0, 1, -488.571, -285, 1, 0, 0, 1, -569.999, -285, 1, 0, 0, 1, -651.428, -285 )
 
 [sub_resource type="Environment" id=7]
 background_mode = 4
@@ -46,14 +48,15 @@ adjustment_enabled = true
 position = Vector2( 640, 400 )
 texture = ExtResource( 2 )
 
-[node name="Control" type="Control" parent="."]
+[node name="MainUI" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="Control"]
+[node name="Button" type="Button" parent="MainUI"]
+pause_mode = 2
 margin_right = 12.0
 margin_bottom = 20.0
 toggle_mode = true
@@ -63,29 +66,372 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="InfoUI" type="Control" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WindowDialog" type="WindowDialog" parent="InfoUI"]
+visible = true
+margin_right = 48.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+resizable = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InfoUI/WindowDialog"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ring" type="Label" parent="InfoUI/WindowDialog/VBoxContainer"]
+margin_right = 75.0
+margin_bottom = 14.0
+text = "Ring 0"
+
+[node name="HSeparator" type="HSeparator" parent="InfoUI/WindowDialog/VBoxContainer"]
+margin_top = 18.0
+margin_right = 75.0
+margin_bottom = 22.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Lanes" type="Label" parent="InfoUI/WindowDialog/VBoxContainer"]
+margin_top = 26.0
+margin_right = 75.0
+margin_bottom = 40.0
+text = "Lanes:"
+
+[node name="GridContainer" type="GridContainer" parent="InfoUI/WindowDialog/VBoxContainer"]
+margin_top = 44.0
+margin_right = 75.0
+margin_bottom = 136.0
+columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="L0" type="Label" parent="InfoUI/WindowDialog/VBoxContainer/GridContainer"]
+margin_top = 3.0
+margin_right = 8.0
+margin_bottom = 17.0
+text = "0"
+
+[node name="L0Content" type="Label" parent="InfoUI/WindowDialog/VBoxContainer/GridContainer"]
+margin_left = 12.0
+margin_top = 3.0
+margin_right = 38.0
+margin_bottom = 17.0
+text = "Iron"
+
+[node name="L0Bin" type="Button" parent="InfoUI/WindowDialog/VBoxContainer/GridContainer"]
+margin_left = 42.0
+margin_right = 75.0
+margin_bottom = 20.0
+text = "Bin"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="L1" type="Label" parent="InfoUI/WindowDialog/VBoxContainer/GridContainer"]
+margin_top = 27.0
+margin_right = 8.0
+margin_bottom = 41.0
+text = "0"
+
+[node name="L1Content" type="Label" parent="InfoUI/WindowDialog/VBoxContainer/GridContainer"]
+margin_left = 12.0
+margin_top = 27.0
+margin_right = 38.0
+margin_bottom = 41.0
+text = "Iron"
+
+[node name="L1Bin" type="Button" parent="InfoUI/WindowDialog/VBoxContainer/GridContainer"]
+margin_left = 42.0
+margin_top = 24.0
+margin_right = 75.0
+margin_bottom = 44.0
+text = "Bin"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="L2" type="Label" parent="InfoUI/WindowDialog/VBoxContainer/GridContainer"]
+margin_top = 51.0
+margin_right = 8.0
+margin_bottom = 65.0
+text = "0"
+
+[node name="L2Content" type="Label" parent="InfoUI/WindowDialog/VBoxContainer/GridContainer"]
+margin_left = 12.0
+margin_top = 51.0
+margin_right = 38.0
+margin_bottom = 65.0
+text = "Iron"
+
+[node name="L2Bin" type="Button" parent="InfoUI/WindowDialog/VBoxContainer/GridContainer"]
+margin_left = 42.0
+margin_top = 48.0
+margin_right = 75.0
+margin_bottom = 68.0
+text = "Bin"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="L3" type="Label" parent="InfoUI/WindowDialog/VBoxContainer/GridContainer"]
+margin_top = 75.0
+margin_right = 8.0
+margin_bottom = 89.0
+text = "0"
+
+[node name="L3Content" type="Label" parent="InfoUI/WindowDialog/VBoxContainer/GridContainer"]
+margin_left = 12.0
+margin_top = 75.0
+margin_right = 38.0
+margin_bottom = 89.0
+text = "Iron"
+
+[node name="L3Bin" type="Button" parent="InfoUI/WindowDialog/VBoxContainer/GridContainer"]
+margin_left = 42.0
+margin_top = 72.0
+margin_right = 75.0
+margin_bottom = 92.0
+text = "Bin"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator2" type="HSeparator" parent="InfoUI/WindowDialog/VBoxContainer"]
+margin_top = 140.0
+margin_right = 75.0
+margin_bottom = 144.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Factories" type="Label" parent="InfoUI/WindowDialog/VBoxContainer"]
+margin_top = 148.0
+margin_right = 75.0
+margin_bottom = 162.0
+text = "Factories:"
+
+[node name="Shields" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sol2" type="Control" parent="Shields" instance=ExtResource( 9 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.280609
+margin_top = 32.0
+margin_right = 0.28064
+margin_bottom = 0.28064
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hydrogen2" type="Control" parent="Shields" instance=ExtResource( 9 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.280609
+margin_top = 64.0
+margin_right = 0.28064
+margin_bottom = 0.28064
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="iron2" type="Control" parent="Shields" instance=ExtResource( 9 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.280609
+margin_top = 96.0
+margin_right = 0.28064
+margin_bottom = 0.28064
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="copper2" type="Control" parent="Shields" instance=ExtResource( 9 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.280609
+margin_top = 128.0
+margin_right = 0.28064
+margin_bottom = 0.28064
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="steel2" type="Control" parent="Shields" instance=ExtResource( 9 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.280609
+margin_top = 160.0
+margin_right = 0.28064
+margin_bottom = 0.28064
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="silica2" type="Control" parent="Shields" instance=ExtResource( 9 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.280609
+margin_top = 192.0
+margin_right = 0.28064
+margin_bottom = 0.28064
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="glass2" type="Control" parent="Shields" instance=ExtResource( 9 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.280609
+margin_top = 224.0
+margin_right = 0.28064
+margin_bottom = 0.28064
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="packed_hydrogen2" type="Control" parent="Shields" instance=ExtResource( 9 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.280609
+margin_top = 256.0
+margin_right = 0.28064
+margin_bottom = 0.28064
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="cunife2" type="Control" parent="Shields" instance=ExtResource( 9 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.280609
+margin_top = 288.0
+margin_right = 0.28064
+margin_bottom = 0.28064
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="tritium2" type="Control" parent="Shields" instance=ExtResource( 9 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.280609
+margin_top = 320.0
+margin_right = 0.28064
+margin_bottom = 0.28064
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="packed_gas2" type="Control" parent="Shields" instance=ExtResource( 9 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.280609
+margin_top = 352.0
+margin_right = 0.28064
+margin_bottom = 0.28064
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="metalic_tritium2" type="Control" parent="Shields" instance=ExtResource( 9 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.280609
+margin_top = 384.0
+margin_right = 0.28064
+margin_bottom = 0.28064
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="xotic_a2" type="Control" parent="Shields" instance=ExtResource( 9 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.280609
+margin_top = 416.0
+margin_right = 0.28064
+margin_bottom = 0.28064
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="xotic_b2" type="Control" parent="Shields" instance=ExtResource( 9 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.280609
+margin_top = 448.0
+margin_right = 0.28064
+margin_bottom = 0.28064
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="xotic_c2" type="Control" parent="Shields" instance=ExtResource( 9 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.280609
+margin_top = 480.0
+margin_right = 0.28064
+margin_bottom = 0.28064
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sw2" type="Control" parent="Shields" instance=ExtResource( 9 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.280609
+margin_top = 512.0
+margin_right = 0.28064
+margin_bottom = 0.28064
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="InjectionSystem" type="Node2D" parent="."]
 position = Vector2( 500, 300 )
 script = ExtResource( 6 )
 
 [node name="Iron0" type="Node2D" parent="InjectionSystem"]
-position = Vector2( -23.7623, 0 )
+position = Vector2( -51.8723, 0 )
 
 [node name="MultiMeshInstance2D" type="MultiMeshInstance2D" parent="InjectionSystem/Iron0"]
-multimesh = SubResource( 9 )
+multimesh = SubResource( 2 )
 texture = ExtResource( 1 )
 script = ExtResource( 5 )
 n = 9.0
-linear_velocity = 84.2857
+linear_velocity = 84.2856
 radius = 295.0
 period = 1.0
 lane = 3
 ring = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6189/@@6028/@@6029/@@6030/@@6031/@@6032/Root/RingSystem/Ring6")
 
 [node name="Copper0" type="Node2D" parent="InjectionSystem"]
-position = Vector2( -31.9082, 0 )
+position = Vector2( -59.4767, 0 )
 
 [node name="MultiMeshInstance2D" type="MultiMeshInstance2D" parent="InjectionSystem/Copper0"]
-multimesh = SubResource( 11 )
+multimesh = SubResource( 4 )
 texture = ExtResource( 1 )
 script = ExtResource( 5 )
 n = 9.0
@@ -96,14 +442,14 @@ lane = 2
 ring = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6189/@@6028/@@6029/@@6030/@@6031/@@6032/Root/RingSystem/Ring6")
 
 [node name="Silica0" type="Node2D" parent="InjectionSystem"]
-position = Vector2( -39.9444, 0 )
+position = Vector2( -67.0664, 0 )
 
 [node name="MultiMeshInstance2D" type="MultiMeshInstance2D" parent="InjectionSystem/Silica0"]
-multimesh = SubResource( 13 )
+multimesh = SubResource( 6 )
 texture = ExtResource( 1 )
 script = ExtResource( 5 )
 n = 9.0
-linear_velocity = 81.4286
+linear_velocity = 81.4285
 radius = 285.0
 period = 1.0
 lane = 1
@@ -115,7 +461,7 @@ script = ExtResource( 4 )
 rings = 9
 
 [node name="Ring0" parent="RingSystem" instance=ExtResource( 7 )]
-rotation = 1.33408
+rotation = 4.77471
 set_ring = 0
 set_debug_color = Color( 1, 0, 0, 1 )
 radius_array = [ 40.0, 45.0, 50.0, 55.0 ]
@@ -123,7 +469,7 @@ angular_velocity = 2.0
 n = 50.2655
 
 [node name="Ring1" parent="RingSystem" instance=ExtResource( 7 )]
-rotation = 3.81421
+rotation = 2.38824
 set_ring = 1
 set_debug_color = Color( 1, 0.631373, 0, 1 )
 radius_array = [ 80.0, 85.0, 90.0, 95.0 ]
@@ -131,7 +477,7 @@ angular_velocity = 1.0
 n = 100.531
 
 [node name="Ring2" parent="RingSystem" instance=ExtResource( 7 )]
-rotation = 4.63613
+rotation = 5.78078
 set_ring = 2
 set_debug_color = Color( 1, 0.937255, 0, 1 )
 radius_array = [ 120.0, 125.0, 130.0, 135.0 ]
@@ -139,7 +485,7 @@ angular_velocity = 0.666667
 n = 150.796
 
 [node name="Ring3" parent="RingSystem" instance=ExtResource( 7 )]
-rotation = 1.90383
+rotation = 1.1936
 set_ring = 3
 set_debug_color = Color( 0, 0.0627451, 1, 1 )
 radius_array = [ 160.0, 165.0, 170.0, 175.0 ]
@@ -147,7 +493,7 @@ angular_velocity = 0.5
 n = 201.062
 
 [node name="Ring4" parent="RingSystem" instance=ExtResource( 7 )]
-rotation = 4.03663
+rotation = 2.21156
 set_ring = 4
 set_debug_color = Color( 0, 0.952941, 1, 1 )
 radius_array = [ 200.0, 205.0, 210.0, 215.0 ]
@@ -155,7 +501,7 @@ angular_velocity = 0.4
 n = 251.327
 
 [node name="Ring5" parent="RingSystem" instance=ExtResource( 7 )]
-rotation = 5.46157
+rotation = 2.89068
 set_ring = 5
 set_debug_color = Color( 0.101961, 0, 1, 1 )
 radius_array = [ 240.0, 245.0, 250.0, 255.0 ]
@@ -163,7 +509,7 @@ angular_velocity = 0.333333
 n = 301.593
 
 [node name="Ring6" parent="RingSystem" instance=ExtResource( 7 )]
-rotation = 2.87966
+rotation = 0.681507
 set_ring = 6
 set_debug_color = Color( 0.384314, 0, 1, 1 )
 radius_array = [ 280.0, 285.0, 290.0, 295.0 ]
@@ -171,13 +517,13 @@ angular_velocity = 0.285714
 n = 351.858
 
 [node name="Ring7" parent="RingSystem" instance=ExtResource( 7 )]
-rotation = 0.950029
+rotation = 0.5965
 set_debug_color = Color( 0.756863, 0, 1, 1 )
 angular_velocity = 0.25
 n = 402.124
 
 [node name="Ring8" parent="RingSystem" instance=ExtResource( 7 )]
-rotation = 1.53991
+rotation = 1.92609
 set_ring = 8
 set_debug_color = Color( 1, 0, 0.537255, 1 )
 radius_array = [ 360.0, 365.0, 370.0, 375.0 ]
@@ -196,3 +542,5 @@ width = 1.0
 visible = false
 points = PoolVector2Array( 0, 340, 1000, 340 )
 width = 1.0
+
+[connection signal="toggled" from="MainUI/Button" to="MainUI/Button" method="_on_Button_toggled"]
