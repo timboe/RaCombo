@@ -4,6 +4,7 @@ tool
 const DISABLE := 100.0
 
 export(float) var radians_per_slot
+export(String) var lane_content = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,21 +26,28 @@ func add_to_ring(var angle : float):
 	var slot : int = round(angle / radians_per_slot) - 1
 	for i in range(slot, slot+3):
 		var i_wrap = wrap(i)
-		if not get_enabled(i_wrap):
-			set_enabled(i_wrap, true, true)
+		if not get_slot_enabled(i_wrap):
+			set_slot_enabled(i_wrap, true, true)
 			return true
 	for i in range(slot-1, slot-4, -1):
 		var i_wrap = wrap(i)
-		if not get_enabled(i_wrap):
-			set_enabled(i_wrap, true, true)
+		if not get_slot_enabled(i_wrap):
+			set_slot_enabled(i_wrap, true, true)
 			return true
 	return false
 
-func get_enabled(var i : int):
+func register_resource(var new_resource : String):
+	if lane_content != null:
+		print("ERROR in ",name," of ", get_parent().get_parent().name, " trying to reg ",new_resource," into lane containing ",lane_content)
+		return
+	lane_content = new_resource
+	modulate = Global.data[lane_content]["color"]
+
+func get_slot_enabled(var i : int):
 	return bool(multimesh.get_instance_custom_data(i).r)
 
-func set_enabled(var i : int, var enable : bool, var capturable : bool):
-	if not bool(get_enabled(i)) == enable:
+func set_slot_enabled(var i : int, var enable : bool, var capturable : bool):
+	if not bool(get_slot_enabled(i)) == enable:
 		var t : Transform2D = multimesh.get_instance_transform_2d(i)
 		if enable:
 			t.origin /= DISABLE
@@ -60,6 +68,6 @@ func setup_resource(var n : int, var radius : float):
 		var t := Transform2D(Vector2.RIGHT, Vector2.DOWN, p)
 		multimesh.set_instance_transform_2d(i, t)
 		multimesh.set_instance_custom_data(i, Color(1,0,0,0))
-		set_enabled(i, false, false) # in regular mode, should be false false 
+		set_slot_enabled(i, false, false) # in regular mode, should be false false 
 
 	

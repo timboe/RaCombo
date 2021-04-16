@@ -16,15 +16,36 @@ export(float) var angular_velocity
 export(int) var n
 
 func _ready():
-	rotation = 0
+	$Rotation.rotation = 0
 	
 func add_to_ring(var angle : float, var lane : int):
-	var angle_mod = angle - rotation
+	var angle_mod = angle - $Rotation.rotation
 	if angle_mod < 0.0:
 		angle_mod += TWOPI
 	elif angle_mod > TWOPI:
 		angle_mod -= TWOPI
-	return get_child(lane).add_to_ring(angle_mod)
+	return $Rotation/Lanes.get_child(lane).add_to_ring(angle_mod)
+
+func get_lane(var i) -> Node:
+	return $Rotation/Lanes.get_child(i)
+	
+func register_resource(var lane : int, var reg_resource : String):
+	get_lane(lane).register_resource(reg_resource)
+
+func get_free_or_existing_lane(var desired_resource : String) -> int:
+	# Existing
+	var count = 0
+	for c in $Rotation/Lanes.get_children():
+		if c.lane_content != null and c.lane_content == desired_resource:
+			return count
+		count += 1
+	# Free
+	count = 0
+	for c in $Rotation/Lanes.get_children():
+		if c.lane_content == null:
+			return count
+		count += 1
+	return -1
 	
 func set_radius(var r : float):
 	radius_array.resize(set_lanes)
@@ -38,23 +59,21 @@ func set_radius(var r : float):
 func setup_resource(var r : float):
 	set_radius(r)
 	var count : int = 0
-	for c in get_children():
-		if not c is MultiMeshInstance2D:
-			continue
+	for c in $Rotation/Lanes.get_children():
 		c.setup_resource(n, radius_array[count])
 		count += 1
-	#vertical drop in ring0
+	#vertical drop in ring0's factory template. Used to set angular width of all factory templates
 	var r0 : Node2D = $"../Ring0"
 	var r0_outer_r : float = r0.radius_array[ r0.set_lanes - 1 ] + LANE_OFFSET/2.0
 	var drop : = sin(deg2rad(FACTORY_SPAN_DEGREES)) * r0_outer_r
 	var inner_r : float = radius_array[0] - LANE_OFFSET/2.0
 	var outer_r : float = radius_array[set_lanes-1] + LANE_OFFSET/2.0
 	var this_ring_angle : float = asin(drop / outer_r)
-	$FactoryTemplate.setup_resource(inner_r, outer_r, this_ring_angle)
-	$Line2D.default_color = set_debug_color
+	$Rotation/FactoryTemplate.setup_resource(inner_r, outer_r, this_ring_angle)
+	$Rotation/Line2D.default_color = set_debug_color
 	#$Outline.highlight = false
 
 func _physics_process(delta):
-	rotation += delta * angular_velocity
-	if rotation > TWOPI:
-		rotation -= TWOPI
+	$Rotation.rotation += delta * angular_velocity
+	if $Rotation.rotation > TWOPI:
+		$Rotation.rotation -= TWOPI

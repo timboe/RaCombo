@@ -6,7 +6,7 @@ const POINTS := 32
 export(float) var inner_radius
 export(float) var outer_radius
 export(float) var span_radians
-export(Color) var factory_color
+export(PoolColorArray) var factory_color
 export(bool) var colliding
 
 func _draw():

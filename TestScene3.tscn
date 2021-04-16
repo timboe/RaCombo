@@ -1,40 +1,56 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://images/circle_05.png" type="Texture" id=1]
 [ext_resource path="res://images/spacefield_a-000.png" type="Texture" id=2]
-[ext_resource path="res://scripts/BuildModeButton.gd" type="Script" id=3]
+[ext_resource path="res://scripts/BuildInjectButton.gd" type="Script" id=3]
 [ext_resource path="res://scripts/RingSystem.gd" type="Script" id=4]
 [ext_resource path="res://scripts/InjectorMultimesh.gd" type="Script" id=5]
 [ext_resource path="res://scripts/InjectionSystem.gd" type="Script" id=6]
 [ext_resource path="res://scenes/Ring.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scripts/Shields.gd" type="Script" id=8]
 [ext_resource path="res://scenes/Shield.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scripts/Injector.gd" type="Script" id=10]
+[ext_resource path="res://resources/SlelectionButtonGroup.tres" type="ButtonGroup" id=11]
+[ext_resource path="res://resources/PauseButtonGroup.tres" type="ButtonGroup" id=12]
 
-[sub_resource type="QuadMesh" id=1]
+[sub_resource type="QuadMesh" id=16]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=2]
-instance_count = 9
-mesh = SubResource( 1 )
-transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, -295, 1, 0, 0, 1, -84.2856, -295, 1, 0, 0, 1, -168.571, -295, 1, 0, 0, 1, -252.857, -295, 1, 0, 0, 1, -337.143, -295, 1, 0, 0, 1, -421.428, -295, 1, 0, 0, 1, -505.714, -295, 1, 0, 0, 1, -589.999, -295, 1, 0, 0, 1, -674.285, -295 )
+[sub_resource type="MultiMesh" id=17]
+mesh = SubResource( 16 )
 
-[sub_resource type="QuadMesh" id=3]
+[sub_resource type="QuadMesh" id=18]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=4]
-instance_count = 9
-mesh = SubResource( 3 )
-transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, -290, 1, 0, 0, 1, -82.8571, -290, 1, 0, 0, 1, -165.714, -290, 1, 0, 0, 1, -248.571, -290, 1, 0, 0, 1, -331.428, -290, 1, 0, 0, 1, -414.285, -290, 1, 0, 0, 1, -497.142, -290, 1, 0, 0, 1, -579.999, -290, 1, 0, 0, 1, -662.857, -290 )
+[sub_resource type="MultiMesh" id=19]
+mesh = SubResource( 18 )
 
-[sub_resource type="QuadMesh" id=5]
+[sub_resource type="QuadMesh" id=20]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=6]
-instance_count = 9
-mesh = SubResource( 5 )
-transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, -285, 1, 0, 0, 1, -81.4285, -285, 1, 0, 0, 1, -162.857, -285, 1, 0, 0, 1, -244.285, -285, 1, 0, 0, 1, -325.714, -285, 1, 0, 0, 1, -407.142, -285, 1, 0, 0, 1, -488.571, -285, 1, 0, 0, 1, -569.999, -285, 1, 0, 0, 1, -651.428, -285 )
+[sub_resource type="MultiMesh" id=21]
+mesh = SubResource( 20 )
 
-[sub_resource type="Environment" id=7]
+[sub_resource type="GDScript" id=7]
+script/source = "extends Button
+
+func _on_Pause_toggled(button_pressed):
+	print(\"PAUUUSE \", button_pressed)
+	get_tree().paused = button_pressed
+	Physics2DServer.set_active(true)
+"
+
+[sub_resource type="GDScript" id=15]
+script/source = "extends Button
+
+func _on_Outlines_toggled(button_pressed):
+	for o in get_tree().get_nodes_in_group(\"RingOutlineGroup\"):
+		o.set_show(!button_pressed)
+	for i in get_tree().get_nodes_in_group(\"InjectorGroup\"):
+		i.get_parent().set_show(!button_pressed)
+"
+
+[sub_resource type="Environment" id=8]
 background_mode = 4
 glow_intensity = 2.0
 glow_strength = 1.8
@@ -47,24 +63,6 @@ adjustment_enabled = true
 [node name="spacefield_a-000" type="Sprite" parent="."]
 position = Vector2( 640, 400 )
 texture = ExtResource( 2 )
-
-[node name="MainUI" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Button" type="Button" parent="MainUI"]
-pause_mode = 2
-margin_right = 12.0
-margin_bottom = 20.0
-toggle_mode = true
-text = "Build Mode"
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="InfoUI" type="Control" parent="."]
 visible = false
@@ -233,7 +231,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="sol2" type="Control" parent="Shields" instance=ExtResource( 9 )]
+[node name="sol" type="Control" parent="Shields" instance=ExtResource( 9 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 0.280609
@@ -244,7 +242,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="hydrogen2" type="Control" parent="Shields" instance=ExtResource( 9 )]
+[node name="hydrogen" type="Control" parent="Shields" instance=ExtResource( 9 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 0.280609
@@ -255,7 +253,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="iron2" type="Control" parent="Shields" instance=ExtResource( 9 )]
+[node name="iron" type="Control" parent="Shields" instance=ExtResource( 9 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 0.280609
@@ -266,7 +264,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="copper2" type="Control" parent="Shields" instance=ExtResource( 9 )]
+[node name="copper" type="Control" parent="Shields" instance=ExtResource( 9 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 0.280609
@@ -277,7 +275,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="steel2" type="Control" parent="Shields" instance=ExtResource( 9 )]
+[node name="steel" type="Control" parent="Shields" instance=ExtResource( 9 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 0.280609
@@ -288,7 +286,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="silica2" type="Control" parent="Shields" instance=ExtResource( 9 )]
+[node name="silica" type="Control" parent="Shields" instance=ExtResource( 9 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 0.280609
@@ -299,7 +297,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="glass2" type="Control" parent="Shields" instance=ExtResource( 9 )]
+[node name="glass" type="Control" parent="Shields" instance=ExtResource( 9 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 0.280609
@@ -310,7 +308,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="packed_hydrogen2" type="Control" parent="Shields" instance=ExtResource( 9 )]
+[node name="packed_hydrogen" type="Control" parent="Shields" instance=ExtResource( 9 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 0.280609
@@ -321,7 +319,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="cunife2" type="Control" parent="Shields" instance=ExtResource( 9 )]
+[node name="cunife" type="Control" parent="Shields" instance=ExtResource( 9 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 0.280609
@@ -332,7 +330,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="tritium2" type="Control" parent="Shields" instance=ExtResource( 9 )]
+[node name="tritium" type="Control" parent="Shields" instance=ExtResource( 9 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 0.280609
@@ -343,7 +341,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="packed_gas2" type="Control" parent="Shields" instance=ExtResource( 9 )]
+[node name="packed_gas" type="Control" parent="Shields" instance=ExtResource( 9 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 0.280609
@@ -354,7 +352,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="metalic_tritium2" type="Control" parent="Shields" instance=ExtResource( 9 )]
+[node name="metalic_tritium" type="Control" parent="Shields" instance=ExtResource( 9 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 0.280609
@@ -365,7 +363,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="xotic_a2" type="Control" parent="Shields" instance=ExtResource( 9 )]
+[node name="xotic_a" type="Control" parent="Shields" instance=ExtResource( 9 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 0.280609
@@ -376,7 +374,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="xotic_b2" type="Control" parent="Shields" instance=ExtResource( 9 )]
+[node name="xotic_b" type="Control" parent="Shields" instance=ExtResource( 9 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 0.280609
@@ -387,7 +385,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="xotic_c2" type="Control" parent="Shields" instance=ExtResource( 9 )]
+[node name="xotic_c" type="Control" parent="Shields" instance=ExtResource( 9 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 0.280609
@@ -398,7 +396,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="sw2" type="Control" parent="Shields" instance=ExtResource( 9 )]
+[node name="sw" type="Control" parent="Shields" instance=ExtResource( 9 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 0.280609
@@ -409,129 +407,269 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="InjectionSystem" type="Node2D" parent="."]
-position = Vector2( 500, 300 )
-script = ExtResource( 6 )
+[node name="CentreNode" type="Node2D" parent="."]
+position = Vector2( 512, 300 )
 
-[node name="Iron0" type="Node2D" parent="InjectionSystem"]
-position = Vector2( -51.8723, 0 )
-
-[node name="MultiMeshInstance2D" type="MultiMeshInstance2D" parent="InjectionSystem/Iron0"]
-multimesh = SubResource( 2 )
-texture = ExtResource( 1 )
-script = ExtResource( 5 )
-n = 9.0
-linear_velocity = 84.2856
-radius = 295.0
-period = 1.0
-lane = 3
-ring = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6189/@@6028/@@6029/@@6030/@@6031/@@6032/Root/RingSystem/Ring6")
-
-[node name="Copper0" type="Node2D" parent="InjectionSystem"]
-position = Vector2( -59.4767, 0 )
-
-[node name="MultiMeshInstance2D" type="MultiMeshInstance2D" parent="InjectionSystem/Copper0"]
-multimesh = SubResource( 4 )
-texture = ExtResource( 1 )
-script = ExtResource( 5 )
-n = 9.0
-linear_velocity = 82.8571
-radius = 290.0
-period = 1.0
-lane = 2
-ring = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6189/@@6028/@@6029/@@6030/@@6031/@@6032/Root/RingSystem/Ring6")
-
-[node name="Silica0" type="Node2D" parent="InjectionSystem"]
-position = Vector2( -67.0664, 0 )
-
-[node name="MultiMeshInstance2D" type="MultiMeshInstance2D" parent="InjectionSystem/Silica0"]
-multimesh = SubResource( 6 )
-texture = ExtResource( 1 )
-script = ExtResource( 5 )
-n = 9.0
-linear_velocity = 81.4285
-radius = 285.0
-period = 1.0
-lane = 1
-ring = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6189/@@6028/@@6029/@@6030/@@6031/@@6032/Root/RingSystem/Ring6")
-
-[node name="RingSystem" type="Node2D" parent="."]
-position = Vector2( 500, 300 )
+[node name="RingSystem" type="Node2D" parent="CentreNode"]
 script = ExtResource( 4 )
 rings = 9
 
-[node name="Ring0" parent="RingSystem" instance=ExtResource( 7 )]
-rotation = 4.77471
+[node name="Ring0" parent="CentreNode/RingSystem" instance=ExtResource( 7 )]
 set_ring = 0
 set_debug_color = Color( 1, 0, 0, 1 )
 radius_array = [ 40.0, 45.0, 50.0, 55.0 ]
 angular_velocity = 2.0
 n = 50.2655
 
-[node name="Ring1" parent="RingSystem" instance=ExtResource( 7 )]
-rotation = 2.38824
+[node name="Ring1" parent="CentreNode/RingSystem" instance=ExtResource( 7 )]
 set_ring = 1
 set_debug_color = Color( 1, 0.631373, 0, 1 )
 radius_array = [ 80.0, 85.0, 90.0, 95.0 ]
 angular_velocity = 1.0
 n = 100.531
 
-[node name="Ring2" parent="RingSystem" instance=ExtResource( 7 )]
-rotation = 5.78078
+[node name="Ring2" parent="CentreNode/RingSystem" instance=ExtResource( 7 )]
 set_ring = 2
 set_debug_color = Color( 1, 0.937255, 0, 1 )
 radius_array = [ 120.0, 125.0, 130.0, 135.0 ]
 angular_velocity = 0.666667
 n = 150.796
 
-[node name="Ring3" parent="RingSystem" instance=ExtResource( 7 )]
-rotation = 1.1936
+[node name="Ring3" parent="CentreNode/RingSystem" instance=ExtResource( 7 )]
 set_ring = 3
 set_debug_color = Color( 0, 0.0627451, 1, 1 )
 radius_array = [ 160.0, 165.0, 170.0, 175.0 ]
 angular_velocity = 0.5
 n = 201.062
 
-[node name="Ring4" parent="RingSystem" instance=ExtResource( 7 )]
-rotation = 2.21156
+[node name="Ring4" parent="CentreNode/RingSystem" instance=ExtResource( 7 )]
 set_ring = 4
 set_debug_color = Color( 0, 0.952941, 1, 1 )
 radius_array = [ 200.0, 205.0, 210.0, 215.0 ]
 angular_velocity = 0.4
 n = 251.327
 
-[node name="Ring5" parent="RingSystem" instance=ExtResource( 7 )]
-rotation = 2.89068
+[node name="Ring5" parent="CentreNode/RingSystem" instance=ExtResource( 7 )]
 set_ring = 5
 set_debug_color = Color( 0.101961, 0, 1, 1 )
 radius_array = [ 240.0, 245.0, 250.0, 255.0 ]
 angular_velocity = 0.333333
 n = 301.593
 
-[node name="Ring6" parent="RingSystem" instance=ExtResource( 7 )]
-rotation = 0.681507
+[node name="Ring6" parent="CentreNode/RingSystem" instance=ExtResource( 7 )]
 set_ring = 6
 set_debug_color = Color( 0.384314, 0, 1, 1 )
 radius_array = [ 280.0, 285.0, 290.0, 295.0 ]
 angular_velocity = 0.285714
 n = 351.858
 
-[node name="Ring7" parent="RingSystem" instance=ExtResource( 7 )]
-rotation = 0.5965
+[node name="Ring7" parent="CentreNode/RingSystem" instance=ExtResource( 7 )]
 set_debug_color = Color( 0.756863, 0, 1, 1 )
 angular_velocity = 0.25
 n = 402.124
 
-[node name="Ring8" parent="RingSystem" instance=ExtResource( 7 )]
-rotation = 1.92609
+[node name="Ring8" parent="CentreNode/RingSystem" instance=ExtResource( 7 )]
 set_ring = 8
 set_debug_color = Color( 1, 0, 0.537255, 1 )
 radius_array = [ 360.0, 365.0, 370.0, 375.0 ]
 angular_velocity = 0.222222
 n = 452.389
 
+[node name="InjectionSystem" type="Node2D" parent="CentreNode"]
+script = ExtResource( 6 )
+
+[node name="Iron0" type="Node2D" parent="CentreNode/InjectionSystem"]
+visible = false
+script = ExtResource( 10 )
+show = true
+
+[node name="IronInjection0" type="MultiMeshInstance2D" parent="CentreNode/InjectionSystem/Iron0" groups=[
+"InjectorGroup",
+]]
+modulate = Color( 0, 0, 1, 1 )
+position = Vector2( -3.46068, 0 )
+multimesh = SubResource( 17 )
+texture = ExtResource( 1 )
+script = ExtResource( 5 )
+set_resource = "iron"
+linear_velocity = 84.2857
+radius = 295.0
+lane = 3
+ring = NodePath("../MultiMeshInstance2D/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6189/@@6028/@@6029/@@6030/@@6031/@@6032/Root/CentreNode/RingSystem/Ring6")
+
+[node name="Copper0" type="Node2D" parent="CentreNode/InjectionSystem"]
+visible = false
+script = ExtResource( 10 )
+show = true
+
+[node name="CopperInjection0" type="MultiMeshInstance2D" parent="CentreNode/InjectionSystem/Copper0" groups=[
+"InjectorGroup",
+]]
+modulate = Color( 1, 1, 0, 1 )
+position = Vector2( -12.1307, 0 )
+multimesh = SubResource( 19 )
+texture = ExtResource( 1 )
+script = ExtResource( 5 )
+set_resource = "copper"
+linear_velocity = 82.8571
+radius = 290.0
+lane = 2
+ring = NodePath("../MultiMeshInstance2D/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6189/@@6028/@@6029/@@6030/@@6031/@@6032/Root/CentreNode/RingSystem/Ring6")
+
+[node name="Silica0" type="Node2D" parent="CentreNode/InjectionSystem"]
+visible = false
+script = ExtResource( 10 )
+show = true
+
+[node name="SilicaInjection0" type="MultiMeshInstance2D" parent="CentreNode/InjectionSystem/Silica0" groups=[
+"InjectorGroup",
+]]
+modulate = Color( 0.8, 0.8, 0, 1 )
+position = Vector2( -20.7248, 0 )
+multimesh = SubResource( 21 )
+texture = ExtResource( 1 )
+script = ExtResource( 5 )
+set_resource = "silica"
+linear_velocity = 81.4286
+radius = 285.0
+lane = 1
+ring = NodePath("../MultiMeshInstance2D/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6189/@@6028/@@6029/@@6030/@@6031/@@6032/Root/CentreNode/RingSystem/Ring6")
+
+[node name="MainUI" type="Control" parent="."]
+pause_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainerTop" type="MarginContainer" parent="MainUI"]
+margin_right = 1024.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="MainUI/MarginContainerTop"]
+margin_right = 1024.0
+margin_bottom = 20.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainUI/MarginContainerTop/CenterContainer"]
+margin_left = 311.0
+margin_right = 713.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+
+[node name="BuildMode" type="Button" parent="MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
+margin_right = 85.0
+margin_bottom = 20.0
+toggle_mode = true
+group = ExtResource( 11 )
+text = "Build Mode"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
+margin_left = 89.0
+margin_right = 155.0
+margin_bottom = 20.0
+text = "Recipies"
+
+[node name="Label" type="Label" parent="MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
+margin_left = 159.0
+margin_top = 3.0
+margin_right = 247.0
+margin_bottom = 17.0
+text = "Mission: 60 H"
+
+[node name="Pause" type="Button" parent="MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
+margin_left = 251.0
+margin_right = 301.0
+margin_bottom = 20.0
+toggle_mode = true
+group = ExtResource( 12 )
+text = "Pause"
+script = SubResource( 7 )
+
+[node name="FF" type="Button" parent="MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
+margin_left = 305.0
+margin_right = 331.0
+margin_bottom = 20.0
+toggle_mode = true
+group = ExtResource( 12 )
+text = "FF"
+
+[node name="Outlines" type="Button" parent="MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
+margin_left = 335.0
+margin_right = 402.0
+margin_bottom = 20.0
+toggle_mode = true
+text = "Outlines"
+script = SubResource( 15 )
+
+[node name="MarginContainerSide" type="MarginContainer" parent="MainUI"]
+pause_mode = 2
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="MainUI/MarginContainerSide"]
+margin_right = 57.0
+margin_bottom = 600.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainUI/MarginContainerSide/CenterContainer"]
+margin_top = 238.0
+margin_right = 57.0
+margin_bottom = 362.0
+custom_constants/separation = 32
+
+[node name="Iron" type="Button" parent="MainUI/MarginContainerSide/CenterContainer/VBoxContainer"]
+margin_right = 57.0
+margin_bottom = 20.0
+toggle_mode = true
+group = ExtResource( 11 )
+text = "Iron"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Copper" type="Button" parent="MainUI/MarginContainerSide/CenterContainer/VBoxContainer"]
+margin_top = 52.0
+margin_right = 57.0
+margin_bottom = 72.0
+toggle_mode = true
+group = ExtResource( 11 )
+text = "Copper"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Silica" type="Button" parent="MainUI/MarginContainerSide/CenterContainer/VBoxContainer"]
+margin_top = 104.0
+margin_right = 57.0
+margin_bottom = 124.0
+toggle_mode = true
+group = ExtResource( 11 )
+text = "Silica"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 7 )
+environment = SubResource( 8 )
 
 [node name="Line2D" type="Line2D" parent="."]
 visible = false
@@ -543,4 +681,11 @@ visible = false
 points = PoolVector2Array( 0, 340, 1000, 340 )
 width = 1.0
 
-[connection signal="toggled" from="MainUI/Button" to="MainUI/Button" method="_on_Button_toggled"]
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="toggled" from="MainUI/MarginContainerTop/CenterContainer/HBoxContainer/BuildMode" to="MainUI/MarginContainerTop/CenterContainer/HBoxContainer/BuildMode" method="_on_Button_toggled"]
+[connection signal="toggled" from="MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Pause" to="MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Pause" method="_on_Pause_toggled"]
+[connection signal="toggled" from="MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Outlines" to="MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Outlines" method="_on_Outlines_toggled"]
+[connection signal="toggled" from="MainUI/MarginContainerSide/CenterContainer/VBoxContainer/Iron" to="MainUI/MarginContainerSide/CenterContainer/VBoxContainer/Iron" method="_on_Button_toggled"]
+[connection signal="toggled" from="MainUI/MarginContainerSide/CenterContainer/VBoxContainer/Copper" to="MainUI/MarginContainerSide/CenterContainer/VBoxContainer/Copper" method="_on_Button_toggled"]
+[connection signal="toggled" from="MainUI/MarginContainerSide/CenterContainer/VBoxContainer/Silica" to="MainUI/MarginContainerSide/CenterContainer/VBoxContainer/Silica" method="_on_Button_toggled"]

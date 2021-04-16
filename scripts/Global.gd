@@ -1,6 +1,8 @@
 extends Node
 tool
 
+var last_pressed = null
+
 var data = {
 	"sol": {
 		"name": "",
