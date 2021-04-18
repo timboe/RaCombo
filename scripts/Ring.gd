@@ -20,29 +20,48 @@ func _ready():
 	
 func add_to_ring(var angle : float, var lane : int):
 	var angle_mod = angle - $Rotation.rotation
-	if angle_mod < 0.0:
-		angle_mod += TWOPI
-	elif angle_mod > TWOPI:
-		angle_mod -= TWOPI
-	return $Rotation/Lanes.get_child(lane).add_to_ring(angle_mod)
+	return get_lane(lane).add_to_ring(angle_mod)
+
+func set_factory_template_visible(var v : bool):
+	get_node("Rotation/FactoryTemplate").visible = v
+	
+func new_factory():
+	var factory_template = get_node("Rotation/FactoryTemplate")
+	if factory_template.colliding:
+		return
+	var new_factory = factory_template.duplicate(DUPLICATE_SCRIPTS|DUPLICATE_SIGNALS)
+	new_factory.name = "FactoryInstance1"
+	get_node("Rotation/Factories").add_child(new_factory, true)
+	new_factory.add_to_group("FactoryGroup", true)
+	var new_factory_angle_start = (new_factory.global_rotation - new_factory.span_radians/2.0) - $Rotation.rotation
+	var new_factory_angle_end = (new_factory.global_rotation + new_factory.span_radians/2.0) - $Rotation.rotation
+	for l in get_lanes():
+		l.set_range_fillable(new_factory_angle_start, new_factory_angle_end, false)
+	print("Factory ",new_factory.name," placed")
 
 func get_lane(var i) -> Node:
 	return $Rotation/Lanes.get_child(i)
 	
-func register_resource(var lane : int, var reg_resource : String):
-	get_lane(lane).register_resource(reg_resource)
+func get_lanes() -> Array:
+	return $Rotation/Lanes.get_children()
+
+func get_factories() -> Array:
+	return $Rotation/Factories.get_children()
+	
+func register_resource(var lane : int, var reg_resource : String, var provinace : Node):
+	get_lane(lane).register_resource(reg_resource, provinace)
 
 func get_free_or_existing_lane(var desired_resource : String) -> int:
 	# Existing
 	var count = 0
-	for c in $Rotation/Lanes.get_children():
-		if c.lane_content != null and c.lane_content == desired_resource:
+	for l in get_lanes():
+		if l.lane_content != null and l.lane_content == desired_resource:
 			return count
 		count += 1
 	# Free
 	count = 0
-	for c in $Rotation/Lanes.get_children():
-		if c.lane_content == null:
+	for l in get_lanes():
+		if l.lane_content == null:
 			return count
 		count += 1
 	return -1
@@ -59,8 +78,8 @@ func set_radius(var r : float):
 func setup_resource(var r : float):
 	set_radius(r)
 	var count : int = 0
-	for c in $Rotation/Lanes.get_children():
-		c.setup_resource(n, radius_array[count])
+	for l in get_lanes():
+		l.setup_resource(n, radius_array[count])
 		count += 1
 	#vertical drop in ring0's factory template. Used to set angular width of all factory templates
 	var r0 : Node2D = $"../Ring0"

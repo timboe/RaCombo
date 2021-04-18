@@ -12,6 +12,11 @@ export(float) var linear_velocity
 export(float) var radius
 export(int) var lane
 export(NodePath) var ring = ""
+export(bool) var placed = false
+
+onready var iron_button0 = get_tree().get_root().find_node("IronButton0", true, false)
+onready var copper_button0 = get_tree().get_root().find_node("CopperButton0", true, false)
+onready var silica_button0 = get_tree().get_root().find_node("SilicaButton0", true, false)
 
 func _ready():
 	n = 0
@@ -26,17 +31,26 @@ func _ready():
 	modulate = globals.data[set_resource]["color"]
 
 func hint_resource(var attached_ring : Node2D, var ring_lane : int):
+	if ring_lane == -1: # Invalid - no room
+		ring = ""
+		return
 	radius = attached_ring.radius_array[ring_lane]
+	lane = ring_lane
+	ring = attached_ring.get_path()
 	get_parent().update()
 	get_parent().visible = true
 	
-func setup_resource(var attached_ring : Node2D, var ring_lane : int):
-	attached_ring.register_resource(ring_lane, set_resource)
-	
-	ring = attached_ring.get_path()
-	lane = ring_lane
-	radius = attached_ring.radius_array[lane]
-	linear_velocity = attached_ring.angular_velocity * radius
+func stop_hint_resource():
+	if not placed:
+		ring = ""
+		get_parent().visible = false
+
+func setup_resource_at_hint():
+	if ring == "": # Invalid
+		return
+	get_node(ring).register_resource(lane, set_resource, self)
+	placed = true
+	linear_velocity = get_node(ring).angular_velocity * radius
 	var total_length := WIDTH + EXTRA_MARGIN
 	n = round( (total_length/linear_velocity) / set_period ) 
 	multimesh.instance_count = n
@@ -48,9 +62,35 @@ func setup_resource(var attached_ring : Node2D, var ring_lane : int):
 	transform.origin.x = -WIDTH
 	get_parent().update()
 	get_parent().visible = true
+	# Find my button and disable it
+	var button : Button = get_injecton_button()
+	Global.last_pressed = null
+	button.pressed = false
+	button.disabled = true
+	
+# Called when a lane rejects the input
+func deregister_resource():
+	# Find my button and enable it
+	get_injecton_button().disabled = false
+	Global.last_pressed = null
+	multimesh.instance_count = 0
+	placed = false
+	stop_hint_resource()
+
+	
+func get_injecton_button() -> Button:
+	if name == "IronInjection0":
+		return iron_button0
+	elif name == "CopperInjection0":
+		return copper_button0
+	elif name == "SilicaInjection0":
+		return silica_button0
+	else:
+		return null
+
 
 func _physics_process(delta):
-	if n == 0:
+	if not placed:
 		return
 	transform.origin.x += delta * linear_velocity
 	if transform.origin.x > 0:

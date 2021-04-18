@@ -1,5 +1,4 @@
 extends Control
-tool
 
 func _ready():
 	var shield_scene = load("res://scenes/Shield.tscn")
@@ -24,3 +23,6 @@ func _ready():
 		var _sign : Label = shield.get_node("Sign")
 		_sign.set("custom_colors/font_color", value["color"].contrasted())
 		_sign.text = "-" if value["resource"] else "+"
+		# Specials
+		if key == "none":
+			_sign.text = ""

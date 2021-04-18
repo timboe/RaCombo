@@ -2,8 +2,14 @@ extends Node
 tool
 
 var last_pressed = null
+var last_pressed_paused = null
 
 var data = {
+	"none": {
+		"name": "",
+		"color": Color(0.0, 0.0, 0.0),
+		"resource": false
+	},
 	"sol": {
 		"name": "",
 		"color": Color(0.0, 0.0, 0.0),

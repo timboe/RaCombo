@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://images/circle_05.png" type="Texture" id=1]
 [ext_resource path="res://images/spacefield_a-000.png" type="Texture" id=2]
@@ -8,39 +8,23 @@
 [ext_resource path="res://scripts/InjectionSystem.gd" type="Script" id=6]
 [ext_resource path="res://scenes/Ring.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scripts/Shields.gd" type="Script" id=8]
-[ext_resource path="res://scenes/Shield.tscn" type="PackedScene" id=9]
+[ext_resource path="res://images/trash.png" type="Texture" id=9]
 [ext_resource path="res://scripts/Injector.gd" type="Script" id=10]
 [ext_resource path="res://resources/SlelectionButtonGroup.tres" type="ButtonGroup" id=11]
 [ext_resource path="res://resources/PauseButtonGroup.tres" type="ButtonGroup" id=12]
+[ext_resource path="res://scripts/Camera2D.gd" type="Script" id=13]
+[ext_resource path="res://scripts/InfoDialog.gd" type="Script" id=14]
+[ext_resource path="res://scripts/PauseFF.gd" type="Script" id=15]
+[ext_resource path="res://scripts/BinLane.gd" type="Script" id=16]
+[ext_resource path="res://scripts/InputCapture.gd" type="Script" id=17]
 
-[sub_resource type="QuadMesh" id=16]
-size = Vector2( 10, 10 )
+[sub_resource type="InputEventAction" id=24]
+action = "ui_pause"
 
-[sub_resource type="MultiMesh" id=17]
-mesh = SubResource( 16 )
+[sub_resource type="ShortCut" id=25]
+shortcut = SubResource( 24 )
 
-[sub_resource type="QuadMesh" id=18]
-size = Vector2( 10, 10 )
-
-[sub_resource type="MultiMesh" id=19]
-mesh = SubResource( 18 )
-
-[sub_resource type="QuadMesh" id=20]
-size = Vector2( 10, 10 )
-
-[sub_resource type="MultiMesh" id=21]
-mesh = SubResource( 20 )
-
-[sub_resource type="GDScript" id=7]
-script/source = "extends Button
-
-func _on_Pause_toggled(button_pressed):
-	print(\"PAUUUSE \", button_pressed)
-	get_tree().paused = button_pressed
-	Physics2DServer.set_active(true)
-"
-
-[sub_resource type="GDScript" id=15]
+[sub_resource type="GDScript" id=2]
 script/source = "extends Button
 
 func _on_Outlines_toggled(button_pressed):
@@ -50,7 +34,25 @@ func _on_Outlines_toggled(button_pressed):
 		i.get_parent().set_show(!button_pressed)
 "
 
-[sub_resource type="Environment" id=8]
+[sub_resource type="QuadMesh" id=26]
+size = Vector2( 10, 10 )
+
+[sub_resource type="MultiMesh" id=27]
+mesh = SubResource( 26 )
+
+[sub_resource type="QuadMesh" id=28]
+size = Vector2( 10, 10 )
+
+[sub_resource type="MultiMesh" id=29]
+mesh = SubResource( 28 )
+
+[sub_resource type="QuadMesh" id=30]
+size = Vector2( 10, 10 )
+
+[sub_resource type="MultiMesh" id=31]
+mesh = SubResource( 30 )
+
+[sub_resource type="Environment" id=9]
 background_mode = 4
 glow_intensity = 2.0
 glow_strength = 1.8
@@ -60,349 +62,432 @@ adjustment_enabled = true
 
 [node name="Root" type="Node2D"]
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+pause_mode = 2
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InfoUI" type="Control" parent="CanvasLayer/UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/UI/InfoUI"]
+margin_right = 1024.0
+margin_bottom = 600.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InfoDialog" type="WindowDialog" parent="CanvasLayer/UI/InfoUI/CenterContainer"]
+visible = true
+margin_left = 384.0
+margin_top = 200.0
+margin_right = 640.0
+margin_bottom = 400.0
+rect_min_size = Vector2( 256, 200 )
+custom_constants/scaleborder_size = 0
+window_title = "Ring"
+resizable = true
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RingContainer" type="MarginContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 212.0
+margin_bottom = 155.0
+custom_constants/separation = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Lanes" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer"]
+margin_right = 204.0
+margin_bottom = 14.0
+text = "Lanes"
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer"]
+margin_top = 20.0
+margin_right = 204.0
+margin_bottom = 90.0
+custom_constants/vseparation = 6
+custom_constants/hseparation = 6
+columns = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="L1" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/GridContainer"]
+margin_top = 9.0
+margin_right = 12.0
+margin_bottom = 23.0
+text = "1:"
+
+[node name="LIcon1" type="CenterContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/GridContainer"]
+margin_left = 18.0
+margin_right = 50.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+use_top_left = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LBin1" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/GridContainer"]
+margin_left = 56.0
+margin_right = 88.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+icon = ExtResource( 9 )
+expand_icon = true
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VSeparator" type="VSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/GridContainer"]
+margin_left = 94.0
+margin_right = 110.0
+margin_bottom = 32.0
+custom_constants/separation = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="L2" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/GridContainer"]
+margin_left = 116.0
+margin_top = 9.0
+margin_right = 128.0
+margin_bottom = 23.0
+text = "2:"
+
+[node name="LIcon2" type="CenterContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/GridContainer"]
+margin_left = 134.0
+margin_right = 166.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+use_top_left = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LBin2" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/GridContainer"]
+margin_left = 172.0
+margin_right = 204.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+icon = ExtResource( 9 )
+expand_icon = true
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="L3" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/GridContainer"]
+margin_top = 47.0
+margin_right = 12.0
+margin_bottom = 61.0
+text = "3:"
+
+[node name="LIcon3" type="CenterContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/GridContainer"]
+margin_left = 18.0
+margin_top = 38.0
+margin_right = 50.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 32, 32 )
+use_top_left = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LBin3" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/GridContainer"]
+margin_left = 56.0
+margin_top = 38.0
+margin_right = 88.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 32, 32 )
+icon = ExtResource( 9 )
+expand_icon = true
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VSeparator2" type="VSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/GridContainer"]
+margin_left = 94.0
+margin_top = 38.0
+margin_right = 110.0
+margin_bottom = 70.0
+custom_constants/separation = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="L4" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/GridContainer"]
+margin_left = 116.0
+margin_top = 47.0
+margin_right = 128.0
+margin_bottom = 61.0
+text = "4:"
+
+[node name="LIcon4" type="CenterContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/GridContainer"]
+margin_left = 134.0
+margin_top = 38.0
+margin_right = 166.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 32, 32 )
+use_top_left = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LBin4" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/GridContainer"]
+margin_left = 172.0
+margin_top = 38.0
+margin_right = 204.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 32, 32 )
+icon = ExtResource( 9 )
+expand_icon = true
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator2" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer"]
+margin_top = 96.0
+margin_right = 204.0
+margin_bottom = 112.0
+custom_constants/separation = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Factories" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer"]
+margin_top = 118.0
+margin_right = 204.0
+margin_bottom = 132.0
+text = "Factories"
+
+[node name="FactoriesList" type="ItemList" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer"]
+margin_top = 138.0
+margin_right = 204.0
+margin_bottom = 147.0
+auto_height = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FactoryContainer" type="MarginContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog"]
+margin_right = 40.0
+margin_bottom = 40.0
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Unset" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 118.0
+margin_bottom = 32.0
+custom_constants/separation = 6
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset"]
+margin_right = 110.0
+margin_bottom = 14.0
+text = "Configure Factory"
+align = 1
+
+[node name="Shunt" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer"]
+visible = false
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 118.0
+margin_bottom = 32.0
+custom_constants/separation = 6
+
+[node name="Make" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer"]
+visible = false
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 118.0
+margin_bottom = 32.0
+custom_constants/separation = 6
+
+[node name="MainUI" type="Control" parent="CanvasLayer/UI"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainerTop" type="MarginContainer" parent="CanvasLayer/UI/MainUI"]
+margin_right = 1024.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/UI/MainUI/MarginContainerTop"]
+margin_right = 1024.0
+margin_bottom = 20.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer"]
+margin_left = 311.0
+margin_right = 713.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+
+[node name="BuildMode" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
+margin_right = 85.0
+margin_bottom = 20.0
+toggle_mode = true
+group = ExtResource( 11 )
+text = "Build Mode"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
+margin_left = 89.0
+margin_right = 155.0
+margin_bottom = 20.0
+text = "Recipies"
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
+margin_left = 159.0
+margin_top = 3.0
+margin_right = 247.0
+margin_bottom = 17.0
+text = "Mission: 60 H"
+
+[node name="Pause" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
+margin_left = 251.0
+margin_right = 301.0
+margin_bottom = 20.0
+toggle_mode = true
+shortcut = SubResource( 25 )
+group = ExtResource( 12 )
+text = "Pause"
+script = ExtResource( 15 )
+
+[node name="FF" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
+margin_left = 305.0
+margin_right = 331.0
+margin_bottom = 20.0
+toggle_mode = true
+group = ExtResource( 12 )
+text = "FF"
+script = ExtResource( 15 )
+
+[node name="Outlines" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
+margin_left = 335.0
+margin_right = 402.0
+margin_bottom = 20.0
+toggle_mode = true
+text = "Outlines"
+script = SubResource( 2 )
+
+[node name="MarginContainerSide" type="MarginContainer" parent="CanvasLayer/UI/MainUI"]
+pause_mode = 2
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/UI/MainUI/MarginContainerSide"]
+margin_right = 57.0
+margin_bottom = 600.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer"]
+margin_top = 238.0
+margin_right = 57.0
+margin_bottom = 362.0
+custom_constants/separation = 32
+
+[node name="IronButton0" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer"]
+margin_right = 57.0
+margin_bottom = 20.0
+toggle_mode = true
+group = ExtResource( 11 )
+text = "Iron"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CopperButton0" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer"]
+margin_top = 52.0
+margin_right = 57.0
+margin_bottom = 72.0
+toggle_mode = true
+group = ExtResource( 11 )
+text = "Copper"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SilicaButton0" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer"]
+margin_top = 104.0
+margin_right = 57.0
+margin_bottom = 124.0
+toggle_mode = true
+group = ExtResource( 11 )
+text = "Silica"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="spacefield_a-000" type="Sprite" parent="."]
 position = Vector2( 640, 400 )
 texture = ExtResource( 2 )
 
-[node name="InfoUI" type="Control" parent="."]
+[node name="InputCapture" type="Node2D" parent="."]
+pause_mode = 2
+script = ExtResource( 17 )
+
+[node name="Shields" type="Control" parent="."]
 visible = false
 margin_right = 40.0
 margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="WindowDialog" type="WindowDialog" parent="InfoUI"]
-visible = true
-margin_right = 48.0
-margin_bottom = 40.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-resizable = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VBoxContainer" type="VBoxContainer" parent="InfoUI/WindowDialog"]
-margin_right = 40.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Ring" type="Label" parent="InfoUI/WindowDialog/VBoxContainer"]
-margin_right = 75.0
-margin_bottom = 14.0
-text = "Ring 0"
-
-[node name="HSeparator" type="HSeparator" parent="InfoUI/WindowDialog/VBoxContainer"]
-margin_top = 18.0
-margin_right = 75.0
-margin_bottom = 22.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Lanes" type="Label" parent="InfoUI/WindowDialog/VBoxContainer"]
-margin_top = 26.0
-margin_right = 75.0
-margin_bottom = 40.0
-text = "Lanes:"
-
-[node name="GridContainer" type="GridContainer" parent="InfoUI/WindowDialog/VBoxContainer"]
-margin_top = 44.0
-margin_right = 75.0
-margin_bottom = 136.0
-columns = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="L0" type="Label" parent="InfoUI/WindowDialog/VBoxContainer/GridContainer"]
-margin_top = 3.0
-margin_right = 8.0
-margin_bottom = 17.0
-text = "0"
-
-[node name="L0Content" type="Label" parent="InfoUI/WindowDialog/VBoxContainer/GridContainer"]
-margin_left = 12.0
-margin_top = 3.0
-margin_right = 38.0
-margin_bottom = 17.0
-text = "Iron"
-
-[node name="L0Bin" type="Button" parent="InfoUI/WindowDialog/VBoxContainer/GridContainer"]
-margin_left = 42.0
-margin_right = 75.0
-margin_bottom = 20.0
-text = "Bin"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="L1" type="Label" parent="InfoUI/WindowDialog/VBoxContainer/GridContainer"]
-margin_top = 27.0
-margin_right = 8.0
-margin_bottom = 41.0
-text = "0"
-
-[node name="L1Content" type="Label" parent="InfoUI/WindowDialog/VBoxContainer/GridContainer"]
-margin_left = 12.0
-margin_top = 27.0
-margin_right = 38.0
-margin_bottom = 41.0
-text = "Iron"
-
-[node name="L1Bin" type="Button" parent="InfoUI/WindowDialog/VBoxContainer/GridContainer"]
-margin_left = 42.0
-margin_top = 24.0
-margin_right = 75.0
-margin_bottom = 44.0
-text = "Bin"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="L2" type="Label" parent="InfoUI/WindowDialog/VBoxContainer/GridContainer"]
-margin_top = 51.0
-margin_right = 8.0
-margin_bottom = 65.0
-text = "0"
-
-[node name="L2Content" type="Label" parent="InfoUI/WindowDialog/VBoxContainer/GridContainer"]
-margin_left = 12.0
-margin_top = 51.0
-margin_right = 38.0
-margin_bottom = 65.0
-text = "Iron"
-
-[node name="L2Bin" type="Button" parent="InfoUI/WindowDialog/VBoxContainer/GridContainer"]
-margin_left = 42.0
-margin_top = 48.0
-margin_right = 75.0
-margin_bottom = 68.0
-text = "Bin"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="L3" type="Label" parent="InfoUI/WindowDialog/VBoxContainer/GridContainer"]
-margin_top = 75.0
-margin_right = 8.0
-margin_bottom = 89.0
-text = "0"
-
-[node name="L3Content" type="Label" parent="InfoUI/WindowDialog/VBoxContainer/GridContainer"]
-margin_left = 12.0
-margin_top = 75.0
-margin_right = 38.0
-margin_bottom = 89.0
-text = "Iron"
-
-[node name="L3Bin" type="Button" parent="InfoUI/WindowDialog/VBoxContainer/GridContainer"]
-margin_left = 42.0
-margin_top = 72.0
-margin_right = 75.0
-margin_bottom = 92.0
-text = "Bin"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HSeparator2" type="HSeparator" parent="InfoUI/WindowDialog/VBoxContainer"]
-margin_top = 140.0
-margin_right = 75.0
-margin_bottom = 144.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Factories" type="Label" parent="InfoUI/WindowDialog/VBoxContainer"]
-margin_top = 148.0
-margin_right = 75.0
-margin_bottom = 162.0
-text = "Factories:"
-
-[node name="Shields" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
 script = ExtResource( 8 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="sol" type="Control" parent="Shields" instance=ExtResource( 9 )]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 0.280609
-margin_top = 32.0
-margin_right = 0.28064
-margin_bottom = 0.28064
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="hydrogen" type="Control" parent="Shields" instance=ExtResource( 9 )]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 0.280609
-margin_top = 64.0
-margin_right = 0.28064
-margin_bottom = 0.28064
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="iron" type="Control" parent="Shields" instance=ExtResource( 9 )]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 0.280609
-margin_top = 96.0
-margin_right = 0.28064
-margin_bottom = 0.28064
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="copper" type="Control" parent="Shields" instance=ExtResource( 9 )]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 0.280609
-margin_top = 128.0
-margin_right = 0.28064
-margin_bottom = 0.28064
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="steel" type="Control" parent="Shields" instance=ExtResource( 9 )]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 0.280609
-margin_top = 160.0
-margin_right = 0.28064
-margin_bottom = 0.28064
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="silica" type="Control" parent="Shields" instance=ExtResource( 9 )]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 0.280609
-margin_top = 192.0
-margin_right = 0.28064
-margin_bottom = 0.28064
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="glass" type="Control" parent="Shields" instance=ExtResource( 9 )]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 0.280609
-margin_top = 224.0
-margin_right = 0.28064
-margin_bottom = 0.28064
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="packed_hydrogen" type="Control" parent="Shields" instance=ExtResource( 9 )]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 0.280609
-margin_top = 256.0
-margin_right = 0.28064
-margin_bottom = 0.28064
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="cunife" type="Control" parent="Shields" instance=ExtResource( 9 )]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 0.280609
-margin_top = 288.0
-margin_right = 0.28064
-margin_bottom = 0.28064
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="tritium" type="Control" parent="Shields" instance=ExtResource( 9 )]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 0.280609
-margin_top = 320.0
-margin_right = 0.28064
-margin_bottom = 0.28064
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="packed_gas" type="Control" parent="Shields" instance=ExtResource( 9 )]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 0.280609
-margin_top = 352.0
-margin_right = 0.28064
-margin_bottom = 0.28064
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="metalic_tritium" type="Control" parent="Shields" instance=ExtResource( 9 )]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 0.280609
-margin_top = 384.0
-margin_right = 0.28064
-margin_bottom = 0.28064
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="xotic_a" type="Control" parent="Shields" instance=ExtResource( 9 )]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 0.280609
-margin_top = 416.0
-margin_right = 0.28064
-margin_bottom = 0.28064
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="xotic_b" type="Control" parent="Shields" instance=ExtResource( 9 )]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 0.280609
-margin_top = 448.0
-margin_right = 0.28064
-margin_bottom = 0.28064
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="xotic_c" type="Control" parent="Shields" instance=ExtResource( 9 )]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 0.280609
-margin_top = 480.0
-margin_right = 0.28064
-margin_bottom = 0.28064
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="sw" type="Control" parent="Shields" instance=ExtResource( 9 )]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 0.280609
-margin_top = 512.0
-margin_right = 0.28064
-margin_bottom = 0.28064
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -488,7 +573,7 @@ show = true
 ]]
 modulate = Color( 0, 0, 1, 1 )
 position = Vector2( -3.46068, 0 )
-multimesh = SubResource( 17 )
+multimesh = SubResource( 27 )
 texture = ExtResource( 1 )
 script = ExtResource( 5 )
 set_resource = "iron"
@@ -507,7 +592,7 @@ show = true
 ]]
 modulate = Color( 1, 1, 0, 1 )
 position = Vector2( -12.1307, 0 )
-multimesh = SubResource( 19 )
+multimesh = SubResource( 29 )
 texture = ExtResource( 1 )
 script = ExtResource( 5 )
 set_resource = "copper"
@@ -526,7 +611,7 @@ show = true
 ]]
 modulate = Color( 0.8, 0.8, 0, 1 )
 position = Vector2( -20.7248, 0 )
-multimesh = SubResource( 21 )
+multimesh = SubResource( 31 )
 texture = ExtResource( 1 )
 script = ExtResource( 5 )
 set_resource = "silica"
@@ -535,141 +620,8 @@ radius = 285.0
 lane = 1
 ring = NodePath("../MultiMeshInstance2D/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6189/@@6028/@@6029/@@6030/@@6031/@@6032/Root/CentreNode/RingSystem/Ring6")
 
-[node name="MainUI" type="Control" parent="."]
-pause_mode = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MarginContainerTop" type="MarginContainer" parent="MainUI"]
-margin_right = 1024.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CenterContainer" type="CenterContainer" parent="MainUI/MarginContainerTop"]
-margin_right = 1024.0
-margin_bottom = 20.0
-grow_horizontal = 2
-size_flags_horizontal = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MainUI/MarginContainerTop/CenterContainer"]
-margin_left = 311.0
-margin_right = 713.0
-margin_bottom = 20.0
-size_flags_horizontal = 3
-
-[node name="BuildMode" type="Button" parent="MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
-margin_right = 85.0
-margin_bottom = 20.0
-toggle_mode = true
-group = ExtResource( 11 )
-text = "Build Mode"
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Button2" type="Button" parent="MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
-margin_left = 89.0
-margin_right = 155.0
-margin_bottom = 20.0
-text = "Recipies"
-
-[node name="Label" type="Label" parent="MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
-margin_left = 159.0
-margin_top = 3.0
-margin_right = 247.0
-margin_bottom = 17.0
-text = "Mission: 60 H"
-
-[node name="Pause" type="Button" parent="MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
-margin_left = 251.0
-margin_right = 301.0
-margin_bottom = 20.0
-toggle_mode = true
-group = ExtResource( 12 )
-text = "Pause"
-script = SubResource( 7 )
-
-[node name="FF" type="Button" parent="MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
-margin_left = 305.0
-margin_right = 331.0
-margin_bottom = 20.0
-toggle_mode = true
-group = ExtResource( 12 )
-text = "FF"
-
-[node name="Outlines" type="Button" parent="MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
-margin_left = 335.0
-margin_right = 402.0
-margin_bottom = 20.0
-toggle_mode = true
-text = "Outlines"
-script = SubResource( 15 )
-
-[node name="MarginContainerSide" type="MarginContainer" parent="MainUI"]
-pause_mode = 2
-margin_bottom = 600.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CenterContainer" type="CenterContainer" parent="MainUI/MarginContainerSide"]
-margin_right = 57.0
-margin_bottom = 600.0
-grow_horizontal = 2
-size_flags_horizontal = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MainUI/MarginContainerSide/CenterContainer"]
-margin_top = 238.0
-margin_right = 57.0
-margin_bottom = 362.0
-custom_constants/separation = 32
-
-[node name="Iron" type="Button" parent="MainUI/MarginContainerSide/CenterContainer/VBoxContainer"]
-margin_right = 57.0
-margin_bottom = 20.0
-toggle_mode = true
-group = ExtResource( 11 )
-text = "Iron"
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Copper" type="Button" parent="MainUI/MarginContainerSide/CenterContainer/VBoxContainer"]
-margin_top = 52.0
-margin_right = 57.0
-margin_bottom = 72.0
-toggle_mode = true
-group = ExtResource( 11 )
-text = "Copper"
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Silica" type="Button" parent="MainUI/MarginContainerSide/CenterContainer/VBoxContainer"]
-margin_top = 104.0
-margin_right = 57.0
-margin_bottom = 124.0
-toggle_mode = true
-group = ExtResource( 11 )
-text = "Silica"
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 8 )
+environment = SubResource( 9 )
 
 [node name="Line2D" type="Line2D" parent="."]
 visible = false
@@ -682,10 +634,18 @@ points = PoolVector2Array( 0, 340, 1000, 340 )
 width = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
+pause_mode = 2
+offset = Vector2( 512, 300 )
+current = true
+script = ExtResource( 13 )
 
-[connection signal="toggled" from="MainUI/MarginContainerTop/CenterContainer/HBoxContainer/BuildMode" to="MainUI/MarginContainerTop/CenterContainer/HBoxContainer/BuildMode" method="_on_Button_toggled"]
-[connection signal="toggled" from="MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Pause" to="MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Pause" method="_on_Pause_toggled"]
-[connection signal="toggled" from="MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Outlines" to="MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Outlines" method="_on_Outlines_toggled"]
-[connection signal="toggled" from="MainUI/MarginContainerSide/CenterContainer/VBoxContainer/Iron" to="MainUI/MarginContainerSide/CenterContainer/VBoxContainer/Iron" method="_on_Button_toggled"]
-[connection signal="toggled" from="MainUI/MarginContainerSide/CenterContainer/VBoxContainer/Copper" to="MainUI/MarginContainerSide/CenterContainer/VBoxContainer/Copper" method="_on_Button_toggled"]
-[connection signal="toggled" from="MainUI/MarginContainerSide/CenterContainer/VBoxContainer/Silica" to="MainUI/MarginContainerSide/CenterContainer/VBoxContainer/Silica" method="_on_Button_toggled"]
+[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/GridContainer/LBin1" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/GridContainer/LBin1" method="_on_Button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/GridContainer/LBin2" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/GridContainer/LBin2" method="_on_Button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/GridContainer/LBin3" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/GridContainer/LBin3" method="_on_Button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/GridContainer/LBin4" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/GridContainer/LBin4" method="_on_Button_pressed"]
+[connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/BuildMode" to="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/BuildMode" method="_on_Button_toggled"]
+[connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Pause" to="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Pause" method="_on_Pause_toggled"]
+[connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Outlines" to="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Outlines" method="_on_Outlines_toggled"]
+[connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/IronButton0" to="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/IronButton0" method="_on_Button_toggled"]
+[connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/CopperButton0" to="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/CopperButton0" method="_on_Button_toggled"]
+[connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/SilicaButton0" to="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/SilicaButton0" method="_on_Button_toggled"]
