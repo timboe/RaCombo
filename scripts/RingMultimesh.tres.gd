@@ -65,16 +65,25 @@ func set_range_fillable(var start : float, var end : float, var fillable : bool)
 
 func set_as_source_lane():
 	source = true
+	sink = false
 	for i in multimesh.instance_count:
 		set_slot_filled(i, true, true)
+
+func set_as_sink_lane():
+	sink = true
+	source = false
+	for i in multimesh.instance_count:
+		set_slot_filled(i, false, true)
 
 func register_resource(var new_resource : String, var provinance : Node):
 	if lane_content != null:
 		print("ERROR in ",name," of ", get_parent().get_parent().get_parent().name, " trying to reg ",new_resource," into lane containing ",lane_content)
 		return
-	lane_content = new_resource
+	# If we are a sink, we can accept many different inputs
+	if not sink:
+		lane_content = new_resource
+		modulate = Global.data[lane_content]["color"]
 	lane_provinance.append(provinance)
-	modulate = Global.data[lane_content]["color"]
 	
 func deregister_resource():
 	if lane_content == null:
@@ -127,15 +136,18 @@ func try_send(var angle : float, var direction : int) -> bool:
 		return false
 	c.r = 1 # Now filled
 	c.b = 0 # Hence not fillable
+	var new_radius = radius - ring_radius if direction == OUTWARDS else radius + ring_radius
+	var offset = (2.0 * PI) * 1.0/float(multimesh.instance_count) * float(i)
 	multimesh.set_instance_custom_data(i, c)
 	var t : Transform2D = multimesh.get_instance_transform_2d(i)
 	t.origin /= DISABLE # Make visible again
+	t.origin = Vector2(cos(offset), sin(offset)) * new_radius
 	multimesh.set_instance_transform_2d(i, t)
 	var moving = {}
 	moving["i"] = i
 	moving["dir"] = direction
-	moving["offset"] = (2.0 * PI) * 1.0/float(multimesh.instance_count) * float(i)
-	moving["radius"] = radius - ring_radius if direction == OUTWARDS else radius + ring_radius
+	moving["offset"] = offset
+	moving["radius"] = new_radius
 	moving["target"] = radius
 	in_flight.append(moving)
 	return true
@@ -178,6 +190,7 @@ func _physics_process(var delta):
 		t.origin = Vector2(cos(offset), sin(offset)) * d["radius"]
 		if finished: # Set empty and remove from dict
 			if sink: # Sink consumes
+				t.origin *= DISABLE
 				multimesh.set_instance_custom_data(i, Color(0,1,1,0))
 			else:
 				multimesh.set_instance_custom_data(i, Color(1,1,1,0))
@@ -189,6 +202,8 @@ func _physics_process(var delta):
 func set_slot_filled(var i : int, var filled : bool, var capturable : bool):
 	if source:
 		filled = true
+	if sink:
+		filled = false
 	if not bool(get_slot_filled(i)) == filled:
 		var t : Transform2D = multimesh.get_instance_transform_2d(i)
 		if filled:

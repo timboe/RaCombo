@@ -110,18 +110,20 @@ func lane_system_changed():
 						something_changed = true
 	# Output
 	var out_ring_n = ring.set_ring - 1 if Global.data[output_content]["mode"] == "insert" else ring.set_ring + 1
-	if out_ring_n == Global.rings:
-		print("TODO export and something_changed for export")
-	else:
-		var out_ring = ring.get_parent().get_child(out_ring_n)
-		var out_lane_id = out_ring.get_free_or_existing_lane(output_content)
-		if out_lane_id != -1:
-			var the_out_lane = out_ring.get_lane(out_lane_id)
-			if output_lane != the_out_lane:
-				output_lane = the_out_lane
-				the_out_lane.register_resource(output_content, self)
-				print("The ",name," will now export ",output_content," to ",the_out_lane)
-				something_changed = true
+	# Only link the output if we have something to output...
+	if output_storage > 0:
+		if out_ring_n == Global.rings:
+			print("TODO export and something_changed for export")
+		else:
+			var out_ring = ring.get_parent().get_child(out_ring_n)
+			var out_lane_id = out_ring.get_free_or_existing_lane(output_content)
+			if out_lane_id != -1:
+				var the_out_lane = out_ring.get_lane(out_lane_id)
+				if output_lane != the_out_lane:
+					output_lane = the_out_lane
+					the_out_lane.register_resource(output_content, self)
+					print("The ",name," will now export ",output_content," to ",the_out_lane)
+					something_changed = true
 	check_process()
 	if something_changed:
 		$"/root/Game/SomethingChanged".something_changed()
@@ -184,6 +186,9 @@ func _physics_process(_delta):
 func add_item(var lane : MultiMeshInstance2D):
 	if mode != BUILDING_FACTORY:
 		output_storage += 1
+		# If this is the first thing we have had to output - then we may need to link our output lane
+		if output_storage == 1 and output_lane == null:
+			lane_system_changed()
 
 func get_ring() -> Node2D:
 	# Factory -> Factories -> Rotation -> Ring

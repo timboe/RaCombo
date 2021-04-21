@@ -433,7 +433,7 @@ __meta__ = {
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 363.0
-margin_bottom = 520.0
+margin_bottom = 314.0
 custom_constants/separation = 6
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset"]
@@ -555,7 +555,7 @@ visible = false
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 363.0
-margin_bottom = 520.0
+margin_bottom = 314.0
 custom_constants/separation = 6
 
 [node name="Make" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer"]
@@ -563,7 +563,7 @@ visible = false
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 363.0
-margin_bottom = 520.0
+margin_bottom = 314.0
 custom_constants/separation = 6
 
 [node name="MainUI" type="Control" parent="CanvasLayer/UI"]
@@ -882,6 +882,7 @@ wait_time = 0.016
 one_shot = true
 script = ExtResource( 19 )
 
+[connection signal="popup_hide" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="hide_diag"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/GridContainer/LBin1" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/GridContainer/LBin1" method="_on_Button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/GridContainer/LBin2" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/GridContainer/LBin2" method="_on_Button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/GridContainer/LBin3" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/GridContainer/LBin3" method="_on_Button_pressed"]

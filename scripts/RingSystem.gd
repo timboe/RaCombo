@@ -14,5 +14,8 @@ func _ready():
 		if rings == 1: # Sol
 			c.get_lane(3).register_resource("hydrogen", null)
 			c.get_lane(3).set_as_source_lane()
+			c.get_lane(2).register_resource("cunife", null)
+			c.get_lane(1).register_resource("tritium", null)
+			c.get_lane(0).set_as_sink_lane()
 
 

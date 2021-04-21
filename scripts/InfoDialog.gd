@@ -7,12 +7,15 @@ var current_ring : Node2D = null
 var current_lanes : Array = []
 
 func hide_diag():
+	current_ring = null
+	current_building = null
 	hide()
 
 func show_ring_diag(var ring : Node2D):
 	$RingContainer.visible = true
 	$FactoryContainer.visible = false
 	current_ring = ring
+	current_building = null
 	update_ring_diag()
 	show()
 	
@@ -21,8 +24,15 @@ func show_building_diag(var factory : Area2D):
 	$RingContainer.visible = false
 	$FactoryContainer.visible = true
 	current_building = factory
+	current_ring = null
 	update_building_diag()
 	show()
+	
+func update_diag():
+	if current_ring != null:
+		update_ring_diag()
+	if current_building != null:
+		update_building_diag()
 
 func update_building_diag():
 	if current_building.mode == current_building.BUILDING_FACTORY:
@@ -31,8 +41,7 @@ func update_building_diag():
 		window_title = "Inserter "
 	elif current_building.mode == current_building.BUILDING_EXTRACTOR:
 		window_title = "Extractor "
-	else:
-		window_title = "Building "
+	window_title += "Satelite "
 	window_title += String(current_building.name.to_int())
 
 func update_ring_diag():
@@ -40,6 +49,7 @@ func update_ring_diag():
 	window_title = "Ring " + String(current_ring.set_ring)
 	current_lanes.clear()
 	for l in current_ring.get_lanes():
+		# current_lanes is used by the bin script
 		current_lanes.append(l)
 		var tex : ImageTexture = null
 		if l.lane_content != null:

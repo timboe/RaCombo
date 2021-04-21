@@ -1,8 +1,10 @@
 extends Button
 
+onready var id : WindowDialog = get_tree().get_root().find_node("InfoDialog",true,false)
+
 func _on_Button_pressed():
 	var i : int = name.to_int() - 1
-	var id : WindowDialog = get_tree().get_root().find_node("InfoDialog",true,false)
+
 	var lane : MultiMeshInstance2D = id.current_lanes[i]
 	print("Binning lane ",i," which is ", lane)
 	# This call handles things which export to the lane
