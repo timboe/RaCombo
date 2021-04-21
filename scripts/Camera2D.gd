@@ -3,9 +3,9 @@ extends Camera2D
 const MOVE_SPEED = 300
 
 func _ready():
-	set_process_input(true)
+	set_process_unhandled_input(true)
 
-func _input(event):
+func _unhandled_input(event):
 	if event is InputEventMouseButton and event.is_pressed():
 		if event.button_index == BUTTON_WHEEL_UP:
 			zoom /= 1.1
@@ -13,6 +13,8 @@ func _input(event):
 		if event.button_index == BUTTON_WHEEL_DOWN:
 			zoom *= 1.1
 			print(zoom)
+	if event is InputEventMouseMotion and Input.is_action_pressed("ui_mouse_pan"):
+		global_position -= (event.relative * zoom)
 
 func _process(delta):
 	if Input.is_action_pressed("ui_left"):

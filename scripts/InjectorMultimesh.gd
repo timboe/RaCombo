@@ -67,16 +67,17 @@ func setup_resource_at_hint():
 	Global.last_pressed = null
 	button.pressed = false
 	button.disabled = true
+	# Propagate the change
+	$"/root/Game/SomethingChanged".something_changed()
 	
 # Called when a lane rejects the input
-func deregister_resource():
+func lane_cleared(var _lane):
 	# Find my button and enable it
 	get_injecton_button().disabled = false
 	Global.last_pressed = null
 	multimesh.instance_count = 0
 	placed = false
 	stop_hint_resource()
-
 	
 func get_injecton_button() -> Button:
 	if name == "IronInjection0":

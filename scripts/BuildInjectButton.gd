@@ -7,6 +7,11 @@ onready var iron_inj_node = get_tree().get_root().find_node("IronInjection0", tr
 onready var copper_inj_node = get_tree().get_root().find_node("CopperInjection0", true, false)
 onready var silica_inj_node = get_tree().get_root().find_node("SilicaInjection0", true, false)
 
+func _process(var _delta):
+	if name != "BuildMode":
+		icon = Global.data[get_resource()]["texture"]
+	set_process(false)
+
 func _on_Button_toggled(button_pressed):
 	if button_pressed:
 		# The button calling this method is the one that was just selected
@@ -24,9 +29,10 @@ func _on_Button_toggled(button_pressed):
 	pause.pressed = button_pressed
 	pause.disabled = button_pressed
 	pause.get_node("../FF").disabled = button_pressed
+	Global.last_pressed_paused = null
 	
 	if button_pressed:
-		id.hide()
+		id.hide_diag()
 	
 	if name == "BuildMode":
 		if button_pressed == false: # Hide all 
@@ -51,3 +57,14 @@ func get_injecton_node() -> Node:
 		return silica_inj_node
 	else:
 		return null
+		
+func get_resource() -> String:
+	if name == "IronButton0":
+		return "iron"
+	elif name == "CopperButton0":
+		return "copper"
+	elif name == "SilicaButton0":
+		return "silica"
+	else:
+		return "none"
+

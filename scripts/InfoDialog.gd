@@ -2,9 +2,12 @@ extends WindowDialog
 
 onready var shields = get_tree().get_root().find_node("Shields", true, false) 
 
-var current_factory : Area2D  = null
+var current_building : Area2D  = null
 var current_ring : Node2D = null
 var current_lanes : Array = []
+
+func hide_diag():
+	hide()
 
 func show_ring_diag(var ring : Node2D):
 	$RingContainer.visible = true
@@ -13,16 +16,24 @@ func show_ring_diag(var ring : Node2D):
 	update_ring_diag()
 	show()
 	
-func show_factory_diag(var factory : Area2D):
+func show_building_diag(var factory : Area2D):
 	print("show diag fact")
 	$RingContainer.visible = false
 	$FactoryContainer.visible = true
-	current_factory = factory
-	update_factory_diag()
+	current_building = factory
+	update_building_diag()
 	show()
 
-func update_factory_diag():
-	window_title = "Factory " + String(current_factory.name.to_int())
+func update_building_diag():
+	if current_building.mode == current_building.BUILDING_FACTORY:
+		window_title = "Factory "
+	elif current_building.mode == current_building.BUILDING_INSERTER:
+		window_title = "Inserter "
+	elif current_building.mode == current_building.BUILDING_EXTRACTOR:
+		window_title = "Extractor "
+	else:
+		window_title = "Building "
+	window_title += String(current_building.name.to_int())
 
 func update_ring_diag():
 	var count : int = 1
@@ -30,15 +41,13 @@ func update_ring_diag():
 	current_lanes.clear()
 	for l in current_ring.get_lanes():
 		current_lanes.append(l)
-		var ico = null
+		var tex : ImageTexture = null
 		if l.lane_content != null:
-			ico = shields.get_node(l.lane_content).duplicate()
+			tex = Global.data[l.lane_content]["texture"]
 		else:
-			ico = shields.get_node("none").duplicate()
-		var holder : Node = find_node("LIcon"+String(count))
-		for c in holder.get_children():
-			c.queue_free()
-		holder.add_child(ico)
+			tex = Global.data["none"]["texture"]
+		var icon : Node = find_node("LIcon"+String(count))
+		icon.texture = tex
 		var bin : Button = find_node("LBin"+String(count))
 		bin.disabled = (l.lane_content == null)
 		#

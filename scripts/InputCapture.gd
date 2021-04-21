@@ -23,7 +23,7 @@ func _process(_delta):
 	
 	# Update once per frame
 	if mode_build and ring != null:
-		var cursor_angle = get_cursor_angle(centre_node.position, cursor)
+		var cursor_angle = get_cursor_angle()
 		ring.get_node("Rotation/FactoryTemplate").global_rotation = cursor_angle
 	
 func _unhandled_input(event):
@@ -66,7 +66,6 @@ func _unhandled_input(event):
 		prev_ring = ring
 
 	if event is InputEventMouseButton and ring != null and event.pressed and event.button_index == 1:
-		print("Unhandled ",event, " with active mode ",button)
 		if button == null: # Select ring
 			id.show_ring_diag(ring)
 		elif mode_build:
@@ -74,8 +73,8 @@ func _unhandled_input(event):
 		elif mode_inject:
 			injection.setup_resource_at_hint()
 
-func get_cursor_angle(var centre : Vector2, var cursor : Vector2):
-	var cursor_angle : float = atan2(centre.y - cursor.y, centre.x - cursor.x) - PI
+func get_cursor_angle():
+	var cursor_angle : float = atan2(centre_node.position.y - cursor.y, centre_node.position.x - cursor.x) - PI
 	if cursor_angle < 0:
 		cursor_angle += 2*PI
 	return cursor_angle

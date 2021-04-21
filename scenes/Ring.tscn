@@ -87,8 +87,6 @@ radians_per_slot = 0.0156298
 [node name="Factories" type="Node2D" parent="Rotation"]
 pause_mode = 2
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Rotation"]
-
 [node name="FactoryTemplate" type="Area2D" parent="Rotation"]
 pause_mode = 2
 visible = false
