@@ -20,7 +20,7 @@
 [ext_resource path="res://resources/NewBuildingButtonGroup.tres" type="ButtonGroup" id=18]
 [ext_resource path="res://scripts/SomethingChanged.gd" type="Script" id=19]
 
-[sub_resource type="GDScript" id=39]
+[sub_resource type="GDScript" id=12]
 script/source = "extends CheckButton
 
 func _on_Extractor_pressed():
@@ -30,7 +30,7 @@ func _on_Extractor_pressed():
 	print(\"Show extrators\")
 "
 
-[sub_resource type="GDScript" id=40]
+[sub_resource type="GDScript" id=13]
 script/source = "extends CheckButton
 
 func _on_Inserter_pressed():
@@ -40,7 +40,7 @@ func _on_Inserter_pressed():
 	print(\"Show inserters\")
 "
 
-[sub_resource type="GDScript" id=41]
+[sub_resource type="GDScript" id=14]
 script/source = "extends CheckButton
 
 func _on_Factory_pressed():
@@ -50,7 +50,7 @@ func _on_Factory_pressed():
 	print(\"Show factories\")
 "
 
-[sub_resource type="GDScript" id=26]
+[sub_resource type="GDScript" id=15]
 script/source = "extends GridContainer
 
 func _process(var _delta):
@@ -70,7 +70,7 @@ func _process(var _delta):
 	set_process(false)
 "
 
-[sub_resource type="GDScript" id=38]
+[sub_resource type="GDScript" id=16]
 script/source = "extends GridContainer
 
 func _process(var _delta):
@@ -90,7 +90,7 @@ func _process(var _delta):
 	set_process(false)
 "
 
-[sub_resource type="GDScript" id=42]
+[sub_resource type="GDScript" id=17]
 script/source = "extends GridContainer
 
 func _process(var _delta):
@@ -124,13 +124,13 @@ func _process(var _delta):
 	set_process(false)
 "
 
-[sub_resource type="InputEventAction" id=27]
+[sub_resource type="InputEventAction" id=18]
 action = "ui_pause"
 
-[sub_resource type="ShortCut" id=28]
-shortcut = SubResource( 27 )
+[sub_resource type="ShortCut" id=19]
+shortcut = SubResource( 18 )
 
-[sub_resource type="GDScript" id=15]
+[sub_resource type="GDScript" id=20]
 script/source = "extends Button
 
 func _on_Outlines_toggled(button_pressed):
@@ -140,23 +140,23 @@ func _on_Outlines_toggled(button_pressed):
 		i.get_parent().set_show(!button_pressed)
 "
 
-[sub_resource type="QuadMesh" id=43]
+[sub_resource type="QuadMesh" id=21]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=44]
-mesh = SubResource( 43 )
+[sub_resource type="MultiMesh" id=22]
+mesh = SubResource( 21 )
 
-[sub_resource type="QuadMesh" id=45]
+[sub_resource type="QuadMesh" id=23]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=46]
-mesh = SubResource( 45 )
+[sub_resource type="MultiMesh" id=24]
+mesh = SubResource( 23 )
 
-[sub_resource type="QuadMesh" id=47]
+[sub_resource type="QuadMesh" id=25]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=48]
-mesh = SubResource( 47 )
+[sub_resource type="MultiMesh" id=26]
+mesh = SubResource( 25 )
 
 [sub_resource type="Shader" id=11]
 code = "shader_type canvas_item;
@@ -171,17 +171,17 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id=35]
+[sub_resource type="ShaderMaterial" id=27]
 shader = SubResource( 11 )
 
-[sub_resource type="OpenSimplexNoise" id=36]
+[sub_resource type="OpenSimplexNoise" id=28]
 
-[sub_resource type="NoiseTexture" id=37]
+[sub_resource type="NoiseTexture" id=29]
 width = 128
 height = 128
-noise = SubResource( 36 )
+noise = SubResource( 28 )
 
-[sub_resource type="Environment" id=25]
+[sub_resource type="Environment" id=30]
 background_mode = 4
 glow_intensity = 2.0
 glow_strength = 1.8
@@ -202,6 +202,7 @@ __meta__ = {
 }
 
 [node name="InfoUI" type="Control" parent="CanvasLayer/UI"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -219,9 +220,9 @@ __meta__ = {
 [node name="InfoDialog" type="WindowDialog" parent="CanvasLayer/UI/InfoUI/CenterContainer"]
 visible = true
 margin_left = 322.0
-margin_top = 129.0
+margin_top = 130.0
 margin_right = 702.0
-margin_bottom = 469.0
+margin_bottom = 470.0
 rect_min_size = Vector2( 380, 340 )
 custom_constants/scaleborder_size = 0
 window_title = "Ring"
@@ -448,7 +449,7 @@ pressed = true
 group = ExtResource( 18 )
 text = "Extractor"
 align = 1
-script = SubResource( 39 )
+script = SubResource( 12 )
 
 [node name="Inserter" type="CheckButton" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset/HBoxContainer"]
 margin_left = 179.0
@@ -458,7 +459,7 @@ size_flags_horizontal = 3
 group = ExtResource( 18 )
 text = "Inserter"
 align = 1
-script = SubResource( 40 )
+script = SubResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -478,7 +479,7 @@ margin_bottom = 40.0
 group = ExtResource( 18 )
 text = "Factory"
 align = 1
-script = SubResource( 41 )
+script = SubResource( 14 )
 
 [node name="HSeparator" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset"]
 margin_top = 92.0
@@ -502,7 +503,7 @@ __meta__ = {
 custom_constants/vseparation = 8
 custom_constants/hseparation = 8
 columns = 5
-script = SubResource( 26 )
+script = SubResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -524,7 +525,7 @@ rect_min_size = Vector2( 350, 140 )
 custom_constants/vseparation = 8
 custom_constants/hseparation = 8
 columns = 5
-script = SubResource( 38 )
+script = SubResource( 16 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -548,7 +549,7 @@ mouse_filter = 0
 custom_constants/vseparation = 8
 custom_constants/hseparation = 8
 columns = 5
-script = SubResource( 42 )
+script = SubResource( 17 )
 
 [node name="Inserter" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer"]
 visible = false
@@ -621,7 +622,7 @@ margin_left = 251.0
 margin_right = 301.0
 margin_bottom = 20.0
 toggle_mode = true
-shortcut = SubResource( 28 )
+shortcut = SubResource( 19 )
 group = ExtResource( 12 )
 text = "Pause"
 script = ExtResource( 15 )
@@ -641,7 +642,7 @@ margin_right = 402.0
 margin_bottom = 20.0
 toggle_mode = true
 text = "Outlines"
-script = SubResource( 15 )
+script = SubResource( 20 )
 
 [node name="MarginContainerSide" type="MarginContainer" parent="CanvasLayer/UI/MainUI"]
 pause_mode = 2
@@ -672,7 +673,7 @@ margin_bottom = 64.0
 rect_min_size = Vector2( 96, 64 )
 toggle_mode = true
 group = ExtResource( 11 )
-text = "5/s"
+text = "10/s"
 expand_icon = true
 script = ExtResource( 3 )
 __meta__ = {
@@ -686,7 +687,7 @@ margin_bottom = 160.0
 rect_min_size = Vector2( 128, 64 )
 toggle_mode = true
 group = ExtResource( 11 )
-text = "1/s"
+text = "10/s"
 expand_icon = true
 script = ExtResource( 3 )
 __meta__ = {
@@ -700,7 +701,7 @@ margin_bottom = 256.0
 rect_min_size = Vector2( 128, 64 )
 toggle_mode = true
 group = ExtResource( 11 )
-text = "5/s"
+text = "10/s"
 expand_icon = true
 script = ExtResource( 3 )
 __meta__ = {
@@ -711,11 +712,8 @@ __meta__ = {
 visible = false
 
 [node name="spacefield_a-000" type="Sprite" parent="."]
-position = Vector2( 640, 400 )
+position = Vector2( 512, 300 )
 texture = ExtResource( 2 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="InputCapture" type="Node2D" parent="."]
 pause_mode = 2
@@ -726,68 +724,75 @@ position = Vector2( 512, 300 )
 
 [node name="RingSystem" type="Node2D" parent="CentreNode"]
 script = ExtResource( 4 )
-rings = 9
+rings = 10
 
 [node name="Ring0" parent="CentreNode/RingSystem" instance=ExtResource( 7 )]
-set_ring = 0
 set_debug_color = Color( 1, 0, 0, 1 )
 radius_array = [ 40.0, 45.0, 50.0, 55.0 ]
 angular_velocity = 2.0
 n = 50.2655
 
 [node name="Ring1" parent="CentreNode/RingSystem" instance=ExtResource( 7 )]
-set_ring = 1
 set_debug_color = Color( 1, 0.631373, 0, 1 )
+ring_number = 1
 radius_array = [ 80.0, 85.0, 90.0, 95.0 ]
 angular_velocity = 1.0
 n = 100.531
 
 [node name="Ring2" parent="CentreNode/RingSystem" instance=ExtResource( 7 )]
-set_ring = 2
 set_debug_color = Color( 1, 0.937255, 0, 1 )
+ring_number = 2
 radius_array = [ 120.0, 125.0, 130.0, 135.0 ]
 angular_velocity = 0.666667
 n = 150.796
 
 [node name="Ring3" parent="CentreNode/RingSystem" instance=ExtResource( 7 )]
-set_ring = 3
 set_debug_color = Color( 0, 0.0627451, 1, 1 )
+ring_number = 3
 radius_array = [ 160.0, 165.0, 170.0, 175.0 ]
 angular_velocity = 0.5
 n = 201.062
 
 [node name="Ring4" parent="CentreNode/RingSystem" instance=ExtResource( 7 )]
-set_ring = 4
 set_debug_color = Color( 0, 0.952941, 1, 1 )
+ring_number = 4
 radius_array = [ 200.0, 205.0, 210.0, 215.0 ]
 angular_velocity = 0.4
 n = 251.327
 
 [node name="Ring5" parent="CentreNode/RingSystem" instance=ExtResource( 7 )]
-set_ring = 5
 set_debug_color = Color( 0.101961, 0, 1, 1 )
+ring_number = 5
 radius_array = [ 240.0, 245.0, 250.0, 255.0 ]
 angular_velocity = 0.333333
 n = 301.593
 
 [node name="Ring6" parent="CentreNode/RingSystem" instance=ExtResource( 7 )]
-set_ring = 6
 set_debug_color = Color( 0.384314, 0, 1, 1 )
+ring_number = 6
 radius_array = [ 280.0, 285.0, 290.0, 295.0 ]
 angular_velocity = 0.285714
 n = 351.858
 
 [node name="Ring7" parent="CentreNode/RingSystem" instance=ExtResource( 7 )]
 set_debug_color = Color( 0.756863, 0, 1, 1 )
+ring_number = 7
 angular_velocity = 0.25
 n = 402.124
 
 [node name="Ring8" parent="CentreNode/RingSystem" instance=ExtResource( 7 )]
-set_ring = 8
 set_debug_color = Color( 1, 0, 0.537255, 1 )
+ring_number = 8
 radius_array = [ 360.0, 365.0, 370.0, 375.0 ]
 angular_velocity = 0.222222
 n = 452.389
+
+[node name="Ring9" parent="CentreNode/RingSystem" instance=ExtResource( 7 )]
+set_debug_color = Color( 1, 0, 0.537255, 1 )
+ring_number = 9
+radius_array = [ 400.0, 405.0, 410.0, 415.0 ]
+angular_velocity = 0.2
+n = 502.655
 
 [node name="InjectionSystem" type="Node2D" parent="CentreNode"]
 script = ExtResource( 6 )
@@ -802,11 +807,11 @@ show = true
 ]]
 modulate = Color( 0, 0, 1, 1 )
 position = Vector2( -3.46068, 0 )
-multimesh = SubResource( 44 )
+multimesh = SubResource( 22 )
 texture = ExtResource( 1 )
 script = ExtResource( 5 )
 set_resource = "iron"
-set_period = 0.2
+set_period = 0.1
 linear_velocity = 84.2857
 radius = 295.0
 lane = 3
@@ -822,10 +827,11 @@ show = true
 ]]
 modulate = Color( 1, 1, 0, 1 )
 position = Vector2( -12.1307, 0 )
-multimesh = SubResource( 46 )
+multimesh = SubResource( 24 )
 texture = ExtResource( 1 )
 script = ExtResource( 5 )
 set_resource = "copper"
+set_period = 0.1
 linear_velocity = 82.8571
 radius = 290.0
 lane = 2
@@ -841,11 +847,11 @@ show = true
 ]]
 modulate = Color( 0.8, 0.8, 0, 1 )
 position = Vector2( -20.7248, 0 )
-multimesh = SubResource( 48 )
+multimesh = SubResource( 26 )
 texture = ExtResource( 1 )
 script = ExtResource( 5 )
 set_resource = "silica"
-set_period = 0.2
+set_period = 0.1
 linear_velocity = 81.4286
 radius = 285.0
 lane = 1
@@ -853,11 +859,11 @@ ring = NodePath("../../../../../Root/CentreNode/InjectionSystem/Silica0/MultiMes
 
 [node name="Sol" type="Sprite" parent="CentreNode"]
 visible = false
-material = SubResource( 35 )
-texture = SubResource( 37 )
+material = SubResource( 27 )
+texture = SubResource( 29 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 25 )
+environment = SubResource( 30 )
 
 [node name="Line2D" type="Line2D" parent="."]
 visible = false

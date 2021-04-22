@@ -29,6 +29,8 @@ func _ready():
 		print("ERROR: Injector ",name," has no resource!")
 	var globals = load("res://scripts/Global.gd").new()
 	modulate = globals.data[set_resource]["color"]
+	var per_sec : float = 1.0 / set_period
+	get_injecton_button().text = String(per_sec) + "/s"
 
 func hint_resource(var attached_ring : Node2D, var ring_lane : int):
 	if ring_lane == -1: # Invalid - no room

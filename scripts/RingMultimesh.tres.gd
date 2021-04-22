@@ -12,9 +12,9 @@ export(String) var lane_content = null
 export(bool) var source = false
 export(bool) var sink = false
 var lane_provinance : Array = [] # Note: NOT exported, becomes shared!
+var laneswap_target : Array = [null] 
 
 var ring_radius = load("res://scripts/RingSystem.gd").new().RING_RADIUS
-var out_flight = []
 var in_flight = []
 
 # Called when the node enters the scene tree for the first time.
@@ -74,6 +74,10 @@ func set_as_sink_lane():
 	source = false
 	for i in multimesh.instance_count:
 		set_slot_filled(i, false, true)
+		
+func set_laneswap(var other_lane : MultiMeshInstance2D):
+	set_as_sink_lane()
+	laneswap_target[0] = other_lane
 
 func register_resource(var new_resource : String, var provinance : Node):
 	if lane_content != null:
@@ -113,7 +117,7 @@ func get_slot_empty_and_fillable(var i : int) -> bool:
 	var c : Color = multimesh.get_instance_custom_data(i)
 	return (c.r == 0 and c.b == 1)
 
-func try_capture(var angle : float, var caller : Node, var direction : int):
+func try_capture(var angle : float, var caller : Node, var direction : int, var distance : int = 1):
 	var i : int = wrap_i(round(wrap_a(angle - global_rotation) / radians_per_slot))
 	var c : Color = multimesh.get_instance_custom_data(i)
 	if not (c.r == 1 and c.g == 1): #same as get_slot_filled_and_captureable
@@ -126,8 +130,8 @@ func try_capture(var angle : float, var caller : Node, var direction : int):
 	moving["dir"] = direction
 	moving["offset"] = (2.0 * PI) * 1.0/float(multimesh.instance_count) * float(i)
 	moving["radius"] = radius
-	moving["target"] = radius + ring_radius if direction == OUTWARDS else radius - ring_radius
-	out_flight.append(moving)
+	moving["target"] = radius + (ring_radius * distance) if direction == OUTWARDS else radius - (ring_radius * distance)
+	in_flight.append(moving)
 	
 func try_send(var angle : float, var direction : int) -> bool:
 	var i : int = wrap_i(round(wrap_a(angle - global_rotation) / radians_per_slot))
@@ -153,29 +157,6 @@ func try_send(var angle : float, var direction : int) -> bool:
 	return true
 	
 func _physics_process(var delta):
-	# Items which are flinging out (to below or above)
-	for arr_i in range(out_flight.size()-1, -1, -1):
-		var d = out_flight[arr_i]
-		var i : int = d["i"]
-		var dir : int = d["dir"]
-		var t : Transform2D = multimesh.get_instance_transform_2d(i)
-		d["radius"] += delta * INJECT_VELOCITY if dir == OUTWARDS else -delta * INJECT_VELOCITY
-		var finished : bool  = false 
-		if (dir == OUTWARDS and d["radius"] >= d["target"]) or (dir == INWARDS and d["radius"] <= d["target"]):
-			finished = true
-			d["radius"] = radius
-		var offset = d["offset"]
-		t.origin = Vector2(cos(offset), sin(offset)) * d["radius"]
-		if finished: # Set empty and remove from dict
-			if source: # Source rings never run out
-				multimesh.set_instance_custom_data(i, Color(1,1,1,0))
-			else:
-				t.origin *= DISABLE
-				multimesh.set_instance_custom_data(i, Color(0,1,1,0))
-			d["call"].add_item(self)
-			out_flight.remove(arr_i)
-		multimesh.set_instance_transform_2d(i, t)
-	# Items which are cascading in (from above or below)
 	for arr_i in range(in_flight.size()-1, -1, -1):
 		var d = in_flight[arr_i]
 		var i : int = d["i"]
@@ -188,18 +169,34 @@ func _physics_process(var delta):
 			d["radius"] = radius
 		var offset = d["offset"]
 		t.origin = Vector2(cos(offset), sin(offset)) * d["radius"]
-		if finished: # Set empty and remove from dict
-			if sink: # Sink consumes
-				t.origin *= DISABLE
-				multimesh.set_instance_custom_data(i, Color(0,1,1,0))
-			else:
-				multimesh.set_instance_custom_data(i, Color(1,1,1,0))
+		if finished:
+			if "call" in d: # Items which are flinging out (to below or above)
+				if source: # Source rings never run out
+					multimesh.set_instance_custom_data(i, Color(1,1,1,0))
+				else:
+					t.origin *= DISABLE
+					multimesh.set_instance_custom_data(i, Color(0,1,1,0))
+				d["call"].add_item(self)
+			else: # Items which are cascading in (from above or below)
+				# Set empty and remove from dict
+				if sink: # Sink consumes
+					t.origin *= DISABLE
+					multimesh.set_instance_custom_data(i, Color(0,1,1,0))
+					if laneswap_target[0] != null:
+						laneswap_target[0].set_slot_filled(i, true, true)
+				else:
+					multimesh.set_instance_custom_data(i, Color(1,1,1,0))
 			in_flight.remove(arr_i)
 		multimesh.set_instance_transform_2d(i, t)
 
 
 
 func set_slot_filled(var i : int, var filled : bool, var capturable : bool):
+	if laneswap_target[0] != null:
+		laneswap_target[0].set_slot_filled(i, filled, capturable)
+		return
+	
+	i = wrap_i(i)
 	if source:
 		filled = true
 	if sink:

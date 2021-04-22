@@ -5,7 +5,7 @@ var last_pressed = null
 var last_pressed_paused = null
 
 var level : int = 99
-var rings : int = 9
+var rings : int = 10
 
 var data = {
 	"none": {
@@ -91,62 +91,98 @@ var data = {
 	"cg": {
 		"name": "CG",
 		"color": Color(0.4, 0.3, 0.7),
-		"mode": "insert"
+		"mode": "extract"
 	},
 	"sw": {
 		"name": "SW",
 		"color": Color(0.2, 0.7, 0.4),
-		"mode": "insert"
+		"mode": "extract"
 	},
 }
 
 var recipies = {
 	"steel": {
 		"level": 2,
+		"time": 1.0,
+		"amount_in": [1],
+		"amount_out": 1,
 		"input": ["iron"],
 	},
 	"packed_hydrogen": {
 		"level": 2,
+		"time": 1.0,
+		"amount_in": [1, 1],
+		"amount_out": 1,
 		"input": ["hydrogen", "steel"],
 	},
 	"cunife": {
 		"level": 3,
+		"time": 1.0,
+		"amount_in": [1, 1],
+		"amount_out": 1,
 		"input": ["iron", "copper"],
 	},
-	"tritium": {
+	"tritium": { # Note: Not a factory recipy
 		"level": 3,
+		"time": 1.0,
+		"amount_in": [1, 1],
+		"amount_out": 1,
 		"input": ["cunife", "sol"],
 	},
 	"packed_gas": {
 		"level": 3,
+		"time": 1.0,
+		"amount_in": [1, 1],
+		"amount_out": 1,
 		"input": ["hydrogen", "tritium"],
 	},
 	"metalic_tritium": {
 		"level": 4,
+		"time": 1.0,
+		"amount_in": [1, 1, 1],
+		"amount_out": 1,
 		"input": ["copper", "steel", "tritium"],
 	},
 	"xotic_a": {
 		"level": 5,
+		"time": 1.0,
+		"amount_in": [1, 1],
+		"amount_out": 1,
 		"input": ["hydrogen", "cunife"],
 	},
 	"xotic_b": {
 		"level": 5,
+		"time": 1.0,
+		"amount_in": [1],
+		"amount_out": 1,
 		"input": ["xotic_a"],
 	},
 	"xotic_c": {
 		"level": 5,
+		"time": 1.0,
+		"amount_in": [1, 1],
+		"amount_out": 1,
 		"input": ["xotic_b", "copper"],
 	},
 	"glass": {
 		"level": 6,
+		"time": 1.0,
+		"amount_in": [1],
+		"amount_out": 1,
 		"input": ["silica"],
 	},
 	"cg": {
 		"level": 6,
+		"time": 1.0,
+		"amount_in": [1, 1],
+		"amount_out": 1,
 		"input": ["packed_gas", "copper"],
 	},
 	"sw": {
 		"level": 6,
+		"time": 1.0,
+		"amount_in": [1, 1, 1],
+		"amount_out": 1,
 		"input": ["iron", "cg", "glass"],
 	},
 }

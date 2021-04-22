@@ -35,6 +35,7 @@ func update_diag():
 		update_building_diag()
 
 func update_building_diag():
+	return
 	if current_building.mode == current_building.BUILDING_FACTORY:
 		window_title = "Factory "
 	elif current_building.mode == current_building.BUILDING_INSERTER:
@@ -46,7 +47,7 @@ func update_building_diag():
 
 func update_ring_diag():
 	var count : int = 1
-	window_title = "Ring " + String(current_ring.set_ring)
+	window_title = "Ring " + String(current_ring.ring_number)
 	current_lanes.clear()
 	for l in current_ring.get_lanes():
 		# current_lanes is used by the bin script
