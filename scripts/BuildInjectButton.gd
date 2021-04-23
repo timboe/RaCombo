@@ -26,13 +26,11 @@ func _on_Button_toggled(button_pressed):
 		else:
 			Global.last_pressed = pressed_button
 	
-	pause.pressed = button_pressed
-	pause.disabled = button_pressed
-	pause.get_node("../FF").disabled = button_pressed
-	Global.last_pressed_paused = null
-	
 	if button_pressed:
 		id.hide_diag()
+		
+	for tb in get_tree().get_nodes_in_group("FactoryButtonGroup"):
+		tb.visible = !button_pressed
 	
 	if name == "BuildMode":
 		if button_pressed == false: # Hide all 

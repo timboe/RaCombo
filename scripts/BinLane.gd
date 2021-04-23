@@ -9,9 +9,17 @@ func _on_Button_pressed():
 	print("Binning lane ",i," which is ", lane)
 	# This call handles things which export to the lane
 	lane.deregister_resource()
-	id.update_ring_diag()
+	id.update_diag()
 	# These calls handle things also which take from the lane
 	for f in get_tree().get_nodes_in_group("FactoryGroup"):
 		f.lane_cleared(lane)
 	$"/root/Game/SomethingChanged".something_changed()
-
+	
+func _on_RemoveAll_pressed():
+	for l in id.current_lanes:
+		if l.lane_content != null:
+			l.deregister_resource()
+	for f in id.current_ring.get_factories():
+		f.remove()
+	id.hide_diag()
+	$"/root/Game/SomethingChanged".something_changed()

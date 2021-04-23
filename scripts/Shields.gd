@@ -41,9 +41,21 @@ func _process(var _delta):
 	var _sign : Label = shield.get_node("Sign")
 	_sign.set("custom_colors/font_color", value["color"].contrasted())
 	_sign.text = "-" if value["mode"] == "insert" else "+"
+	var shape : TextureRect = shield.get_node("Shape")
+	var shape_outline : TextureRect = shield.get_node("ShapeOutline")
+	shape.modulate = value["color"].contrasted()
+	shape.texture = load("res://images/"+value["shape"]+"_smooth.png")
+	shape_outline.texture = load("res://images/"+value["shape"]+"_smooth.png")
+	shape.visible = true
+	shape_outline.visible = true
+	shield.get_node("Sol").visible = false
 	# Specials
-	if key == "none":
+	if key == "none" or key == "sol":
 		_sign.text = ""
+		shape.visible = false
+		shape_outline.visible = false
+	if key == "sol":
+		shield.get_node("Sol").visible = true
 	# Render
 	# Wait until the frame has finished before getting the texture.
 	get_parent().set_update_mode(Viewport.UPDATE_ONCE)

@@ -20,7 +20,6 @@ func show_ring_diag(var ring : Node2D):
 	show()
 	
 func show_building_diag(var factory : Area2D):
-	print("show diag fact")
 	$RingContainer.visible = false
 	$FactoryContainer.visible = true
 	current_building = factory
@@ -35,15 +34,42 @@ func update_diag():
 		update_building_diag()
 
 func update_building_diag():
-	return
-	if current_building.mode == current_building.BUILDING_FACTORY:
-		window_title = "Factory "
-	elif current_building.mode == current_building.BUILDING_INSERTER:
-		window_title = "Inserter "
-	elif current_building.mode == current_building.BUILDING_EXTRACTOR:
-		window_title = "Extractor "
-	window_title += "Satelite "
-	window_title += String(current_building.name.to_int())
+	window_title = current_building.descriptive_name
+	if current_building.mode == current_building.BUILDING_UNSET:
+		$FactoryContainer/Unset.visible = true
+		$FactoryContainer/Set.visible = false
+	else:
+		$FactoryContainer/Unset.visible = false
+		$FactoryContainer/Set.visible = true
+		# Inputs
+		if current_building.mode == current_building.BUILDING_FACTORY:
+			$FactoryContainer/Set/Inputs.visible = true
+			var count = 0
+			for i in range(current_building.get_process_node().input_content.size()):
+				var cont = get_node("FactoryContainer/Set/Inputs/GridContainer/I"+String(i))
+				var mm = cont.get_node("Count/Mm")
+				var ico = cont.get_node("Icon")
+				var resource = current_building.get_process_node().input_content[i]
+				cont.visible = true
+				ico.texture = Global.data[resource]["texture"]
+				mm.set_resource(resource, current_building.get_process_node(), true, i)
+				mm.set_visible_count(current_building.get_process_node().input_storage[i])
+				count += 1
+			while count < 4:
+				var cont = get_node("FactoryContainer/Set/Inputs/GridContainer/I"+String(count))
+				cont.visible = false
+				count += 1
+		else:
+			$FactoryContainer/Set/Inputs.visible = false
+		# Output
+		var out_cont = get_node("FactoryContainer/Set/Output/O")
+		var output = current_building.get_process_node().output_content
+		var out_mm = out_cont.get_node("Count/Mm")
+		var out_ico = out_cont.get_node("Icon")
+		out_ico.texture = Global.data[output]["texture"]
+		out_mm.set_resource(output, current_building.get_process_node())
+		out_mm.set_visible_count(current_building.get_process_node().output_storage)
+		
 
 func update_ring_diag():
 	var count : int = 1
@@ -62,9 +88,18 @@ func update_ring_diag():
 		var bin : Button = find_node("LBin"+String(count))
 		bin.disabled = (l.lane_content == null)
 		#
-		var list : ItemList = $RingContainer/VBoxContainer/FactoriesList
+		var list : ItemList = $RingContainer/VBoxContainer/ScrollContainer/FactoriesList
 		list.clear()
-		for f in current_ring.get_factories():
-			list.add_item(f.name)
+		var s_count := 0
+		for s in current_ring.get_factories():
+			list.add_item(s.descriptive_name)
+			list.set_item_metadata(s_count, s)
+			s_count += 1
 		#
 		count += 1
+
+
+func _on_UpdateTimer_timeout():
+	if current_building != null:
+		for mm in get_tree().get_nodes_in_group("InfoMultimeshGroup"):
+			mm.update_visible()

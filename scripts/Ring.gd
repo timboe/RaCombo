@@ -7,7 +7,6 @@ const LANE_OFFSET := 5.0;
 const TWOPI := PI * 2.0
 const FACTORY_SPAN_DEGREES := 45.0
 
-
 export(int, 1, 4) var set_lanes
 export(Color) var set_debug_color
 
@@ -18,6 +17,8 @@ export(int) var n
 
 func _ready():
 	$Rotation.rotation = 0
+	$Rotation/FactoryTemplate.visible = false
+	$Rotation/ShipTemplate.visible = false
 	ring_number = name.to_int()
 	
 func add_to_ring(var angle : float, var lane : int):
@@ -25,18 +26,18 @@ func add_to_ring(var angle : float, var lane : int):
 	return get_lane(lane).add_to_ring(angle_mod)
 
 func set_factory_template_visible(var v : bool):
-	get_node("Rotation/FactoryTemplate").visible = v
+	$Rotation/FactoryTemplate.visible = v
+	if v:
+		$Rotation/FactoryTemplate._on_FactoryTemplate_area_exited(null)
 	
 func new_factory():
-	var factory_template = get_node("Rotation/FactoryTemplate")
+	var factory_template = $Rotation/FactoryTemplate
 	if factory_template.colliding:
 		return
-	var new_factory = factory_template.duplicate(DUPLICATE_SCRIPTS|DUPLICATE_SIGNALS)
+	var new_factory = factory_template.duplicate(DUPLICATE_SCRIPTS|DUPLICATE_SIGNALS|DUPLICATE_GROUPS)
 	new_factory.name = "FactoryInstance1"
 	get_node("Rotation/Factories").add_child(new_factory, true)
-	new_factory.add_to_group("FactoryGroup", true)
-	# TODO make this enabling/disabling be done by buildings/injection mode buttons? On a group of 
-	new_factory.get_node("TextureButton").visible = true # Enable clicking on factory
+	new_factory.get_node("FactoryProcess").add_to_group("FactoryGroup", true)
 	var new_factory_angle_start = (new_factory.global_rotation - new_factory.span_radians/2.0) - $Rotation.rotation
 	var new_factory_angle_end = (new_factory.global_rotation + new_factory.span_radians/2.0) - $Rotation.rotation
 	for l in get_lanes():
@@ -93,6 +94,7 @@ func setup_resource(var r : float):
 	var outer_r : float = radius_array[set_lanes-1] + LANE_OFFSET/2.0
 	var this_ring_angle : float = asin(drop / outer_r)
 	$Rotation/FactoryTemplate.setup_resource(inner_r, outer_r, this_ring_angle)
+	$Rotation/ShipTemplate.setup_resource(inner_r, outer_r, this_ring_angle)
 	$Rotation/Line2D.default_color = set_debug_color
 	#$Outline.highlight = false
 

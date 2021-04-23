@@ -29,6 +29,7 @@ func _ready():
 		print("ERROR: Injector ",name," has no resource!")
 	var globals = load("res://scripts/Global.gd").new()
 	modulate = globals.data[set_resource]["color"]
+	texture = load("res://images/"+Global.data[set_resource]["shape"]+".png")
 	var per_sec : float = 1.0 / set_period
 	get_injecton_button().text = String(per_sec) + "/s"
 

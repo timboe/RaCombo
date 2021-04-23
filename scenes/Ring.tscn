@@ -1,20 +1,16 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=23 format=2]
 
-[ext_resource path="res://scripts/RingMultimesh.tres.gd" type="Script" id=1]
+[ext_resource path="res://scripts/RingMultimesh.gd" type="Script" id=1]
 [ext_resource path="res://scripts/Ring.gd" type="Script" id=2]
 [ext_resource path="res://scripts/Factory.gd" type="Script" id=3]
-[ext_resource path="res://images/circle_05.png" type="Texture" id=4]
+[ext_resource path="res://scripts/Ship.gd" type="Script" id=4]
 [ext_resource path="res://scripts/RingOutline.gd" type="Script" id=5]
 [ext_resource path="res://resources/advent-pro.bold.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://scripts/FactoryProcess.gd" type="Script" id=7]
+[ext_resource path="res://images/diamond.png" type="Texture" id=8]
+[ext_resource path="res://images/circle.png" type="Texture" id=10]
 
 [sub_resource type="CanvasItemMaterial" id=1]
-
-[sub_resource type="QuadMesh" id=12]
-size = Vector2( 10, 10 )
-
-[sub_resource type="MultiMesh" id=13]
-custom_data_format = 1
-mesh = SubResource( 12 )
 
 [sub_resource type="QuadMesh" id=14]
 size = Vector2( 10, 10 )
@@ -37,14 +33,21 @@ size = Vector2( 10, 10 )
 custom_data_format = 1
 mesh = SubResource( 18 )
 
-[sub_resource type="ImageTexture" id=20]
+[sub_resource type="QuadMesh" id=20]
+size = Vector2( 10, 10 )
 
-[sub_resource type="CubeMesh" id=21]
+[sub_resource type="MultiMesh" id=21]
+custom_data_format = 1
+mesh = SubResource( 20 )
 
-[sub_resource type="MeshTexture" id=22]
-mesh = SubResource( 21 )
+[sub_resource type="ImageTexture" id=10]
 
-[sub_resource type="DynamicFont" id=23]
+[sub_resource type="CubeMesh" id=11]
+
+[sub_resource type="MeshTexture" id=12]
+mesh = SubResource( 11 )
+
+[sub_resource type="DynamicFont" id=13]
 size = 18
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -59,6 +62,12 @@ script = ExtResource( 2 )
 set_lanes = 4
 radius_array = [ 320.0, 325.0, 330.0, 335.0 ]
 
+[node name="Outline" type="Node2D" parent="." groups=[
+"RingOutlineGroup",
+]]
+script = ExtResource( 5 )
+show = true
+
 [node name="Rotation" type="Node2D" parent="."]
 
 [node name="Lanes" type="Node2D" parent="Rotation"]
@@ -67,8 +76,8 @@ radius_array = [ 320.0, 325.0, 330.0, 335.0 ]
 "LaneGroup",
 ]]
 material = SubResource( 1 )
-multimesh = SubResource( 13 )
-texture = ExtResource( 4 )
+multimesh = SubResource( 15 )
+texture = ExtResource( 10 )
 script = ExtResource( 1 )
 radians_per_slot = 0.0156298
 lane_content = null
@@ -77,8 +86,8 @@ lane_content = null
 "LaneGroup",
 ]]
 material = SubResource( 1 )
-multimesh = SubResource( 15 )
-texture = ExtResource( 4 )
+multimesh = SubResource( 17 )
+texture = ExtResource( 8 )
 script = ExtResource( 1 )
 radians_per_slot = 0.0156298
 lane_content = null
@@ -87,8 +96,8 @@ lane_content = null
 "LaneGroup",
 ]]
 material = SubResource( 1 )
-multimesh = SubResource( 17 )
-texture = ExtResource( 4 )
+multimesh = SubResource( 19 )
+texture = ExtResource( 10 )
 script = ExtResource( 1 )
 radians_per_slot = 0.0156298
 lane_content = null
@@ -96,9 +105,8 @@ lane_content = null
 [node name="Lane3" type="MultiMeshInstance2D" parent="Rotation/Lanes" groups=[
 "LaneGroup",
 ]]
-material = SubResource( 1 )
-multimesh = SubResource( 19 )
-texture = ExtResource( 4 )
+multimesh = SubResource( 21 )
+texture = ExtResource( 10 )
 script = ExtResource( 1 )
 radians_per_slot = 0.0156298
 lane_content = null
@@ -106,57 +114,75 @@ lane_content = null
 [node name="Factories" type="Node2D" parent="Rotation"]
 pause_mode = 2
 
+[node name="Ships" type="Node2D" parent="Rotation"]
+pause_mode = 2
+
 [node name="FactoryTemplate" type="Area2D" parent="Rotation"]
 pause_mode = 2
 visible = false
 script = ExtResource( 3 )
+inner_radius = 157.5
+outer_radius = 177.5
+span_radians = 0.231
+factory_color = PoolColorArray( 0.6, 0.6, 0.6, 1 )
 factory_outline_color = Color( 0.8, 0.8, 0.8, 1 )
+recipy = null
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Rotation/FactoryTemplate"]
-polygon = PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
+polygon = PoolVector2Array( 156.451, -18.1508, 156.578, -17.021, 156.696, -15.8903, 156.807, -14.7587, 156.909, -13.6264, 157.004, -12.4933, 157.09, -11.3597, 157.168, -10.2254, 157.237, -9.09057, 157.299, -7.95529, 157.352, -6.81959, 157.397, -5.68353, 157.434, -4.54718, 157.463, -3.41059, 157.484, -2.27383, 157.496, -1.13694, 157.5, 0, 157.496, 1.13694, 157.484, 2.27383, 157.463, 3.41059, 157.434, 4.54718, 157.397, 5.68353, 157.352, 6.81959, 157.299, 7.95529, 157.237, 9.09057, 157.168, 10.2254, 157.09, 11.3597, 157.004, 12.4933, 156.909, 13.6264, 156.807, 14.7587, 156.696, 15.8903, 156.578, 17.021, 156.451, 18.1508, 172.344, 19.9947, 181.5, 0, 172.344, -19.9947, 156.451, -18.1508 )
 
 [node name="TextureButton" type="TextureButton" parent="Rotation/FactoryTemplate" groups=[
 "FactoryButtonGroup",
 ]]
 visible = false
+margin_left = 157.5
 margin_top = -20.0
-margin_right = 22.0
+margin_right = 179.5
 margin_bottom = 20.0
-texture_normal = SubResource( 20 )
-texture_pressed = SubResource( 22 )
+texture_normal = SubResource( 10 )
+texture_pressed = SubResource( 12 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Timer" type="Timer" parent="Rotation/FactoryTemplate"]
-process_mode = 0
-one_shot = true
-
 [node name="Label" type="Label" parent="Rotation/FactoryTemplate"]
-margin_left = 21.0
+margin_left = 178.5
 margin_top = -20.0
-margin_right = 61.0
+margin_right = 218.5
 margin_bottom = 3.0
 rect_rotation = 90.0
-custom_fonts/font = SubResource( 23 )
+custom_fonts/font = SubResource( 13 )
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="FactoryProcess" type="Node2D" parent="Rotation/FactoryTemplate" groups=[
+"FactoryProcessGroup",
+]]
+script = ExtResource( 7 )
+angle_back = -0.1155
+angle_front = 0.1155
+
+[node name="Timer" type="Timer" parent="Rotation/FactoryTemplate/FactoryProcess"]
+process_mode = 0
+one_shot = true
+
+[node name="ShipTemplate" type="Node2D" parent="Rotation"]
+pause_mode = 2
+visible = false
+script = ExtResource( 4 )
+inner_radius = 157.5
+outer_radius = 177.5
+span_radians = 0.231
 
 [node name="Line2D" type="Line2D" parent="Rotation"]
 visible = false
 points = PoolVector2Array( 0, 0, 400, 0 )
 default_color = Color( 0.24, 0.0768, 0.14208, 1 )
 
-[node name="Outline" type="Node2D" parent="." groups=[
-"RingOutlineGroup",
-]]
-script = ExtResource( 5 )
-show = true
-
 [connection signal="area_entered" from="Rotation/FactoryTemplate" to="Rotation/FactoryTemplate" method="_on_FactoryTemplate_area_entered"]
 [connection signal="area_exited" from="Rotation/FactoryTemplate" to="Rotation/FactoryTemplate" method="_on_FactoryTemplate_area_exited"]
 [connection signal="pressed" from="Rotation/FactoryTemplate/TextureButton" to="Rotation/FactoryTemplate" method="_on_TextureButton_pressed"]
-[connection signal="timeout" from="Rotation/FactoryTemplate/Timer" to="Rotation/FactoryTemplate" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Rotation/FactoryTemplate/FactoryProcess/Timer" to="Rotation/FactoryTemplate/FactoryProcess" method="_on_Timer_timeout"]

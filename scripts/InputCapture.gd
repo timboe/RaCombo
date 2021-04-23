@@ -41,7 +41,9 @@ func _unhandled_input(event):
 	cursor = event.global_position + camera_node.global_position
 	var dist : float = round( abs( cursor.distance_to( centre_node.position ) ) )
 	var ring_index : int = int(dist / rs.RING_RADIUS) - 1 
-	if int(dist) % int(rs.RING_RADIUS) > rs.RING_WIDTH or ring_index >= rs.rings:
+	if dist < rs.RING_RADIUS:
+		ring = rs.get_child(0)
+	elif int(dist) % int(rs.RING_RADIUS) > rs.RING_WIDTH or ring_index >= rs.rings:
 		ring = null
 	else:
 		ring = rs.get_child(ring_index)
@@ -66,8 +68,12 @@ func _unhandled_input(event):
 		prev_ring = ring
 
 	if event is InputEventMouseButton and ring != null and event.pressed and event.button_index == 1:
-		if button == null: # Select ring
-			id.show_ring_diag(ring)
+		if button == null: # Select ring (but not the Sol ring)
+			if ring.ring_number == 0:
+				#TODO show Sol
+				pass
+			else:
+				id.show_ring_diag(ring)
 		elif mode_build:
 			ring.new_factory()
 		elif mode_inject:
