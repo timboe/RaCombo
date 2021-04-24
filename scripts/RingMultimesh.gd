@@ -78,7 +78,7 @@ func set_laneswap(var other_lane : MultiMeshInstance2D):
 	laneswap_target[0] = other_lane
 
 func register_resource(var new_resource : String, var provinance : Node):
-	if lane_content != null:
+	if lane_content != null and new_resource != lane_content:
 		print("ERROR in ",name," of ", get_parent().get_parent().get_parent().name, " trying to reg ",new_resource," into lane containing ",lane_content)
 		return
 	# If we are a sink, we can accept many different inputs

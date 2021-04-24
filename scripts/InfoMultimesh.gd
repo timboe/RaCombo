@@ -19,7 +19,6 @@ func _ready():
 		multimesh.set_instance_transform_2d(i, t)
 
 func reset():
-	print("spy reset ",name," from ", factory_process.get_parent().descriptive_name)
 	factory_process = null
 
 func update_visible():

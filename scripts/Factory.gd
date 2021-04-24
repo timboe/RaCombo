@@ -26,9 +26,9 @@ func _ready():
 func add_arc(var points : int,
   var start : float, var end : float,
    var centre : Vector2, var radius : float):
-	var span_radians = end - start
+	var span = end - start
 	for i in range(points + 1):
-		var angle_point = ((i * span_radians) / POINTS) + start
+		var angle_point = ((i * span) / POINTS) + start
 		points_vec.push_back(centre + (Vector2(cos(angle_point), sin(angle_point)) * radius))
 
 func _draw():
@@ -93,19 +93,12 @@ func configure_building(var _mode : int, var _recipy : String):
 	recipy = _recipy
 	$FactoryProcess.configure(_mode, _recipy)
 	factory_outline_color = Global.data[recipy]["color"]
-	factory_color[0] = Color.from_hsv(factory_outline_color.h, 
-		factory_outline_color.s - (factory_outline_color.s * 0.75),  # Lighten
-		factory_outline_color.v)
+	factory_color[0] = Global.lighten(factory_outline_color)
 	$Label.text = Global.data[recipy]["name"] + ("+" if Global.data[recipy]["mode"] == "extract" else "-")
 	update()
 	set_descriptive_name()
 	if mode == Global.BUILDING_EXTRACTOR and ring.ring_number + 1 == Global.rings:
-		var sr = ring.get_node("ShipRotationTemplate").duplicate(DUPLICATE_SCRIPTS|DUPLICATE_GROUPS)
-		sr.name = "ShipRotation1"
-		ring.add_child(sr, true)
-		sr.global_rotation = self.global_rotation
-		$FactoryProcess.ship = sr.get_child(0)
-		$FactoryProcess.ship.configure_ship(recipy)
+		_on_NewShip_timeout()
 	
 func get_process_node():
 	return $FactoryProcess
@@ -124,8 +117,10 @@ func remove():
 	$FactoryProcess.reset()
 	queue_free()
 
-func lane_cleared(var lane : MultiMeshInstance2D):
-	$FactoryProcess.lane_clared(lane)
+func lane_cleared(var lane_or_ship : Node2D, var and_queue_new_ship : bool = false):
+	$FactoryProcess.lane_cleared(lane_or_ship)
+	if and_queue_new_ship:
+		$NewShip.start()
 	
 func set_descriptive_name():
 	descriptive_name = String(name.to_int()) + " "
@@ -163,3 +158,12 @@ func _on_FactoryTemplate_area_exited(_area):
 
 func _on_TextureButton_pressed():
 	id.show_building_diag(self)
+
+func _on_NewShip_timeout():
+	var sr = ring.get_node("ShipRotationTemplate").duplicate(DUPLICATE_SCRIPTS|DUPLICATE_GROUPS|DUPLICATE_SIGNALS)
+	sr.name = "ShipRotation1"
+	ring.add_child(sr, true)
+	sr.global_rotation = self.global_rotation
+	$FactoryProcess.ship = sr.get_child(0)
+	$FactoryProcess.ship.configure_ship(recipy, self)
+	id.update_diag()

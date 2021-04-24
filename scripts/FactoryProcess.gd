@@ -2,6 +2,7 @@ extends Node2D
 tool
 
 onready var ring := find_parent("Ring*") as Node2D
+onready var something_changed_node = $"/root/Game/SomethingChanged"
 
 var input_factory_required = [] # Number of items required per input for factory mode
 var input_storage = [] # Number of stored items per input
@@ -44,6 +45,10 @@ func reset():
 	for spy in spies:
 		spy.reset()
 	spies.clear()
+	#
+	if ship != null:
+		ship.remove()
+	ship = null
 
 func set_spy(var spy):
 	spies.append(spy)
@@ -73,18 +78,24 @@ func configure(var _mode : int, var recipy : String):
 	output_lane = null
 	lane_system_changed()
 	
-func lane_cleared(var lane : MultiMeshInstance2D):
+func lane_cleared(var lane_or_ship : Node2D):
+	print(" LANE CLEARED CALLED")
 	if mode == Global.BUILDING_UNSET: # Called on all buildings by the Bin fn
 		return
 	var something_changed : bool = false
-	if output_lane == lane:
+	if output_lane == lane_or_ship:
+		print("OUTPUT LANE CLEARED")
 		output_lane = null
+		print("OUTPUT LANE = ", output_lane) 
+		something_changed = true
 	for input_resource in input_lanes:
 		for idx in range(input_resource.size() -1, -1):
-			if input_resource[idx] == lane:
+			if input_resource[idx] == lane_or_ship:
 				input_resource.remove(idx)
+				something_changed = true
 	check_process()
-	# We don't do something_changed here because the higher level bin-script will call it
+	if something_changed:
+		something_changed_node.something_changed()
 
 func lane_system_changed():
 	if mode == Global.BUILDING_UNSET: # Called on all buildings by SomethingChanged
@@ -124,7 +135,6 @@ func lane_system_changed():
 	if out_ring_n == Global.rings and output_lane == null: # Setup output to ship
 		output_lane = ship
 		# Note: this is a self-contained operation, so something_changed = false
-		print("TODO export and something_changed for export")
 	elif output_storage > 0: 	# Only link the output if we have something to output...
 		var out_ring = ring.get_parent().get_child(out_ring_n)
 		var out_lane_id = out_ring.get_free_or_existing_lane(output_content)
@@ -137,7 +147,7 @@ func lane_system_changed():
 				something_changed = true
 	check_process()
 	if something_changed:
-		$"/root/Game/SomethingChanged".something_changed()
+		something_changed_node.something_changed()
 
 func check_process():
 	# Do we have all inputs and outputs?
@@ -173,7 +183,6 @@ func check_process():
 	# Deactivate until there is a change in the lane situation
 	set_physics_process(false)
 	
-
 func _physics_process(_delta):
 	if mode == Global.BUILDING_EXTRACTOR:
 		# Inputs

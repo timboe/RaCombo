@@ -5,33 +5,47 @@ onready var shields = get_tree().get_root().find_node("Shields", true, false)
 var current_building : Area2D  = null
 var current_ring : Node2D = null
 var current_lanes : Array = []
+var sandbox : bool = false
 
 func hide_diag():
 	current_ring = null
 	current_building = null
 	hide()
 
-func show_ring_diag(var ring : Node2D):
-	$RingContainer.visible = true
-	$FactoryContainer.visible = false
-	current_ring = ring
+func show_shared():
 	current_building = null
-	update_ring_diag()
+	current_ring = null
+	sandbox = false
+	for c in get_children():
+		if c is MarginContainer:
+			c.visible = false
 	show()
+
+func show_ring_diag(var ring : Node2D):
+	show_shared()
+	$RingContainer.visible = true
+	current_ring = ring
+	update_ring_diag()
 	
 func show_building_diag(var factory : Area2D):
+	show_shared()
 	$RingContainer.visible = false
-	$FactoryContainer.visible = true
 	current_building = factory
-	current_ring = null
 	update_building_diag()
-	show()
+	
+func show_sandbox_diag(var factory : Area2D):
+	show_shared()
+	$SandboxContainer.visible = false
+	sandbox = true
+	update_sandbox_diag()
 	
 func update_diag():
 	if current_ring != null:
 		update_ring_diag()
-	if current_building != null:
+	elif current_building != null:
 		update_building_diag()
+	elif sandbox:
+		update_sandbox_diag()
 
 func update_building_diag():
 	window_title = current_building.descriptive_name
@@ -62,14 +76,25 @@ func update_building_diag():
 		else:
 			$FactoryContainer/Set/Inputs.visible = false
 		# Output
-		var out_cont = get_node("FactoryContainer/Set/Output/O")
+		var out_cont = get_node("FactoryContainer/Set/Output/OutAndShip/Out")
 		var output = current_building.get_process_node().output_content
 		var out_mm = out_cont.get_node("Count/Mm")
 		var out_ico = out_cont.get_node("Icon")
 		out_ico.texture = Global.data[output]["texture"]
 		out_mm.set_resource(output, current_building.get_process_node())
 		out_mm.set_visible_count(current_building.get_process_node().output_storage)
-		
+		# Output with Ship
+		var ship_cont = get_node("FactoryContainer/Set/Output/OutAndShip/Ship")
+		var ship = current_building.get_node("FactoryProcess").ship
+		if ship != null:
+			ship_cont.visible = true
+			var mm = ship_cont.get_node("Count/Mm")
+			var ship_ico = ship_cont.get_node("Ship/Ship")
+			ship_ico.set_resource(output)
+			mm.set_resource(output, ship)
+			mm.set_visible_count(ship.output_storage)
+		else:
+			ship_cont.visible = false
 
 func update_ring_diag():
 	var count : int = 1
@@ -98,6 +123,8 @@ func update_ring_diag():
 		#
 		count += 1
 
+func update_sandbox_diag():
+	pass
 
 func _on_UpdateTimer_timeout():
 	if current_building != null:

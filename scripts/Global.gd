@@ -16,6 +16,12 @@ var last_pressed = null
 var level : int = 99
 var rings : int = 10
 
+# Helper functions
+func lighten(var c : Color) -> Color:
+	return Color.from_hsv(c.h, 
+		c.s - (c.s * 0.75),  # Lighten
+		c.v)
+
 # Game data
 var data = {
 	"none": {
