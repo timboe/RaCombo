@@ -35,14 +35,14 @@ func update_diag():
 
 func update_building_diag():
 	window_title = current_building.descriptive_name
-	if current_building.mode == current_building.BUILDING_UNSET:
+	if current_building.mode == Global.BUILDING_UNSET:
 		$FactoryContainer/Unset.visible = true
 		$FactoryContainer/Set.visible = false
 	else:
 		$FactoryContainer/Unset.visible = false
 		$FactoryContainer/Set.visible = true
 		# Inputs
-		if current_building.mode == current_building.BUILDING_FACTORY:
+		if current_building.mode == Global.BUILDING_FACTORY:
 			$FactoryContainer/Set/Inputs.visible = true
 			var count = 0
 			for i in range(current_building.get_process_node().input_content.size()):

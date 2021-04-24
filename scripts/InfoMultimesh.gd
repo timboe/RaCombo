@@ -11,9 +11,8 @@ func _ready():
 	multimesh.mesh = QuadMesh.new()
 	multimesh.mesh.set_size(Vector2(10,10))
 	multimesh.transform_format = MultiMesh.TRANSFORM_2D
-	var max_n = load("res://scripts/FactoryProcess.gd").new().MAX_STORAGE
-	multimesh.instance_count = max_n
-	var vertical_break := int(floor(sqrt(max_n)))
+	multimesh.instance_count = Global.MAX_STORAGE
+	var vertical_break := int(floor(sqrt(Global.MAX_STORAGE)))
 	for i in range(multimesh.instance_count):
 		var orig := Vector2(10 * (i % vertical_break), 10 * floor(i/vertical_break))
 		var t := Transform2D(Vector2.RIGHT, Vector2.DOWN, orig)
@@ -32,6 +31,7 @@ func update_visible():
 		multimesh.visible_instance_count = factory_process.output_storage
 
 func set_visible_count(var i : int):
+	i = int(clamp(i, 0, Global.MAX_STORAGE))
 	multimesh.visible_instance_count = i
 
 func set_resource(var resource : String, var _factory_process, var _is_input : bool = false, var _index : bool = 0):

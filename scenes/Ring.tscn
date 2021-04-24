@@ -68,6 +68,16 @@ radius_array = [ 320.0, 325.0, 330.0, 335.0 ]
 script = ExtResource( 5 )
 show = true
 
+[node name="ShipRotationTemplate" type="Node2D" parent="."]
+visible = false
+
+[node name="Ship" type="Node2D" parent="ShipRotationTemplate"]
+pause_mode = 2
+script = ExtResource( 4 )
+inner_radius = 157.5
+outer_radius = 177.5
+span_radians = 0.231
+
 [node name="Rotation" type="Node2D" parent="."]
 
 [node name="Lanes" type="Node2D" parent="Rotation"]
@@ -80,7 +90,6 @@ multimesh = SubResource( 15 )
 texture = ExtResource( 10 )
 script = ExtResource( 1 )
 radians_per_slot = 0.0156298
-lane_content = null
 
 [node name="Lane1" type="MultiMeshInstance2D" parent="Rotation/Lanes" groups=[
 "LaneGroup",
@@ -90,7 +99,6 @@ multimesh = SubResource( 17 )
 texture = ExtResource( 8 )
 script = ExtResource( 1 )
 radians_per_slot = 0.0156298
-lane_content = null
 
 [node name="Lane2" type="MultiMeshInstance2D" parent="Rotation/Lanes" groups=[
 "LaneGroup",
@@ -100,7 +108,6 @@ multimesh = SubResource( 19 )
 texture = ExtResource( 10 )
 script = ExtResource( 1 )
 radians_per_slot = 0.0156298
-lane_content = null
 
 [node name="Lane3" type="MultiMeshInstance2D" parent="Rotation/Lanes" groups=[
 "LaneGroup",
@@ -109,7 +116,6 @@ multimesh = SubResource( 21 )
 texture = ExtResource( 10 )
 script = ExtResource( 1 )
 radians_per_slot = 0.0156298
-lane_content = null
 
 [node name="Factories" type="Node2D" parent="Rotation"]
 pause_mode = 2
@@ -126,7 +132,6 @@ outer_radius = 177.5
 span_radians = 0.231
 factory_color = PoolColorArray( 0.6, 0.6, 0.6, 1 )
 factory_outline_color = Color( 0.8, 0.8, 0.8, 1 )
-recipy = null
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Rotation/FactoryTemplate"]
 polygon = PoolVector2Array( 156.451, -18.1508, 156.578, -17.021, 156.696, -15.8903, 156.807, -14.7587, 156.909, -13.6264, 157.004, -12.4933, 157.09, -11.3597, 157.168, -10.2254, 157.237, -9.09057, 157.299, -7.95529, 157.352, -6.81959, 157.397, -5.68353, 157.434, -4.54718, 157.463, -3.41059, 157.484, -2.27383, 157.496, -1.13694, 157.5, 0, 157.496, 1.13694, 157.484, 2.27383, 157.463, 3.41059, 157.434, 4.54718, 157.397, 5.68353, 157.352, 6.81959, 157.299, 7.95529, 157.237, 9.09057, 157.168, 10.2254, 157.09, 11.3597, 157.004, 12.4933, 156.909, 13.6264, 156.807, 14.7587, 156.696, 15.8903, 156.578, 17.021, 156.451, 18.1508, 172.344, 19.9947, 181.5, 0, 172.344, -19.9947, 156.451, -18.1508 )
@@ -168,14 +173,6 @@ angle_front = 0.1155
 [node name="Timer" type="Timer" parent="Rotation/FactoryTemplate/FactoryProcess"]
 process_mode = 0
 one_shot = true
-
-[node name="ShipTemplate" type="Node2D" parent="Rotation"]
-pause_mode = 2
-visible = false
-script = ExtResource( 4 )
-inner_radius = 157.5
-outer_radius = 177.5
-span_radians = 0.231
 
 [node name="Line2D" type="Line2D" parent="Rotation"]
 visible = false

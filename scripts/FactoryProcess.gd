@@ -1,8 +1,7 @@
 extends Node2D
+tool
 
-onready var ring := get_parent().get_parent().get_parent().get_parent() as Node2D
-
-const MAX_STORAGE := 49
+onready var ring := find_parent("Ring*") as Node2D
 
 var input_factory_required = [] # Number of items required per input for factory mode
 var input_storage = [] # Number of stored items per input
@@ -11,6 +10,7 @@ var input_lanes = [] # This is a list of lists. Providers of each input
 var input_lanes_distance = [] # This is a list of lists. How far away are each provider (1 or 2)
 
 var spies = [] # The multimeshes currently spying on the storage content here
+var ship = null
 
 export(float) var angle_back
 export(float) var angle_front
@@ -19,13 +19,12 @@ export(int) var output_amount = 0 # Just for factory mode
 export(int) var output_storage = 0
 export(String) var output_content = null
 export(int) var output_direction = null
-var output_lane : MultiMeshInstance2D = null
+var output_lane : Node2D = null
 
-enum {BUILDING_UNSET, BUILDING_EXTRACTOR, BUILDING_INSERTER, BUILDING_FACTORY}
-export(int) var mode = BUILDING_UNSET
+export(int) var mode = Global.BUILDING_UNSET
 
 func reset():
-	mode = BUILDING_UNSET
+	mode = Global.BUILDING_UNSET
 	#
 	input_content.clear()
 	input_storage.clear()
@@ -52,7 +51,7 @@ func set_spy(var spy):
 func configure(var _mode : int, var recipy : String):
 	reset()
 	mode = _mode
-	if mode == BUILDING_FACTORY:
+	if mode == Global.BUILDING_FACTORY:
 		$Timer.wait_time = Global.recipies[recipy]["time"]
 		output_amount = Global.recipies[recipy]["amount_out"]
 		for i in Global.recipies[recipy]["input"].size():
@@ -75,7 +74,7 @@ func configure(var _mode : int, var recipy : String):
 	lane_system_changed()
 	
 func lane_cleared(var lane : MultiMeshInstance2D):
-	if mode == BUILDING_UNSET: # Called on all buildings by the Bin fn
+	if mode == Global.BUILDING_UNSET: # Called on all buildings by the Bin fn
 		return
 	var something_changed : bool = false
 	if output_lane == lane:
@@ -88,11 +87,11 @@ func lane_cleared(var lane : MultiMeshInstance2D):
 	# We don't do something_changed here because the higher level bin-script will call it
 
 func lane_system_changed():
-	if mode == BUILDING_UNSET: # Called on all buildings by SomethingChanged
+	if mode == Global.BUILDING_UNSET: # Called on all buildings by SomethingChanged
 		return
 	var something_changed = false
 	# Input
-	if mode == BUILDING_FACTORY:
+	if mode == Global.BUILDING_FACTORY:
 		# We check the two outermost rings for input
 		var distance : int = 0 # One or two. Factories can reach over 1 ring
 		for ring_idx in range(ring.ring_number + 1, ring.ring_number + 3):
@@ -122,20 +121,20 @@ func lane_system_changed():
 						something_changed = true
 	# Output
 	var out_ring_n = ring.ring_number - 1 if Global.data[output_content]["mode"] == "insert" else ring.ring_number + 1
-	# Only link the output if we have something to output...
-	if output_storage > 0:
-		if out_ring_n == Global.rings:
-			print("TODO export and something_changed for export")
-		else:
-			var out_ring = ring.get_parent().get_child(out_ring_n)
-			var out_lane_id = out_ring.get_free_or_existing_lane(output_content)
-			if out_lane_id != -1:
-				var the_out_lane = out_ring.get_lane(out_lane_id)
-				if output_lane != the_out_lane:
-					output_lane = the_out_lane
-					the_out_lane.register_resource(output_content, self)
-					print("The ",name," will now export ",output_content," to ",the_out_lane)
-					something_changed = true
+	if out_ring_n == Global.rings and output_lane == null: # Setup output to ship
+		output_lane = ship
+		# Note: this is a self-contained operation, so something_changed = false
+		print("TODO export and something_changed for export")
+	elif output_storage > 0: 	# Only link the output if we have something to output...
+		var out_ring = ring.get_parent().get_child(out_ring_n)
+		var out_lane_id = out_ring.get_free_or_existing_lane(output_content)
+		if out_lane_id != -1:
+			var the_out_lane = out_ring.get_lane(out_lane_id)
+			if output_lane != the_out_lane:
+				output_lane = the_out_lane
+				the_out_lane.register_resource(output_content, self)
+				print("The ",name," will now export ",output_content," to ",the_out_lane)
+				something_changed = true
 	check_process()
 	if something_changed:
 		$"/root/Game/SomethingChanged".something_changed()
@@ -153,13 +152,13 @@ func check_process():
 		return
 	# OK - what about inputs, are there input lanes which are not yet full?
 	var can_gather_inputs : bool = false
-	if mode == BUILDING_FACTORY:
+	if mode == Global.BUILDING_FACTORY:
 		for i in range(input_lanes.size()):
-			if input_lanes[i].size() > 0 and input_storage[i] < MAX_STORAGE:
+			if input_lanes[i].size() > 0 and input_storage[i] < Global.MAX_STORAGE:
 				can_gather_inputs = true
 				break
 	else: # Inserters/extracters only make use of output_storage
-		if input_lanes[0].size() > 0 and output_storage < MAX_STORAGE:
+		if input_lanes[0].size() > 0 and output_storage < Global.MAX_STORAGE:
 			can_gather_inputs = true
 	if can_gather_inputs:
 		set_physics_process(true)
@@ -176,44 +175,44 @@ func check_process():
 	
 
 func _physics_process(_delta):
-	if mode == BUILDING_EXTRACTOR:
+	if mode == Global.BUILDING_EXTRACTOR:
 		# Inputs
-		if output_storage < MAX_STORAGE:
+		if output_storage < Global.MAX_STORAGE:
 			for l in input_lanes[0]:
-				l.try_capture(angle_back + global_rotation, self, l.OUTWARDS)
+				l.try_capture(angle_back + global_rotation, self, Global.OUTWARDS)
 		# Output
 		if output_storage > 0 and output_lane != null:
-			var accepted = output_lane.try_send(global_rotation, output_lane.OUTWARDS)
+			var accepted = output_lane.try_send(global_rotation, Global.OUTWARDS)
 			if accepted:
 				output_storage -= 1
-	elif mode == BUILDING_INSERTER:
+	elif mode == Global.BUILDING_INSERTER:
 		# Inputs
-		if output_storage < MAX_STORAGE:
+		if output_storage < Global.MAX_STORAGE:
 			for l in input_lanes[0]:
-				l.try_capture(angle_front + global_rotation, self, l.INWARDS)
+				l.try_capture(angle_front + global_rotation, self, Global.INWARDS)
 		# Output
 		if output_storage > 0 and output_lane != null:
-			var accepted = output_lane.try_send(global_rotation, output_lane.INWARDS)
+			var accepted = output_lane.try_send(global_rotation, Global.INWARDS)
 			if accepted:
 				output_storage -= 1
-	elif mode == BUILDING_FACTORY:
+	elif mode == Global.BUILDING_FACTORY:
 		# Inputs
 		for i in range(input_lanes.size()):
-			if input_storage[i] < MAX_STORAGE:
+			if input_storage[i] < Global.MAX_STORAGE:
 				for j in range(input_lanes[i].size()):
 					# Factories capture from ABOVE, 1 or two rings
 					var lane = input_lanes[i][j]
-					lane.try_capture(angle_front + global_rotation, self, lane.INWARDS, input_lanes_distance[i][j])
+					lane.try_capture(angle_front + global_rotation, self, Global.INWARDS, input_lanes_distance[i][j])
 		# Outputs
 		if output_storage > 0 and output_lane != null:
-			var direction = output_lane.INWARDS if Global.data[output_content]["mode"] == "insert" else output_lane.OUTWARDS
-			var accepted = output_lane.try_send(global_rotation, direction)
+			var direction : int = Global.INWARDS if Global.data[output_content]["mode"] == "insert" else Global.OUTWARDS
+			var accepted : bool = output_lane.try_send(global_rotation, direction)
 			if accepted:
 				output_storage -= 1
 
 # Called asynchronously when try_capture succedes 
 func add_item(var lane : MultiMeshInstance2D):
-	if mode != BUILDING_FACTORY:
+	if mode != Global.BUILDING_FACTORY:
 		output_storage += 1
 		# If this is the first thing we have had to output - then we may need to link our output lane
 		if output_storage == 1 and output_lane == null:

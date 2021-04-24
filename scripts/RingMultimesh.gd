@@ -4,8 +4,6 @@ tool
 const DISABLE := 100.0
 const INJECT_VELOCITY := 128.0
 
-enum {OUTWARDS, INWARDS}
-
 export(float) var radians_per_slot
 export(float) var radius
 export(String) var lane_content = null
@@ -138,7 +136,7 @@ func try_capture(var angle : float, var caller : Node, var direction : int, var 
 	moving["dir"] = direction
 	moving["offset"] = (2.0 * PI) * 1.0/float(multimesh.instance_count) * float(i)
 	moving["radius"] = radius
-	moving["target"] = radius + (ring_radius * distance) if direction == OUTWARDS else radius - (ring_radius * distance)
+	moving["target"] = radius + (ring_radius * distance) if direction == Global.OUTWARDS else radius - (ring_radius * distance)
 	in_flight.append(moving)
 	
 func try_send(var angle : float, var direction : int) -> bool:
@@ -148,7 +146,7 @@ func try_send(var angle : float, var direction : int) -> bool:
 		return false
 	c.r = 1 # Now filled
 	c.b = 0 # Hence not fillable
-	var new_radius = radius - ring_radius if direction == OUTWARDS else radius + ring_radius
+	var new_radius = radius - ring_radius if direction == Global.OUTWARDS else radius + ring_radius
 	var offset = (2.0 * PI) * 1.0/float(multimesh.instance_count) * float(i)
 	multimesh.set_instance_custom_data(i, c)
 	var t : Transform2D = multimesh.get_instance_transform_2d(i)
@@ -170,9 +168,9 @@ func _physics_process(var delta):
 		var i : int = d["i"]
 		var dir : int = d["dir"]
 		var t : Transform2D = multimesh.get_instance_transform_2d(i)
-		d["radius"] += delta * INJECT_VELOCITY if dir == OUTWARDS else -delta * INJECT_VELOCITY
+		d["radius"] += delta * INJECT_VELOCITY if dir == Global.OUTWARDS else -delta * INJECT_VELOCITY
 		var finished : bool  = false 
-		if (dir == OUTWARDS and d["radius"] >= d["target"]) or (dir == INWARDS and d["radius"] <= d["target"]):
+		if (dir == Global.OUTWARDS and d["radius"] >= d["target"]) or (dir == Global.INWARDS and d["radius"] <= d["target"]):
 			finished = true
 			d["radius"] = radius
 		var offset = d["offset"]

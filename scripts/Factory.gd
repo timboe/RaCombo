@@ -4,6 +4,7 @@ tool
 const POINTS := 32
 
 onready var id = get_tree().get_root().find_node("InfoDialog", true, false) 
+onready var ring = find_parent("Ring*")
 
 export(float) var inner_radius
 export(float) var outer_radius
@@ -13,13 +14,11 @@ export(PoolColorArray) var factory_color
 export(Color) var factory_outline_color
 export(bool) var colliding
 
-enum {BUILDING_UNSET, BUILDING_EXTRACTOR, BUILDING_INSERTER, BUILDING_FACTORY}
-export(int) var mode = BUILDING_UNSET
+export(int) var mode = Global.BUILDING_UNSET
 export(String) var recipy = null
 export(String) var descriptive_name = ""
 
 var points_vec = PoolVector2Array()
-const INSERTER_RADIUS_MOD = 0.2
 
 func _ready():
 	reset()
@@ -36,24 +35,24 @@ func _draw():
 	
 	#mode = BUILDING_EXTRACTOR
 	
-	var radius_mod : float = (outer_radius - inner_radius) * INSERTER_RADIUS_MOD
-	var span_mod = span_radians * INSERTER_RADIUS_MOD
+	var radius_mod : float = (outer_radius - inner_radius) * Global.INSERTER_RADIUS_MOD
+	var span_mod = span_radians * Global.INSERTER_RADIUS_MOD
 	points_vec.resize(0)
 	###
-	if mode == BUILDING_INSERTER:
+	if mode == Global.BUILDING_INSERTER:
 		points_vec.push_back(Vector2(cos(-span_radians/2.0), sin(-span_radians/2.0)) * (inner_radius + radius_mod))
 		points_vec.push_back(Vector2(inner_radius - radius_mod, 0))
 		points_vec.push_back(Vector2(cos(+span_radians/2.0), sin(+span_radians/2.0)) * (inner_radius + radius_mod))
-	elif mode == BUILDING_FACTORY and Global.data[recipy]["mode"] == "insert":
+	elif mode == Global.BUILDING_FACTORY and Global.data[recipy]["mode"] == "insert":
 		add_arc(POINTS, -span_radians/2.0, -span_mod, Vector2.ZERO, inner_radius)
 		points_vec.push_back(Vector2(inner_radius - radius_mod, 0))
 		add_arc(POINTS, +span_mod, +span_radians/2.0, Vector2.ZERO, inner_radius)
 	else:
 		add_arc(POINTS, -span_radians/2.0, +span_radians/2.0, Vector2.ZERO, inner_radius)
 	###
-	if mode == BUILDING_FACTORY:
+	if mode == Global.BUILDING_FACTORY:
 		var mod_r = inner_radius + (outer_radius - inner_radius)/2.0
-		var mod_angle = span_radians/2.0 + span_radians*INSERTER_RADIUS_MOD
+		var mod_angle = span_radians/2.0 + span_radians * Global.INSERTER_RADIUS_MOD
 		points_vec.push_back(Vector2(cos(mod_angle), sin(mod_angle)) * mod_r)
 #	if true or mode == BUILDING_FACTORY: # Curvy edge?
 #		var centre = Vector2.ZERO
@@ -62,20 +61,20 @@ func _draw():
 #		centre.y = tan(span_radians/2.0) * centre.x
 #		add_arc(POINTS/2, PI, -PI, centre, small_circ_radius)
 	###
-	if mode == BUILDING_EXTRACTOR:
+	if mode == Global.BUILDING_EXTRACTOR:
 		points_vec.push_back(Vector2(cos(+span_radians/2.0), sin(+span_radians/2.0)) * (outer_radius - radius_mod))
 		points_vec.push_back(Vector2(outer_radius + radius_mod, 0))
 		points_vec.push_back(Vector2(cos(-span_radians/2.0), sin(-span_radians/2.0)) * (outer_radius - radius_mod))
-	elif mode == BUILDING_FACTORY and Global.data[recipy]["mode"] == "extract":
+	elif mode == Global.BUILDING_FACTORY and Global.data[recipy]["mode"] == "extract":
 		add_arc(POINTS, +span_radians/2.0, +span_mod, Vector2.ZERO, outer_radius)
 		points_vec.push_back(Vector2(outer_radius + radius_mod, 0))
 		add_arc(POINTS, -span_mod, -span_radians/2.0, Vector2.ZERO, outer_radius)
 	else:
 		add_arc(POINTS, +span_radians/2.0, -span_radians/2.0, Vector2.ZERO, outer_radius)
 	###
-	if mode == BUILDING_FACTORY:
+	if mode == Global.BUILDING_FACTORY:
 		var mod_r = inner_radius + (outer_radius - inner_radius)/2.0
-		var mod_angle = -span_radians/2.0 - span_radians*INSERTER_RADIUS_MOD
+		var mod_angle = -span_radians/2.0 - span_radians * Global.INSERTER_RADIUS_MOD
 		points_vec.push_back(Vector2(cos(mod_angle), sin(mod_angle)) * mod_r)
 	###
 	points_vec.push_back(points_vec[0])
@@ -100,22 +99,19 @@ func configure_building(var _mode : int, var _recipy : String):
 	$Label.text = Global.data[recipy]["name"] + ("+" if Global.data[recipy]["mode"] == "extract" else "-")
 	update()
 	set_descriptive_name()
-	if mode == BUILDING_EXTRACTOR and get_ring().ring_number + 1 == Global.rings:
-		var st = get_parent().get_parent().get_node("ShipTemplate").duplicate(DUPLICATE_SCRIPTS)
-		add_child(st)
-		st.global_rotation = self.global_rotation
-		st.visible = true
-		st.configure_ship(recipy)
-	
-func get_ring():
-	# FactoryTemplate .. Rotation .. Ring
-	return get_parent().get_parent().get_parent()
+	if mode == Global.BUILDING_EXTRACTOR and ring.ring_number + 1 == Global.rings:
+		var sr = ring.get_node("ShipRotationTemplate").duplicate(DUPLICATE_SCRIPTS|DUPLICATE_GROUPS)
+		sr.name = "ShipRotation1"
+		ring.add_child(sr, true)
+		sr.global_rotation = self.global_rotation
+		$FactoryProcess.ship = sr.get_child(0)
+		$FactoryProcess.ship.configure_ship(recipy)
 	
 func get_process_node():
 	return $FactoryProcess
 
 func reset():
-	mode = BUILDING_UNSET
+	mode = Global.BUILDING_UNSET
 	recipy = null
 	factory_outline_color = Color(0.8, 0.8, 0.8)
 	factory_color = PoolColorArray([Color(0.6, 0.6, 0.6, 1.0)])
@@ -133,16 +129,16 @@ func lane_cleared(var lane : MultiMeshInstance2D):
 	
 func set_descriptive_name():
 	descriptive_name = String(name.to_int()) + " "
-	if mode == BUILDING_UNSET:
+	if mode == Global.BUILDING_UNSET:
 		descriptive_name += "Unassigned Satelite"
 	else:
 		descriptive_name += Global.data[recipy]["name"]
 		descriptive_name += "+" if Global.data[recipy]["mode"] == "extract" else "-"
-	if mode == BUILDING_FACTORY:
+	if mode == Global.BUILDING_FACTORY:
 		descriptive_name += " " + "Factory"
-	elif mode == BUILDING_INSERTER:
+	elif mode == Global.BUILDING_INSERTER:
 		descriptive_name += " " + "Inserter"
-	elif mode == BUILDING_EXTRACTOR:
+	elif mode == Global.BUILDING_EXTRACTOR:
 		descriptive_name += " " + "Extractor"
 
 func setup_resource(var i_radius : float, var o_radius : float, var _span : float ):

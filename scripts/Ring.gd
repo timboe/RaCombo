@@ -2,7 +2,6 @@ extends Node2D
 tool
 
 const DENSITY := 0.2
-const M_SOL := 80
 const LANE_OFFSET := 5.0;
 const TWOPI := PI * 2.0
 const FACTORY_SPAN_DEGREES := 45.0
@@ -18,7 +17,7 @@ export(int) var n
 func _ready():
 	$Rotation.rotation = 0
 	$Rotation/FactoryTemplate.visible = false
-	$Rotation/ShipTemplate.visible = false
+	$ShipRotationTemplate.visible = false
 	ring_number = name.to_int()
 	
 func add_to_ring(var angle : float, var lane : int):
@@ -76,7 +75,7 @@ func set_radius(var r : float):
 	for i in range(set_lanes):
 		radius_array[i] = r + (i*LANE_OFFSET)
 	# To be physical this should be ~ sqrt(1/r)
-	angular_velocity = M_SOL/r
+	angular_velocity = Global.M_SOL/r
 	var circ : float = 2.0 * PI * r
 	n = circ * DENSITY
 
@@ -94,7 +93,7 @@ func setup_resource(var r : float):
 	var outer_r : float = radius_array[set_lanes-1] + LANE_OFFSET/2.0
 	var this_ring_angle : float = asin(drop / outer_r)
 	$Rotation/FactoryTemplate.setup_resource(inner_r, outer_r, this_ring_angle)
-	$Rotation/ShipTemplate.setup_resource(inner_r, outer_r, this_ring_angle)
+	$ShipRotationTemplate/Ship.setup_resource(r, inner_r, outer_r, this_ring_angle)
 	$Rotation/Line2D.default_color = set_debug_color
 	#$Outline.highlight = false
 
