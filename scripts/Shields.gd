@@ -37,7 +37,7 @@ func _process(var _delta):
 	back.shadow_color = value["color"].darkened(0.2)
 	var label : Label = shield.get_node("Label")
 	label.set("custom_colors/font_color", value["color"].contrasted())
-	label.text = value["name"]
+	label.text = key
 	var _sign : Label = shield.get_node("Sign")
 	_sign.set("custom_colors/font_color", value["color"].contrasted())
 	_sign.text = "-" if value["mode"] == "insert" else "+"
@@ -50,7 +50,8 @@ func _process(var _delta):
 	shape_outline.visible = true
 	shield.get_node("Sol").visible = false
 	# Specials
-	if key == "none" or key == "sol":
+	if value["special"]:
+		label.text = ""
 		_sign.text = ""
 		shape.visible = false
 		shape_outline.visible = false
@@ -61,6 +62,12 @@ func _process(var _delta):
 	get_parent().set_update_mode(Viewport.UPDATE_ONCE)
 	yield(VisualServer, "frame_post_draw")
 	var img = get_parent().get_texture().get_data()
+	img.lock()
+	for x in range(img.get_size().x):
+		for y in range(img.get_size().y):
+			if img.get_pixel(x,y) == Color(0, 0, 0, 1):
+				img.set_pixel(x,y, Color(0, 0, 0, 0))
+	img.unlock()
 	var err = img.generate_mipmaps()
 	if err != OK:
 		print("Failure! ", err)

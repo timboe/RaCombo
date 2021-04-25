@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=2]
+[gd_scene load_steps=93 format=2]
 
 [ext_resource path="res://images/trapezoid.png" type="Texture" id=1]
 [ext_resource path="res://images/spacefield_a-000.png" type="Texture" id=2]
@@ -88,7 +88,7 @@ func _process(var _delta):
 	for key in Global.data:
 		if Global.data[key][\"mode\"] == \"insert\":
 			continue
-		if Global.data[key][\"name\"] == \"\":
+		if Global.data[key][\"special\"]:
 			continue
 		var b := Button.new()
 		b.expand_icon = true
@@ -108,7 +108,7 @@ func _process(var _delta):
 	for key in Global.data:
 		if Global.data[key][\"mode\"] == \"extract\":
 			continue
-		if Global.data[key][\"name\"] == \"\":
+		if Global.data[key][\"special\"]:
 			continue
 		var b := Button.new()
 		b.expand_icon = true
@@ -126,7 +126,7 @@ script/source = "extends GridContainer
 
 func _process(var _delta):
 	for key in Global.recipies:
-		if key == \"tritium\": # Not made by factory, made by sun
+		if not Global.recipies[key][\"factory\"]:
 			continue
 		var dummy : int = 3 - Global.recipies[key][\"input\"].size()
 		for _d in range(dummy):
@@ -408,6 +408,24 @@ size = Vector2( 10, 10 )
 
 [sub_resource type="MultiMesh" id=73]
 mesh = SubResource( 72 )
+
+[sub_resource type="QuadMesh" id=74]
+size = Vector2( 10, 10 )
+
+[sub_resource type="MultiMesh" id=75]
+mesh = SubResource( 74 )
+
+[sub_resource type="QuadMesh" id=76]
+size = Vector2( 10, 10 )
+
+[sub_resource type="MultiMesh" id=77]
+mesh = SubResource( 76 )
+
+[sub_resource type="QuadMesh" id=78]
+size = Vector2( 10, 10 )
+
+[sub_resource type="MultiMesh" id=79]
+mesh = SubResource( 78 )
 
 [sub_resource type="Shader" id=39]
 code = "shader_type canvas_item;
@@ -1577,7 +1595,7 @@ __meta__ = {
 }
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/UI/MainUI/MarginContainerSide"]
-margin_right = 128.0
+margin_right = 96.0
 margin_bottom = 600.0
 grow_horizontal = 2
 size_flags_horizontal = 3
@@ -1586,13 +1604,13 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer"]
-margin_top = 124.0
-margin_right = 128.0
-margin_bottom = 476.0
-custom_constants/separation = 32
+margin_top = 28.0
+margin_right = 96.0
+margin_bottom = 572.0
+custom_constants/separation = 16
 
 [node name="BuildMode" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer"]
-margin_right = 128.0
+margin_right = 96.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 96, 64 )
 toggle_mode = true
@@ -1605,10 +1623,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="IronButton0" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer"]
-margin_top = 96.0
-margin_right = 128.0
-margin_bottom = 160.0
+[node name="InjectorButton0" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer"]
+margin_top = 80.0
+margin_right = 96.0
+margin_bottom = 144.0
 rect_min_size = Vector2( 96, 64 )
 toggle_mode = true
 group = ExtResource( 11 )
@@ -1619,11 +1637,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CopperButton0" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer"]
-margin_top = 192.0
-margin_right = 128.0
-margin_bottom = 256.0
-rect_min_size = Vector2( 128, 64 )
+[node name="InjectorButton1" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer"]
+margin_top = 160.0
+margin_right = 96.0
+margin_bottom = 224.0
+rect_min_size = Vector2( 96, 64 )
 toggle_mode = true
 group = ExtResource( 11 )
 text = "10/s"
@@ -1633,11 +1651,53 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SilicaButton0" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer"]
-margin_top = 288.0
-margin_right = 128.0
-margin_bottom = 352.0
-rect_min_size = Vector2( 128, 64 )
+[node name="InjectorButton2" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer"]
+margin_top = 240.0
+margin_right = 96.0
+margin_bottom = 304.0
+rect_min_size = Vector2( 96, 64 )
+toggle_mode = true
+group = ExtResource( 11 )
+text = "10/s"
+expand_icon = true
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InjectorButton3" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer"]
+margin_top = 320.0
+margin_right = 96.0
+margin_bottom = 384.0
+rect_min_size = Vector2( 96, 64 )
+toggle_mode = true
+group = ExtResource( 11 )
+text = "10/s"
+expand_icon = true
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InjectorButton4" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer"]
+margin_top = 400.0
+margin_right = 96.0
+margin_bottom = 464.0
+rect_min_size = Vector2( 96, 64 )
+toggle_mode = true
+group = ExtResource( 11 )
+text = "10/s"
+expand_icon = true
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InjectorButton5" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer"]
+margin_top = 480.0
+margin_right = 96.0
+margin_bottom = 544.0
+rect_min_size = Vector2( 96, 64 )
 toggle_mode = true
 group = ExtResource( 11 )
 text = "10/s"
@@ -1656,6 +1716,129 @@ texture = ExtResource( 2 )
 
 [node name="CentreNode" type="Node2D" parent="."]
 position = Vector2( 512, 300 )
+
+[node name="InjectionSystem" type="Node2D" parent="CentreNode"]
+script = ExtResource( 6 )
+
+[node name="Injector0" type="Node2D" parent="CentreNode/InjectionSystem"]
+visible = false
+script = ExtResource( 10 )
+show = true
+
+[node name="InjectorMm" type="MultiMeshInstance2D" parent="CentreNode/InjectionSystem/Injector0" groups=[
+"InjectorGroup",
+]]
+modulate = Color( 0, 0, 1, 1 )
+position = Vector2( -3.46068, 0 )
+multimesh = SubResource( 69 )
+texture = ExtResource( 1 )
+script = ExtResource( 5 )
+set_resource = "Ir"
+set_period = 0.1
+linear_velocity = 84.2857
+radius = 295.0
+lane = 3
+ring = NodePath("../../../../../Root/CentreNode/InjectionSystem/Iron0/MultiMeshInstance2D/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6189/@@6028/@@6029/@@6030/@@6031/@@6032/Root/CentreNode/RingSystem/Ring6")
+
+[node name="Injector1" type="Node2D" parent="CentreNode/InjectionSystem"]
+visible = false
+script = ExtResource( 10 )
+show = true
+
+[node name="InjectorMm" type="MultiMeshInstance2D" parent="CentreNode/InjectionSystem/Injector1" groups=[
+"InjectorGroup",
+]]
+modulate = Color( 1, 1, 0, 1 )
+position = Vector2( -12.1307, 0 )
+multimesh = SubResource( 71 )
+texture = ExtResource( 15 )
+script = ExtResource( 5 )
+set_resource = "Cu"
+set_period = 0.1
+linear_velocity = 82.8571
+radius = 290.0
+lane = 2
+ring = NodePath("../../../../../Root/CentreNode/InjectionSystem/Copper0/MultiMeshInstance2D/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6189/@@6028/@@6029/@@6030/@@6031/@@6032/Root/CentreNode/RingSystem/Ring6")
+
+[node name="Injector2" type="Node2D" parent="CentreNode/InjectionSystem"]
+visible = false
+script = ExtResource( 10 )
+show = true
+
+[node name="InjectorMm" type="MultiMeshInstance2D" parent="CentreNode/InjectionSystem/Injector2" groups=[
+"InjectorGroup",
+]]
+modulate = Color( 0.97, 0.15, 0.52, 1 )
+position = Vector2( -20.7248, 0 )
+multimesh = SubResource( 73 )
+texture = ExtResource( 12 )
+script = ExtResource( 5 )
+set_resource = "Si"
+set_period = 0.1
+linear_velocity = 81.4286
+radius = 285.0
+lane = 1
+ring = NodePath("../../../../../Root/CentreNode/InjectionSystem/Silica0/MultiMeshInstance2D/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6189/@@6028/@@6029/@@6030/@@6031/@@6032/Root/CentreNode/RingSystem/Ring6")
+
+[node name="Injector3" type="Node2D" parent="CentreNode/InjectionSystem"]
+visible = false
+script = ExtResource( 10 )
+show = true
+
+[node name="InjectorMm" type="MultiMeshInstance2D" parent="CentreNode/InjectionSystem/Injector3" groups=[
+"InjectorGroup",
+]]
+modulate = Color( 0.05, 0.05, 0.05, 1 )
+position = Vector2( -20.7248, 0 )
+multimesh = SubResource( 75 )
+texture = ExtResource( 15 )
+script = ExtResource( 5 )
+set_resource = "none"
+set_period = 0.1
+linear_velocity = 81.4286
+radius = 285.0
+lane = 1
+ring = NodePath("../../../../../Root/CentreNode/InjectionSystem/Silica0/MultiMeshInstance2D/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6189/@@6028/@@6029/@@6030/@@6031/@@6032/Root/CentreNode/RingSystem/Ring6")
+
+[node name="Injector4" type="Node2D" parent="CentreNode/InjectionSystem"]
+visible = false
+script = ExtResource( 10 )
+show = true
+
+[node name="InjectorMm" type="MultiMeshInstance2D" parent="CentreNode/InjectionSystem/Injector4" groups=[
+"InjectorGroup",
+]]
+modulate = Color( 0.05, 0.05, 0.05, 1 )
+position = Vector2( -20.7248, 0 )
+multimesh = SubResource( 77 )
+texture = ExtResource( 15 )
+script = ExtResource( 5 )
+set_resource = "none"
+set_period = 0.1
+linear_velocity = 81.4286
+radius = 285.0
+lane = 1
+ring = NodePath("../../../../../Root/CentreNode/InjectionSystem/Silica0/MultiMeshInstance2D/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6189/@@6028/@@6029/@@6030/@@6031/@@6032/Root/CentreNode/RingSystem/Ring6")
+
+[node name="Injector5" type="Node2D" parent="CentreNode/InjectionSystem"]
+visible = false
+script = ExtResource( 10 )
+show = true
+
+[node name="InjectorMm" type="MultiMeshInstance2D" parent="CentreNode/InjectionSystem/Injector5" groups=[
+"InjectorGroup",
+]]
+modulate = Color( 0.05, 0.05, 0.05, 1 )
+position = Vector2( -20.7248, 0 )
+multimesh = SubResource( 79 )
+texture = ExtResource( 15 )
+script = ExtResource( 5 )
+set_resource = "none"
+set_period = 0.1
+linear_velocity = 81.4286
+radius = 285.0
+lane = 1
+ring = NodePath("../../../../../Root/CentreNode/InjectionSystem/Silica0/MultiMeshInstance2D/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6189/@@6028/@@6029/@@6030/@@6031/@@6032/Root/CentreNode/RingSystem/Ring6")
 
 [node name="RingSystem" type="Node2D" parent="CentreNode"]
 script = ExtResource( 4 )
@@ -1728,69 +1911,6 @@ radius_array = [ 400.0, 405.0, 410.0, 415.0 ]
 angular_velocity = 0.2
 n = 502.655
 
-[node name="InjectionSystem" type="Node2D" parent="CentreNode"]
-script = ExtResource( 6 )
-
-[node name="Iron0" type="Node2D" parent="CentreNode/InjectionSystem"]
-visible = false
-script = ExtResource( 10 )
-show = true
-
-[node name="IronInjection0" type="MultiMeshInstance2D" parent="CentreNode/InjectionSystem/Iron0" groups=[
-"InjectorGroup",
-]]
-modulate = Color( 0, 0, 1, 1 )
-position = Vector2( -3.46068, 0 )
-multimesh = SubResource( 69 )
-texture = ExtResource( 1 )
-script = ExtResource( 5 )
-set_resource = "iron"
-set_period = 0.1
-linear_velocity = 84.2857
-radius = 295.0
-lane = 3
-ring = NodePath("../../../../../Root/CentreNode/InjectionSystem/Iron0/MultiMeshInstance2D/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6189/@@6028/@@6029/@@6030/@@6031/@@6032/Root/CentreNode/RingSystem/Ring6")
-
-[node name="Copper0" type="Node2D" parent="CentreNode/InjectionSystem"]
-visible = false
-script = ExtResource( 10 )
-show = true
-
-[node name="CopperInjection0" type="MultiMeshInstance2D" parent="CentreNode/InjectionSystem/Copper0" groups=[
-"InjectorGroup",
-]]
-modulate = Color( 1, 1, 0, 1 )
-position = Vector2( -12.1307, 0 )
-multimesh = SubResource( 71 )
-texture = ExtResource( 15 )
-script = ExtResource( 5 )
-set_resource = "copper"
-set_period = 0.1
-linear_velocity = 82.8571
-radius = 290.0
-lane = 2
-ring = NodePath("../../../../../Root/CentreNode/InjectionSystem/Copper0/MultiMeshInstance2D/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6189/@@6028/@@6029/@@6030/@@6031/@@6032/Root/CentreNode/RingSystem/Ring6")
-
-[node name="Silica0" type="Node2D" parent="CentreNode/InjectionSystem"]
-visible = false
-script = ExtResource( 10 )
-show = true
-
-[node name="SilicaInjection0" type="MultiMeshInstance2D" parent="CentreNode/InjectionSystem/Silica0" groups=[
-"InjectorGroup",
-]]
-modulate = Color( 0.8, 0.8, 0, 1 )
-position = Vector2( -20.7248, 0 )
-multimesh = SubResource( 73 )
-texture = ExtResource( 12 )
-script = ExtResource( 5 )
-set_resource = "silica"
-set_period = 0.1
-linear_velocity = 81.4286
-radius = 285.0
-lane = 1
-ring = NodePath("../../../../../Root/CentreNode/InjectionSystem/Silica0/MultiMeshInstance2D/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6189/@@6028/@@6029/@@6030/@@6031/@@6032/Root/CentreNode/RingSystem/Ring6")
-
 [node name="Sol" type="Sprite" parent="CentreNode"]
 visible = false
 material = SubResource( 40 )
@@ -1852,7 +1972,10 @@ script = ExtResource( 31 )
 [connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Outlines" to="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Outlines" method="_on_Outlines_toggled"]
 [connection signal="pressed" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Menu" to="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Menu" method="_on_Menu_pressed"]
 [connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/BuildMode" to="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/BuildMode" method="_on_Button_toggled"]
-[connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/IronButton0" to="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/IronButton0" method="_on_Button_toggled"]
-[connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/CopperButton0" to="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/CopperButton0" method="_on_Button_toggled"]
-[connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/SilicaButton0" to="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/SilicaButton0" method="_on_Button_toggled"]
+[connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton0" to="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton0" method="_on_Button_toggled"]
+[connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton1" to="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton1" method="_on_Button_toggled"]
+[connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton2" to="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton2" method="_on_Button_toggled"]
+[connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton3" to="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton3" method="_on_Button_toggled"]
+[connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton4" to="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton4" method="_on_Button_toggled"]
+[connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton5" to="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton5" method="_on_Button_toggled"]
 [connection signal="timeout" from="SomethingChanged" to="SomethingChanged" method="_on_SomethingChanged_timeout"]

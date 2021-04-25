@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://scripts/RingMultimesh.gd" type="Script" id=1]
 [ext_resource path="res://scripts/Ring.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://images/diamond.png" type="Texture" id=8]
 [ext_resource path="res://images/light_03.png" type="Texture" id=9]
 [ext_resource path="res://images/circle.png" type="Texture" id=10]
+[ext_resource path="res://images/sol.png" type="Texture" id=11]
 
 [sub_resource type="Curve" id=22]
 min_value = -1.0
@@ -47,33 +48,33 @@ hue_variation_curve = SubResource( 23 )
 
 [sub_resource type="CanvasItemMaterial" id=1]
 
-[sub_resource type="QuadMesh" id=14]
+[sub_resource type="QuadMesh" id=27]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=15]
+[sub_resource type="MultiMesh" id=28]
 custom_data_format = 1
-mesh = SubResource( 14 )
+mesh = SubResource( 27 )
 
-[sub_resource type="QuadMesh" id=16]
+[sub_resource type="QuadMesh" id=29]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=17]
+[sub_resource type="MultiMesh" id=30]
 custom_data_format = 1
-mesh = SubResource( 16 )
+mesh = SubResource( 29 )
 
-[sub_resource type="QuadMesh" id=18]
+[sub_resource type="QuadMesh" id=31]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=19]
+[sub_resource type="MultiMesh" id=32]
 custom_data_format = 1
-mesh = SubResource( 18 )
+mesh = SubResource( 31 )
 
-[sub_resource type="QuadMesh" id=20]
+[sub_resource type="QuadMesh" id=33]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=21]
+[sub_resource type="MultiMesh" id=34]
 custom_data_format = 1
-mesh = SubResource( 20 )
+mesh = SubResource( 33 )
 
 [sub_resource type="ImageTexture" id=10]
 
@@ -97,13 +98,8 @@ script = ExtResource( 2 )
 set_lanes = 4
 radius_array = [ 320.0, 325.0, 330.0, 335.0 ]
 
-[node name="Outline" type="Node2D" parent="." groups=[
-"RingOutlineGroup",
-]]
-script = ExtResource( 5 )
-show = true
-
 [node name="ShipRotationTemplate" type="Node2D" parent="."]
+visible = false
 
 [node name="Ship" type="Node2D" parent="ShipRotationTemplate"]
 script = ExtResource( 4 )
@@ -129,7 +125,7 @@ texture = ExtResource( 9 )
 "LaneGroup",
 ]]
 material = SubResource( 1 )
-multimesh = SubResource( 15 )
+multimesh = SubResource( 28 )
 texture = ExtResource( 10 )
 script = ExtResource( 1 )
 radians_per_slot = 0.0156298
@@ -139,7 +135,7 @@ lane_content = null
 "LaneGroup",
 ]]
 material = SubResource( 1 )
-multimesh = SubResource( 17 )
+multimesh = SubResource( 30 )
 texture = ExtResource( 8 )
 script = ExtResource( 1 )
 radians_per_slot = 0.0156298
@@ -149,7 +145,7 @@ lane_content = null
 "LaneGroup",
 ]]
 material = SubResource( 1 )
-multimesh = SubResource( 19 )
+multimesh = SubResource( 32 )
 texture = ExtResource( 10 )
 script = ExtResource( 1 )
 radians_per_slot = 0.0156298
@@ -158,7 +154,7 @@ lane_content = null
 [node name="Lane3" type="MultiMeshInstance2D" parent="Rotation/Lanes" groups=[
 "LaneGroup",
 ]]
-multimesh = SubResource( 21 )
+multimesh = SubResource( 34 )
 texture = ExtResource( 10 )
 script = ExtResource( 1 )
 radians_per_slot = 0.0156298
@@ -176,7 +172,8 @@ outer_radius = 177.5
 span_radians = 0.231
 factory_color = PoolColorArray( 0.6, 0.6, 0.6, 1 )
 factory_outline_color = Color( 0.8, 0.8, 0.8, 1 )
-descriptive_name = "0 Unassigned Satelite"
+recipy = null
+descriptive_name = "#0: Unassigned Satelite"
 
 [node name="NewShip" type="Timer" parent="Rotation/FactoryTemplate"]
 process_mode = 0
@@ -219,6 +216,8 @@ __meta__ = {
 script = ExtResource( 7 )
 angle_back = -0.1155
 angle_front = 0.1155
+output_content = null
+output_direction = null
 
 [node name="Timer" type="Timer" parent="Rotation/FactoryTemplate/FactoryProcess"]
 process_mode = 0
@@ -228,6 +227,76 @@ one_shot = true
 visible = false
 points = PoolVector2Array( 0, 0, 400, 0 )
 default_color = Color( 0.24, 0.0768, 0.14208, 1 )
+
+[node name="Outline" type="Node2D" parent="." groups=[
+"RingOutlineGroup",
+]]
+script = ExtResource( 5 )
+show = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Outline"]
+margin_left = -337.5
+margin_top = -337.5
+margin_right = 337.5
+margin_bottom = -305.5
+mouse_filter = 2
+custom_constants/separation = 8
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LaneDisplay0" type="TextureRect" parent="Outline/HBoxContainer"]
+visible = false
+margin_left = 261.0
+margin_right = 293.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+mouse_filter = 2
+texture = ExtResource( 11 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LaneDisplay1" type="TextureRect" parent="Outline/HBoxContainer"]
+visible = false
+margin_left = 301.0
+margin_right = 333.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+mouse_filter = 2
+texture = ExtResource( 11 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LaneDisplay2" type="TextureRect" parent="Outline/HBoxContainer"]
+visible = false
+margin_left = 341.0
+margin_right = 373.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 2 )
+mouse_filter = 2
+texture = ExtResource( 11 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LaneDisplay3" type="TextureRect" parent="Outline/HBoxContainer"]
+visible = false
+margin_left = 381.0
+margin_right = 413.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+mouse_filter = 2
+texture = ExtResource( 11 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="area_entered" from="Rotation/FactoryTemplate" to="Rotation/FactoryTemplate" method="_on_FactoryTemplate_area_entered"]
 [connection signal="area_exited" from="Rotation/FactoryTemplate" to="Rotation/FactoryTemplate" method="_on_FactoryTemplate_area_exited"]

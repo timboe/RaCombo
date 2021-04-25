@@ -27,228 +27,236 @@ func lighten(var c : Color) -> Color:
 # Game data
 var data = {
 	"none": {
-		"name": "",
-		"color": Color(0.0, 0.0, 0.0),
+		"color": Color(0.05, 0.05, 0.05),
 		"mode": "extract",
 		"shape": "circle",
 		"builtin": true,
+		"special": true,
 	},
 	"sol": {
-		"name": "",
-		"color": Color(0.0, 0.0, 0.0),
+		"color": Color(0.05, 0.05, 0.05),
 		"mode": "extract",
 		"shape": "triangle",
 		"builtin": true,
+		"special": true,
 	},
-	"hydrogen": {
-		"name": "H",
-		"color": Color(1.0, 0.0, 0.0),
+	"H": {
+		"color": Color(0.71, 0.4, 0.46),
 		"mode": "extract",
 		"shape": "diamond",
 		"builtin": true,
+		"special": false,
 	},
-	"iron": {
-		"name": "Ir",
+	"Ir": {
 		"color": Color(0.0, 0.0, 1.0),
 		"mode": "insert",
 		"shape": "trapezoid",
 		"builtin": true,
+		"special": false,
 	},
-	"copper": {
-		"name": "Cu",
+	"Cu": {
 		"color": Color(1.0, 1.0, 0.0),
 		"mode": "insert",
 		"shape": "circle",
 		"builtin": true,
+		"special": false,
 	},
-	"steel": {
-		"name": "St",
+	"St": {
 		"color": Color(1.0, 0.5, 0.0),
 		"mode": "insert",
 		"shape": "triangle",
 		"builtin": true,
+		"special": false,
 	},
-	"silica": {
-		"name": "Si",
-		"color": Color(0.8, 0.8, 0.0),
+	"Si": {
+		"color": Color(0.97, 0.15, 0.52),
 		"mode": "insert",
 		"shape": "diamond",
 		"builtin": true,
+		"special": false,
 	},
-	"glass": {
-		"name": "G",
+	"G": {
 		"color": Color(0.6, 0.9, 0.6),
 		"mode": "extract",
 		"shape": "trapezoid",
 		"builtin": true,
+		"special": false,
 	},
-	"packed_hydrogen": {
-		"name": "Hi",
+	"Hi": {
 		"color": Color(0.75, 0.0, 0.0),
 		"mode": "extract",
 		"shape": "circle",
 		"builtin": true,
+		"special": false,
 	},
-	"cunife": {
-		"name": "Cf",
+	"Cf": {
 		"color": Color(0.75, 0.0, 0.8),
 		"mode": "insert",
 		"shape": "triangle",
 		"builtin": true,
+		"special": false,
 	},
-	"tritium": {
-		"name": "T",
+	"T": {
 		"color": Color(1.0, 1.0, 0.0),
 		"mode": "extract",
 		"shape": "diamond",
 		"builtin": true,
+		"special": false,
 	},
-	"packed_gas": {
-		"name": "Bg",
-		"color": Color(1.0, 0.0, 0.5),
+	"Bg": {
+		"color": Color(0.34, 0.04, 0.68),
 		"mode": "extract",
 		"shape": "trapezoid",
 		"builtin": true,
+		"special": false,
 	},
-	"metalic_tritium": {
-		"name": "Mt",
+	"Mt": {
 		"color": Color(1.0, 0.5, 0.5),
 		"mode": "extract",
 		"shape": "circle",
 		"builtin": true,
+		"special": false,
 	},
-	"xotic_a": {
-		"name": "XA",
+	"XA": {
 		"color": Color(1.0, 0.5, 0.5),
 		"mode": "insert",
 		"shape": "triangle",
 		"builtin": true,
+		"special": false,
 	},
-	"xotic_b": {
-		"name": "XB",
+	"XB": {
 		"color": Color(0.5, 1.5, 0.5),
 		"mode": "extract",
 		"shape": "diamond",
 		"builtin": true,
+		"special": false,
 	},
-	"xotic_c": {
-		"name": "XC",
+	"XC": {
 		"color": Color(0.5, 0.5, 1.0),
 		"mode": "extract",
 		"shape": "trapezoid",
 		"builtin": true,
+		"special": false,
 	},
-	"cg": {
-		"name": "CG",
+	"CG": {
 		"color": Color(0.4, 0.3, 0.7),
 		"mode": "extract",
 		"shape": "circle",
 		"builtin": true,
+		"special": false,
 	},
-	"sw": {
-		"name": "SW",
+	"SW": {
 		"color": Color(0.2, 0.7, 0.4),
 		"mode": "extract",
 		"shape": "triangle",
 		"builtin": true,
+		"special": false,
 	},
 }
 
 var recipies = {
-	"steel": {
+	"St": {
 		"level": 2,
 		"time": 1.0,
 		"amount_in": [1],
 		"amount_out": 1,
-		"input": ["iron"],
+		"input": ["Ir"],
 		"builtin": true,
+		"factory:": true,
 	},
-	"packed_hydrogen": {
+	"Hi": {
 		"level": 2,
 		"time": 1.0,
 		"amount_in": [1, 1],
 		"amount_out": 1,
-		"input": ["hydrogen", "steel"],
+		"input": ["H", "St"],
 		"builtin": true,
+		"factory:": true,
 	},
-	"cunife": {
+	"Cf": {
 		"level": 3,
 		"time": 1.0,
 		"amount_in": [1, 1],
 		"amount_out": 1,
-		"input": ["iron", "copper"],
+		"input": ["Ir", "Cu"],
 		"builtin": true,
+		"factory:": true,
 	},
-	"tritium": { # Note: Not a factory recipy
+	"T": { 
 		"level": 3,
 		"time": 1.0,
 		"amount_in": [1, 1],
 		"amount_out": 1,
-		"input": ["cunife", "sol"],
+		"input": ["Cu", "sol"],
 		"builtin": true,
+		"factory:": false, # Note: Not a factory recipy
 	},
-	"packed_gas": {
+	"Bg": {
 		"level": 3,
 		"time": 1.0,
 		"amount_in": [1, 1],
 		"amount_out": 1,
-		"input": ["hydrogen", "tritium"],
+		"input": ["H", "T"],
 		"builtin": true,
+		"factory:": true,
 	},
-	"metalic_tritium": {
+	"Mt": {
 		"level": 4,
 		"time": 1.0,
 		"amount_in": [1, 1, 1],
 		"amount_out": 1,
-		"input": ["copper", "steel", "tritium"],
+		"input": ["Cu", "St", "T"],
 		"builtin": true,
 	},
-	"xotic_a": {
+	"XA": {
 		"level": 5,
 		"time": 1.0,
 		"amount_in": [1, 1],
 		"amount_out": 1,
-		"input": ["hydrogen", "cunife"],
+		"input": ["H", "Cf"],
 		"builtin": true,
 	},
-	"xotic_b": {
+	"XB": {
 		"level": 5,
 		"time": 1.0,
 		"amount_in": [1],
 		"amount_out": 1,
-		"input": ["xotic_a"],
+		"input": ["XA"],
 		"builtin": true,
 	},
-	"xotic_c": {
+	"XC": {
 		"level": 5,
 		"time": 1.0,
 		"amount_in": [1, 1],
 		"amount_out": 1,
-		"input": ["xotic_b", "copper"],
+		"input": ["XB", "Cu"],
 		"builtin": true,
 	},
-	"glass": {
+	"G": {
 		"level": 6,
 		"time": 1.0,
 		"amount_in": [1],
 		"amount_out": 1,
-		"input": ["silica"],
+		"input": ["Si"],
 		"builtin": true,
+		"factory:": true,
 	},
-	"cg": {
+	"CG": {
 		"level": 6,
 		"time": 1.0,
 		"amount_in": [1, 1],
 		"amount_out": 1,
-		"input": ["packed_gas", "copper"],
+		"input": ["Bg", "Cu"],
 		"builtin": true,
+		"factory:": true,
 	},
-	"sw": {
+	"SW": {
 		"level": 6,
 		"time": 1.0,
 		"amount_in": [1, 1, 1],
 		"amount_out": 1,
-		"input": ["iron", "cg", "glass"],
+		"input": ["Ir", "CG", "G"],
 		"builtin": true,
+		"factory:": true,
 	},
 }

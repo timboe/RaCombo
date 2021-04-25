@@ -14,9 +14,7 @@ export(int) var lane
 export(NodePath) var ring = ""
 export(bool) var placed = false
 
-onready var iron_button0 = get_tree().get_root().find_node("IronButton0", true, false)
-onready var copper_button0 = get_tree().get_root().find_node("CopperButton0", true, false)
-onready var silica_button0 = get_tree().get_root().find_node("SilicaButton0", true, false)
+onready var injector_button = get_tree().get_root().find_node("InjectorButton" + String(int(get_parent().name)), true, false)
 
 func _ready():
 	n = 0
@@ -27,11 +25,10 @@ func _ready():
 	multimesh.transform_format = MultiMesh.TRANSFORM_2D
 	if set_resource == "":
 		print("ERROR: Injector ",name," has no resource!")
-	var globals = load("res://scripts/Global.gd").new()
-	modulate = globals.data[set_resource]["color"]
+	modulate = Global.data[set_resource]["color"]
 	texture = load("res://images/"+Global.data[set_resource]["shape"]+".png")
 	var per_sec : float = 1.0 / set_period
-	get_injecton_button().text = String(per_sec) + "/s"
+	injector_button.text = String(per_sec) + "/s"
 
 func hint_resource(var attached_ring : Node2D, var ring_lane : int):
 	if ring_lane == -1: # Invalid - no room
@@ -65,35 +62,22 @@ func setup_resource_at_hint():
 	transform.origin.x = -WIDTH
 	get_parent().update()
 	get_parent().visible = true
-	# Find my button and disable it
-	var button : Button = get_injecton_button()
+	# Disable my button
 	Global.last_pressed = null
-	button.pressed = false
-	button.disabled = true
+	injector_button.pressed = false
+	injector_button.disabled = true
 	# Propagate the change
 	$"/root/Game/SomethingChanged".something_changed()
 	
 # Called when a lane rejects the input
 func lane_cleared(var _lane):
 	# Find my button and enable it
-	get_injecton_button().disabled = false
+	injector_button.disabled = false
 	Global.last_pressed = null
 	multimesh.instance_count = 0
 	placed = false
 	stop_hint_resource()
 	
-func get_injecton_button() -> Button:
-	if name == "IronInjection0":
-		return iron_button0
-	elif name == "CopperInjection0":
-		return copper_button0
-	elif name == "SilicaInjection0":
-		return silica_button0
-	else:
-		print("ERROR cannot get injection button for ",name)
-		return null
-
-
 func _physics_process(delta):
 	if not placed:
 		return

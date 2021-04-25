@@ -5,6 +5,13 @@ export(bool) var highlight setget set_highlight
 export(String) var inject = ""
 export(bool) var show setget set_show
 
+onready var ring = find_parent("Ring*")
+var lanes = []
+
+func _ready():
+	for l in ring.find_node("Lanes", true, false).get_children():
+		lanes.append(l)
+
 func set_highlight(var i : bool):
 	highlight = i
 	update()
@@ -25,13 +32,24 @@ func _draw():
 	var c1 = Color(0.8 + hl, 0.8 + hl, 0.8 + hl)
 	var c2 = Color(0.6 + hl, 0.6 + hl, 0.6 + hl)
 	
+	var hb = $HBoxContainer
 	if show:
+		for c in hb.get_children():
+			c.visible = false
 		for i in range(to_draw):
 			var r : float = p.radius_array[i] - p.LANE_OFFSET/2.0
 			var c = c1 if i == 0 else c2
 			draw_arc(Vector2(0,0), r, 0, 2*PI, 256, c, 1, true)
-
+			if lanes[i].lane_content != null and ring.ring_number > 0:
+				hb.get_child(i).texture = Global.data[lanes[i].lane_content]["texture"]
+				hb.get_child(i).visible = true
+		hb.visible = true
+		hb.rect_position = Vector2(-outer, -outer)
+		hb.rect_size.x = 2*outer
+		
 		draw_arc(Vector2(0,0), outer, 0, 2*PI, 256, c1, 1, true)
+	else:
+		hb.visible = false
 	
 	if inject != "" and get_parent().get_free_or_existing_lane(inject) != -1:
 		var inner = p.radius_array[0] - p.LANE_OFFSET/2.0

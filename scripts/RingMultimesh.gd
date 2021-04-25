@@ -87,6 +87,8 @@ func register_resource(var new_resource : String, var provinance : Node):
 		modulate = Global.data[lane_content]["color"]
 		texture = load("res://images/"+Global.data[lane_content]["shape"]+".png")
 	lane_provinance.append(provinance)
+	for o in get_tree().get_nodes_in_group("RingOutlineGroup"):
+		o.update()
 	
 func deregister_provider(var provider):
 	if not provider in lane_provinance:

@@ -97,7 +97,7 @@ func configure_building(var _mode : int, var _recipy : String):
 	$FactoryProcess.configure(_mode, _recipy)
 	factory_outline_color = Global.data[recipy]["color"]
 	factory_color[0] = Global.lighten(factory_outline_color)
-	$Label.text = Global.data[recipy]["name"] + ("+" if Global.data[recipy]["mode"] == "extract" else "-")
+	$Label.text = _recipy + ("+" if Global.data[recipy]["mode"] == "extract" else "-")
 	update()
 	set_descriptive_name()
 	check_add_remove_ship()
@@ -125,11 +125,11 @@ func lane_cleared(var lane_or_ship : Node2D):
 	$FactoryProcess.lane_cleared(lane_or_ship)
 	
 func set_descriptive_name():
-	descriptive_name = String(name.to_int()) + " "
+	descriptive_name = "#" + String(name.to_int()) + ": "
 	if mode == Global.BUILDING_UNSET:
 		descriptive_name += "Unassigned Satelite"
 	else:
-		descriptive_name += Global.data[recipy]["name"]
+		descriptive_name += recipy
 		descriptive_name += "+" if Global.data[recipy]["mode"] == "extract" else "-"
 	if mode == Global.BUILDING_FACTORY:
 		descriptive_name += " " + "Factory"

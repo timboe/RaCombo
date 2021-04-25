@@ -36,7 +36,7 @@ func _unhandled_input(event):
 	
 	var injection = null
 	if mode_inject:
-		injection = get_injecton_node(button)
+		injection = button.inj_node
 	
 	cursor = event.global_position + camera_node.global_position
 	var dist : float = round( abs( cursor.distance_to( centre_node.position ) ) )
@@ -92,12 +92,3 @@ func get_cursor_angle():
 		cursor_angle += 2*PI
 	return cursor_angle
 
-func get_injecton_node(var button : BaseButton) -> Node:
-	if button.name == "IronButton0":
-		return iron_inj_node
-	elif button.name == "CopperButton0":
-		return copper_inj_node
-	elif button.name == "SilicaButton0":
-		return silica_inj_node
-	else:
-		return null
