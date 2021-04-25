@@ -1,36 +1,36 @@
 [gd_scene load_steps=93 format=2]
 
-[ext_resource path="res://images/trapezoid.png" type="Texture" id=1]
-[ext_resource path="res://images/spacefield_a-000.png" type="Texture" id=2]
-[ext_resource path="res://scripts/BuildInjectButton.gd" type="Script" id=3]
-[ext_resource path="res://scripts/RingSystem.gd" type="Script" id=4]
-[ext_resource path="res://scripts/InjectorMultimesh.gd" type="Script" id=5]
-[ext_resource path="res://scripts/InjectionSystem.gd" type="Script" id=6]
-[ext_resource path="res://scenes/Ring.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/ShieldGen.tscn" type="PackedScene" id=8]
-[ext_resource path="res://images/trash.png" type="Texture" id=9]
-[ext_resource path="res://scripts/Injector.gd" type="Script" id=10]
-[ext_resource path="res://resources/SlelectionButtonGroup.tres" type="ButtonGroup" id=11]
-[ext_resource path="res://images/diamond.png" type="Texture" id=12]
-[ext_resource path="res://scripts/Camera2D.gd" type="Script" id=13]
-[ext_resource path="res://scripts/InfoDialog.gd" type="Script" id=14]
-[ext_resource path="res://images/circle.png" type="Texture" id=15]
-[ext_resource path="res://scripts/BinLane.gd" type="Script" id=16]
-[ext_resource path="res://scripts/InputCapture.gd" type="Script" id=17]
-[ext_resource path="res://resources/NewBuildingButtonGroup.tres" type="ButtonGroup" id=18]
-[ext_resource path="res://scripts/SomethingChanged.gd" type="Script" id=19]
-[ext_resource path="res://scripts/InfoMultimesh.gd" type="Script" id=20]
-[ext_resource path="res://images/refreshing.png" type="Texture" id=21]
-[ext_resource path="res://images/satelite.png" type="Texture" id=22]
-[ext_resource path="res://images/outline.png" type="Texture" id=23]
-[ext_resource path="res://images/ff.png" type="Texture" id=24]
-[ext_resource path="res://images/pause.png" type="Texture" id=25]
-[ext_resource path="res://images/menu.png" type="Texture" id=26]
-[ext_resource path="res://resources/FactorySandboxButtonGroup.tres" type="ButtonGroup" id=27]
-[ext_resource path="res://images/down.png" type="Texture" id=28]
-[ext_resource path="res://images/up.png" type="Texture" id=29]
+[ext_resource path="res://scripts/BinLane.gd" type="Script" id=1]
+[ext_resource path="res://resources/NewBuildingButtonGroup.tres" type="ButtonGroup" id=2]
+[ext_resource path="res://resources/FactorySandboxButtonGroup.tres" type="ButtonGroup" id=3]
+[ext_resource path="res://resources/SlelectionButtonGroup.tres" type="ButtonGroup" id=4]
+[ext_resource path="res://scripts/Camera2D.gd" type="Script" id=5]
+[ext_resource path="res://scripts/Injector.gd" type="Script" id=6]
+[ext_resource path="res://scripts/InfoMultimesh.gd" type="Script" id=7]
+[ext_resource path="res://scripts/InjectorMultimesh.gd" type="Script" id=8]
+[ext_resource path="res://scripts/RingSystem.gd" type="Script" id=9]
+[ext_resource path="res://scripts/InfoDialog.gd" type="Script" id=10]
+[ext_resource path="res://scripts/InjectionSystem.gd" type="Script" id=11]
+[ext_resource path="res://scripts/InputCapture.gd" type="Script" id=12]
+[ext_resource path="res://scripts/BuildInjectButton.gd" type="Script" id=13]
+[ext_resource path="res://images/refreshing.png" type="Texture" id=14]
+[ext_resource path="res://images/trapezoid.png" type="Texture" id=15]
+[ext_resource path="res://images/spacefield_a-000.png" type="Texture" id=16]
+[ext_resource path="res://images/diamond.png" type="Texture" id=17]
+[ext_resource path="res://images/trash.png" type="Texture" id=18]
+[ext_resource path="res://images/circle.png" type="Texture" id=19]
+[ext_resource path="res://scripts/SomethingChanged.gd" type="Script" id=20]
+[ext_resource path="res://scripts/RuleChanger.gd" type="Script" id=21]
+[ext_resource path="res://scenes/Ring.tscn" type="PackedScene" id=22]
+[ext_resource path="res://scenes/ShieldGen.tscn" type="PackedScene" id=23]
+[ext_resource path="res://images/outline.png" type="Texture" id=24]
+[ext_resource path="res://images/down.png" type="Texture" id=25]
+[ext_resource path="res://images/ff.png" type="Texture" id=26]
+[ext_resource path="res://images/satelite.png" type="Texture" id=27]
+[ext_resource path="res://images/up.png" type="Texture" id=28]
+[ext_resource path="res://images/pause.png" type="Texture" id=29]
 [ext_resource path="res://images/back.png" type="Texture" id=30]
-[ext_resource path="res://scripts/RuleChanger.gd" type="Script" id=31]
+[ext_resource path="res://images/menu.png" type="Texture" id=31]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends ItemList
@@ -126,8 +126,10 @@ script/source = "extends GridContainer
 
 func _process(var _delta):
 	for key in Global.recipies:
-		if not Global.recipies[key][\"factory\"]:
-			continue
+#		print(key)
+#		print(Global.recipies[key])
+#		if not Global.recipies[key][\"factory\"]:
+#			continue
 		var dummy : int = 3 - Global.recipies[key][\"input\"].size()
 		for _d in range(dummy):
 			var c := Container.new()
@@ -495,7 +497,7 @@ rect_min_size = Vector2( 380, 350 )
 custom_constants/scaleborder_size = 0
 window_title = "Ring"
 resizable = true
-script = ExtResource( 14 )
+script = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -562,9 +564,9 @@ margin_left = 88.0
 margin_right = 152.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
-icon = ExtResource( 9 )
+icon = ExtResource( 18 )
 expand_icon = true
-script = ExtResource( 16 )
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -597,9 +599,9 @@ margin_left = 268.0
 margin_right = 332.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
-icon = ExtResource( 9 )
+icon = ExtResource( 18 )
 expand_icon = true
-script = ExtResource( 16 )
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -624,9 +626,9 @@ margin_top = 70.0
 margin_right = 152.0
 margin_bottom = 134.0
 rect_min_size = Vector2( 64, 64 )
-icon = ExtResource( 9 )
+icon = ExtResource( 18 )
 expand_icon = true
-script = ExtResource( 16 )
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -662,9 +664,9 @@ margin_top = 70.0
 margin_right = 332.0
 margin_bottom = 134.0
 rect_min_size = Vector2( 64, 4 )
-icon = ExtResource( 9 )
+icon = ExtResource( 18 )
 expand_icon = true
-script = ExtResource( 16 )
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -718,9 +720,9 @@ margin_right = 355.0
 margin_bottom = 322.0
 rect_min_size = Vector2( 0, 32 )
 text = "Remove All Lanes And Satelites"
-icon = ExtResource( 9 )
+icon = ExtResource( 18 )
 expand_icon = true
-script = ExtResource( 16 )
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -757,7 +759,7 @@ margin_right = 173.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 pressed = true
-group = ExtResource( 18 )
+group = ExtResource( 2 )
 text = "Extractor"
 align = 1
 script = SubResource( 2 )
@@ -767,7 +769,7 @@ margin_left = 181.0
 margin_right = 354.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
-group = ExtResource( 18 )
+group = ExtResource( 2 )
 text = "Inserter"
 align = 1
 script = SubResource( 3 )
@@ -780,7 +782,7 @@ margin_top = 48.0
 margin_right = 173.0
 margin_bottom = 88.0
 size_flags_horizontal = 3
-group = ExtResource( 18 )
+group = ExtResource( 2 )
 text = "Factory"
 align = 1
 script = SubResource( 4 )
@@ -792,7 +794,7 @@ margin_right = 354.0
 margin_bottom = 88.0
 size_flags_horizontal = 3
 text = "Remove Satelite"
-icon = ExtResource( 9 )
+icon = ExtResource( 18 )
 expand_icon = true
 script = SubResource( 5 )
 __meta__ = {
@@ -936,7 +938,7 @@ __meta__ = {
 ]]
 multimesh = SubResource( 57 )
 texture = SubResource( 11 )
-script = ExtResource( 20 )
+script = ExtResource( 7 )
 
 [node name="I1" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs/GridContainer"]
 margin_left = 166.0
@@ -986,7 +988,7 @@ __meta__ = {
 ]]
 multimesh = SubResource( 59 )
 texture = SubResource( 14 )
-script = ExtResource( 20 )
+script = ExtResource( 7 )
 
 [node name="I2" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs/GridContainer"]
 margin_top = 76.0
@@ -1027,7 +1029,7 @@ __meta__ = {
 ]]
 multimesh = SubResource( 61 )
 texture = SubResource( 17 )
-script = ExtResource( 20 )
+script = ExtResource( 7 )
 
 [node name="I3" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs/GridContainer"]
 margin_left = 166.0
@@ -1078,7 +1080,7 @@ __meta__ = {
 ]]
 multimesh = SubResource( 63 )
 texture = SubResource( 20 )
-script = ExtResource( 20 )
+script = ExtResource( 7 )
 
 [node name="HSeparator" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs"]
 margin_top = 166.0
@@ -1147,8 +1149,8 @@ __meta__ = {
 "InfoMultimeshGroup",
 ]]
 multimesh = SubResource( 65 )
-texture = ExtResource( 15 )
-script = ExtResource( 20 )
+texture = ExtResource( 19 )
+script = ExtResource( 7 )
 
 [node name="Ship" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Output/OutAndShip"]
 margin_left = 164.0
@@ -1202,8 +1204,8 @@ __meta__ = {
 "InfoMultimeshGroup",
 ]]
 multimesh = SubResource( 67 )
-texture = ExtResource( 15 )
-script = ExtResource( 20 )
+texture = ExtResource( 19 )
+script = ExtResource( 7 )
 
 [node name="HSeparator2" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set"]
 margin_top = 278.0
@@ -1230,7 +1232,7 @@ margin_bottom = 32.0
 rect_min_size = Vector2( 0, 32 )
 size_flags_horizontal = 3
 text = "Reset Satelite"
-icon = ExtResource( 21 )
+icon = ExtResource( 14 )
 expand_icon = true
 script = SubResource( 26 )
 __meta__ = {
@@ -1244,7 +1246,7 @@ margin_bottom = 32.0
 rect_min_size = Vector2( 0, 32 )
 size_flags_horizontal = 3
 text = "Remove Satelite"
-icon = ExtResource( 9 )
+icon = ExtResource( 18 )
 expand_icon = true
 script = SubResource( 27 )
 __meta__ = {
@@ -1457,9 +1459,9 @@ margin_right = 175.0
 margin_bottom = 64.0
 size_flags_horizontal = 3
 toggle_mode = true
-group = ExtResource( 27 )
+group = ExtResource( 3 )
 text = "Above"
-icon = ExtResource( 29 )
+icon = ExtResource( 28 )
 expand_icon = true
 
 [node name="Below" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/FactoryBehaviour"]
@@ -1469,9 +1471,9 @@ margin_bottom = 64.0
 rect_min_size = Vector2( 0, 64 )
 size_flags_horizontal = 3
 toggle_mode = true
-group = ExtResource( 27 )
+group = ExtResource( 3 )
 text = "Below"
-icon = ExtResource( 28 )
+icon = ExtResource( 25 )
 expand_icon = true
 
 [node name="HSeparator3" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
@@ -1546,7 +1548,7 @@ margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 toggle_mode = true
 shortcut = SubResource( 29 )
-icon = ExtResource( 25 )
+icon = ExtResource( 29 )
 expand_icon = true
 script = SubResource( 30 )
 
@@ -1556,7 +1558,7 @@ margin_right = 132.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 toggle_mode = true
-icon = ExtResource( 24 )
+icon = ExtResource( 26 )
 expand_icon = true
 script = SubResource( 31 )
 
@@ -1573,7 +1575,7 @@ margin_right = 292.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 toggle_mode = true
-icon = ExtResource( 23 )
+icon = ExtResource( 24 )
 expand_icon = true
 script = SubResource( 32 )
 
@@ -1582,7 +1584,7 @@ margin_left = 296.0
 margin_right = 360.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
-icon = ExtResource( 26 )
+icon = ExtResource( 31 )
 expand_icon = true
 script = SubResource( 52 )
 
@@ -1614,11 +1616,11 @@ margin_right = 96.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 96, 64 )
 toggle_mode = true
-group = ExtResource( 11 )
+group = ExtResource( 4 )
 text = "Build"
-icon = ExtResource( 22 )
+icon = ExtResource( 27 )
 expand_icon = true
-script = ExtResource( 3 )
+script = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1629,10 +1631,10 @@ margin_right = 96.0
 margin_bottom = 144.0
 rect_min_size = Vector2( 96, 64 )
 toggle_mode = true
-group = ExtResource( 11 )
+group = ExtResource( 4 )
 text = "10/s"
 expand_icon = true
-script = ExtResource( 3 )
+script = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1643,10 +1645,10 @@ margin_right = 96.0
 margin_bottom = 224.0
 rect_min_size = Vector2( 96, 64 )
 toggle_mode = true
-group = ExtResource( 11 )
+group = ExtResource( 4 )
 text = "10/s"
 expand_icon = true
-script = ExtResource( 3 )
+script = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1657,10 +1659,10 @@ margin_right = 96.0
 margin_bottom = 304.0
 rect_min_size = Vector2( 96, 64 )
 toggle_mode = true
-group = ExtResource( 11 )
+group = ExtResource( 4 )
 text = "10/s"
 expand_icon = true
-script = ExtResource( 3 )
+script = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1671,10 +1673,10 @@ margin_right = 96.0
 margin_bottom = 384.0
 rect_min_size = Vector2( 96, 64 )
 toggle_mode = true
-group = ExtResource( 11 )
+group = ExtResource( 4 )
 text = "10/s"
 expand_icon = true
-script = ExtResource( 3 )
+script = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1685,10 +1687,10 @@ margin_right = 96.0
 margin_bottom = 464.0
 rect_min_size = Vector2( 96, 64 )
 toggle_mode = true
-group = ExtResource( 11 )
+group = ExtResource( 4 )
 text = "10/s"
 expand_icon = true
-script = ExtResource( 3 )
+script = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1699,30 +1701,30 @@ margin_right = 96.0
 margin_bottom = 544.0
 rect_min_size = Vector2( 96, 64 )
 toggle_mode = true
-group = ExtResource( 11 )
+group = ExtResource( 4 )
 text = "10/s"
 expand_icon = true
-script = ExtResource( 3 )
+script = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Shields" parent="." instance=ExtResource( 8 )]
+[node name="Shields" parent="." instance=ExtResource( 23 )]
 visible = false
 
 [node name="spacefield_a-000" type="Sprite" parent="."]
 position = Vector2( 512, 299.206 )
-texture = ExtResource( 2 )
+texture = ExtResource( 16 )
 
 [node name="CentreNode" type="Node2D" parent="."]
 position = Vector2( 512, 300 )
 
 [node name="InjectionSystem" type="Node2D" parent="CentreNode"]
-script = ExtResource( 6 )
+script = ExtResource( 11 )
 
 [node name="Injector0" type="Node2D" parent="CentreNode/InjectionSystem"]
 visible = false
-script = ExtResource( 10 )
+script = ExtResource( 6 )
 show = true
 
 [node name="InjectorMm" type="MultiMeshInstance2D" parent="CentreNode/InjectionSystem/Injector0" groups=[
@@ -1731,8 +1733,8 @@ show = true
 modulate = Color( 0, 0, 1, 1 )
 position = Vector2( -3.46068, 0 )
 multimesh = SubResource( 69 )
-texture = ExtResource( 1 )
-script = ExtResource( 5 )
+texture = ExtResource( 15 )
+script = ExtResource( 8 )
 set_resource = "Ir"
 set_period = 0.1
 linear_velocity = 84.2857
@@ -1742,7 +1744,7 @@ ring = NodePath("../../../../../Root/CentreNode/InjectionSystem/Iron0/MultiMeshI
 
 [node name="Injector1" type="Node2D" parent="CentreNode/InjectionSystem"]
 visible = false
-script = ExtResource( 10 )
+script = ExtResource( 6 )
 show = true
 
 [node name="InjectorMm" type="MultiMeshInstance2D" parent="CentreNode/InjectionSystem/Injector1" groups=[
@@ -1751,8 +1753,8 @@ show = true
 modulate = Color( 1, 1, 0, 1 )
 position = Vector2( -12.1307, 0 )
 multimesh = SubResource( 71 )
-texture = ExtResource( 15 )
-script = ExtResource( 5 )
+texture = ExtResource( 19 )
+script = ExtResource( 8 )
 set_resource = "Cu"
 set_period = 0.1
 linear_velocity = 82.8571
@@ -1762,7 +1764,7 @@ ring = NodePath("../../../../../Root/CentreNode/InjectionSystem/Copper0/MultiMes
 
 [node name="Injector2" type="Node2D" parent="CentreNode/InjectionSystem"]
 visible = false
-script = ExtResource( 10 )
+script = ExtResource( 6 )
 show = true
 
 [node name="InjectorMm" type="MultiMeshInstance2D" parent="CentreNode/InjectionSystem/Injector2" groups=[
@@ -1771,8 +1773,8 @@ show = true
 modulate = Color( 0.97, 0.15, 0.52, 1 )
 position = Vector2( -20.7248, 0 )
 multimesh = SubResource( 73 )
-texture = ExtResource( 12 )
-script = ExtResource( 5 )
+texture = ExtResource( 17 )
+script = ExtResource( 8 )
 set_resource = "Si"
 set_period = 0.1
 linear_velocity = 81.4286
@@ -1782,7 +1784,7 @@ ring = NodePath("../../../../../Root/CentreNode/InjectionSystem/Silica0/MultiMes
 
 [node name="Injector3" type="Node2D" parent="CentreNode/InjectionSystem"]
 visible = false
-script = ExtResource( 10 )
+script = ExtResource( 6 )
 show = true
 
 [node name="InjectorMm" type="MultiMeshInstance2D" parent="CentreNode/InjectionSystem/Injector3" groups=[
@@ -1791,8 +1793,8 @@ show = true
 modulate = Color( 0.05, 0.05, 0.05, 1 )
 position = Vector2( -20.7248, 0 )
 multimesh = SubResource( 75 )
-texture = ExtResource( 15 )
-script = ExtResource( 5 )
+texture = ExtResource( 19 )
+script = ExtResource( 8 )
 set_resource = "none"
 set_period = 0.1
 linear_velocity = 81.4286
@@ -1802,7 +1804,7 @@ ring = NodePath("../../../../../Root/CentreNode/InjectionSystem/Silica0/MultiMes
 
 [node name="Injector4" type="Node2D" parent="CentreNode/InjectionSystem"]
 visible = false
-script = ExtResource( 10 )
+script = ExtResource( 6 )
 show = true
 
 [node name="InjectorMm" type="MultiMeshInstance2D" parent="CentreNode/InjectionSystem/Injector4" groups=[
@@ -1811,8 +1813,8 @@ show = true
 modulate = Color( 0.05, 0.05, 0.05, 1 )
 position = Vector2( -20.7248, 0 )
 multimesh = SubResource( 77 )
-texture = ExtResource( 15 )
-script = ExtResource( 5 )
+texture = ExtResource( 19 )
+script = ExtResource( 8 )
 set_resource = "none"
 set_period = 0.1
 linear_velocity = 81.4286
@@ -1822,7 +1824,7 @@ ring = NodePath("../../../../../Root/CentreNode/InjectionSystem/Silica0/MultiMes
 
 [node name="Injector5" type="Node2D" parent="CentreNode/InjectionSystem"]
 visible = false
-script = ExtResource( 10 )
+script = ExtResource( 6 )
 show = true
 
 [node name="InjectorMm" type="MultiMeshInstance2D" parent="CentreNode/InjectionSystem/Injector5" groups=[
@@ -1831,8 +1833,8 @@ show = true
 modulate = Color( 0.05, 0.05, 0.05, 1 )
 position = Vector2( -20.7248, 0 )
 multimesh = SubResource( 79 )
-texture = ExtResource( 15 )
-script = ExtResource( 5 )
+texture = ExtResource( 19 )
+script = ExtResource( 8 )
 set_resource = "none"
 set_period = 0.1
 linear_velocity = 81.4286
@@ -1841,70 +1843,70 @@ lane = 1
 ring = NodePath("../../../../../Root/CentreNode/InjectionSystem/Silica0/MultiMeshInstance2D/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6189/@@6028/@@6029/@@6030/@@6031/@@6032/Root/CentreNode/RingSystem/Ring6")
 
 [node name="RingSystem" type="Node2D" parent="CentreNode"]
-script = ExtResource( 4 )
+script = ExtResource( 9 )
 
-[node name="Ring0" parent="CentreNode/RingSystem" instance=ExtResource( 7 )]
+[node name="Ring0" parent="CentreNode/RingSystem" instance=ExtResource( 22 )]
 set_debug_color = Color( 1, 0, 0, 1 )
 radius_array = [ 40.0, 45.0, 50.0, 55.0 ]
 angular_velocity = 2.0
 n = 50.2655
 
-[node name="Ring1" parent="CentreNode/RingSystem" instance=ExtResource( 7 )]
+[node name="Ring1" parent="CentreNode/RingSystem" instance=ExtResource( 22 )]
 set_debug_color = Color( 1, 0.631373, 0, 1 )
 ring_number = 1
 radius_array = [ 80.0, 85.0, 90.0, 95.0 ]
 angular_velocity = 1.0
 n = 100.531
 
-[node name="Ring2" parent="CentreNode/RingSystem" instance=ExtResource( 7 )]
+[node name="Ring2" parent="CentreNode/RingSystem" instance=ExtResource( 22 )]
 set_debug_color = Color( 1, 0.937255, 0, 1 )
 ring_number = 2
 radius_array = [ 120.0, 125.0, 130.0, 135.0 ]
 angular_velocity = 0.666667
 n = 150.796
 
-[node name="Ring3" parent="CentreNode/RingSystem" instance=ExtResource( 7 )]
+[node name="Ring3" parent="CentreNode/RingSystem" instance=ExtResource( 22 )]
 set_debug_color = Color( 0, 0.0627451, 1, 1 )
 ring_number = 3
 radius_array = [ 160.0, 165.0, 170.0, 175.0 ]
 angular_velocity = 0.5
 n = 201.062
 
-[node name="Ring4" parent="CentreNode/RingSystem" instance=ExtResource( 7 )]
+[node name="Ring4" parent="CentreNode/RingSystem" instance=ExtResource( 22 )]
 set_debug_color = Color( 0, 0.952941, 1, 1 )
 ring_number = 4
 radius_array = [ 200.0, 205.0, 210.0, 215.0 ]
 angular_velocity = 0.4
 n = 251.327
 
-[node name="Ring5" parent="CentreNode/RingSystem" instance=ExtResource( 7 )]
+[node name="Ring5" parent="CentreNode/RingSystem" instance=ExtResource( 22 )]
 set_debug_color = Color( 0.101961, 0, 1, 1 )
 ring_number = 5
 radius_array = [ 240.0, 245.0, 250.0, 255.0 ]
 angular_velocity = 0.333333
 n = 301.593
 
-[node name="Ring6" parent="CentreNode/RingSystem" instance=ExtResource( 7 )]
+[node name="Ring6" parent="CentreNode/RingSystem" instance=ExtResource( 22 )]
 set_debug_color = Color( 0.384314, 0, 1, 1 )
 ring_number = 6
 radius_array = [ 280.0, 285.0, 290.0, 295.0 ]
 angular_velocity = 0.285714
 n = 351.858
 
-[node name="Ring7" parent="CentreNode/RingSystem" instance=ExtResource( 7 )]
+[node name="Ring7" parent="CentreNode/RingSystem" instance=ExtResource( 22 )]
 set_debug_color = Color( 0.756863, 0, 1, 1 )
 ring_number = 7
 angular_velocity = 0.25
 n = 402.124
 
-[node name="Ring8" parent="CentreNode/RingSystem" instance=ExtResource( 7 )]
+[node name="Ring8" parent="CentreNode/RingSystem" instance=ExtResource( 22 )]
 set_debug_color = Color( 1, 0, 0.537255, 1 )
 ring_number = 8
 radius_array = [ 360.0, 365.0, 370.0, 375.0 ]
 angular_velocity = 0.222222
 n = 452.389
 
-[node name="Ring9" parent="CentreNode/RingSystem" instance=ExtResource( 7 )]
+[node name="Ring9" parent="CentreNode/RingSystem" instance=ExtResource( 22 )]
 set_debug_color = Color( 1, 0, 0.537255, 1 )
 ring_number = 9
 radius_array = [ 400.0, 405.0, 410.0, 415.0 ]
@@ -1933,21 +1935,21 @@ width = 1.0
 pause_mode = 2
 offset = Vector2( 512, 300 )
 current = true
-script = ExtResource( 13 )
+script = ExtResource( 5 )
 
 [node name="SomethingChanged" type="Timer" parent="."]
 pause_mode = 2
 process_mode = 0
 wait_time = 0.01
 one_shot = true
-script = ExtResource( 19 )
+script = ExtResource( 20 )
 
 [node name="InputCapture" type="Node2D" parent="."]
 pause_mode = 2
-script = ExtResource( 17 )
+script = ExtResource( 12 )
 
 [node name="RuleChanger" type="Node2D" parent="."]
-script = ExtResource( 31 )
+script = ExtResource( 21 )
 
 [connection signal="popup_hide" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="hide_diag"]
 [connection signal="timeout" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/UpdateTimer" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_UpdateTimer_timeout"]

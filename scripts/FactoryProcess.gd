@@ -130,7 +130,7 @@ func lane_system_changed():
 	else: # Inserter or extractor
 		input_lanes.append([])
 		# input-resources propagate inwards
-		var in_ring_n = ring.ring_number + 1 if Global.data[input_content[0]]["mode"] == "insert" else ring.ring_number - 1
+		var in_ring_n = ring.ring_number + 1 if Global.data[input_content[0]]["mode"] == "-" else ring.ring_number - 1
 		if in_ring_n != Global.rings: # If not trying to insert from outside the outermost ring
 			for l in ring.get_parent().get_child(in_ring_n).get_lanes():
 				if l.lane_content != null and l.lane_content == input_content[0]:
@@ -139,7 +139,7 @@ func lane_system_changed():
 						print("The ",name," will now import ",input_content[0]," from ",l," (total of ",input_lanes[0].size()," sources)")
 						something_changed = true
 	# Output
-	var out_ring_n = ring.ring_number - 1 if Global.data[output_content]["mode"] == "insert" else ring.ring_number + 1
+	var out_ring_n = ring.ring_number - 1 if Global.data[output_content]["mode"] == "-" else ring.ring_number + 1
 	if out_ring_n == Global.rings :
 		if output_lane == null and ship != null and is_instance_valid(ship): # Setup output to ship
 			output_lane = ship
@@ -224,7 +224,7 @@ func _physics_process(_delta):
 					lane.try_capture(angle_front + global_rotation, self, Global.INWARDS, input_lanes_distance[i][j])
 		# Outputs
 		if output_storage > 0 and output_lane != null:
-			var direction : int = Global.INWARDS if Global.data[output_content]["mode"] == "insert" else Global.OUTWARDS
+			var direction : int = Global.INWARDS if Global.data[output_content]["mode"] == "-" else Global.OUTWARDS
 			var accepted : bool = output_lane.try_send(global_rotation, direction)
 			if accepted:
 				output_storage -= 1

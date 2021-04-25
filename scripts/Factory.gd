@@ -46,7 +46,7 @@ func _draw():
 		points_vec.push_back(Vector2(cos(-span_radians/2.0), sin(-span_radians/2.0)) * (inner_radius + radius_mod))
 		points_vec.push_back(Vector2(inner_radius - radius_mod, 0))
 		points_vec.push_back(Vector2(cos(+span_radians/2.0), sin(+span_radians/2.0)) * (inner_radius + radius_mod))
-	elif mode == Global.BUILDING_FACTORY and Global.data[recipy]["mode"] == "insert":
+	elif mode == Global.BUILDING_FACTORY and Global.data[recipy]["mode"] == "-":
 		add_arc(POINTS, -span_radians/2.0, -span_mod, Vector2.ZERO, inner_radius)
 		points_vec.push_back(Vector2(inner_radius - radius_mod, 0))
 		add_arc(POINTS, +span_mod, +span_radians/2.0, Vector2.ZERO, inner_radius)
@@ -68,7 +68,7 @@ func _draw():
 		points_vec.push_back(Vector2(cos(+span_radians/2.0), sin(+span_radians/2.0)) * (outer_radius - radius_mod))
 		points_vec.push_back(Vector2(outer_radius + radius_mod, 0))
 		points_vec.push_back(Vector2(cos(-span_radians/2.0), sin(-span_radians/2.0)) * (outer_radius - radius_mod))
-	elif mode == Global.BUILDING_FACTORY and Global.data[recipy]["mode"] == "extract":
+	elif mode == Global.BUILDING_FACTORY and Global.data[recipy]["mode"] == "+":
 		add_arc(POINTS, +span_radians/2.0, +span_mod, Vector2.ZERO, outer_radius)
 		points_vec.push_back(Vector2(outer_radius + radius_mod, 0))
 		add_arc(POINTS, -span_mod, -span_radians/2.0, Vector2.ZERO, outer_radius)
@@ -97,7 +97,7 @@ func configure_building(var _mode : int, var _recipy : String):
 	$FactoryProcess.configure(_mode, _recipy)
 	factory_outline_color = Global.data[recipy]["color"]
 	factory_color[0] = Global.lighten(factory_outline_color)
-	$Label.text = _recipy + ("+" if Global.data[recipy]["mode"] == "extract" else "-")
+	$Label.text = _recipy + Global.data[recipy]["mode"]
 	update()
 	set_descriptive_name()
 	check_add_remove_ship()
@@ -130,7 +130,7 @@ func set_descriptive_name():
 		descriptive_name += "Unassigned Satelite"
 	else:
 		descriptive_name += recipy
-		descriptive_name += "+" if Global.data[recipy]["mode"] == "extract" else "-"
+		descriptive_name += Global.data[recipy]["mode"]
 	if mode == Global.BUILDING_FACTORY:
 		descriptive_name += " " + "Factory"
 	elif mode == Global.BUILDING_INSERTER:

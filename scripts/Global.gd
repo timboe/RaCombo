@@ -24,133 +24,168 @@ func lighten(var c : Color) -> Color:
 		c.s - (c.s * 0.75),  # Lighten
 		c.v)
 
+# Scene changing
+var current_scene = null
+
+func _ready():
+	var root = get_tree().get_root()
+	current_scene = root.get_child(root.get_child_count() - 1)
+
+func goto_scene(path):
+	call_deferred("_deferred_goto_scene", path)
+
+func _deferred_goto_scene(path):
+	current_scene.free()
+	var s = ResourceLoader.load(path)
+	current_scene = s.instance()
+	get_tree().get_root().add_child(current_scene)
+	get_tree().set_current_scene(current_scene)
+
 # Game data
 var data = {
 	"none": {
 		"color": Color(0.05, 0.05, 0.05),
-		"mode": "extract",
+		"mode": "",
 		"shape": "circle",
 		"builtin": true,
 		"special": true,
+		"from_sun": false,
 	},
 	"sol": {
 		"color": Color(0.05, 0.05, 0.05),
-		"mode": "extract",
+		"mode": "",
 		"shape": "triangle",
 		"builtin": true,
 		"special": true,
+		"from_sun": false,
 	},
 	"H": {
 		"color": Color(0.71, 0.4, 0.46),
-		"mode": "extract",
+		"mode": "+",
 		"shape": "diamond",
 		"builtin": true,
 		"special": false,
+		"from_sun": true,
 	},
 	"Ir": {
 		"color": Color(0.0, 0.0, 1.0),
-		"mode": "insert",
+		"mode": "-",
 		"shape": "trapezoid",
 		"builtin": true,
 		"special": false,
+		"from_sun": false,
 	},
 	"Cu": {
 		"color": Color(1.0, 1.0, 0.0),
-		"mode": "insert",
+		"mode": "-",
 		"shape": "circle",
 		"builtin": true,
 		"special": false,
+		"from_sun": false,
 	},
 	"St": {
 		"color": Color(1.0, 0.5, 0.0),
-		"mode": "insert",
+		"mode": "-",
 		"shape": "triangle",
 		"builtin": true,
 		"special": false,
+		"from_sun": false,
 	},
 	"Si": {
 		"color": Color(0.97, 0.15, 0.52),
-		"mode": "insert",
+		"mode": "-",
 		"shape": "diamond",
 		"builtin": true,
 		"special": false,
+		"from_sun": false,
 	},
 	"G": {
 		"color": Color(0.6, 0.9, 0.6),
-		"mode": "extract",
+		"mode": "+",
 		"shape": "trapezoid",
 		"builtin": true,
 		"special": false,
+		"from_sun": false,
 	},
 	"Hi": {
 		"color": Color(0.75, 0.0, 0.0),
-		"mode": "extract",
+		"mode": "+",
 		"shape": "circle",
 		"builtin": true,
 		"special": false,
+		"from_sun": false,
 	},
 	"Cf": {
 		"color": Color(0.75, 0.0, 0.8),
-		"mode": "insert",
+		"mode": "-",
 		"shape": "triangle",
 		"builtin": true,
 		"special": false,
+		"from_sun": false,
 	},
 	"T": {
 		"color": Color(1.0, 1.0, 0.0),
-		"mode": "extract",
+		"mode": "+",
 		"shape": "diamond",
 		"builtin": true,
 		"special": false,
+		"from_sun": true,
 	},
 	"Bg": {
 		"color": Color(0.34, 0.04, 0.68),
-		"mode": "extract",
+		"mode": "+",
 		"shape": "trapezoid",
 		"builtin": true,
 		"special": false,
+		"from_sun": false,
 	},
 	"Mt": {
 		"color": Color(1.0, 0.5, 0.5),
-		"mode": "extract",
+		"mode": "+",
 		"shape": "circle",
 		"builtin": true,
 		"special": false,
+		"from_sun": false,
 	},
 	"XA": {
 		"color": Color(1.0, 0.5, 0.5),
-		"mode": "insert",
+		"mode": "-",
 		"shape": "triangle",
 		"builtin": true,
 		"special": false,
+		"from_sun": false,
 	},
 	"XB": {
 		"color": Color(0.5, 1.5, 0.5),
-		"mode": "extract",
+		"mode": "+",
 		"shape": "diamond",
 		"builtin": true,
 		"special": false,
+		"from_sun": false,
 	},
 	"XC": {
 		"color": Color(0.5, 0.5, 1.0),
-		"mode": "extract",
+		"mode": "+",
 		"shape": "trapezoid",
 		"builtin": true,
 		"special": false,
+		"from_sun": false,
 	},
 	"CG": {
 		"color": Color(0.4, 0.3, 0.7),
-		"mode": "extract",
+		"mode": "+",
 		"shape": "circle",
 		"builtin": true,
 		"special": false,
+		"from_sun": false,
 	},
 	"SW": {
 		"color": Color(0.2, 0.7, 0.4),
-		"mode": "extract",
+		"mode": "+",
 		"shape": "triangle",
 		"builtin": true,
 		"special": false,
+		"from_sun": false,
 	},
 }
 
@@ -260,3 +295,4 @@ var recipies = {
 		"factory:": true,
 	},
 }
+

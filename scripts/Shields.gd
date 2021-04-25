@@ -40,7 +40,7 @@ func _process(var _delta):
 	label.text = key
 	var _sign : Label = shield.get_node("Sign")
 	_sign.set("custom_colors/font_color", value["color"].contrasted())
-	_sign.text = "-" if value["mode"] == "insert" else "+"
+	_sign.text = value["mode"]
 	var shape : TextureRect = shield.get_node("Shape")
 	var shape_outline : TextureRect = shield.get_node("ShapeOutline")
 	shape.modulate = value["color"].contrasted()

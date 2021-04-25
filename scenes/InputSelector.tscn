@@ -1,0 +1,76 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://titlescripts/SliderToText.gd" type="Script" id=1]
+[ext_resource path="res://titlescripts/InputResourceMenuButton.gd" type="Script" id=2]
+
+[node name="Input" type="HBoxContainer"]
+margin_right = 344.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Input" type="Label" parent="."]
+margin_top = 3.0
+margin_right = 50.0
+margin_bottom = 17.0
+text = "Input 0:"
+
+[node name="MenuButton" type="MenuButton" parent="."]
+margin_left = 54.0
+margin_right = 118.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 64, 16 )
+focus_mode = 2
+text = "None"
+flat = false
+items = [ "None", null, 0, false, false, 0, 0, "none", "", false, "Ir-", null, 0, false, false, 1, 0, "Ir", "", false, "Cu-", null, 0, false, false, 2, 0, "Cu", "", false, "St-", null, 0, false, false, 3, 0, "St", "", false, "Si-", null, 0, false, false, 4, 0, "Si", "", false, "G+", null, 0, false, false, 5, 0, "G", "", false, "Hi+", null, 0, false, false, 6, 0, "Hi", "", false, "Cf-", null, 0, false, false, 7, 0, "Cf", "", false, "Bg+", null, 0, false, false, 8, 0, "Bg", "", false, "Mt+", null, 0, false, false, 9, 0, "Mt", "", false, "XA-", null, 0, false, false, 10, 0, "XA", "", false, "XB+", null, 0, false, false, 11, 0, "XB", "", false, "XC+", null, 0, false, false, 12, 0, "XC", "", false, "CG+", null, 0, false, false, 13, 0, "CG", "", false, "SW+", null, 0, false, false, 14, 0, "SW", "", false ]
+script = ExtResource( 2 )
+selected = "none"
+
+[node name="Margin" type="MarginContainer" parent="."]
+margin_left = 122.0
+margin_right = 138.0
+margin_bottom = 20.0
+custom_constants/margin_left = 16
+
+[node name="Period" type="Label" parent="."]
+margin_left = 142.0
+margin_top = 3.0
+margin_right = 187.0
+margin_bottom = 17.0
+text = "Period:"
+
+[node name="N" type="Label" parent="."]
+margin_left = 191.0
+margin_top = 3.0
+margin_right = 223.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 32, 0 )
+text = "0.05"
+align = 2
+
+[node name="s" type="Label" parent="."]
+margin_left = 227.0
+margin_top = 3.0
+margin_right = 234.0
+margin_bottom = 17.0
+text = "s"
+align = 2
+
+[node name="HSlider" type="HSlider" parent="."]
+margin_left = 238.0
+margin_right = 344.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+min_value = 0.1
+max_value = 2.0
+step = 0.05
+value = 0.5
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="value_changed" from="HSlider" to="HSlider" method="_on_HSlider_value_changed"]
