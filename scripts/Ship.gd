@@ -56,6 +56,8 @@ func setup_resource(var _radius : float, var i_radius : float, var o_radius : fl
 	base_radius = _radius
 	radius = _radius
 	span_radians = _span
+	$Particles2D.position.x = outer_radius
+	$Particles2D.emitting = false
 	
 func configure_ship(var recipy : String, var _factory : Node2D):
 	outline_color = Global.data[recipy]["color"]
@@ -77,11 +79,12 @@ func appear_complete():
 func depart():
 	print("Ship departing")
 	factory.get_node("NewShip").start()
+	$Particles2D.emitting = true
 	deregister_provider(null)
 	id.update_diag()
 	# TODO improve flyaway...
 	$Tween.interpolate_method(self, "set_radius_mod", 0.0, SHIP_DEPART_RADIUS,
-		SHIP_DEPART_TIME, Tween.TRANS_LINEAR, Tween.EASE_OUT_IN)
+		SHIP_DEPART_TIME, Tween.TRANS_SINE, Tween.EASE_IN)
 	$Tween.interpolate_callback(self, SHIP_DEPART_TIME, "remove")
 	$Tween.start()
 	
