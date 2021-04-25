@@ -25,7 +25,8 @@ var output_lane : Node2D = null
 export(int) var mode = Global.BUILDING_UNSET
 
 func reset():
-	mode = Global.BUILDING_UNSET
+	#
+	remove_any_ship() # Note do this first (before dereg providers)
 	#
 	input_content.clear()
 	input_storage.clear()
@@ -34,7 +35,7 @@ func reset():
 	input_factory_required.clear()
 	#
 	# If we currently have a registered output, then we should clear it now
-	if output_lane != null:
+	if output_lane != null and is_instance_valid(output_lane):
 		output_lane.deregister_provider(self)
 	output_amount = 0
 	output_storage = 0
@@ -46,12 +47,20 @@ func reset():
 		spy.reset()
 	spies.clear()
 	#
-	if ship != null:
-		ship.remove()
-	ship = null
+	mode = Global.BUILDING_UNSET # Note: do this last
 
 func set_spy(var spy):
 	spies.append(spy)
+	
+func remove_spy(var spy):
+	spies.erase(spy)
+	
+func remove_any_ship():
+	print("remove any ship ",ring.ring_number," ship ",ship)
+	if ship != null and is_instance_valid(ship):
+		print("Ship removed by ring")
+		ship.remove()
+	ship = null
 	
 func configure(var _mode : int, var recipy : String):
 	reset()
@@ -79,14 +88,13 @@ func configure(var _mode : int, var recipy : String):
 	lane_system_changed()
 	
 func lane_cleared(var lane_or_ship : Node2D):
-	print(" LANE CLEARED CALLED")
 	if mode == Global.BUILDING_UNSET: # Called on all buildings by the Bin fn
 		return
 	var something_changed : bool = false
 	if output_lane == lane_or_ship:
-		print("OUTPUT LANE CLEARED")
 		output_lane = null
-		print("OUTPUT LANE = ", output_lane) 
+		print("ship = null by lane_cleared, was ", ship)
+		ship = null
 		something_changed = true
 	for input_resource in input_lanes:
 		for idx in range(input_resource.size() -1, -1):
@@ -132,9 +140,11 @@ func lane_system_changed():
 						something_changed = true
 	# Output
 	var out_ring_n = ring.ring_number - 1 if Global.data[output_content]["mode"] == "insert" else ring.ring_number + 1
-	if out_ring_n == Global.rings and output_lane == null: # Setup output to ship
-		output_lane = ship
-		# Note: this is a self-contained operation, so something_changed = false
+	if out_ring_n == Global.rings :
+		if output_lane == null and ship != null and is_instance_valid(ship): # Setup output to ship
+			output_lane = ship
+			print("The ",name," will now export ",output_content," to the ship ",ship)
+			# Note: this is a self-contained operation, so something_changed = false
 	elif output_storage > 0: 	# Only link the output if we have something to output...
 		var out_ring = ring.get_parent().get_child(out_ring_n)
 		var out_lane_id = out_ring.get_free_or_existing_lane(output_content)
@@ -168,7 +178,7 @@ func check_process():
 				can_gather_inputs = true
 				break
 	else: # Inserters/extracters only make use of output_storage
-		if input_lanes[0].size() > 0 and output_storage < Global.MAX_STORAGE:
+		if input_lanes.size() and input_lanes[0].size() > 0 and output_storage < Global.MAX_STORAGE:
 			can_gather_inputs = true
 	if can_gather_inputs:
 		set_physics_process(true)
@@ -190,7 +200,7 @@ func _physics_process(_delta):
 			for l in input_lanes[0]:
 				l.try_capture(angle_back + global_rotation, self, Global.OUTWARDS)
 		# Output
-		if output_storage > 0 and output_lane != null:
+		if output_storage > 0 and output_lane != null and is_instance_valid(output_lane):
 			var accepted = output_lane.try_send(global_rotation, Global.OUTWARDS)
 			if accepted:
 				output_storage -= 1

@@ -105,6 +105,9 @@ func deregister_resource():
 	lane_provinance.clear()
 	for i in multimesh.instance_count:
 		set_slot_filled(i, false, true)
+	# These calls handle things also which take from the lane
+	for f in get_tree().get_nodes_in_group("FactoryGroup"):
+		f.lane_cleared(self)
 
 func get_slot_filled(var i : int) -> bool:
 	return bool(multimesh.get_instance_custom_data(i).r)
@@ -183,7 +186,7 @@ func _physics_process(var delta):
 					t.origin *= DISABLE
 					multimesh.set_instance_custom_data(i, Color(0,1,1,0))
 				var call = d["call"] 
-				if call != null: # This might have been deleted in the time to move the item!
+				if call != null and is_instance_valid(call): # This might have been deleted in the time to move the item!
 					call.add_item(self)
 			else: # Items which are cascading in (from above or below)
 				# Set empty and remove from dict

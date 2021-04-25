@@ -4,10 +4,8 @@ tool
 const RING_RADIUS := 40
 const RING_WIDTH := 20
 
-export(int) var rings
-
 func _ready():
-	rings = 0
+	var rings = 0
 	for c in get_children():
 		rings += 1
 		c.setup_resource(RING_RADIUS * rings)

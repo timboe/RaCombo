@@ -5,17 +5,18 @@ onready var shields = get_tree().get_root().find_node("Shields", true, false)
 var current_building : Area2D  = null
 var current_ring : Node2D = null
 var current_lanes : Array = []
-var sandbox : bool = false
+var page : String = ""
 
 func hide_diag():
 	current_ring = null
 	current_building = null
+	page = ""
 	hide()
 
 func show_shared():
 	current_building = null
 	current_ring = null
-	sandbox = false
+	page = ""
 	for c in get_children():
 		if c is MarginContainer:
 			c.visible = false
@@ -29,23 +30,38 @@ func show_ring_diag(var ring : Node2D):
 	
 func show_building_diag(var factory : Area2D):
 	show_shared()
-	$RingContainer.visible = false
+	$FactoryContainer.visible = true
 	current_building = factory
 	update_building_diag()
-	
-func show_sandbox_diag(var factory : Area2D):
+
+func toggle_menu_diag():
+	var show : bool = (page != "menu")
 	show_shared()
-	$SandboxContainer.visible = false
-	sandbox = true
-	update_sandbox_diag()
+	if show:
+		$MenuContainer.visible = true
+		page = "menu"
+		window_title = "Menu"
+	else:
+		hide_diag()
+
+func show_named_diag(var n : String):
+	show_shared()
+	var node = find_node(n+"Container")
+	$SandboxContainer.visible = true
+	page = n
+	window_title = n+" Settings"
+	if has_method("update_"+n+"_diag"):
+		call("update_"+n+"_diag")
 	
 func update_diag():
 	if current_ring != null:
 		update_ring_diag()
 	elif current_building != null:
 		update_building_diag()
-	elif sandbox:
-		update_sandbox_diag()
+	elif page == "menu":
+		pass
+	elif page == "sandbox":
+		pass
 
 func update_building_diag():
 	window_title = current_building.descriptive_name
@@ -86,7 +102,8 @@ func update_building_diag():
 		# Output with Ship
 		var ship_cont = get_node("FactoryContainer/Set/Output/OutAndShip/Ship")
 		var ship = current_building.get_node("FactoryProcess").ship
-		if ship != null:
+		if ship != null and is_instance_valid(ship):
+			print("Showing ship detail")
 			ship_cont.visible = true
 			var mm = ship_cont.get_node("Count/Mm")
 			var ship_ico = ship_cont.get_node("Ship/Ship")
@@ -94,6 +111,7 @@ func update_building_diag():
 			mm.set_resource(output, ship)
 			mm.set_visible_count(ship.output_storage)
 		else:
+			print("Not showing ship detaild due to ship ", ship)
 			ship_cont.visible = false
 
 func update_ring_diag():
@@ -122,9 +140,11 @@ func update_ring_diag():
 			s_count += 1
 		#
 		count += 1
-
-func update_sandbox_diag():
-	pass
+		
+func update_Sandbox_diag():
+	$SandboxContainer/VBoxContainer/FactoryBehaviour/Above.pressed = Global.factories_pull_from_above
+	$SandboxContainer/VBoxContainer/Lane/LanesSlider.value = Global.lanes
+	$SandboxContainer/VBoxContainer/Ring/RingsSlider.value = Global.rings - 1
 
 func _on_UpdateTimer_timeout():
 	if current_building != null:

@@ -43,7 +43,7 @@ func _unhandled_input(event):
 	var ring_index : int = int(dist / rs.RING_RADIUS) - 1 
 	if dist < rs.RING_RADIUS:
 		ring = rs.get_child(0)
-	elif int(dist) % int(rs.RING_RADIUS) > rs.RING_WIDTH or ring_index >= rs.rings:
+	elif int(dist) % int(rs.RING_RADIUS) > rs.RING_WIDTH or ring_index > Global.rings:
 		ring = null
 	else:
 		ring = rs.get_child(ring_index)
@@ -67,6 +67,7 @@ func _unhandled_input(event):
 
 		prev_ring = ring
 
+	# Left click
 	if event is InputEventMouseButton and ring != null and event.pressed and event.button_index == 1:
 		if button == null: # Select ring (but not the Sol ring)
 			if ring.ring_number == 0:
@@ -74,10 +75,16 @@ func _unhandled_input(event):
 				pass
 			else:
 				id.show_ring_diag(ring)
-		elif mode_build:
+		elif mode_build and ring.ring_number != 0:
 			ring.new_factory()
-		elif mode_inject:
+		elif mode_inject and ring.ring_number != 0:
 			injection.setup_resource_at_hint()
+			
+	# Right click
+	if event is InputEventMouseButton and event.pressed and event.button_index == 2:
+		if mode_build or mode_inject:
+			button.pressed = false
+			Global.last_pressed = null
 
 func get_cursor_angle():
 	var cursor_angle : float = atan2(centre_node.position.y - cursor.y, centre_node.position.x - cursor.x) - PI

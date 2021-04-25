@@ -15,6 +15,8 @@ var last_pressed = null
 # Current level & configuration globals
 var level : int = 99
 var rings : int = 10
+var lanes : int = 4
+var factories_pull_from_above : bool = true
 
 # Helper functions
 func lighten(var c : Color) -> Color:

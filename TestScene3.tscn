@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=2]
+[gd_scene load_steps=87 format=2]
 
 [ext_resource path="res://images/trapezoid.png" type="Texture" id=1]
 [ext_resource path="res://images/spacefield_a-000.png" type="Texture" id=2]
@@ -21,8 +21,18 @@
 [ext_resource path="res://scripts/SomethingChanged.gd" type="Script" id=19]
 [ext_resource path="res://scripts/InfoMultimesh.gd" type="Script" id=20]
 [ext_resource path="res://images/refreshing.png" type="Texture" id=21]
+[ext_resource path="res://images/satelite.png" type="Texture" id=22]
+[ext_resource path="res://images/outline.png" type="Texture" id=23]
+[ext_resource path="res://images/ff.png" type="Texture" id=24]
+[ext_resource path="res://images/pause.png" type="Texture" id=25]
+[ext_resource path="res://images/menu.png" type="Texture" id=26]
+[ext_resource path="res://resources/FactorySandboxButtonGroup.tres" type="ButtonGroup" id=27]
+[ext_resource path="res://images/down.png" type="Texture" id=28]
+[ext_resource path="res://images/up.png" type="Texture" id=29]
+[ext_resource path="res://images/back.png" type="Texture" id=30]
+[ext_resource path="res://scripts/RuleChanger.gd" type="Script" id=31]
 
-[sub_resource type="GDScript" id=12]
+[sub_resource type="GDScript" id=1]
 script/source = "extends ItemList
 
 onready var id = get_tree().get_root().find_node(\"InfoDialog\", true, false) 
@@ -31,7 +41,7 @@ func _on_FactoriesList_item_selected(index):
 	id.show_building_diag( get_item_metadata(index) )
 "
 
-[sub_resource type="GDScript" id=13]
+[sub_resource type="GDScript" id=2]
 script/source = "extends CheckButton
 
 func _on_Extractor_pressed():
@@ -41,7 +51,7 @@ func _on_Extractor_pressed():
 	print(\"Show extrators\")
 "
 
-[sub_resource type="GDScript" id=14]
+[sub_resource type="GDScript" id=3]
 script/source = "extends CheckButton
 
 func _on_Inserter_pressed():
@@ -51,7 +61,7 @@ func _on_Inserter_pressed():
 	print(\"Show inserters\")
 "
 
-[sub_resource type="GDScript" id=15]
+[sub_resource type="GDScript" id=4]
 script/source = "extends CheckButton
 
 func _on_Factory_pressed():
@@ -61,7 +71,7 @@ func _on_Factory_pressed():
 	print(\"Show factories\")
 "
 
-[sub_resource type="GDScript" id=16]
+[sub_resource type="GDScript" id=5]
 script/source = "extends Button
 
 onready var id : WindowDialog = get_tree().get_root().find_node(\"InfoDialog\",true,false)
@@ -71,7 +81,7 @@ func _on_Remove_pressed():
 	id.hide_diag()
 "
 
-[sub_resource type="GDScript" id=17]
+[sub_resource type="GDScript" id=6]
 script/source = "extends GridContainer
 
 func _process(var _delta):
@@ -91,7 +101,7 @@ func _process(var _delta):
 	set_process(false)
 "
 
-[sub_resource type="GDScript" id=18]
+[sub_resource type="GDScript" id=7]
 script/source = "extends GridContainer
 
 func _process(var _delta):
@@ -111,7 +121,7 @@ func _process(var _delta):
 	set_process(false)
 "
 
-[sub_resource type="GDScript" id=19]
+[sub_resource type="GDScript" id=8]
 script/source = "extends GridContainer
 
 func _process(var _delta):
@@ -145,18 +155,6 @@ func _process(var _delta):
 	set_process(false)
 "
 
-[sub_resource type="QuadMesh" id=54]
-size = Vector2( 10, 10 )
-
-[sub_resource type="MultiMesh" id=55]
-instance_count = 49
-mesh = SubResource( 54 )
-transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
-
-[sub_resource type="StreamTexture" id=22]
-flags = 4
-load_path = "res://.import/circle.png-5e04c73a6bc42d15cee139f3c4ec364c.stex"
-
 [sub_resource type="QuadMesh" id=56]
 size = Vector2( 10, 10 )
 
@@ -165,7 +163,7 @@ instance_count = 49
 mesh = SubResource( 56 )
 transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
 
-[sub_resource type="StreamTexture" id=25]
+[sub_resource type="StreamTexture" id=11]
 flags = 4
 load_path = "res://.import/circle.png-5e04c73a6bc42d15cee139f3c4ec364c.stex"
 
@@ -177,7 +175,7 @@ instance_count = 49
 mesh = SubResource( 58 )
 transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
 
-[sub_resource type="StreamTexture" id=28]
+[sub_resource type="StreamTexture" id=14]
 flags = 4
 load_path = "res://.import/circle.png-5e04c73a6bc42d15cee139f3c4ec364c.stex"
 
@@ -189,7 +187,7 @@ instance_count = 49
 mesh = SubResource( 60 )
 transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
 
-[sub_resource type="StreamTexture" id=31]
+[sub_resource type="StreamTexture" id=17]
 flags = 4
 load_path = "res://.import/circle.png-5e04c73a6bc42d15cee139f3c4ec364c.stex"
 
@@ -201,7 +199,19 @@ instance_count = 49
 mesh = SubResource( 62 )
 transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
 
-[sub_resource type="GDScript" id=34]
+[sub_resource type="StreamTexture" id=20]
+flags = 4
+load_path = "res://.import/circle.png-5e04c73a6bc42d15cee139f3c4ec364c.stex"
+
+[sub_resource type="QuadMesh" id=64]
+size = Vector2( 10, 10 )
+
+[sub_resource type="MultiMesh" id=65]
+instance_count = 49
+mesh = SubResource( 64 )
+transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
+
+[sub_resource type="GDScript" id=23]
 script/source = "extends Node2D
 tool
 
@@ -229,15 +239,15 @@ func set_resource(var recipy : String):
 	update()
 "
 
-[sub_resource type="QuadMesh" id=64]
+[sub_resource type="QuadMesh" id=66]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=65]
+[sub_resource type="MultiMesh" id=67]
 instance_count = 49
-mesh = SubResource( 64 )
+mesh = SubResource( 66 )
 transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
 
-[sub_resource type="GDScript" id=37]
+[sub_resource type="GDScript" id=26]
 script/source = "extends Button
 
 onready var id : WindowDialog = get_tree().get_root().find_node(\"InfoDialog\",true,false)
@@ -247,7 +257,7 @@ func _on_Clear_pressed():
 	id.update_diag()
 "
 
-[sub_resource type="GDScript" id=38]
+[sub_resource type="GDScript" id=27]
 script/source = "extends Button
 
 onready var id : WindowDialog = get_tree().get_root().find_node(\"InfoDialog\",true,false)
@@ -257,13 +267,95 @@ func _on_Remove_pressed():
 	id.hide_diag()
 "
 
-[sub_resource type="InputEventAction" id=39]
+[sub_resource type="GDScript" id=48]
+script/source = "extends Button
+
+onready var id = get_tree().get_root().find_node(\"InfoDialog\", true, false) 
+"
+
+[sub_resource type="GDScript" id=47]
+script/source = "extends Button
+
+onready var id = get_tree().get_root().find_node(\"InfoDialog\", true, false) 
+"
+
+[sub_resource type="GDScript" id=46]
+script/source = "extends Button
+
+onready var id = get_tree().get_root().find_node(\"InfoDialog\", true, false) 
+"
+
+[sub_resource type="GDScript" id=45]
+script/source = "extends Button
+
+onready var id = get_tree().get_root().find_node(\"InfoDialog\", true, false) 
+"
+
+[sub_resource type="GDScript" id=44]
+script/source = "extends Button
+
+onready var id = get_tree().get_root().find_node(\"InfoDialog\", true, false) 
+
+func _on_Sandbox_pressed():
+	id.show_named_diag(\"Sandbox\")
+"
+
+[sub_resource type="GDScript" id=49]
+script/source = "extends Button
+
+onready var id = get_tree().get_root().find_node(\"InfoDialog\", true, false) 
+"
+
+[sub_resource type="GDScript" id=50]
+script/source = "extends Button
+
+onready var id = get_tree().get_root().find_node(\"InfoDialog\", true, false) 
+"
+
+[sub_resource type="GDScript" id=51]
+script/source = "extends Button
+
+onready var id = get_tree().get_root().find_node(\"InfoDialog\", true, false) 
+"
+
+[sub_resource type="GDScript" id=54]
+script/source = "extends HSlider
+
+onready var label = get_parent().get_node(\"Label\")
+onready var rc = get_tree().get_root().find_node(\"RuleChanger\", true, false)
+
+func _on_RingsSlider_value_changed(value):
+	label.text = String(int(value))
+	rc.set_rings(int(value)) # +1 because of the sun ring
+"
+
+[sub_resource type="GDScript" id=53]
+script/source = "extends HSlider
+
+onready var label = get_parent().get_node(\"Label\")
+onready var rc = get_tree().get_root().find_node(\"RuleChanger\", true, false)
+
+func _on_LanesSlider_value_changed(value):
+	label.text = String(int(value))
+	rc.set_lanes(int(value))
+"
+
+[sub_resource type="GDScript" id=55]
+script/source = "extends Button
+
+onready var id = get_tree().get_root().find_node(\"InfoDialog\", true, false) 
+
+func _on_Back_pressed():
+	id.toggle_menu_diag()
+"
+
+[sub_resource type="InputEventAction" id=28]
 action = "ui_pause"
 
-[sub_resource type="ShortCut" id=40]
-shortcut = SubResource( 39 )
+[sub_resource type="ShortCut" id=29]
+shortcut = SubResource( 28 )
 
-[sub_resource type="GDScript" id=41]
+[sub_resource type="GDScript" id=30]
 script/source = "extends Button
 
 func _on_Pause_toggled(button_pressed):
@@ -272,7 +364,7 @@ func _on_Pause_toggled(button_pressed):
 	Physics2DServer.set_active(true)
 "
 
-[sub_resource type="GDScript" id=42]
+[sub_resource type="GDScript" id=31]
 script/source = "extends Button
 
 func _on_FF_toggled(button_pressed):
@@ -280,7 +372,7 @@ func _on_FF_toggled(button_pressed):
 	print(\"Game speed \", Engine.time_scale)
 "
 
-[sub_resource type="GDScript" id=43]
+[sub_resource type="GDScript" id=32]
 script/source = "extends Button
 
 func _on_Outlines_toggled(button_pressed):
@@ -290,11 +382,14 @@ func _on_Outlines_toggled(button_pressed):
 		i.get_parent().set_show(!button_pressed)
 "
 
-[sub_resource type="QuadMesh" id=66]
-size = Vector2( 10, 10 )
+[sub_resource type="GDScript" id=52]
+script/source = "extends Button
 
-[sub_resource type="MultiMesh" id=67]
-mesh = SubResource( 66 )
+onready var id = get_tree().get_root().find_node(\"InfoDialog\", true, false) 
+
+func _on_Menu_pressed():
+	id.toggle_menu_diag()
+"
 
 [sub_resource type="QuadMesh" id=68]
 size = Vector2( 10, 10 )
@@ -308,7 +403,13 @@ size = Vector2( 10, 10 )
 [sub_resource type="MultiMesh" id=71]
 mesh = SubResource( 70 )
 
-[sub_resource type="Shader" id=11]
+[sub_resource type="QuadMesh" id=72]
+size = Vector2( 10, 10 )
+
+[sub_resource type="MultiMesh" id=73]
+mesh = SubResource( 72 )
+
+[sub_resource type="Shader" id=39]
 code = "shader_type canvas_item;
 
 void fragment() {
@@ -321,17 +422,17 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id=50]
-shader = SubResource( 11 )
+[sub_resource type="ShaderMaterial" id=40]
+shader = SubResource( 39 )
 
-[sub_resource type="OpenSimplexNoise" id=51]
+[sub_resource type="OpenSimplexNoise" id=41]
 
-[sub_resource type="NoiseTexture" id=52]
+[sub_resource type="NoiseTexture" id=42]
 width = 128
 height = 128
-noise = SubResource( 51 )
+noise = SubResource( 41 )
 
-[sub_resource type="Environment" id=53]
+[sub_resource type="Environment" id=43]
 background_mode = 4
 glow_intensity = 2.0
 glow_strength = 1.8
@@ -383,6 +484,7 @@ __meta__ = {
 
 [node name="UpdateTimer" type="Timer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog"]
 process_mode = 0
+wait_time = 0.2
 autostart = true
 
 [node name="RingContainer" type="MarginContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog"]
@@ -578,7 +680,7 @@ margin_right = 340.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 340, 50 )
 auto_height = true
-script = SubResource( 12 )
+script = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -640,7 +742,7 @@ pressed = true
 group = ExtResource( 18 )
 text = "Extractor"
 align = 1
-script = SubResource( 13 )
+script = SubResource( 2 )
 
 [node name="Inserter" type="CheckButton" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset/GridContainer"]
 margin_left = 181.0
@@ -650,7 +752,7 @@ size_flags_horizontal = 3
 group = ExtResource( 18 )
 text = "Inserter"
 align = 1
-script = SubResource( 14 )
+script = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -663,7 +765,7 @@ size_flags_horizontal = 3
 group = ExtResource( 18 )
 text = "Factory"
 align = 1
-script = SubResource( 15 )
+script = SubResource( 4 )
 
 [node name="Remove" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset/GridContainer"]
 margin_left = 181.0
@@ -674,7 +776,7 @@ size_flags_horizontal = 3
 text = "Remove Satelite"
 icon = ExtResource( 9 )
 expand_icon = true
-script = SubResource( 16 )
+script = SubResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -701,7 +803,7 @@ __meta__ = {
 custom_constants/vseparation = 8
 custom_constants/hseparation = 8
 columns = 5
-script = SubResource( 17 )
+script = SubResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -723,7 +825,7 @@ rect_min_size = Vector2( 350, 140 )
 custom_constants/vseparation = 8
 custom_constants/hseparation = 8
 columns = 5
-script = SubResource( 18 )
+script = SubResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -747,7 +849,7 @@ mouse_filter = 0
 custom_constants/vseparation = 8
 custom_constants/hseparation = 8
 columns = 5
-script = SubResource( 19 )
+script = SubResource( 8 )
 
 [node name="Set" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer"]
 margin_left = 8.0
@@ -814,8 +916,8 @@ __meta__ = {
 [node name="Mm" type="MultiMeshInstance2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs/GridContainer/I0/Count" groups=[
 "InfoMultimeshGroup",
 ]]
-multimesh = SubResource( 55 )
-texture = SubResource( 22 )
+multimesh = SubResource( 57 )
+texture = SubResource( 11 )
 script = ExtResource( 20 )
 
 [node name="I1" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs/GridContainer"]
@@ -864,8 +966,8 @@ __meta__ = {
 [node name="Mm" type="MultiMeshInstance2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs/GridContainer/I1/Count" groups=[
 "InfoMultimeshGroup",
 ]]
-multimesh = SubResource( 57 )
-texture = SubResource( 25 )
+multimesh = SubResource( 59 )
+texture = SubResource( 14 )
 script = ExtResource( 20 )
 
 [node name="I2" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs/GridContainer"]
@@ -905,8 +1007,8 @@ __meta__ = {
 [node name="Mm" type="MultiMeshInstance2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs/GridContainer/I2/Count" groups=[
 "InfoMultimeshGroup",
 ]]
-multimesh = SubResource( 59 )
-texture = SubResource( 28 )
+multimesh = SubResource( 61 )
+texture = SubResource( 17 )
 script = ExtResource( 20 )
 
 [node name="I3" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs/GridContainer"]
@@ -956,8 +1058,8 @@ __meta__ = {
 [node name="Mm" type="MultiMeshInstance2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs/GridContainer/I3/Count" groups=[
 "InfoMultimeshGroup",
 ]]
-multimesh = SubResource( 61 )
-texture = SubResource( 31 )
+multimesh = SubResource( 63 )
+texture = SubResource( 20 )
 script = ExtResource( 20 )
 
 [node name="HSeparator" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs"]
@@ -1026,7 +1128,7 @@ __meta__ = {
 [node name="Mm" type="MultiMeshInstance2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Output/OutAndShip/Out/Count" groups=[
 "InfoMultimeshGroup",
 ]]
-multimesh = SubResource( 63 )
+multimesh = SubResource( 65 )
 texture = ExtResource( 15 )
 script = ExtResource( 20 )
 
@@ -1060,7 +1162,7 @@ __meta__ = {
 }
 
 [node name="Ship" type="Node2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Output/OutAndShip/Ship/Ship"]
-script = SubResource( 34 )
+script = SubResource( 23 )
 
 [node name="Spacer" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Output/OutAndShip/Ship"]
 margin_left = 104.0
@@ -1081,7 +1183,7 @@ __meta__ = {
 [node name="Mm" type="MultiMeshInstance2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Output/OutAndShip/Ship/Count" groups=[
 "InfoMultimeshGroup",
 ]]
-multimesh = SubResource( 65 )
+multimesh = SubResource( 67 )
 texture = ExtResource( 15 )
 script = ExtResource( 20 )
 
@@ -1112,7 +1214,7 @@ size_flags_horizontal = 3
 text = "Reset Satelite"
 icon = ExtResource( 21 )
 expand_icon = true
-script = SubResource( 37 )
+script = SubResource( 26 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1126,12 +1228,12 @@ size_flags_horizontal = 3
 text = "Remove Satelite"
 icon = ExtResource( 9 )
 expand_icon = true
-script = SubResource( 38 )
+script = SubResource( 27 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SandboxContainer" type="MarginContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog"]
+[node name="MenuContainer" type="MarginContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog"]
 visible = false
 margin_right = 40.0
 margin_bottom = 40.0
@@ -1142,6 +1244,244 @@ custom_constants/margin_bottom = 8
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Container" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 363.0
+margin_bottom = 312.0
+rect_min_size = Vector2( 355, 0 )
+alignment = 1
+
+[node name="CenterContainer" type="GridContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container"]
+margin_left = 53.0
+margin_right = 302.0
+margin_bottom = 304.0
+custom_constants/vseparation = 16
+custom_constants/hseparation = 16
+columns = 2
+
+[node name="Save" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/CenterContainer"]
+margin_right = 120.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 0, 64 )
+text = "Save Game"
+script = SubResource( 48 )
+
+[node name="Load" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/CenterContainer"]
+margin_left = 136.0
+margin_right = 249.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 0, 64 )
+text = "Load Game"
+script = SubResource( 47 )
+
+[node name="Recipy" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/CenterContainer"]
+margin_top = 80.0
+margin_right = 120.0
+margin_bottom = 144.0
+rect_min_size = Vector2( 0, 64 )
+text = "Recipy Book"
+script = SubResource( 46 )
+
+[node name="Mission" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/CenterContainer"]
+margin_left = 136.0
+margin_top = 80.0
+margin_right = 249.0
+margin_bottom = 144.0
+rect_min_size = Vector2( 0, 64 )
+text = "Current Mission"
+script = SubResource( 45 )
+
+[node name="Sandbox" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/CenterContainer"]
+margin_top = 160.0
+margin_right = 120.0
+margin_bottom = 224.0
+rect_min_size = Vector2( 0, 64 )
+hint_tooltip = "Only available in Sandbox game mode."
+text = "Sandbox Settings"
+script = SubResource( 44 )
+
+[node name="Tutorial" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/CenterContainer"]
+margin_left = 136.0
+margin_top = 160.0
+margin_right = 249.0
+margin_bottom = 224.0
+rect_min_size = Vector2( 0, 64 )
+text = "Show Tutorial"
+script = SubResource( 49 )
+
+[node name="Title" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/CenterContainer"]
+margin_top = 240.0
+margin_right = 120.0
+margin_bottom = 304.0
+rect_min_size = Vector2( 0, 64 )
+text = "Exit to Title"
+script = SubResource( 50 )
+
+[node name="Quit" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/CenterContainer"]
+margin_left = 136.0
+margin_top = 240.0
+margin_right = 249.0
+margin_bottom = 304.0
+rect_min_size = Vector2( 0, 64 )
+text = "Exit to Desktop"
+script = SubResource( 51 )
+
+[node name="SandboxContainer" type="MarginContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog"]
+margin_right = 40.0
+margin_bottom = 40.0
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 363.0
+margin_bottom = 276.0
+rect_min_size = Vector2( 355, 0 )
+custom_constants/separation = 6
+
+[node name="RingsLabel" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
+margin_right = 355.0
+margin_bottom = 14.0
+text = "Rings"
+
+[node name="Ring" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
+margin_top = 20.0
+margin_right = 355.0
+margin_bottom = 36.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/Ring"]
+margin_top = 1.0
+margin_right = 8.0
+margin_bottom = 15.0
+text = "1"
+
+[node name="RingsSlider" type="HSlider" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/Ring"]
+margin_left = 12.0
+margin_right = 355.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 9.0
+value = 1.0
+rounded = true
+tick_count = 9
+script = SubResource( 54 )
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
+margin_top = 42.0
+margin_right = 355.0
+margin_bottom = 46.0
+
+[node name="LanesLabel" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
+margin_top = 52.0
+margin_right = 355.0
+margin_bottom = 66.0
+text = "Lanes"
+
+[node name="Lane" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
+margin_top = 72.0
+margin_right = 355.0
+margin_bottom = 88.0
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/Lane"]
+margin_top = 1.0
+margin_right = 8.0
+margin_bottom = 15.0
+text = "1"
+
+[node name="LanesSlider" type="HSlider" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/Lane"]
+margin_left = 12.0
+margin_right = 355.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 4.0
+value = 1.0
+rounded = true
+tick_count = 4
+script = SubResource( 53 )
+
+[node name="HSeparator2" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
+margin_top = 94.0
+margin_right = 355.0
+margin_bottom = 98.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LanesLabel2" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
+margin_top = 104.0
+margin_right = 355.0
+margin_bottom = 118.0
+text = "Satelite Factories Collect From..."
+
+[node name="FactoryBehaviour" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
+margin_top = 124.0
+margin_right = 355.0
+margin_bottom = 188.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Above" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/FactoryBehaviour"]
+margin_right = 175.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+toggle_mode = true
+group = ExtResource( 27 )
+text = "Above"
+icon = ExtResource( 29 )
+expand_icon = true
+
+[node name="Below" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/FactoryBehaviour"]
+margin_left = 179.0
+margin_right = 355.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 0, 64 )
+size_flags_horizontal = 3
+toggle_mode = true
+group = ExtResource( 27 )
+text = "Below"
+icon = ExtResource( 28 )
+expand_icon = true
+
+[node name="HSeparator3" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
+margin_top = 194.0
+margin_right = 355.0
+margin_bottom = 198.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
+margin_top = 204.0
+margin_right = 355.0
+margin_bottom = 268.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 113.0
+margin_right = 241.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 128, 64 )
+text = "Back"
+icon = ExtResource( 30 )
+expand_icon = true
+script = SubResource( 55 )
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog"]
 visible = false
@@ -1161,14 +1501,15 @@ __meta__ = {
 }
 
 [node name="MarginContainerTop" type="MarginContainer" parent="CanvasLayer/UI/MainUI"]
-margin_right = 1024.0
+margin_right = 1020.0
+margin_bottom = 64.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/UI/MainUI/MarginContainerTop"]
-margin_right = 1024.0
-margin_bottom = 20.0
+margin_right = 1020.0
+margin_bottom = 64.0
 grow_horizontal = 2
 size_flags_horizontal = 3
 __meta__ = {
@@ -1176,77 +1517,56 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer"]
-margin_left = 211.0
-margin_right = 812.0
-margin_bottom = 20.0
+margin_left = 330.0
+margin_right = 690.0
+margin_bottom = 64.0
 size_flags_horizontal = 3
 
-[node name="BuildMode" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
-margin_right = 85.0
-margin_bottom = 20.0
-toggle_mode = true
-group = ExtResource( 11 )
-text = "Build Mode"
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Recipies" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
-margin_left = 89.0
-margin_right = 155.0
-margin_bottom = 20.0
-text = "Recipies"
-
-[node name="Label" type="Label" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
-margin_left = 159.0
-margin_top = 3.0
-margin_right = 247.0
-margin_bottom = 17.0
-text = "Mission: 60 H"
-
 [node name="Pause" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
-margin_left = 251.0
-margin_right = 301.0
-margin_bottom = 20.0
+margin_right = 64.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
 toggle_mode = true
-shortcut = SubResource( 40 )
-text = "Pause"
-script = SubResource( 41 )
+shortcut = SubResource( 29 )
+icon = ExtResource( 25 )
+expand_icon = true
+script = SubResource( 30 )
 
 [node name="FF" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
-margin_left = 305.0
-margin_right = 331.0
-margin_bottom = 20.0
+margin_left = 68.0
+margin_right = 132.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
 toggle_mode = true
-text = "FF"
-script = SubResource( 42 )
+icon = ExtResource( 24 )
+expand_icon = true
+script = SubResource( 31 )
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
+margin_left = 136.0
+margin_top = 25.0
+margin_right = 224.0
+margin_bottom = 39.0
+text = "Mission: 60 H"
 
 [node name="Outlines" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
-margin_left = 335.0
-margin_right = 402.0
-margin_bottom = 20.0
+margin_left = 228.0
+margin_right = 292.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
 toggle_mode = true
-text = "Outlines"
-script = SubResource( 43 )
+icon = ExtResource( 23 )
+expand_icon = true
+script = SubResource( 32 )
 
-[node name="Tutorial" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
-margin_left = 406.0
-margin_right = 466.0
-margin_bottom = 20.0
-text = "Tutorial"
-
-[node name="Mission" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
-margin_left = 470.0
-margin_right = 532.0
-margin_bottom = 20.0
-text = "Mission"
-
-[node name="Sandbox" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
-margin_left = 536.0
-margin_right = 601.0
-margin_bottom = 20.0
-text = "Sandbox"
+[node name="Menu" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
+margin_left = 296.0
+margin_right = 360.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+icon = ExtResource( 26 )
+expand_icon = true
+script = SubResource( 52 )
 
 [node name="MarginContainerSide" type="MarginContainer" parent="CanvasLayer/UI/MainUI"]
 pause_mode = 2
@@ -1266,14 +1586,29 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer"]
-margin_top = 172.0
+margin_top = 124.0
 margin_right = 128.0
-margin_bottom = 428.0
+margin_bottom = 476.0
 custom_constants/separation = 32
 
-[node name="IronButton0" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer"]
+[node name="BuildMode" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer"]
 margin_right = 128.0
 margin_bottom = 64.0
+rect_min_size = Vector2( 96, 64 )
+toggle_mode = true
+group = ExtResource( 11 )
+text = "Build"
+icon = ExtResource( 22 )
+expand_icon = true
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="IronButton0" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer"]
+margin_top = 96.0
+margin_right = 128.0
+margin_bottom = 160.0
 rect_min_size = Vector2( 96, 64 )
 toggle_mode = true
 group = ExtResource( 11 )
@@ -1285,9 +1620,9 @@ __meta__ = {
 }
 
 [node name="CopperButton0" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer"]
-margin_top = 96.0
+margin_top = 192.0
 margin_right = 128.0
-margin_bottom = 160.0
+margin_bottom = 256.0
 rect_min_size = Vector2( 128, 64 )
 toggle_mode = true
 group = ExtResource( 11 )
@@ -1299,9 +1634,9 @@ __meta__ = {
 }
 
 [node name="SilicaButton0" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer"]
-margin_top = 192.0
+margin_top = 288.0
 margin_right = 128.0
-margin_bottom = 256.0
+margin_bottom = 352.0
 rect_min_size = Vector2( 128, 64 )
 toggle_mode = true
 group = ExtResource( 11 )
@@ -1319,16 +1654,11 @@ visible = false
 position = Vector2( 512, 299.206 )
 texture = ExtResource( 2 )
 
-[node name="InputCapture" type="Node2D" parent="."]
-pause_mode = 2
-script = ExtResource( 17 )
-
 [node name="CentreNode" type="Node2D" parent="."]
 position = Vector2( 512, 300 )
 
 [node name="RingSystem" type="Node2D" parent="CentreNode"]
 script = ExtResource( 4 )
-rings = 10
 
 [node name="Ring0" parent="CentreNode/RingSystem" instance=ExtResource( 7 )]
 set_debug_color = Color( 1, 0, 0, 1 )
@@ -1411,7 +1741,7 @@ show = true
 ]]
 modulate = Color( 0, 0, 1, 1 )
 position = Vector2( -3.46068, 0 )
-multimesh = SubResource( 67 )
+multimesh = SubResource( 69 )
 texture = ExtResource( 1 )
 script = ExtResource( 5 )
 set_resource = "iron"
@@ -1431,7 +1761,7 @@ show = true
 ]]
 modulate = Color( 1, 1, 0, 1 )
 position = Vector2( -12.1307, 0 )
-multimesh = SubResource( 69 )
+multimesh = SubResource( 71 )
 texture = ExtResource( 15 )
 script = ExtResource( 5 )
 set_resource = "copper"
@@ -1451,7 +1781,7 @@ show = true
 ]]
 modulate = Color( 0.8, 0.8, 0, 1 )
 position = Vector2( -20.7248, 0 )
-multimesh = SubResource( 71 )
+multimesh = SubResource( 73 )
 texture = ExtResource( 12 )
 script = ExtResource( 5 )
 set_resource = "silica"
@@ -1463,11 +1793,11 @@ ring = NodePath("../../../../../Root/CentreNode/InjectionSystem/Silica0/MultiMes
 
 [node name="Sol" type="Sprite" parent="CentreNode"]
 visible = false
-material = SubResource( 50 )
-texture = SubResource( 52 )
+material = SubResource( 40 )
+texture = SubResource( 42 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 53 )
+environment = SubResource( 43 )
 
 [node name="Line2D" type="Line2D" parent="."]
 visible = false
@@ -1488,9 +1818,16 @@ script = ExtResource( 13 )
 [node name="SomethingChanged" type="Timer" parent="."]
 pause_mode = 2
 process_mode = 0
-wait_time = 0.016
+wait_time = 0.01
 one_shot = true
 script = ExtResource( 19 )
+
+[node name="InputCapture" type="Node2D" parent="."]
+pause_mode = 2
+script = ExtResource( 17 )
+
+[node name="RuleChanger" type="Node2D" parent="."]
+script = ExtResource( 31 )
 
 [connection signal="popup_hide" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="hide_diag"]
 [connection signal="timeout" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/UpdateTimer" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_UpdateTimer_timeout"]
@@ -1506,10 +1843,15 @@ script = ExtResource( 19 )
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset/GridContainer/Remove" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset/GridContainer/Remove" method="_on_Remove_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/HBoxContainer/Clear" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/HBoxContainer/Clear" method="_on_Clear_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/HBoxContainer/Remove" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/HBoxContainer/Remove" method="_on_Remove_pressed"]
-[connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/BuildMode" to="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/BuildMode" method="_on_Button_toggled"]
+[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/CenterContainer/Sandbox" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/CenterContainer/Sandbox" method="_on_Sandbox_pressed"]
+[connection signal="value_changed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/Ring/RingsSlider" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/Ring/RingsSlider" method="_on_RingsSlider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/Lane/LanesSlider" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/Lane/LanesSlider" method="_on_LanesSlider_value_changed"]
+[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/HBoxContainer/Back" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/HBoxContainer/Back" method="_on_Back_pressed"]
 [connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Pause" to="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Pause" method="_on_Pause_toggled"]
 [connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/FF" to="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/FF" method="_on_FF_toggled"]
 [connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Outlines" to="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Outlines" method="_on_Outlines_toggled"]
+[connection signal="pressed" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Menu" to="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Menu" method="_on_Menu_pressed"]
+[connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/BuildMode" to="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/BuildMode" method="_on_Button_toggled"]
 [connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/IronButton0" to="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/IronButton0" method="_on_Button_toggled"]
 [connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/CopperButton0" to="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/CopperButton0" method="_on_Button_toggled"]
 [connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/SilicaButton0" to="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/SilicaButton0" method="_on_Button_toggled"]

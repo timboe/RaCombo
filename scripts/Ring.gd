@@ -20,6 +20,14 @@ func _ready():
 	$ShipRotationTemplate.visible = false
 	ring_number = name.to_int()
 	
+func reset():
+	for l in get_lanes():
+		if l.lane_content != null:
+			l.deregister_resource()
+	for f in get_factories():
+		f.remove()
+	$"/root/Game/SomethingChanged".something_changed()
+	
 func add_to_ring(var angle : float, var lane : int):
 	var angle_mod = angle - $Rotation.rotation
 	return get_lane(lane).add_to_ring(angle_mod)
@@ -39,6 +47,8 @@ func new_factory():
 	new_factory.get_node("FactoryProcess").add_to_group("FactoryGroup", true)
 	var new_factory_angle_start = (new_factory.global_rotation - new_factory.span_radians/2.0) - $Rotation.rotation
 	var new_factory_angle_end = (new_factory.global_rotation + new_factory.span_radians/2.0) - $Rotation.rotation
+	new_factory.factory_angle_start = new_factory_angle_start
+	new_factory.factory_angle_end = new_factory_angle_end
 	for l in get_lanes():
 		l.set_range_fillable(new_factory_angle_start, new_factory_angle_end, false)
 	print("Factory ",new_factory.name," placed")

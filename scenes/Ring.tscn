@@ -69,6 +69,7 @@ script = ExtResource( 5 )
 show = true
 
 [node name="ShipRotationTemplate" type="Node2D" parent="."]
+visible = false
 
 [node name="Ship" type="Node2D" parent="ShipRotationTemplate"]
 script = ExtResource( 4 )
@@ -135,12 +136,11 @@ outer_radius = 177.5
 span_radians = 0.231
 factory_color = PoolColorArray( 0.6, 0.6, 0.6, 1 )
 factory_outline_color = Color( 0.8, 0.8, 0.8, 1 )
-recipy = null
 descriptive_name = "0 Unassigned Satelite"
 
 [node name="NewShip" type="Timer" parent="Rotation/FactoryTemplate"]
 process_mode = 0
-wait_time = 10.0
+wait_time = 2.5
 one_shot = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Rotation/FactoryTemplate"]
@@ -179,8 +179,6 @@ __meta__ = {
 script = ExtResource( 7 )
 angle_back = -0.1155
 angle_front = 0.1155
-output_content = null
-output_direction = null
 
 [node name="Timer" type="Timer" parent="Rotation/FactoryTemplate/FactoryProcess"]
 process_mode = 0
@@ -191,7 +189,6 @@ visible = false
 points = PoolVector2Array( 0, 0, 400, 0 )
 default_color = Color( 0.24, 0.0768, 0.14208, 1 )
 
-[connection signal="tween_all_completed" from="ShipRotationTemplate/Ship/Tween" to="ShipRotationTemplate/Ship" method="_on_Tween_tween_all_completed"]
 [connection signal="area_entered" from="Rotation/FactoryTemplate" to="Rotation/FactoryTemplate" method="_on_FactoryTemplate_area_entered"]
 [connection signal="area_exited" from="Rotation/FactoryTemplate" to="Rotation/FactoryTemplate" method="_on_FactoryTemplate_area_exited"]
 [connection signal="timeout" from="Rotation/FactoryTemplate/NewShip" to="Rotation/FactoryTemplate" method="_on_NewShip_timeout"]

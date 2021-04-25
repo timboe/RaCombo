@@ -90,6 +90,7 @@ func get_injecton_button() -> Button:
 	elif name == "SilicaInjection0":
 		return silica_button0
 	else:
+		print("ERROR cannot get injection button for ",name)
 		return null
 
 

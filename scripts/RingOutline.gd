@@ -19,13 +19,14 @@ func set_show(var i : bool):
 
 func _draw():
 	var p : Node2D = get_parent()
-	var outer : float = p.radius_array[ p.set_lanes-1] + p.LANE_OFFSET/2.0
+	var to_draw : int = p.set_lanes if p.name == "Ring0" else Global.lanes 
+	var outer : float = p.radius_array[ to_draw-1] + p.LANE_OFFSET/2.0
 	var hl : float = 0.2 if highlight else 0.0
 	var c1 = Color(0.8 + hl, 0.8 + hl, 0.8 + hl)
 	var c2 = Color(0.6 + hl, 0.6 + hl, 0.6 + hl)
 	
 	if show:
-		for i in range(get_parent().set_lanes):
+		for i in range(to_draw):
 			var r : float = p.radius_array[i] - p.LANE_OFFSET/2.0
 			var c = c1 if i == 0 else c2
 			draw_arc(Vector2(0,0), r, 0, 2*PI, 256, c, 1, true)

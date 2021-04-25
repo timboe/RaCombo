@@ -19,6 +19,8 @@ func _ready():
 		multimesh.set_instance_transform_2d(i, t)
 
 func reset():
+	if factory_process != null:
+		factory_process.remove_spy(self)
 	factory_process = null
 
 func update_visible():
@@ -36,6 +38,8 @@ func set_visible_count(var i : int):
 func set_resource(var resource : String, var _factory_process, var _is_input : bool = false, var _index : bool = 0):
 	is_input = _is_input
 	input_index = _index
+	if factory_process != null:
+		factory_process.remove_spy(self)
 	factory_process = _factory_process
 	factory_process.set_spy(self)
 	modulate = Global.data[resource]["color"]

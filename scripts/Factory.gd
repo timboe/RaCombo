@@ -10,6 +10,9 @@ export(float) var inner_radius
 export(float) var outer_radius
 export(float) var span_radians
 
+export(float) var factory_angle_start
+export(float) var factory_angle_end
+
 export(PoolColorArray) var factory_color
 export(Color) var factory_outline_color
 export(bool) var colliding
@@ -97,8 +100,7 @@ func configure_building(var _mode : int, var _recipy : String):
 	$Label.text = Global.data[recipy]["name"] + ("+" if Global.data[recipy]["mode"] == "extract" else "-")
 	update()
 	set_descriptive_name()
-	if mode == Global.BUILDING_EXTRACTOR and ring.ring_number + 1 == Global.rings:
-		_on_NewShip_timeout()
+	check_add_remove_ship()
 	
 func get_process_node():
 	return $FactoryProcess
@@ -115,12 +117,12 @@ func reset():
 
 func remove():
 	$FactoryProcess.reset()
+	for l in ring.get_lanes():
+		l.set_range_fillable(factory_angle_start, factory_angle_end, true)
 	queue_free()
 
-func lane_cleared(var lane_or_ship : Node2D, var and_queue_new_ship : bool = false):
+func lane_cleared(var lane_or_ship : Node2D):
 	$FactoryProcess.lane_cleared(lane_or_ship)
-	if and_queue_new_ship:
-		$NewShip.start()
 	
 func set_descriptive_name():
 	descriptive_name = String(name.to_int()) + " "
@@ -143,6 +145,13 @@ func setup_resource(var i_radius : float, var o_radius : float, var _span : floa
 	factory_color = PoolColorArray([Color(0.6, 0.6, 0.6, 1.0)])
 	colliding = false
 	update()
+	
+func check_add_remove_ship():
+	if $FactoryProcess.ship == null and mode == Global.BUILDING_EXTRACTOR and ring.ring_number + 1 == Global.rings:
+		_on_NewShip_timeout()
+	elif ring.ring_number + 1 != Global.rings:
+		print("rmove any ships from ",ring.ring_number + 1," (note +1) which is not ", Global.rings)
+		$FactoryProcess.remove_any_ship()
 
 func _on_FactoryTemplate_area_entered(_area):
 	if name == "FactoryTemplate":
@@ -160,6 +169,10 @@ func _on_TextureButton_pressed():
 	id.show_building_diag(self)
 
 func _on_NewShip_timeout():
+	if ring.ring_number + 1 != Global.rings:
+		print("_on_NewShip_timeout cancelled due to not being outer ring")
+		return
+	print("New ship")
 	var sr = ring.get_node("ShipRotationTemplate").duplicate(DUPLICATE_SCRIPTS|DUPLICATE_GROUPS|DUPLICATE_SIGNALS)
 	sr.name = "ShipRotation1"
 	ring.add_child(sr, true)
