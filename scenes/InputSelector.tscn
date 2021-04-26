@@ -48,7 +48,7 @@ margin_top = 3.0
 margin_right = 223.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 32, 0 )
-text = "0.05"
+text = "0.5"
 align = 2
 
 [node name="s" type="Label" parent="."]
@@ -68,6 +68,8 @@ min_value = 0.1
 max_value = 2.0
 step = 0.05
 value = 0.5
+tick_count = 5
+ticks_on_borders = true
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false

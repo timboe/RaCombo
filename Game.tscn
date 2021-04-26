@@ -32,7 +32,7 @@
 [ext_resource path="res://images/back.png" type="Texture" id=30]
 [ext_resource path="res://images/menu.png" type="Texture" id=31]
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="GDScript" id=56]
 script/source = "extends ItemList
 
 onready var id = get_tree().get_root().find_node(\"InfoDialog\", true, false) 
@@ -41,7 +41,7 @@ func _on_FactoriesList_item_selected(index):
 	id.show_building_diag( get_item_metadata(index) )
 "
 
-[sub_resource type="GDScript" id=2]
+[sub_resource type="GDScript" id=57]
 script/source = "extends CheckButton
 
 func _on_Extractor_pressed():
@@ -51,7 +51,7 @@ func _on_Extractor_pressed():
 	print(\"Show extrators\")
 "
 
-[sub_resource type="GDScript" id=3]
+[sub_resource type="GDScript" id=58]
 script/source = "extends CheckButton
 
 func _on_Inserter_pressed():
@@ -61,7 +61,7 @@ func _on_Inserter_pressed():
 	print(\"Show inserters\")
 "
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="GDScript" id=59]
 script/source = "extends CheckButton
 
 func _on_Factory_pressed():
@@ -71,7 +71,7 @@ func _on_Factory_pressed():
 	print(\"Show factories\")
 "
 
-[sub_resource type="GDScript" id=5]
+[sub_resource type="GDScript" id=60]
 script/source = "extends Button
 
 onready var id : WindowDialog = get_tree().get_root().find_node(\"InfoDialog\",true,false)
@@ -157,52 +157,16 @@ func _process(var _delta):
 	set_process(false)
 "
 
-[sub_resource type="QuadMesh" id=56]
+[sub_resource type="QuadMesh" id=61]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=57]
+[sub_resource type="MultiMesh" id=62]
 instance_count = 49
-mesh = SubResource( 56 )
+mesh = SubResource( 61 )
 transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
 
-[sub_resource type="StreamTexture" id=11]
-flags = 4
-load_path = "res://.import/circle.png-5e04c73a6bc42d15cee139f3c4ec364c.stex"
-
-[sub_resource type="QuadMesh" id=58]
-size = Vector2( 10, 10 )
-
-[sub_resource type="MultiMesh" id=59]
-instance_count = 49
-mesh = SubResource( 58 )
-transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
-
-[sub_resource type="StreamTexture" id=14]
-flags = 4
-load_path = "res://.import/circle.png-5e04c73a6bc42d15cee139f3c4ec364c.stex"
-
-[sub_resource type="QuadMesh" id=60]
-size = Vector2( 10, 10 )
-
-[sub_resource type="MultiMesh" id=61]
-instance_count = 49
-mesh = SubResource( 60 )
-transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
-
-[sub_resource type="StreamTexture" id=17]
-flags = 4
-load_path = "res://.import/circle.png-5e04c73a6bc42d15cee139f3c4ec364c.stex"
-
-[sub_resource type="QuadMesh" id=62]
-size = Vector2( 10, 10 )
-
-[sub_resource type="MultiMesh" id=63]
-instance_count = 49
-mesh = SubResource( 62 )
-transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
-
-[sub_resource type="StreamTexture" id=20]
-flags = 4
+[sub_resource type="StreamTexture" id=63]
+flags = 5
 load_path = "res://.import/circle.png-5e04c73a6bc42d15cee139f3c4ec364c.stex"
 
 [sub_resource type="QuadMesh" id=64]
@@ -213,7 +177,43 @@ instance_count = 49
 mesh = SubResource( 64 )
 transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
 
-[sub_resource type="GDScript" id=23]
+[sub_resource type="StreamTexture" id=66]
+flags = 5
+load_path = "res://.import/circle.png-5e04c73a6bc42d15cee139f3c4ec364c.stex"
+
+[sub_resource type="QuadMesh" id=67]
+size = Vector2( 10, 10 )
+
+[sub_resource type="MultiMesh" id=68]
+instance_count = 49
+mesh = SubResource( 67 )
+transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
+
+[sub_resource type="StreamTexture" id=69]
+flags = 5
+load_path = "res://.import/circle.png-5e04c73a6bc42d15cee139f3c4ec364c.stex"
+
+[sub_resource type="QuadMesh" id=70]
+size = Vector2( 10, 10 )
+
+[sub_resource type="MultiMesh" id=71]
+instance_count = 49
+mesh = SubResource( 70 )
+transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
+
+[sub_resource type="StreamTexture" id=72]
+flags = 5
+load_path = "res://.import/circle.png-5e04c73a6bc42d15cee139f3c4ec364c.stex"
+
+[sub_resource type="QuadMesh" id=73]
+size = Vector2( 10, 10 )
+
+[sub_resource type="MultiMesh" id=74]
+instance_count = 49
+mesh = SubResource( 73 )
+transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
+
+[sub_resource type="GDScript" id=75]
 script/source = "extends Node2D
 tool
 
@@ -241,15 +241,15 @@ func set_resource(var recipy : String):
 	update()
 "
 
-[sub_resource type="QuadMesh" id=66]
+[sub_resource type="QuadMesh" id=76]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=67]
+[sub_resource type="MultiMesh" id=77]
 instance_count = 49
-mesh = SubResource( 66 )
+mesh = SubResource( 76 )
 transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
 
-[sub_resource type="GDScript" id=26]
+[sub_resource type="GDScript" id=78]
 script/source = "extends Button
 
 onready var id : WindowDialog = get_tree().get_root().find_node(\"InfoDialog\",true,false)
@@ -259,7 +259,7 @@ func _on_Clear_pressed():
 	id.update_diag()
 "
 
-[sub_resource type="GDScript" id=27]
+[sub_resource type="GDScript" id=79]
 script/source = "extends Button
 
 onready var id : WindowDialog = get_tree().get_root().find_node(\"InfoDialog\",true,false)
@@ -281,19 +281,19 @@ script/source = "extends Button
 onready var id = get_tree().get_root().find_node(\"InfoDialog\", true, false) 
 "
 
-[sub_resource type="GDScript" id=46]
+[sub_resource type="GDScript" id=80]
 script/source = "extends Button
 
 onready var id = get_tree().get_root().find_node(\"InfoDialog\", true, false) 
 "
 
-[sub_resource type="GDScript" id=45]
+[sub_resource type="GDScript" id=81]
 script/source = "extends Button
 
 onready var id = get_tree().get_root().find_node(\"InfoDialog\", true, false) 
 "
 
-[sub_resource type="GDScript" id=44]
+[sub_resource type="GDScript" id=82]
 script/source = "extends Button
 
 onready var id = get_tree().get_root().find_node(\"InfoDialog\", true, false) 
@@ -331,7 +331,7 @@ func _on_RingsSlider_value_changed(value):
 	rc.set_rings(int(value)) # +1 because of the sun ring
 "
 
-[sub_resource type="GDScript" id=53]
+[sub_resource type="GDScript" id=83]
 script/source = "extends HSlider
 
 onready var label = get_parent().get_node(\"Label\")
@@ -351,13 +351,13 @@ func _on_Back_pressed():
 	id.toggle_menu_diag()
 "
 
-[sub_resource type="InputEventAction" id=28]
+[sub_resource type="InputEventAction" id=84]
 action = "ui_pause"
 
-[sub_resource type="ShortCut" id=29]
-shortcut = SubResource( 28 )
+[sub_resource type="ShortCut" id=85]
+shortcut = SubResource( 84 )
 
-[sub_resource type="GDScript" id=30]
+[sub_resource type="GDScript" id=86]
 script/source = "extends Button
 
 func _on_Pause_toggled(button_pressed):
@@ -366,7 +366,7 @@ func _on_Pause_toggled(button_pressed):
 	Physics2DServer.set_active(true)
 "
 
-[sub_resource type="GDScript" id=31]
+[sub_resource type="GDScript" id=87]
 script/source = "extends Button
 
 func _on_FF_toggled(button_pressed):
@@ -374,7 +374,7 @@ func _on_FF_toggled(button_pressed):
 	print(\"Game speed \", Engine.time_scale)
 "
 
-[sub_resource type="GDScript" id=32]
+[sub_resource type="GDScript" id=88]
 script/source = "extends Button
 
 func _on_Outlines_toggled(button_pressed):
@@ -393,43 +393,43 @@ func _on_Menu_pressed():
 	id.toggle_menu_diag()
 "
 
-[sub_resource type="QuadMesh" id=68]
+[sub_resource type="QuadMesh" id=89]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=69]
-mesh = SubResource( 68 )
+[sub_resource type="MultiMesh" id=90]
+mesh = SubResource( 89 )
 
-[sub_resource type="QuadMesh" id=70]
+[sub_resource type="QuadMesh" id=91]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=71]
-mesh = SubResource( 70 )
+[sub_resource type="MultiMesh" id=92]
+mesh = SubResource( 91 )
 
-[sub_resource type="QuadMesh" id=72]
+[sub_resource type="QuadMesh" id=93]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=73]
-mesh = SubResource( 72 )
+[sub_resource type="MultiMesh" id=94]
+mesh = SubResource( 93 )
 
-[sub_resource type="QuadMesh" id=74]
+[sub_resource type="QuadMesh" id=95]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=75]
-mesh = SubResource( 74 )
+[sub_resource type="MultiMesh" id=96]
+mesh = SubResource( 95 )
 
-[sub_resource type="QuadMesh" id=76]
+[sub_resource type="QuadMesh" id=97]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=77]
-mesh = SubResource( 76 )
+[sub_resource type="MultiMesh" id=98]
+mesh = SubResource( 97 )
 
-[sub_resource type="QuadMesh" id=78]
+[sub_resource type="QuadMesh" id=99]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=79]
-mesh = SubResource( 78 )
+[sub_resource type="MultiMesh" id=100]
+mesh = SubResource( 99 )
 
-[sub_resource type="Shader" id=39]
+[sub_resource type="Shader" id=101]
 code = "shader_type canvas_item;
 
 void fragment() {
@@ -442,17 +442,17 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id=40]
-shader = SubResource( 39 )
+[sub_resource type="ShaderMaterial" id=102]
+shader = SubResource( 101 )
 
-[sub_resource type="OpenSimplexNoise" id=41]
+[sub_resource type="OpenSimplexNoise" id=103]
 
-[sub_resource type="NoiseTexture" id=42]
+[sub_resource type="NoiseTexture" id=104]
 width = 128
 height = 128
-noise = SubResource( 41 )
+noise = SubResource( 103 )
 
-[sub_resource type="Environment" id=43]
+[sub_resource type="Environment" id=105]
 background_mode = 4
 glow_intensity = 2.0
 glow_strength = 1.8
@@ -700,7 +700,7 @@ margin_right = 340.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 340, 50 )
 auto_height = true
-script = SubResource( 1 )
+script = SubResource( 56 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -762,7 +762,7 @@ pressed = true
 group = ExtResource( 2 )
 text = "Extractor"
 align = 1
-script = SubResource( 2 )
+script = SubResource( 57 )
 
 [node name="Inserter" type="CheckButton" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset/GridContainer"]
 margin_left = 181.0
@@ -772,7 +772,7 @@ size_flags_horizontal = 3
 group = ExtResource( 2 )
 text = "Inserter"
 align = 1
-script = SubResource( 3 )
+script = SubResource( 58 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -785,7 +785,7 @@ size_flags_horizontal = 3
 group = ExtResource( 2 )
 text = "Factory"
 align = 1
-script = SubResource( 4 )
+script = SubResource( 59 )
 
 [node name="Remove" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset/GridContainer"]
 margin_left = 181.0
@@ -796,7 +796,7 @@ size_flags_horizontal = 3
 text = "Remove Satelite"
 icon = ExtResource( 18 )
 expand_icon = true
-script = SubResource( 5 )
+script = SubResource( 60 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -936,8 +936,8 @@ __meta__ = {
 [node name="Mm" type="MultiMeshInstance2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs/GridContainer/I0/Count" groups=[
 "InfoMultimeshGroup",
 ]]
-multimesh = SubResource( 57 )
-texture = SubResource( 11 )
+multimesh = SubResource( 62 )
+texture = SubResource( 63 )
 script = ExtResource( 7 )
 
 [node name="I1" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs/GridContainer"]
@@ -986,8 +986,8 @@ __meta__ = {
 [node name="Mm" type="MultiMeshInstance2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs/GridContainer/I1/Count" groups=[
 "InfoMultimeshGroup",
 ]]
-multimesh = SubResource( 59 )
-texture = SubResource( 14 )
+multimesh = SubResource( 65 )
+texture = SubResource( 66 )
 script = ExtResource( 7 )
 
 [node name="I2" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs/GridContainer"]
@@ -1027,8 +1027,8 @@ __meta__ = {
 [node name="Mm" type="MultiMeshInstance2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs/GridContainer/I2/Count" groups=[
 "InfoMultimeshGroup",
 ]]
-multimesh = SubResource( 61 )
-texture = SubResource( 17 )
+multimesh = SubResource( 68 )
+texture = SubResource( 69 )
 script = ExtResource( 7 )
 
 [node name="I3" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs/GridContainer"]
@@ -1078,8 +1078,8 @@ __meta__ = {
 [node name="Mm" type="MultiMeshInstance2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs/GridContainer/I3/Count" groups=[
 "InfoMultimeshGroup",
 ]]
-multimesh = SubResource( 63 )
-texture = SubResource( 20 )
+multimesh = SubResource( 71 )
+texture = SubResource( 72 )
 script = ExtResource( 7 )
 
 [node name="HSeparator" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs"]
@@ -1148,7 +1148,7 @@ __meta__ = {
 [node name="Mm" type="MultiMeshInstance2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Output/OutAndShip/Out/Count" groups=[
 "InfoMultimeshGroup",
 ]]
-multimesh = SubResource( 65 )
+multimesh = SubResource( 74 )
 texture = ExtResource( 19 )
 script = ExtResource( 7 )
 
@@ -1182,7 +1182,7 @@ __meta__ = {
 }
 
 [node name="Ship" type="Node2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Output/OutAndShip/Ship/Ship"]
-script = SubResource( 23 )
+script = SubResource( 75 )
 
 [node name="Spacer" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Output/OutAndShip/Ship"]
 margin_left = 104.0
@@ -1203,7 +1203,7 @@ __meta__ = {
 [node name="Mm" type="MultiMeshInstance2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Output/OutAndShip/Ship/Count" groups=[
 "InfoMultimeshGroup",
 ]]
-multimesh = SubResource( 67 )
+multimesh = SubResource( 77 )
 texture = ExtResource( 19 )
 script = ExtResource( 7 )
 
@@ -1234,7 +1234,7 @@ size_flags_horizontal = 3
 text = "Reset Satelite"
 icon = ExtResource( 14 )
 expand_icon = true
-script = SubResource( 26 )
+script = SubResource( 78 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1248,7 +1248,7 @@ size_flags_horizontal = 3
 text = "Remove Satelite"
 icon = ExtResource( 18 )
 expand_icon = true
-script = SubResource( 27 )
+script = SubResource( 79 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1302,7 +1302,7 @@ margin_right = 120.0
 margin_bottom = 144.0
 rect_min_size = Vector2( 0, 64 )
 text = "Recipy Book"
-script = SubResource( 46 )
+script = SubResource( 80 )
 
 [node name="Mission" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/CenterContainer"]
 margin_left = 136.0
@@ -1311,7 +1311,7 @@ margin_right = 249.0
 margin_bottom = 144.0
 rect_min_size = Vector2( 0, 64 )
 text = "Current Mission"
-script = SubResource( 45 )
+script = SubResource( 81 )
 
 [node name="Sandbox" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/CenterContainer"]
 margin_top = 160.0
@@ -1320,7 +1320,7 @@ margin_bottom = 224.0
 rect_min_size = Vector2( 0, 64 )
 hint_tooltip = "Only available in Sandbox game mode."
 text = "Sandbox Settings"
-script = SubResource( 44 )
+script = SubResource( 82 )
 
 [node name="Tutorial" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/CenterContainer"]
 margin_left = 136.0
@@ -1430,7 +1430,7 @@ max_value = 4.0
 value = 1.0
 rounded = true
 tick_count = 4
-script = SubResource( 53 )
+script = SubResource( 83 )
 
 [node name="HSeparator2" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
 margin_top = 94.0
@@ -1547,10 +1547,10 @@ margin_right = 64.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 toggle_mode = true
-shortcut = SubResource( 29 )
+shortcut = SubResource( 85 )
 icon = ExtResource( 29 )
 expand_icon = true
-script = SubResource( 30 )
+script = SubResource( 86 )
 
 [node name="FF" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
 margin_left = 68.0
@@ -1560,7 +1560,7 @@ rect_min_size = Vector2( 64, 64 )
 toggle_mode = true
 icon = ExtResource( 26 )
 expand_icon = true
-script = SubResource( 31 )
+script = SubResource( 87 )
 
 [node name="Label" type="Label" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
 margin_left = 136.0
@@ -1577,7 +1577,7 @@ rect_min_size = Vector2( 64, 64 )
 toggle_mode = true
 icon = ExtResource( 24 )
 expand_icon = true
-script = SubResource( 32 )
+script = SubResource( 88 )
 
 [node name="Menu" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
 margin_left = 296.0
@@ -1732,7 +1732,7 @@ show = true
 ]]
 modulate = Color( 0, 0, 1, 1 )
 position = Vector2( -3.46068, 0 )
-multimesh = SubResource( 69 )
+multimesh = SubResource( 90 )
 texture = ExtResource( 15 )
 script = ExtResource( 8 )
 set_resource = "Ir"
@@ -1752,7 +1752,7 @@ show = true
 ]]
 modulate = Color( 1, 1, 0, 1 )
 position = Vector2( -12.1307, 0 )
-multimesh = SubResource( 71 )
+multimesh = SubResource( 92 )
 texture = ExtResource( 19 )
 script = ExtResource( 8 )
 set_resource = "Cu"
@@ -1772,7 +1772,7 @@ show = true
 ]]
 modulate = Color( 0.97, 0.15, 0.52, 1 )
 position = Vector2( -20.7248, 0 )
-multimesh = SubResource( 73 )
+multimesh = SubResource( 94 )
 texture = ExtResource( 17 )
 script = ExtResource( 8 )
 set_resource = "Si"
@@ -1792,7 +1792,7 @@ show = true
 ]]
 modulate = Color( 0.05, 0.05, 0.05, 1 )
 position = Vector2( -20.7248, 0 )
-multimesh = SubResource( 75 )
+multimesh = SubResource( 96 )
 texture = ExtResource( 19 )
 script = ExtResource( 8 )
 set_resource = "none"
@@ -1812,7 +1812,7 @@ show = true
 ]]
 modulate = Color( 0.05, 0.05, 0.05, 1 )
 position = Vector2( -20.7248, 0 )
-multimesh = SubResource( 77 )
+multimesh = SubResource( 98 )
 texture = ExtResource( 19 )
 script = ExtResource( 8 )
 set_resource = "none"
@@ -1832,7 +1832,7 @@ show = true
 ]]
 modulate = Color( 0.05, 0.05, 0.05, 1 )
 position = Vector2( -20.7248, 0 )
-multimesh = SubResource( 79 )
+multimesh = SubResource( 100 )
 texture = ExtResource( 19 )
 script = ExtResource( 8 )
 set_resource = "none"
@@ -1915,11 +1915,11 @@ n = 502.655
 
 [node name="Sol" type="Sprite" parent="CentreNode"]
 visible = false
-material = SubResource( 40 )
-texture = SubResource( 42 )
+material = SubResource( 102 )
+texture = SubResource( 104 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 43 )
+environment = SubResource( 105 )
 
 [node name="Line2D" type="Line2D" parent="."]
 visible = false

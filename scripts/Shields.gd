@@ -55,7 +55,7 @@ func _process(var _delta):
 		_sign.text = ""
 		shape.visible = false
 		shape_outline.visible = false
-	if key == "sol":
+	if key == "Sol":
 		shield.get_node("Sol").visible = true
 	# Render
 	# Wait until the frame has finished before getting the texture.

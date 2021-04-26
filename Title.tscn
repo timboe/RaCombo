@@ -1,79 +1,14 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://scenes/InputSelector.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/MissionConfiguration.tscn" type="PackedScene" id=1]
 [ext_resource path="res://titlescripts/SliderToText.gd" type="Script" id=2]
+[ext_resource path="res://titlescripts/CustomCampaignButtons.gd" type="Script" id=3]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Button
 
 func _on_NewCampaign_pressed():
 	Global.goto_scene(\"res://Game.tscn\")
-"
-
-[sub_resource type="GDScript" id=2]
-script/source = "extends MenuButton
-tool
-
-onready	var pm : PopupMenu = get_popup() 
-
-var selected : String
-
-func _ready():
-	var i : int = 0
-	pm.clear()
-	pm.connect(\"index_pressed\", self, \"_on_MenuButton_index_pressed\")
-	for key in Global.data:
-		if Global.data[key][\"special\"] == true:
-			continue
-		pm.add_item(key + Global.data[key][\"mode\"])
-		pm.set_item_metadata(i, key)
-		if i == 0:
-			selected = key
-			text = pm.get_item_text(i)
-		i += 1
-
-func _on_MenuButton_index_pressed(var i):
-	selected = pm.get_item_metadata(i)
-	text = pm.get_item_text(i)
-"
-
-[sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 0.145098, 0.145098, 0.164706, 1 )
-
-[sub_resource type="GDScript" id=3]
-script/source = "extends GridContainer
-
-func _ready():
-
-	for key in Global.recipies:
-#		if Global.recipies[key][\"factory\"] == false:
-#			continue
-		var cb = CheckBox.new()
-		add_child(cb)
-		cb.name = key
-		
-		var d = Global.recipies[key]
-		
-		var time = Label.new()
-		time.text = String(d[\"time\"]) + \"s\"
-		add_child(time)
-		
-		var prod = Label.new()
-		prod.text = String(d[\"amount_out\"]) + \"x \"
-		prod.text += key + Global.data[ key ][\"mode\"]
-		add_child(prod)
-		
-		var eq = Label.new()
-		eq.text = \"=\"
-		add_child(eq)
-		
-		for i in range(4):
-			var input = Label.new()
-			if i < d[\"input\"].size():
-				input.text = String(d[\"amount_in\"][i]) + \"x \" + d[\"input\"][i]
-				input.text += Global.data[ d[\"input\"][i] ][\"mode\"]
-			add_child(input)
-		
 "
 
 [node name="Control" type="Control"]
@@ -137,293 +72,166 @@ text = "Exit to Desktop"
 [node name="Campaign" type="CenterContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = -4.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TabContainer" type="TabContainer" parent="Campaign"]
-margin_left = 152.0
-margin_top = 44.0
-margin_right = 872.0
-margin_bottom = 556.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Campaign"]
+margin_left = 150.0
+margin_top = 8.0
+margin_right = 870.0
+margin_bottom = 592.0
+custom_constants/separation = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Campaign/VBoxContainer"]
+margin_right = 720.0
+margin_bottom = 48.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Campaign/VBoxContainer/HBoxContainer"]
+margin_right = 466.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+
+[node name="GridContainer" type="GridContainer" parent="Campaign/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_right = 466.0
+margin_bottom = 48.0
+custom_constants/vseparation = 8
+custom_constants/hseparation = 8
+columns = 2
+
+[node name="Label" type="Label" parent="Campaign/VBoxContainer/HBoxContainer/VBoxContainer2/GridContainer"]
+margin_top = 5.0
+margin_right = 108.0
+margin_bottom = 19.0
+text = "Campaign Name:"
+
+[node name="CampaignName" type="LineEdit" parent="Campaign/VBoxContainer/HBoxContainer/VBoxContainer2/GridContainer"]
+margin_left = 116.0
+margin_right = 395.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 256, 0 )
+max_length = 30
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Campaign/VBoxContainer/HBoxContainer/VBoxContainer2/GridContainer"]
+margin_top = 33.0
+margin_right = 108.0
+margin_bottom = 47.0
+text = "Missions:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Campaign/VBoxContainer/HBoxContainer/VBoxContainer2/GridContainer"]
+margin_left = 116.0
+margin_top = 32.0
+margin_right = 395.0
+margin_bottom = 48.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="N" type="Label" parent="Campaign/VBoxContainer/HBoxContainer/VBoxContainer2/GridContainer/HBoxContainer"]
+margin_top = 1.0
+margin_right = 19.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 19, 0 )
+text = "1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Missions" type="HSlider" parent="Campaign/VBoxContainer/HBoxContainer/VBoxContainer2/GridContainer/HBoxContainer"]
+margin_left = 23.0
+margin_right = 279.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 256, 0 )
+min_value = 1.0
+max_value = 20.0
+value = 1.0
+rounded = true
+tick_count = 20
+ticks_on_borders = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="Campaign/VBoxContainer/HBoxContainer"]
+margin_left = 470.0
+margin_right = 720.0
+margin_bottom = 48.0
+custom_constants/vseparation = 8
+custom_constants/hseparation = 64
+columns = 2
+
+[node name="CustomResource" type="Button" parent="Campaign/VBoxContainer/HBoxContainer/GridContainer"]
+margin_right = 131.0
+margin_bottom = 20.0
+text = "Custom Resources"
+
+[node name="Save" type="Button" parent="Campaign/VBoxContainer/HBoxContainer/GridContainer"]
+margin_left = 195.0
+margin_right = 250.0
+margin_bottom = 20.0
+text = "Save"
+script = ExtResource( 3 )
+
+[node name="CustomRecipy" type="Button" parent="Campaign/VBoxContainer/HBoxContainer/GridContainer"]
+margin_top = 28.0
+margin_right = 131.0
+margin_bottom = 48.0
+text = "Custom Recipies"
+
+[node name="Delete" type="Button" parent="Campaign/VBoxContainer/HBoxContainer/GridContainer"]
+margin_left = 195.0
+margin_top = 28.0
+margin_right = 250.0
+margin_bottom = 48.0
+text = "Delete"
+script = ExtResource( 3 )
+
+[node name="TabContainer" type="TabContainer" parent="Campaign/VBoxContainer"]
+margin_top = 56.0
+margin_right = 720.0
+margin_bottom = 576.0
 rect_min_size = Vector2( 720, 512 )
 tab_align = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="Campaign/TabContainer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 32.0
-margin_right = -4.0
-margin_bottom = -4.0
-custom_constants/margin_right = 16
-custom_constants/margin_top = 16
-custom_constants/margin_left = 16
-custom_constants/margin_bottom = 16
+[node name="1" parent="Campaign/VBoxContainer/TabContainer" instance=ExtResource( 1 )]
 
-[node name="Mission" type="VBoxContainer" parent="Campaign/TabContainer/MarginContainer"]
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 696.0
-margin_bottom = 460.0
+[node name="HBoxContainer2" type="HBoxContainer" parent="Campaign/VBoxContainer"]
+margin_top = 584.0
+margin_right = 720.0
+margin_bottom = 584.0
 custom_constants/separation = 8
+alignment = 2
 
-[node name="Section1" type="Label" parent="Campaign/TabContainer/MarginContainer/Mission"]
-margin_right = 680.0
-margin_bottom = 14.0
-text = "Mission Requiremens"
+[node name="WarningDialog" type="AcceptDialog" parent="Campaign"]
+margin_left = 458.0
+margin_top = 271.0
+margin_right = 562.0
+margin_bottom = 329.0
+popup_exclusive = true
+window_title = "Warning!"
+resizable = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Campaign/TabContainer/MarginContainer/Mission"]
-margin_top = 22.0
-margin_right = 680.0
-margin_bottom = 42.0
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="Campaign/TabContainer/MarginContainer/Mission/HBoxContainer"]
-margin_top = 3.0
-margin_right = 33.0
-margin_bottom = 17.0
-text = "Goal:"
-
-[node name="MenuButton" type="MenuButton" parent="Campaign/TabContainer/MarginContainer/Mission/HBoxContainer"]
-margin_left = 37.0
-margin_right = 101.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 64, 16 )
-text = "H+"
-flat = false
-items = [ "H+", null, 0, false, false, 0, 0, "H", "", false, "Ir-", null, 0, false, false, 1, 0, "Ir", "", false, "Cu-", null, 0, false, false, 2, 0, "Cu", "", false, "St-", null, 0, false, false, 3, 0, "St", "", false, "Si-", null, 0, false, false, 4, 0, "Si", "", false, "G+", null, 0, false, false, 5, 0, "G", "", false, "Hi+", null, 0, false, false, 6, 0, "Hi", "", false, "Cf-", null, 0, false, false, 7, 0, "Cf", "", false, "T+", null, 0, false, false, 8, 0, "T", "", false, "Bg+", null, 0, false, false, 9, 0, "Bg", "", false, "Mt+", null, 0, false, false, 10, 0, "Mt", "", false, "XA-", null, 0, false, false, 11, 0, "XA", "", false, "XB+", null, 0, false, false, 12, 0, "XB", "", false, "XC+", null, 0, false, false, 13, 0, "XC", "", false, "CG+", null, 0, false, false, 14, 0, "CG", "", false, "SW+", null, 0, false, false, 15, 0, "SW", "", false ]
-script = SubResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Margin" type="MarginContainer" parent="Campaign/TabContainer/MarginContainer/Mission/HBoxContainer"]
-margin_left = 105.0
-margin_right = 121.0
-margin_bottom = 20.0
-custom_constants/margin_left = 16
-
-[node name="Amount" type="Label" parent="Campaign/TabContainer/MarginContainer/Mission/HBoxContainer"]
-margin_left = 125.0
-margin_top = 3.0
-margin_right = 180.0
-margin_bottom = 17.0
-text = "Amount:"
-
-[node name="N" type="Label" parent="Campaign/TabContainer/MarginContainer/Mission/HBoxContainer"]
-margin_left = 184.0
-margin_top = 3.0
-margin_right = 216.0
-margin_bottom = 17.0
-rect_min_size = Vector2( 32, 0 )
-text = "999"
-align = 2
-
-[node name="HSlider" type="HSlider" parent="Campaign/TabContainer/MarginContainer/Mission/HBoxContainer"]
-margin_left = 220.0
-margin_right = 680.0
-margin_bottom = 16.0
-size_flags_horizontal = 3
-min_value = 10.0
-max_value = 1000.0
-value = 10.0
-rounded = true
-tick_count = 10
-ticks_on_borders = true
-script = ExtResource( 2 )
-
-[node name="HSeparator" type="HSeparator" parent="Campaign/TabContainer/MarginContainer/Mission"]
-margin_top = 50.0
-margin_right = 680.0
-margin_bottom = 54.0
-
-[node name="Section2" type="Label" parent="Campaign/TabContainer/MarginContainer/Mission"]
-margin_top = 62.0
-margin_right = 680.0
-margin_bottom = 76.0
-text = "Input Resources"
-
-[node name="GridContainer" type="GridContainer" parent="Campaign/TabContainer/MarginContainer/Mission"]
-margin_top = 84.0
-margin_right = 680.0
-margin_bottom = 160.0
-custom_constants/vseparation = 8
-custom_constants/hseparation = 8
-columns = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Input0" parent="Campaign/TabContainer/MarginContainer/Mission/GridContainer" instance=ExtResource( 1 )]
-margin_right = 324.0
-
-[node name="VSeparator" type="VSeparator" parent="Campaign/TabContainer/MarginContainer/Mission/GridContainer"]
-margin_left = 332.0
-margin_right = 348.0
-margin_bottom = 20.0
-custom_constants/separation = 16
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Input1" parent="Campaign/TabContainer/MarginContainer/Mission/GridContainer" instance=ExtResource( 1 )]
-margin_left = 356.0
-margin_right = 680.0
-
-[node name="Input2" parent="Campaign/TabContainer/MarginContainer/Mission/GridContainer" instance=ExtResource( 1 )]
-margin_top = 28.0
-margin_right = 324.0
-margin_bottom = 48.0
-
-[node name="VSeparator2" type="VSeparator" parent="Campaign/TabContainer/MarginContainer/Mission/GridContainer"]
-margin_left = 332.0
-margin_top = 28.0
-margin_right = 348.0
-margin_bottom = 48.0
-custom_constants/separation = 16
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Input3" parent="Campaign/TabContainer/MarginContainer/Mission/GridContainer" instance=ExtResource( 1 )]
-margin_left = 356.0
-margin_top = 28.0
-margin_right = 680.0
-margin_bottom = 48.0
-
-[node name="Input4" parent="Campaign/TabContainer/MarginContainer/Mission/GridContainer" instance=ExtResource( 1 )]
-margin_top = 56.0
-margin_right = 324.0
-margin_bottom = 76.0
-
-[node name="VSeparator3" type="VSeparator" parent="Campaign/TabContainer/MarginContainer/Mission/GridContainer"]
-margin_left = 332.0
-margin_top = 56.0
-margin_right = 348.0
-margin_bottom = 76.0
-custom_constants/separation = 16
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Input5" parent="Campaign/TabContainer/MarginContainer/Mission/GridContainer" instance=ExtResource( 1 )]
-margin_left = 356.0
-margin_top = 56.0
-margin_right = 680.0
-margin_bottom = 76.0
-
-[node name="HSeparator2" type="HSeparator" parent="Campaign/TabContainer/MarginContainer/Mission"]
-margin_top = 168.0
-margin_right = 680.0
-margin_bottom = 172.0
-
-[node name="Section3" type="Label" parent="Campaign/TabContainer/MarginContainer/Mission"]
-margin_top = 180.0
-margin_right = 680.0
-margin_bottom = 194.0
-text = "Available Recipies"
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Campaign/TabContainer/MarginContainer/Mission"]
-margin_top = 202.0
-margin_right = 680.0
-margin_bottom = 302.0
-rect_min_size = Vector2( 0, 100 )
-custom_styles/bg = SubResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MarginContainer" type="MarginContainer" parent="Campaign/TabContainer/MarginContainer/Mission/ScrollContainer"]
-margin_right = 680.0
-margin_bottom = 100.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/margin_right = 16
-custom_constants/margin_top = 16
-custom_constants/margin_left = 16
-custom_constants/margin_bottom = 16
-
-[node name="GridContainer" type="GridContainer" parent="Campaign/TabContainer/MarginContainer/Mission/ScrollContainer/MarginContainer"]
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 664.0
-margin_bottom = 84.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/vseparation = 8
-custom_constants/hseparation = 16
-columns = 8
-script = SubResource( 3 )
-
-[node name="Enabled" type="Label" parent="Campaign/TabContainer/MarginContainer/Mission/ScrollContainer/MarginContainer/GridContainer"]
-margin_right = 50.0
-margin_bottom = 14.0
-text = "Enabled"
-
-[node name="Time" type="Label" parent="Campaign/TabContainer/MarginContainer/Mission/ScrollContainer/MarginContainer/GridContainer"]
-margin_left = 66.0
-margin_right = 98.0
-margin_bottom = 14.0
-text = "Time"
-
-[node name="Product" type="Label" parent="Campaign/TabContainer/MarginContainer/Mission/ScrollContainer/MarginContainer/GridContainer"]
-margin_left = 114.0
-margin_right = 163.0
-margin_bottom = 14.0
-text = "Product"
-
-[node name="Equals" type="MarginContainer" parent="Campaign/TabContainer/MarginContainer/Mission/ScrollContainer/MarginContainer/GridContainer"]
-margin_left = 179.0
-margin_right = 179.0
-margin_bottom = 14.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Input0" type="Label" parent="Campaign/TabContainer/MarginContainer/Mission/ScrollContainer/MarginContainer/GridContainer"]
-margin_left = 195.0
-margin_right = 241.0
-margin_bottom = 14.0
-text = "Input 1"
-
-[node name="Input1" type="Label" parent="Campaign/TabContainer/MarginContainer/Mission/ScrollContainer/MarginContainer/GridContainer"]
-margin_left = 257.0
-margin_right = 303.0
-margin_bottom = 14.0
-text = "Input 2"
-
-[node name="Input2" type="Label" parent="Campaign/TabContainer/MarginContainer/Mission/ScrollContainer/MarginContainer/GridContainer"]
-margin_left = 319.0
-margin_right = 365.0
-margin_bottom = 14.0
-text = "Input 3"
-
-[node name="Input3" type="Label" parent="Campaign/TabContainer/MarginContainer/Mission/ScrollContainer/MarginContainer/GridContainer"]
-margin_left = 381.0
-margin_right = 427.0
-margin_bottom = 14.0
-text = "Input 4"
-
-[node name="HSeparator3" type="HSeparator" parent="Campaign/TabContainer/MarginContainer/Mission"]
-margin_top = 310.0
-margin_right = 680.0
-margin_bottom = 314.0
-
-[node name="Section4" type="Label" parent="Campaign/TabContainer/MarginContainer/Mission"]
-margin_top = 322.0
-margin_right = 680.0
-margin_bottom = 336.0
-text = "Available Resorces"
-
-[node name="ScrollContainer2" type="ScrollContainer" parent="Campaign/TabContainer/MarginContainer/Mission"]
-margin_top = 344.0
-margin_right = 680.0
-margin_bottom = 444.0
-rect_min_size = Vector2( 0, 100 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="DeleteConfirmationDialog" type="ConfirmationDialog" parent="Campaign"]
+visible = true
+margin_left = 408.0
+margin_top = 262.0
+margin_right = 612.0
+margin_bottom = 337.0
+popup_exclusive = true
+window_title = "Confirmation"
+dialog_text = "Are you sure that you want to
+delete this cusom campaign?"
 
 [connection signal="pressed" from="Main/VBoxContainer/NewCampaign" to="Main/VBoxContainer/NewCampaign" method="_on_NewCampaign_pressed"]
-[connection signal="value_changed" from="Campaign/TabContainer/MarginContainer/Mission/HBoxContainer/HSlider" to="Campaign/TabContainer/MarginContainer/Mission/HBoxContainer/HSlider" method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="Campaign/VBoxContainer/HBoxContainer/VBoxContainer2/GridContainer/HBoxContainer/Missions" to="Campaign/VBoxContainer/HBoxContainer/VBoxContainer2/GridContainer/HBoxContainer/Missions" method="_on_HSlider_value_changed"]
+[connection signal="pressed" from="Campaign/VBoxContainer/HBoxContainer/GridContainer/Save" to="Campaign/VBoxContainer/HBoxContainer/GridContainer/Save" method="_on_Save_pressed"]
+[connection signal="pressed" from="Campaign/VBoxContainer/HBoxContainer/GridContainer/Delete" to="Campaign/VBoxContainer/HBoxContainer/GridContainer/Delete" method="_on_Delete_pressed"]
+[connection signal="confirmed" from="Campaign/DeleteConfirmationDialog" to="Campaign/VBoxContainer/HBoxContainer/GridContainer/Delete" method="_on_DeleteConfirmationDialog_confirmed"]

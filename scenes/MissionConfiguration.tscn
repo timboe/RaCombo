@@ -1,0 +1,609 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://resources/ScrollContainerCustomStyle.tres" type="StyleBox" id=1]
+[ext_resource path="res://resources/FactorySandboxButtonGroup.tres" type="ButtonGroup" id=2]
+[ext_resource path="res://titlescripts/PopulateResourcesGrid.gd" type="Script" id=3]
+[ext_resource path="res://titlescripts/SliderToText.gd" type="Script" id=4]
+[ext_resource path="res://titlescripts/PopulateRecipiesGrid.tres.gd" type="Script" id=5]
+[ext_resource path="res://scenes/InputSelector.tscn" type="PackedScene" id=6]
+[ext_resource path="res://titlescripts/MissionConfUpdater.gd" type="Script" id=7]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends MenuButton
+tool
+
+onready var pm : PopupMenu = get_popup() 
+onready var mission_container : VBoxContainer = find_parent(\"MissionContainer\")
+
+var selected : String
+
+func _ready():
+	var i : int = 0
+	pm.clear()
+	pm.connect(\"index_pressed\", self, \"_on_MenuButton_index_pressed\")
+	for key in Global.data:
+		if Global.data[key][\"special\"] == true:
+			continue
+		if Global.data[key][\"mode\"] == \"-\":
+			continue
+		pm.add_item(key + Global.data[key][\"mode\"])
+		pm.set_item_metadata(i, key)
+		if i == 0:
+			selected = key
+			text = pm.get_item_text(i)
+		i += 1
+
+func _on_MenuButton_index_pressed(var i):
+	selected = pm.get_item_metadata(i)
+	text = pm.get_item_text(i)
+	mission_container.update_configuration()
+"
+
+[node name="Mission1" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MissionContainer" type="VBoxContainer" parent="."]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 1008.0
+margin_bottom = 556.0
+custom_constants/separation = 8
+script = ExtResource( 7 )
+
+[node name="Section1" type="HBoxContainer" parent="MissionContainer"]
+margin_right = 1000.0
+margin_bottom = 14.0
+
+[node name="Section1a" type="Label" parent="MissionContainer/Section1"]
+margin_right = 221.0
+margin_bottom = 14.0
+text = "Mission Requiremens and Settings"
+
+[node name="GridContainer2" type="GridContainer" parent="MissionContainer"]
+margin_top = 22.0
+margin_right = 1000.0
+margin_bottom = 66.0
+custom_constants/vseparation = 8
+custom_constants/hseparation = 8
+columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MissionContainer/GridContainer2"]
+margin_right = 484.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MissionContainer/GridContainer2/HBoxContainer"]
+margin_top = 3.0
+margin_right = 33.0
+margin_bottom = 17.0
+text = "Goal:"
+
+[node name="GoalButton" type="MenuButton" parent="MissionContainer/GridContainer2/HBoxContainer"]
+margin_left = 37.0
+margin_right = 101.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 64, 16 )
+focus_mode = 2
+text = "H+"
+flat = false
+items = [ "H+", null, 0, false, false, 0, 0, "H", "", false, "G+", null, 0, false, false, 1, 0, "G", "", false, "Hi+", null, 0, false, false, 2, 0, "Hi", "", false, "T+", null, 0, false, false, 3, 0, "T", "", false, "Bg+", null, 0, false, false, 4, 0, "Bg", "", false, "Mt+", null, 0, false, false, 5, 0, "Mt", "", false, "XB+", null, 0, false, false, 6, 0, "XB", "", false, "XC+", null, 0, false, false, 7, 0, "XC", "", false, "CG+", null, 0, false, false, 8, 0, "CG", "", false, "SW+", null, 0, false, false, 9, 0, "SW", "", false ]
+script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WarningButton" type="Button" parent="MissionContainer/GridContainer2/HBoxContainer"]
+visible = false
+margin_left = 105.0
+margin_right = 137.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 32, 0 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 1, 0.5, 0.5, 1 )
+custom_colors/font_color_pressed = Color( 0.5, 0, 0, 1 )
+text = "!!!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WarningPlaceholder" type="Container" parent="MissionContainer/GridContainer2/HBoxContainer"]
+margin_left = 105.0
+margin_right = 137.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 32, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Amount" type="Label" parent="MissionContainer/GridContainer2/HBoxContainer"]
+margin_left = 141.0
+margin_top = 3.0
+margin_right = 196.0
+margin_bottom = 17.0
+text = "Amount:"
+
+[node name="N" type="Label" parent="MissionContainer/GridContainer2/HBoxContainer"]
+margin_left = 200.0
+margin_top = 3.0
+margin_right = 232.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 32, 0 )
+text = "75"
+align = 2
+
+[node name="HSlider" type="HSlider" parent="MissionContainer/GridContainer2/HBoxContainer"]
+margin_left = 236.0
+margin_right = 484.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 1000.0
+value = 75.0
+rounded = true
+tick_count = 10
+ticks_on_borders = true
+script = ExtResource( 4 )
+
+[node name="VSeparator4" type="VSeparator" parent="MissionContainer/GridContainer2"]
+margin_left = 492.0
+margin_right = 508.0
+margin_bottom = 20.0
+custom_constants/separation = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MissionContainer/GridContainer2"]
+margin_left = 516.0
+margin_right = 1000.0
+margin_bottom = 20.0
+
+[node name="Section1b" type="Label" parent="MissionContainer/GridContainer2/HBoxContainer2"]
+margin_top = 3.0
+margin_right = 158.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "Factories Collect... "
+align = 2
+
+[node name="Above" type="Button" parent="MissionContainer/GridContainer2/HBoxContainer2"]
+margin_left = 162.0
+margin_right = 321.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+toggle_mode = true
+pressed = true
+group = ExtResource( 2 )
+text = "From Above"
+
+[node name="Below" type="Button" parent="MissionContainer/GridContainer2/HBoxContainer2"]
+margin_left = 325.0
+margin_right = 484.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+toggle_mode = true
+group = ExtResource( 2 )
+text = "From Below"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MissionContainer/GridContainer2"]
+margin_top = 28.0
+margin_right = 484.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MissionContainer/GridContainer2/HBoxContainer3"]
+margin_top = 1.0
+margin_right = 104.0
+margin_bottom = 15.0
+text = "Available Rings: "
+
+[node name="N" type="Label" parent="MissionContainer/GridContainer2/HBoxContainer3"]
+margin_left = 108.0
+margin_top = 1.0
+margin_right = 127.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 19, 0 )
+text = "1"
+align = 2
+
+[node name="HSlider" type="HSlider" parent="MissionContainer/GridContainer2/HBoxContainer3"]
+margin_left = 131.0
+margin_right = 484.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 10.0
+value = 1.0
+rounded = true
+tick_count = 10
+ticks_on_borders = true
+script = ExtResource( 4 )
+
+[node name="VSeparator5" type="VSeparator" parent="MissionContainer/GridContainer2"]
+margin_left = 492.0
+margin_top = 28.0
+margin_right = 508.0
+margin_bottom = 44.0
+custom_constants/separation = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="MissionContainer/GridContainer2"]
+margin_left = 516.0
+margin_top = 28.0
+margin_right = 1000.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MissionContainer/GridContainer2/HBoxContainer4"]
+margin_top = 1.0
+margin_right = 107.0
+margin_bottom = 15.0
+text = "Available Lanes: "
+
+[node name="N" type="Label" parent="MissionContainer/GridContainer2/HBoxContainer4"]
+margin_left = 111.0
+margin_top = 1.0
+margin_right = 130.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 19, 0 )
+text = "1"
+align = 2
+
+[node name="HSlider" type="HSlider" parent="MissionContainer/GridContainer2/HBoxContainer4"]
+margin_left = 134.0
+margin_right = 484.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 4.0
+value = 1.0
+rounded = true
+tick_count = 4
+ticks_on_borders = true
+script = ExtResource( 4 )
+
+[node name="HSeparator" type="HSeparator" parent="MissionContainer"]
+margin_top = 74.0
+margin_right = 1000.0
+margin_bottom = 78.0
+
+[node name="Section2" type="Label" parent="MissionContainer"]
+margin_top = 86.0
+margin_right = 1000.0
+margin_bottom = 100.0
+text = "Input Resources"
+
+[node name="InputGridContainer" type="GridContainer" parent="MissionContainer"]
+margin_top = 108.0
+margin_right = 1000.0
+margin_bottom = 184.0
+custom_constants/vseparation = 8
+custom_constants/hseparation = 8
+columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Input0" parent="MissionContainer/InputGridContainer" instance=ExtResource( 6 )]
+margin_right = 484.0
+
+[node name="VSeparator" type="VSeparator" parent="MissionContainer/InputGridContainer"]
+margin_left = 492.0
+margin_right = 508.0
+margin_bottom = 20.0
+custom_constants/separation = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Input1" parent="MissionContainer/InputGridContainer" instance=ExtResource( 6 )]
+margin_left = 516.0
+margin_right = 1000.0
+
+[node name="Input2" parent="MissionContainer/InputGridContainer" instance=ExtResource( 6 )]
+margin_top = 28.0
+margin_right = 484.0
+margin_bottom = 48.0
+
+[node name="VSeparator2" type="VSeparator" parent="MissionContainer/InputGridContainer"]
+margin_left = 492.0
+margin_top = 28.0
+margin_right = 508.0
+margin_bottom = 48.0
+custom_constants/separation = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Input3" parent="MissionContainer/InputGridContainer" instance=ExtResource( 6 )]
+margin_left = 516.0
+margin_top = 28.0
+margin_right = 1000.0
+margin_bottom = 48.0
+
+[node name="Input4" parent="MissionContainer/InputGridContainer" instance=ExtResource( 6 )]
+margin_top = 56.0
+margin_right = 484.0
+margin_bottom = 76.0
+
+[node name="VSeparator3" type="VSeparator" parent="MissionContainer/InputGridContainer"]
+margin_left = 492.0
+margin_top = 56.0
+margin_right = 508.0
+margin_bottom = 76.0
+custom_constants/separation = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Input5" parent="MissionContainer/InputGridContainer" instance=ExtResource( 6 )]
+margin_left = 516.0
+margin_top = 56.0
+margin_right = 1000.0
+margin_bottom = 76.0
+
+[node name="HSeparator2" type="HSeparator" parent="MissionContainer"]
+margin_top = 192.0
+margin_right = 1000.0
+margin_bottom = 196.0
+
+[node name="Section3" type="Label" parent="MissionContainer"]
+margin_top = 204.0
+margin_right = 1000.0
+margin_bottom = 218.0
+text = "Available Recipies"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MissionContainer"]
+margin_top = 226.0
+margin_right = 1000.0
+margin_bottom = 326.0
+rect_min_size = Vector2( 0, 100 )
+custom_styles/bg = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MissionContainer/ScrollContainer"]
+margin_right = 1000.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
+
+[node name="RecipiesGridContainer" type="GridContainer" parent="MissionContainer/ScrollContainer/MarginContainer"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 984.0
+margin_bottom = 84.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/vseparation = 4
+custom_constants/hseparation = 16
+columns = 9
+script = ExtResource( 5 )
+
+[node name="Enabled" type="Label" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
+margin_right = 50.0
+margin_bottom = 14.0
+text = "Enabled"
+
+[node name="Time" type="Label" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
+margin_left = 66.0
+margin_right = 98.0
+margin_bottom = 14.0
+text = "Time"
+
+[node name="Product" type="Label" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
+margin_left = 114.0
+margin_right = 163.0
+margin_bottom = 14.0
+text = "Product"
+
+[node name="Equals" type="MarginContainer" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
+margin_left = 179.0
+margin_right = 182.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Input0" type="Label" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
+margin_left = 198.0
+margin_right = 244.0
+margin_bottom = 14.0
+text = "Input 1"
+
+[node name="Input1" type="Label" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
+margin_left = 260.0
+margin_right = 306.0
+margin_bottom = 14.0
+text = "Input 2"
+
+[node name="Input2" type="Label" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
+margin_left = 322.0
+margin_right = 368.0
+margin_bottom = 14.0
+text = "Input 3"
+
+[node name="Input3" type="Label" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
+margin_left = 384.0
+margin_right = 430.0
+margin_bottom = 14.0
+text = "Input 4"
+
+[node name="Notes" type="Label" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
+margin_left = 446.0
+margin_right = 484.0
+margin_bottom = 14.0
+text = "Notes"
+
+[node name="HSeparator" type="HSeparator" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
+margin_top = 18.0
+margin_right = 50.0
+margin_bottom = 22.0
+
+[node name="HSeparator2" type="HSeparator" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
+margin_left = 66.0
+margin_top = 18.0
+margin_right = 98.0
+margin_bottom = 22.0
+
+[node name="HSeparator3" type="HSeparator" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
+margin_left = 114.0
+margin_top = 18.0
+margin_right = 163.0
+margin_bottom = 22.0
+
+[node name="HSeparator4" type="HSeparator" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
+margin_left = 179.0
+margin_top = 18.0
+margin_right = 182.0
+margin_bottom = 22.0
+
+[node name="HSeparator5" type="HSeparator" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
+margin_left = 198.0
+margin_top = 18.0
+margin_right = 244.0
+margin_bottom = 22.0
+
+[node name="HSeparator6" type="HSeparator" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
+margin_left = 260.0
+margin_top = 18.0
+margin_right = 306.0
+margin_bottom = 22.0
+
+[node name="HSeparator7" type="HSeparator" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
+margin_left = 322.0
+margin_top = 18.0
+margin_right = 368.0
+margin_bottom = 22.0
+
+[node name="HSeparator8" type="HSeparator" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
+margin_left = 384.0
+margin_top = 18.0
+margin_right = 430.0
+margin_bottom = 22.0
+
+[node name="HSeparator9" type="HSeparator" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
+margin_left = 446.0
+margin_top = 18.0
+margin_right = 484.0
+margin_bottom = 22.0
+
+[node name="HSeparator3" type="HSeparator" parent="MissionContainer"]
+margin_top = 334.0
+margin_right = 1000.0
+margin_bottom = 338.0
+
+[node name="Section4" type="Label" parent="MissionContainer"]
+margin_top = 346.0
+margin_right = 1000.0
+margin_bottom = 360.0
+text = "Available Resorces"
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="MissionContainer"]
+margin_top = 368.0
+margin_right = 1000.0
+margin_bottom = 468.0
+rect_min_size = Vector2( 0, 100 )
+custom_styles/bg = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MissionContainer/ScrollContainer2"]
+margin_right = 1000.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
+
+[node name="ResourceGridContainer" type="GridContainer" parent="MissionContainer/ScrollContainer2/MarginContainer"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 984.0
+margin_bottom = 84.0
+custom_constants/vseparation = 4
+custom_constants/hseparation = 16
+columns = 3
+script = ExtResource( 3 )
+
+[node name="Enabled" type="Label" parent="MissionContainer/ScrollContainer2/MarginContainer/ResourceGridContainer"]
+margin_right = 50.0
+margin_bottom = 14.0
+text = "Enabled"
+
+[node name="Product" type="Label" parent="MissionContainer/ScrollContainer2/MarginContainer/ResourceGridContainer"]
+margin_left = 66.0
+margin_right = 115.0
+margin_bottom = 14.0
+text = "Product"
+
+[node name="Notes" type="Label" parent="MissionContainer/ScrollContainer2/MarginContainer/ResourceGridContainer"]
+margin_left = 131.0
+margin_right = 169.0
+margin_bottom = 14.0
+text = "Notes"
+
+[node name="HSeparator" type="HSeparator" parent="MissionContainer/ScrollContainer2/MarginContainer/ResourceGridContainer"]
+margin_top = 18.0
+margin_right = 50.0
+margin_bottom = 22.0
+
+[node name="HSeparator2" type="HSeparator" parent="MissionContainer/ScrollContainer2/MarginContainer/ResourceGridContainer"]
+margin_left = 66.0
+margin_top = 18.0
+margin_right = 115.0
+margin_bottom = 22.0
+
+[node name="HSeparator3" type="HSeparator" parent="MissionContainer/ScrollContainer2/MarginContainer/ResourceGridContainer"]
+margin_left = 131.0
+margin_top = 18.0
+margin_right = 169.0
+margin_bottom = 22.0
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+visible = false
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 1008.0
+margin_bottom = 556.0
+
+[node name="PopupDialog" type="AcceptDialog" parent="CenterContainer"]
+margin_left = 271.0
+margin_top = 228.0
+margin_right = 728.0
+margin_bottom = 320.0
+popup_exclusive = true
+window_title = "Warning"
+dialog_text = "The goal cannot be reached given the current configuration.
+
+Add the following resources to input lanes (or add derived resources)"
+
+[connection signal="pressed" from="MissionContainer/GridContainer2/HBoxContainer/WarningButton" to="MissionContainer" method="_on_WarningButton_pressed"]
+[connection signal="value_changed" from="MissionContainer/GridContainer2/HBoxContainer/HSlider" to="MissionContainer/GridContainer2/HBoxContainer/HSlider" method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="MissionContainer/GridContainer2/HBoxContainer3/HSlider" to="MissionContainer/GridContainer2/HBoxContainer3/HSlider" method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="MissionContainer/GridContainer2/HBoxContainer4/HSlider" to="MissionContainer/GridContainer2/HBoxContainer4/HSlider" method="_on_HSlider_value_changed"]

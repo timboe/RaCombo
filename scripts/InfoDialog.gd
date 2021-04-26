@@ -125,7 +125,7 @@ func update_ring_diag():
 		if l.lane_content != null:
 			tex = Global.data[l.lane_content]["texture"]
 		else:
-			tex = Global.data["none"]["texture"]
+			tex = Global.data["None"]["texture"]
 		var icon : Node = find_node("LIcon"+String(count))
 		icon.texture = tex
 		var bin : Button = find_node("LBin"+String(count))

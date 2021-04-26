@@ -43,7 +43,7 @@ func _deferred_goto_scene(path):
 
 # Game data
 var data = {
-	"none": {
+	"None": {
 		"color": Color(0.05, 0.05, 0.05),
 		"mode": "",
 		"shape": "circle",
@@ -51,7 +51,7 @@ var data = {
 		"special": true,
 		"from_sun": false,
 	},
-	"sol": {
+	"Sol": {
 		"color": Color(0.05, 0.05, 0.05),
 		"mode": "",
 		"shape": "triangle",
@@ -222,7 +222,7 @@ var recipies = {
 		"time": 1.0,
 		"amount_in": [1, 1],
 		"amount_out": 1,
-		"input": ["Cu", "sol"],
+		"input": ["Cu", "Sol"],
 		"builtin": true,
 		"factory:": false, # Note: Not a factory recipy
 	},
@@ -248,7 +248,7 @@ var recipies = {
 		"time": 1.0,
 		"amount_in": [1, 1],
 		"amount_out": 1,
-		"input": ["H", "Cf"],
+		"input": ["Hi", "Cf"],
 		"builtin": true,
 	},
 	"XB": {
