@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=2]
+[gd_scene load_steps=92 format=2]
 
 [ext_resource path="res://scripts/BinLane.gd" type="Script" id=1]
 [ext_resource path="res://resources/NewBuildingButtonGroup.tres" type="ButtonGroup" id=2]
@@ -22,7 +22,6 @@
 [ext_resource path="res://scripts/SomethingChanged.gd" type="Script" id=20]
 [ext_resource path="res://scripts/RuleChanger.gd" type="Script" id=21]
 [ext_resource path="res://scenes/Ring.tscn" type="PackedScene" id=22]
-[ext_resource path="res://scenes/ShieldGen.tscn" type="PackedScene" id=23]
 [ext_resource path="res://images/outline.png" type="Texture" id=24]
 [ext_resource path="res://images/down.png" type="Texture" id=25]
 [ext_resource path="res://images/ff.png" type="Texture" id=26]
@@ -86,7 +85,7 @@ script/source = "extends GridContainer
 
 func _process(var _delta):
 	for key in Global.data:
-		if Global.data[key][\"mode\"] == \"insert\":
+		if Global.data[key][\"mode\"] == \"-\":
 			continue
 		if Global.data[key][\"special\"]:
 			continue
@@ -106,7 +105,7 @@ script/source = "extends GridContainer
 
 func _process(var _delta):
 	for key in Global.data:
-		if Global.data[key][\"mode\"] == \"extract\":
+		if Global.data[key][\"mode\"] == \"-\":
 			continue
 		if Global.data[key][\"special\"]:
 			continue
@@ -157,60 +156,60 @@ func _process(var _delta):
 	set_process(false)
 "
 
-[sub_resource type="QuadMesh" id=61]
+[sub_resource type="QuadMesh" id=106]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=62]
+[sub_resource type="MultiMesh" id=107]
 instance_count = 49
-mesh = SubResource( 61 )
+mesh = SubResource( 106 )
 transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
 
 [sub_resource type="StreamTexture" id=63]
 flags = 5
 load_path = "res://.import/circle.png-5e04c73a6bc42d15cee139f3c4ec364c.stex"
 
-[sub_resource type="QuadMesh" id=64]
+[sub_resource type="QuadMesh" id=108]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=65]
+[sub_resource type="MultiMesh" id=109]
 instance_count = 49
-mesh = SubResource( 64 )
+mesh = SubResource( 108 )
 transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
 
 [sub_resource type="StreamTexture" id=66]
 flags = 5
 load_path = "res://.import/circle.png-5e04c73a6bc42d15cee139f3c4ec364c.stex"
 
-[sub_resource type="QuadMesh" id=67]
+[sub_resource type="QuadMesh" id=110]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=68]
+[sub_resource type="MultiMesh" id=111]
 instance_count = 49
-mesh = SubResource( 67 )
+mesh = SubResource( 110 )
 transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
 
 [sub_resource type="StreamTexture" id=69]
 flags = 5
 load_path = "res://.import/circle.png-5e04c73a6bc42d15cee139f3c4ec364c.stex"
 
-[sub_resource type="QuadMesh" id=70]
+[sub_resource type="QuadMesh" id=112]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=71]
+[sub_resource type="MultiMesh" id=113]
 instance_count = 49
-mesh = SubResource( 70 )
+mesh = SubResource( 112 )
 transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
 
 [sub_resource type="StreamTexture" id=72]
 flags = 5
 load_path = "res://.import/circle.png-5e04c73a6bc42d15cee139f3c4ec364c.stex"
 
-[sub_resource type="QuadMesh" id=73]
+[sub_resource type="QuadMesh" id=114]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=74]
+[sub_resource type="MultiMesh" id=115]
 instance_count = 49
-mesh = SubResource( 73 )
+mesh = SubResource( 114 )
 transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
 
 [sub_resource type="GDScript" id=75]
@@ -241,12 +240,12 @@ func set_resource(var recipy : String):
 	update()
 "
 
-[sub_resource type="QuadMesh" id=76]
+[sub_resource type="QuadMesh" id=116]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=77]
+[sub_resource type="MultiMesh" id=117]
 instance_count = 49
-mesh = SubResource( 76 )
+mesh = SubResource( 116 )
 transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
 
 [sub_resource type="GDScript" id=78]
@@ -393,41 +392,41 @@ func _on_Menu_pressed():
 	id.toggle_menu_diag()
 "
 
-[sub_resource type="QuadMesh" id=89]
+[sub_resource type="QuadMesh" id=118]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=90]
-mesh = SubResource( 89 )
+[sub_resource type="MultiMesh" id=119]
+mesh = SubResource( 118 )
 
-[sub_resource type="QuadMesh" id=91]
+[sub_resource type="QuadMesh" id=120]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=92]
-mesh = SubResource( 91 )
+[sub_resource type="MultiMesh" id=121]
+mesh = SubResource( 120 )
 
-[sub_resource type="QuadMesh" id=93]
+[sub_resource type="QuadMesh" id=122]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=94]
-mesh = SubResource( 93 )
+[sub_resource type="MultiMesh" id=123]
+mesh = SubResource( 122 )
 
-[sub_resource type="QuadMesh" id=95]
+[sub_resource type="QuadMesh" id=124]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=96]
-mesh = SubResource( 95 )
+[sub_resource type="MultiMesh" id=125]
+mesh = SubResource( 124 )
 
-[sub_resource type="QuadMesh" id=97]
+[sub_resource type="QuadMesh" id=126]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=98]
-mesh = SubResource( 97 )
+[sub_resource type="MultiMesh" id=127]
+mesh = SubResource( 126 )
 
-[sub_resource type="QuadMesh" id=99]
+[sub_resource type="QuadMesh" id=128]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=100]
-mesh = SubResource( 99 )
+[sub_resource type="MultiMesh" id=129]
+mesh = SubResource( 128 )
 
 [sub_resource type="Shader" id=101]
 code = "shader_type canvas_item;
@@ -936,7 +935,7 @@ __meta__ = {
 [node name="Mm" type="MultiMeshInstance2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs/GridContainer/I0/Count" groups=[
 "InfoMultimeshGroup",
 ]]
-multimesh = SubResource( 62 )
+multimesh = SubResource( 107 )
 texture = SubResource( 63 )
 script = ExtResource( 7 )
 
@@ -986,7 +985,7 @@ __meta__ = {
 [node name="Mm" type="MultiMeshInstance2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs/GridContainer/I1/Count" groups=[
 "InfoMultimeshGroup",
 ]]
-multimesh = SubResource( 65 )
+multimesh = SubResource( 109 )
 texture = SubResource( 66 )
 script = ExtResource( 7 )
 
@@ -1027,7 +1026,7 @@ __meta__ = {
 [node name="Mm" type="MultiMeshInstance2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs/GridContainer/I2/Count" groups=[
 "InfoMultimeshGroup",
 ]]
-multimesh = SubResource( 68 )
+multimesh = SubResource( 111 )
 texture = SubResource( 69 )
 script = ExtResource( 7 )
 
@@ -1078,7 +1077,7 @@ __meta__ = {
 [node name="Mm" type="MultiMeshInstance2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs/GridContainer/I3/Count" groups=[
 "InfoMultimeshGroup",
 ]]
-multimesh = SubResource( 71 )
+multimesh = SubResource( 113 )
 texture = SubResource( 72 )
 script = ExtResource( 7 )
 
@@ -1148,7 +1147,7 @@ __meta__ = {
 [node name="Mm" type="MultiMeshInstance2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Output/OutAndShip/Out/Count" groups=[
 "InfoMultimeshGroup",
 ]]
-multimesh = SubResource( 74 )
+multimesh = SubResource( 115 )
 texture = ExtResource( 19 )
 script = ExtResource( 7 )
 
@@ -1203,7 +1202,7 @@ __meta__ = {
 [node name="Mm" type="MultiMeshInstance2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Output/OutAndShip/Ship/Count" groups=[
 "InfoMultimeshGroup",
 ]]
-multimesh = SubResource( 77 )
+multimesh = SubResource( 117 )
 texture = ExtResource( 19 )
 script = ExtResource( 7 )
 
@@ -1709,9 +1708,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Shields" parent="." instance=ExtResource( 23 )]
-visible = false
-
 [node name="spacefield_a-000" type="Sprite" parent="."]
 position = Vector2( 512, 299.206 )
 texture = ExtResource( 16 )
@@ -1732,7 +1728,7 @@ show = true
 ]]
 modulate = Color( 0, 0, 1, 1 )
 position = Vector2( -3.46068, 0 )
-multimesh = SubResource( 90 )
+multimesh = SubResource( 119 )
 texture = ExtResource( 15 )
 script = ExtResource( 8 )
 set_resource = "Ir"
@@ -1752,7 +1748,7 @@ show = true
 ]]
 modulate = Color( 1, 1, 0, 1 )
 position = Vector2( -12.1307, 0 )
-multimesh = SubResource( 92 )
+multimesh = SubResource( 121 )
 texture = ExtResource( 19 )
 script = ExtResource( 8 )
 set_resource = "Cu"
@@ -1772,7 +1768,7 @@ show = true
 ]]
 modulate = Color( 0.97, 0.15, 0.52, 1 )
 position = Vector2( -20.7248, 0 )
-multimesh = SubResource( 94 )
+multimesh = SubResource( 123 )
 texture = ExtResource( 17 )
 script = ExtResource( 8 )
 set_resource = "Si"
@@ -1792,10 +1788,10 @@ show = true
 ]]
 modulate = Color( 0.05, 0.05, 0.05, 1 )
 position = Vector2( -20.7248, 0 )
-multimesh = SubResource( 96 )
+multimesh = SubResource( 125 )
 texture = ExtResource( 19 )
 script = ExtResource( 8 )
-set_resource = "none"
+set_resource = "None"
 set_period = 0.1
 linear_velocity = 81.4286
 radius = 285.0
@@ -1812,10 +1808,10 @@ show = true
 ]]
 modulate = Color( 0.05, 0.05, 0.05, 1 )
 position = Vector2( -20.7248, 0 )
-multimesh = SubResource( 98 )
+multimesh = SubResource( 127 )
 texture = ExtResource( 19 )
 script = ExtResource( 8 )
-set_resource = "none"
+set_resource = "None"
 set_period = 0.1
 linear_velocity = 81.4286
 radius = 285.0
@@ -1832,10 +1828,10 @@ show = true
 ]]
 modulate = Color( 0.05, 0.05, 0.05, 1 )
 position = Vector2( -20.7248, 0 )
-multimesh = SubResource( 100 )
+multimesh = SubResource( 129 )
 texture = ExtResource( 19 )
 script = ExtResource( 8 )
-set_resource = "none"
+set_resource = "None"
 set_period = 0.1
 linear_velocity = 81.4286
 radius = 285.0

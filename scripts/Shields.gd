@@ -1,33 +1,31 @@
 extends Control
 tool
 
-const REGENERATE = false
 
 var keys = []
 var count = 0
 
 onready var rendered_node = get_tree().get_root().find_node("Render", true, false)
 onready var shield_scene = load("res://scenes/Shield.tscn")
-onready var globals = load("res://scripts/Global.gd").new()
 
 func _ready():
-	set_process(REGENERATE)
-	if REGENERATE:
-		for n in get_children():
-			n.queue_free()
-		for n in rendered_node.get_children():
-			n.queue_free()
-		keys = globals.data.keys()
-	else:
-		set_data()
-		
+	for n in get_children():
+		n.queue_free()
+	for n in rendered_node.get_children():
+		n.queue_free()
+	keys = Global.data.keys()
+
 func set_data():
-	for key in globals.data.keys():
-		Global.data[key]["texture"] = rendered_node.find_node(key).texture
+	for key in Global.data:
+		print(key)
+		print(rendered_node)
+		print(rendered_node.find_node(key))
+		Global.data[key]["texture"] = rendered_node.get_node(key).texture
+	Global.goto_scene("res://Game.tscn")
 	
 func _process(var _delta):
 	var key = keys[count]
-	var value = globals.data[key]
+	var value = Global.data[key]
 	var shield = shield_scene.instance()
 	shield.name = key
 	add_child(shield, true)

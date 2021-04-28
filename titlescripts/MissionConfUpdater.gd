@@ -53,7 +53,7 @@ func update_configuration():
 		pd.dialog_text = "The goal cannot be reached given the current configuration.\n\n"
 		pd.dialog_text += "Add the following resources to input lanes (or add derived resources)\n\n"
 		for m in missing:
-			pd.dialog_text += m + "  "
+			pd.dialog_text += m + Global.data[m]["mode"] + "  "
 	warning_button.visible = missing.size() > 0
 	warning_placeholder.visible = !warning_button.visible
 	
@@ -69,7 +69,7 @@ func recursive_check(var r : String):
 		return
 	add_required_recipy(r, "Required")
 	for input_resource in Global.recipies[r]["input"]:
-		add_required_resource(input_resource, "Required to make "+r)
+		add_required_resource(input_resource, "Required to make "+r+Global.data[r]["mode"])
 		recursive_check(input_resource)
 	
 func add_required_resource(var r : String, var reason : String):

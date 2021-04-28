@@ -1,0 +1,97 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Button
+
+onready var info : AcceptDialog = find_parent(\"CampaignManager\").find_node(\"InfoDialog\", true, false)
+
+func _on_Copy_pressed():
+	var name = get_parent().get_parent().get_node(\"CampaignName\").text
+	var dict : Dictionary = Global.campaigns[name]
+	OS.set_clipboard(JSON.print(dict))
+	info.dialog_text = \"Campaign Copied to Clipboard\"
+	info.show()
+"
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Button
+
+onready var main_menu : CenterContainer = get_tree().get_root().find_node(\"MainMenu\", true, false)
+
+func _on_Edit_pressed():
+	main_menu.show_menu(\"CampaignEditor\", get_parent().get_parent().get_node(\"CampaignName\").text)
+"
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Button
+
+onready var confirm : AcceptDialog = find_parent(\"CampaignManager\").find_node(\"ConfirmDeleteDialog\", true, false)
+
+func _on_Delete_pressed():
+	confirm.campaign = get_parent().get_parent().get_node(\"CampaignName\").text
+	confirm.dialog_text = \"Delete campaign:\\n\\n\" + confirm.campaign 
+	confirm.show()
+"
+
+[node name="Campaign" type="VBoxContainer"]
+margin_right = 512.0
+margin_bottom = 54.0
+custom_constants/separation = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="."]
+margin_right = 512.0
+margin_bottom = 4.0
+
+[node name="CampaignName" type="Label" parent="."]
+margin_top = 12.0
+margin_right = 512.0
+margin_bottom = 26.0
+text = "Main Campaign"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_top = 34.0
+margin_right = 512.0
+margin_bottom = 54.0
+custom_constants/separation = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Copy" type="Button" parent="HBoxContainer"]
+margin_right = 124.0
+margin_bottom = 20.0
+size_flags_horizontal = 0
+text = "Copy to Clipboard"
+script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Edit" type="Button" parent="HBoxContainer"]
+margin_left = 132.0
+margin_right = 168.0
+margin_bottom = 20.0
+size_flags_horizontal = 0
+text = "Edit"
+script = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Delete" type="Button" parent="HBoxContainer"]
+margin_left = 176.0
+margin_right = 231.0
+margin_bottom = 20.0
+size_flags_horizontal = 0
+text = "Delete"
+script = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="HBoxContainer/Copy" to="HBoxContainer/Copy" method="_on_Copy_pressed"]
+[connection signal="pressed" from="HBoxContainer/Edit" to="HBoxContainer/Edit" method="_on_Edit_pressed"]
+[connection signal="pressed" from="HBoxContainer/Delete" to="HBoxContainer/Delete" method="_on_Delete_pressed"]

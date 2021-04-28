@@ -42,7 +42,7 @@ func _deferred_goto_scene(path):
 	get_tree().set_current_scene(current_scene)
 
 # Game data
-var data = {
+var data := {
 	"None": {
 		"color": Color(0.05, 0.05, 0.05),
 		"mode": "",
@@ -189,7 +189,7 @@ var data = {
 	},
 }
 
-var recipies = {
+var recipies := {
 	"St": {
 		"level": 2,
 		"time": 1.0,
@@ -296,3 +296,4 @@ var recipies = {
 	},
 }
 
+var campaigns := {}

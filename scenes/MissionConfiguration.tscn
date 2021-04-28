@@ -146,7 +146,7 @@ rect_min_size = Vector2( 32, 0 )
 text = "75"
 align = 2
 
-[node name="HSlider" type="HSlider" parent="MissionContainer/GridContainer2/HBoxContainer"]
+[node name="GoalAmountSlider" type="HSlider" parent="MissionContainer/GridContainer2/HBoxContainer"]
 margin_left = 236.0
 margin_right = 484.0
 margin_bottom = 16.0
@@ -221,7 +221,7 @@ rect_min_size = Vector2( 19, 0 )
 text = "1"
 align = 2
 
-[node name="HSlider" type="HSlider" parent="MissionContainer/GridContainer2/HBoxContainer3"]
+[node name="RingsSlider" type="HSlider" parent="MissionContainer/GridContainer2/HBoxContainer3"]
 margin_left = 131.0
 margin_right = 484.0
 margin_bottom = 16.0
@@ -266,7 +266,7 @@ rect_min_size = Vector2( 19, 0 )
 text = "1"
 align = 2
 
-[node name="HSlider" type="HSlider" parent="MissionContainer/GridContainer2/HBoxContainer4"]
+[node name="LanesSlider" type="HSlider" parent="MissionContainer/GridContainer2/HBoxContainer4"]
 margin_left = 134.0
 margin_right = 484.0
 margin_bottom = 16.0
@@ -604,6 +604,6 @@ dialog_text = "The goal cannot be reached given the current configuration.
 Add the following resources to input lanes (or add derived resources)"
 
 [connection signal="pressed" from="MissionContainer/GridContainer2/HBoxContainer/WarningButton" to="MissionContainer" method="_on_WarningButton_pressed"]
-[connection signal="value_changed" from="MissionContainer/GridContainer2/HBoxContainer/HSlider" to="MissionContainer/GridContainer2/HBoxContainer/HSlider" method="_on_HSlider_value_changed"]
-[connection signal="value_changed" from="MissionContainer/GridContainer2/HBoxContainer3/HSlider" to="MissionContainer/GridContainer2/HBoxContainer3/HSlider" method="_on_HSlider_value_changed"]
-[connection signal="value_changed" from="MissionContainer/GridContainer2/HBoxContainer4/HSlider" to="MissionContainer/GridContainer2/HBoxContainer4/HSlider" method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="MissionContainer/GridContainer2/HBoxContainer/GoalAmountSlider" to="MissionContainer/GridContainer2/HBoxContainer/GoalAmountSlider" method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="MissionContainer/GridContainer2/HBoxContainer3/RingsSlider" to="MissionContainer/GridContainer2/HBoxContainer3/RingsSlider" method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="MissionContainer/GridContainer2/HBoxContainer4/LanesSlider" to="MissionContainer/GridContainer2/HBoxContainer4/LanesSlider" method="_on_HSlider_value_changed"]

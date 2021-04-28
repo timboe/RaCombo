@@ -1,15 +1,127 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/MissionConfiguration.tscn" type="PackedScene" id=1]
 [ext_resource path="res://titlescripts/SliderToText.gd" type="Script" id=2]
 [ext_resource path="res://titlescripts/CustomCampaignButtons.gd" type="Script" id=3]
+[ext_resource path="res://titlescripts/Campaign.gd" type="Script" id=4]
+[ext_resource path="res://titlescripts/MainMenu.gd" type="Script" id=5]
+[ext_resource path="res://scenes/CampaignSelector.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/Shield.tscn" type="PackedScene" id=7]
+[ext_resource path="res://images/refreshing.png" type="Texture" id=8]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Button
 
 func _on_NewCampaign_pressed():
-	Global.goto_scene(\"res://Game.tscn\")
+	Global.goto_scene(\"res://Scenes/ShieldGen.tscn\")
 "
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Button
+
+onready var main_menu : CenterContainer = get_tree().get_root().find_node(\"MainMenu\", true, false)
+onready var info : AcceptDialog = find_parent(\"CampaignManager\").find_node(\"InfoDialog\", true, false)
+onready var campaign_node : CenterContainer = get_tree().get_root().find_node(\"CampaignEditor\", true, false)
+
+func _on_Import_pressed():
+	var cb = OS.get_clipboard()
+	var decode = JSON.parse(cb)
+	if decode.error != OK:
+		info.dialog_text = \"Import decoding error!\\n\\n\"
+		info.dialog_text += decode.error_string
+	else:
+		var campaign : Dictionary = decode.result
+		# Basic sanity
+		if not \"name\" in campaign or not \"missions\" in campaign:
+			info.dialog_text = \"Import error!\"
+		else:
+			info.dialog_text = \"Imported campaign:\\n\\n\" + campaign[\"name\"]
+			Global.campaigns[campaign[\"name\"]] = campaign
+			campaign_node.flush_campaign_to_disk()
+	info.show()
+	main_menu.show_menu(\"CampaignManager\")
+	
+"
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends Button
+
+onready var main_menu : CenterContainer = get_tree().get_root().find_node(\"MainMenu\", true, false)
+
+func _on_New_pressed():
+	main_menu.show_menu(\"CampaignEditor\")
+"
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends ConfirmationDialog
+
+onready var campaign_node : CenterContainer = get_tree().get_root().find_node(\"CampaignEditor\", true, false)
+onready var main_menu : CenterContainer = get_tree().get_root().find_node(\"MainMenu\", true, false)
+
+var campaign : String
+
+func _on_ConfirmDeleteDialog_confirmed():
+	Global.campaigns.erase(campaign)
+	campaign_node.flush_campaign_to_disk()
+	main_menu.show_menu(\"CampaignManager\")
+"
+
+[sub_resource type="GDScript" id=7]
+script/source = "extends Button
+
+onready var diag : WindowDialog = get_tree().get_root().find_node(\"CustomResourceDialog\",true,false)
+
+func _on_CustomResource_pressed():
+	diag.show()
+"
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends OptionButton
+
+
+func _ready():
+	var ci = load(\"res://images/circle_smooth.png\").get_data()
+	var ti = load(\"res://images/triangle_smooth.png\").get_data()
+	var ta = load(\"res://images/trapezoid_smooth.png\").get_data()
+	var di = load(\"res://images/diamond_smooth.png\").get_data()
+	
+	ci.resize(64,64)
+	ti.resize(64,64)
+	ta.resize(64,64)
+	di.resize(64,64)
+	
+	var t_ci = ImageTexture.new()
+	var t_ti = ImageTexture.new()
+	var t_ta = ImageTexture.new()
+	var t_di = ImageTexture.new()
+	
+	t_ci.create_from_image(ci)
+	t_ti.create_from_image(ti)
+	t_ta.create_from_image(ta)
+	t_di.create_from_image(di)
+	
+	add_icon_item(t_ci,\"\",0)
+	add_icon_item(t_ti,\"\",1)
+	add_icon_item(t_ta,\"\",2)
+	add_icon_item(t_di,\"\",3)
+	
+	set_item_metadata(0, \"circle\")
+	set_item_metadata(1, \"triangle\")
+	set_item_metadata(2, \"trapezoid\")
+	set_item_metadata(3, \"diamond\")
+
+"
+
+[sub_resource type="GDScript" id=6]
+script/source = "extends OptionButton
+
+func _ready():
+	add_item(\"+\", 0)
+	add_item(\"-\", 1)
+"
+
+[sub_resource type="ViewportTexture" id=8]
+viewport_path = NodePath("Viewport")
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -18,95 +130,194 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Main" type="CenterContainer" parent="."]
+[node name="MainMenu" type="CenterContainer" parent="." groups=[
+"PrimaryMenuElement",
+]]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Main"]
-margin_left = 454.0
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu"]
+margin_left = 446.0
 margin_top = 200.0
-margin_right = 569.0
+margin_right = 578.0
 margin_bottom = 400.0
 custom_constants/separation = 16
 
-[node name="NewCampaign" type="Button" parent="Main/VBoxContainer"]
-margin_right = 115.0
+[node name="NewCampaign" type="Button" parent="MainMenu/VBoxContainer"]
+margin_right = 132.0
 margin_bottom = 20.0
 text = "New Campaign"
 script = SubResource( 1 )
 
-[node name="NewSandbox" type="Button" parent="Main/VBoxContainer"]
+[node name="NewSandbox" type="Button" parent="MainMenu/VBoxContainer"]
 margin_top = 36.0
-margin_right = 115.0
+margin_right = 132.0
 margin_bottom = 56.0
 text = "New Sandbox"
 
-[node name="Load" type="Button" parent="Main/VBoxContainer"]
+[node name="Load" type="Button" parent="MainMenu/VBoxContainer"]
 margin_top = 72.0
-margin_right = 115.0
+margin_right = 132.0
 margin_bottom = 92.0
 text = "Load Game"
 
-[node name="Settings" type="Button" parent="Main/VBoxContainer"]
+[node name="Settings" type="Button" parent="MainMenu/VBoxContainer"]
 margin_top = 108.0
-margin_right = 115.0
+margin_right = 132.0
 margin_bottom = 128.0
 text = "Settings"
 
-[node name="Editor" type="Button" parent="Main/VBoxContainer"]
+[node name="Editor" type="Button" parent="MainMenu/VBoxContainer"]
 margin_top = 144.0
-margin_right = 115.0
+margin_right = 132.0
 margin_bottom = 164.0
-text = "Campaign Editor"
+text = "Campaign Manager"
 
-[node name="Exit" type="Button" parent="Main/VBoxContainer"]
+[node name="Exit" type="Button" parent="MainMenu/VBoxContainer"]
 margin_top = 180.0
-margin_right = 115.0
+margin_right = 132.0
 margin_bottom = 200.0
 text = "Exit to Desktop"
 
-[node name="Campaign" type="CenterContainer" parent="."]
+[node name="CampaignManager" type="MarginContainer" parent="." groups=[
+"PrimaryMenuElement",
+]]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -4.0
+custom_constants/margin_right = 256
+custom_constants/margin_top = 128
+custom_constants/margin_left = 256
+custom_constants/margin_bottom = 128
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Campaign"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CampaignManager"]
+margin_left = 256.0
+margin_top = 128.0
+margin_right = 768.0
+margin_bottom = 472.0
+follow_focus = true
+
+[node name="Campaigns" type="VBoxContainer" parent="CampaignManager/ScrollContainer"]
+margin_right = 512.0
+margin_bottom = 94.0
+size_flags_horizontal = 3
+custom_constants/separation = 8
+alignment = 1
+
+[node name="Container" type="VBoxContainer" parent="CampaignManager/ScrollContainer/Campaigns"]
+margin_right = 512.0
+margin_bottom = 54.0
+
+[node name="Campaign" parent="CampaignManager/ScrollContainer/Campaigns/Container" instance=ExtResource( 6 )]
+
+[node name="HSeparator" type="HSeparator" parent="CampaignManager/ScrollContainer/Campaigns"]
+margin_top = 62.0
+margin_right = 512.0
+margin_bottom = 66.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CampaignManager/ScrollContainer/Campaigns"]
+margin_top = 74.0
+margin_right = 512.0
+margin_bottom = 94.0
+custom_constants/separation = 8
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Import" type="Button" parent="CampaignManager/ScrollContainer/Campaigns/HBoxContainer"]
+margin_left = 194.0
+margin_right = 348.0
+margin_bottom = 20.0
+text = "Import from Clipboard"
+script = SubResource( 2 )
+
+[node name="New" type="Button" parent="CampaignManager/ScrollContainer/Campaigns/HBoxContainer"]
+margin_left = 356.0
+margin_right = 462.0
+margin_bottom = 20.0
+text = "New Campaign"
+script = SubResource( 4 )
+
+[node name="Back" type="Button" parent="CampaignManager/ScrollContainer/Campaigns/HBoxContainer"]
+margin_left = 470.0
+margin_right = 512.0
+margin_bottom = 20.0
+text = "Back"
+
+[node name="CenterContainer" type="CenterContainer" parent="CampaignManager/ScrollContainer"]
+visible = false
+margin_right = 512.0
+margin_bottom = 344.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="InfoDialog" type="AcceptDialog" parent="CampaignManager/ScrollContainer/CenterContainer"]
+margin_left = 194.0
+margin_top = 143.0
+margin_right = 317.0
+margin_bottom = 201.0
+popup_exclusive = true
+window_title = "Information"
+resizable = true
+
+[node name="ConfirmDeleteDialog" type="ConfirmationDialog" parent="CampaignManager/ScrollContainer/CenterContainer"]
+margin_left = 156.0
+margin_top = 137.0
+margin_right = 356.0
+margin_bottom = 207.0
+dialog_text = "Delete campaign:"
+script = SubResource( 3 )
+
+[node name="CampaignEditor" type="CenterContainer" parent="." groups=[
+"PrimaryMenuElement",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -4.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CampaignEditor"]
 margin_left = 150.0
-margin_top = 8.0
+margin_top = 12.0
 margin_right = 870.0
-margin_bottom = 592.0
+margin_bottom = 588.0
 custom_constants/separation = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Campaign/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CampaignEditor/VBoxContainer"]
 margin_right = 720.0
 margin_bottom = 48.0
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Campaign/VBoxContainer/HBoxContainer"]
-margin_right = 466.0
+[node name="VBoxContainer2" type="VBoxContainer" parent="CampaignEditor/VBoxContainer/HBoxContainer"]
+margin_right = 461.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
 
-[node name="GridContainer" type="GridContainer" parent="Campaign/VBoxContainer/HBoxContainer/VBoxContainer2"]
-margin_right = 466.0
+[node name="GridContainer" type="GridContainer" parent="CampaignEditor/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_right = 461.0
 margin_bottom = 48.0
 custom_constants/vseparation = 8
 custom_constants/hseparation = 8
 columns = 2
 
-[node name="Label" type="Label" parent="Campaign/VBoxContainer/HBoxContainer/VBoxContainer2/GridContainer"]
+[node name="Label" type="Label" parent="CampaignEditor/VBoxContainer/HBoxContainer/VBoxContainer2/GridContainer"]
 margin_top = 5.0
 margin_right = 108.0
 margin_bottom = 19.0
 text = "Campaign Name:"
 
-[node name="CampaignName" type="LineEdit" parent="Campaign/VBoxContainer/HBoxContainer/VBoxContainer2/GridContainer"]
+[node name="CampaignName" type="LineEdit" parent="CampaignEditor/VBoxContainer/HBoxContainer/VBoxContainer2/GridContainer"]
 margin_left = 116.0
 margin_right = 395.0
 margin_bottom = 24.0
@@ -116,7 +327,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label2" type="Label" parent="Campaign/VBoxContainer/HBoxContainer/VBoxContainer2/GridContainer"]
+[node name="Label2" type="Label" parent="CampaignEditor/VBoxContainer/HBoxContainer/VBoxContainer2/GridContainer"]
 margin_top = 33.0
 margin_right = 108.0
 margin_bottom = 47.0
@@ -125,7 +336,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Campaign/VBoxContainer/HBoxContainer/VBoxContainer2/GridContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CampaignEditor/VBoxContainer/HBoxContainer/VBoxContainer2/GridContainer"]
 margin_left = 116.0
 margin_top = 32.0
 margin_right = 395.0
@@ -134,7 +345,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="N" type="Label" parent="Campaign/VBoxContainer/HBoxContainer/VBoxContainer2/GridContainer/HBoxContainer"]
+[node name="N" type="Label" parent="CampaignEditor/VBoxContainer/HBoxContainer/VBoxContainer2/GridContainer/HBoxContainer"]
 margin_top = 1.0
 margin_right = 19.0
 margin_bottom = 15.0
@@ -144,7 +355,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Missions" type="HSlider" parent="Campaign/VBoxContainer/HBoxContainer/VBoxContainer2/GridContainer/HBoxContainer"]
+[node name="Missions" type="HSlider" parent="CampaignEditor/VBoxContainer/HBoxContainer/VBoxContainer2/GridContainer/HBoxContainer"]
 margin_left = 23.0
 margin_right = 279.0
 margin_bottom = 16.0
@@ -160,57 +371,51 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GridContainer" type="GridContainer" parent="Campaign/VBoxContainer/HBoxContainer"]
-margin_left = 470.0
+[node name="GridContainer" type="GridContainer" parent="CampaignEditor/VBoxContainer/HBoxContainer"]
+margin_left = 465.0
 margin_right = 720.0
 margin_bottom = 48.0
 custom_constants/vseparation = 8
 custom_constants/hseparation = 64
 columns = 2
 
-[node name="CustomResource" type="Button" parent="Campaign/VBoxContainer/HBoxContainer/GridContainer"]
+[node name="CustomResource" type="Button" parent="CampaignEditor/VBoxContainer/HBoxContainer/GridContainer"]
 margin_right = 131.0
 margin_bottom = 20.0
 text = "Custom Resources"
+script = SubResource( 7 )
 
-[node name="Save" type="Button" parent="Campaign/VBoxContainer/HBoxContainer/GridContainer"]
+[node name="Save" type="Button" parent="CampaignEditor/VBoxContainer/HBoxContainer/GridContainer"]
 margin_left = 195.0
-margin_right = 250.0
+margin_right = 255.0
 margin_bottom = 20.0
 text = "Save"
 script = ExtResource( 3 )
 
-[node name="CustomRecipy" type="Button" parent="Campaign/VBoxContainer/HBoxContainer/GridContainer"]
+[node name="CustomRecipy" type="Button" parent="CampaignEditor/VBoxContainer/HBoxContainer/GridContainer"]
 margin_top = 28.0
 margin_right = 131.0
 margin_bottom = 48.0
 text = "Custom Recipies"
 
-[node name="Delete" type="Button" parent="Campaign/VBoxContainer/HBoxContainer/GridContainer"]
+[node name="Discard" type="Button" parent="CampaignEditor/VBoxContainer/HBoxContainer/GridContainer"]
 margin_left = 195.0
 margin_top = 28.0
-margin_right = 250.0
+margin_right = 255.0
 margin_bottom = 48.0
-text = "Delete"
+text = "Discard"
 script = ExtResource( 3 )
 
-[node name="TabContainer" type="TabContainer" parent="Campaign/VBoxContainer"]
+[node name="TabContainer" type="TabContainer" parent="CampaignEditor/VBoxContainer"]
 margin_top = 56.0
 margin_right = 720.0
 margin_bottom = 576.0
 rect_min_size = Vector2( 720, 512 )
 tab_align = 0
 
-[node name="1" parent="Campaign/VBoxContainer/TabContainer" instance=ExtResource( 1 )]
+[node name="tmp" parent="CampaignEditor/VBoxContainer/TabContainer" instance=ExtResource( 1 )]
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Campaign/VBoxContainer"]
-margin_top = 584.0
-margin_right = 720.0
-margin_bottom = 584.0
-custom_constants/separation = 8
-alignment = 2
-
-[node name="WarningDialog" type="AcceptDialog" parent="Campaign"]
+[node name="WarningDialog" type="AcceptDialog" parent="CampaignEditor"]
 margin_left = 458.0
 margin_top = 271.0
 margin_right = 562.0
@@ -219,19 +424,209 @@ popup_exclusive = true
 window_title = "Warning!"
 resizable = true
 
-[node name="DeleteConfirmationDialog" type="ConfirmationDialog" parent="Campaign"]
-visible = true
-margin_left = 408.0
-margin_top = 262.0
+[node name="DiscardConfirmationDialog" type="ConfirmationDialog" parent="CampaignEditor"]
+margin_left = 407.0
+margin_top = 265.0
 margin_right = 612.0
-margin_bottom = 337.0
+margin_bottom = 335.0
 popup_exclusive = true
 window_title = "Confirmation"
-dialog_text = "Are you sure that you want to
-delete this cusom campaign?"
+dialog_text = "All changes will be discarded."
 
-[connection signal="pressed" from="Main/VBoxContainer/NewCampaign" to="Main/VBoxContainer/NewCampaign" method="_on_NewCampaign_pressed"]
-[connection signal="value_changed" from="Campaign/VBoxContainer/HBoxContainer/VBoxContainer2/GridContainer/HBoxContainer/Missions" to="Campaign/VBoxContainer/HBoxContainer/VBoxContainer2/GridContainer/HBoxContainer/Missions" method="_on_HSlider_value_changed"]
-[connection signal="pressed" from="Campaign/VBoxContainer/HBoxContainer/GridContainer/Save" to="Campaign/VBoxContainer/HBoxContainer/GridContainer/Save" method="_on_Save_pressed"]
-[connection signal="pressed" from="Campaign/VBoxContainer/HBoxContainer/GridContainer/Delete" to="Campaign/VBoxContainer/HBoxContainer/GridContainer/Delete" method="_on_Delete_pressed"]
-[connection signal="confirmed" from="Campaign/DeleteConfirmationDialog" to="Campaign/VBoxContainer/HBoxContainer/GridContainer/Delete" method="_on_DeleteConfirmationDialog_confirmed"]
+[node name="OverwriteConfirmationDialog" type="ConfirmationDialog" parent="CampaignEditor"]
+margin_left = 302.0
+margin_top = 265.0
+margin_right = 717.0
+margin_bottom = 335.0
+popup_exclusive = true
+window_title = "Confirmation"
+dialog_text = "This will overwrite the existing campaign with the same name."
+
+[node name="CustomResourceDialog" type="WindowDialog" parent="CampaignEditor"]
+visible = true
+margin_left = 260.0
+margin_top = 70.0
+margin_right = 760.0
+margin_bottom = 530.0
+rect_min_size = Vector2( 500, 460 )
+popup_exclusive = true
+window_title = "Custom Resource Editor"
+
+[node name="MarginContainer" type="MarginContainer" parent="CampaignEditor/CustomResourceDialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 203.0
+margin_bottom = 62.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CampaignEditor/CustomResourceDialog/MarginContainer"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 687.0
+margin_bottom = 506.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer"]
+margin_right = 671.0
+margin_bottom = 430.0
+custom_constants/separation = 8
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 155.0
+margin_bottom = 430.0
+custom_constants/separation = 8
+
+[node name="GridContainer" type="GridContainer" parent="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+margin_right = 155.0
+margin_bottom = 124.0
+size_flags_vertical = 3
+custom_constants/vseparation = 8
+custom_constants/hseparation = 8
+columns = 2
+
+[node name="Name" type="Label" parent="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/GridContainer"]
+margin_top = 5.0
+margin_right = 51.0
+margin_bottom = 19.0
+text = "Name:"
+
+[node name="LineEdit" type="LineEdit" parent="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/GridContainer"]
+margin_left = 59.0
+margin_right = 117.0
+margin_bottom = 24.0
+size_flags_horizontal = 0
+max_length = 2
+
+[node name="Symbol" type="Label" parent="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/GridContainer"]
+margin_top = 57.0
+margin_right = 51.0
+margin_bottom = 71.0
+text = "Symbol:"
+
+[node name="SymbolButton" type="OptionButton" parent="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/GridContainer"]
+margin_left = 59.0
+margin_top = 32.0
+margin_right = 155.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 96, 64 )
+icon = ExtResource( 8 )
+expand_icon = true
+script = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sign" type="Label" parent="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/GridContainer"]
+margin_top = 107.0
+margin_right = 51.0
+margin_bottom = 121.0
+text = "Sign:"
+
+[node name="OptionButton" type="OptionButton" parent="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/GridContainer"]
+margin_left = 59.0
+margin_top = 104.0
+margin_right = 155.0
+margin_bottom = 124.0
+script = SubResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+margin_top = 132.0
+margin_right = 155.0
+margin_bottom = 282.0
+size_flags_vertical = 3
+custom_constants/separation = 8
+
+[node name="Preview" type="Label" parent="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/VBoxContainer"]
+margin_right = 155.0
+margin_bottom = 14.0
+text = "Preview"
+
+[node name="TextureRect" type="TextureRect" parent="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/VBoxContainer"]
+margin_top = 22.0
+margin_right = 128.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 128, 128 )
+texture = SubResource( 8 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Save" type="Button" parent="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+margin_top = 290.0
+margin_right = 155.0
+margin_bottom = 331.0
+size_flags_vertical = 3
+text = "Save"
+
+[node name="Discard" type="Button" parent="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+margin_top = 339.0
+margin_right = 155.0
+margin_bottom = 380.0
+size_flags_vertical = 3
+text = "Discard"
+
+[node name="Delete" type="Button" parent="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+margin_top = 388.0
+margin_right = 155.0
+margin_bottom = 430.0
+size_flags_vertical = 3
+text = "Delete"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 163.0
+margin_right = 471.0
+margin_bottom = 430.0
+
+[node name="Sign2" type="Label" parent="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+margin_right = 308.0
+margin_bottom = 14.0
+text = "Color:"
+
+[node name="ColorPicker" type="ColorPicker" parent="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+margin_top = 18.0
+margin_right = 308.0
+margin_bottom = 430.0
+edit_alpha = false
+presets_enabled = false
+presets_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 256, 256 )
+hdr = false
+disable_3d = true
+usage = 0
+render_target_v_flip = true
+gui_disable_input = true
+
+[node name="Shield" parent="Viewport" instance=ExtResource( 7 )]
+
+[connection signal="pressed" from="MainMenu/VBoxContainer/NewCampaign" to="MainMenu/VBoxContainer/NewCampaign" method="_on_NewCampaign_pressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/Editor" to="MainMenu" method="_on_Editor_pressed"]
+[connection signal="pressed" from="CampaignManager/ScrollContainer/Campaigns/HBoxContainer/Import" to="CampaignManager/ScrollContainer/Campaigns/HBoxContainer/Import" method="_on_Import_pressed"]
+[connection signal="pressed" from="CampaignManager/ScrollContainer/Campaigns/HBoxContainer/New" to="CampaignManager/ScrollContainer/Campaigns/HBoxContainer/New" method="_on_New_pressed"]
+[connection signal="pressed" from="CampaignManager/ScrollContainer/Campaigns/HBoxContainer/Back" to="MainMenu" method="_on_Back_pressed"]
+[connection signal="confirmed" from="CampaignManager/ScrollContainer/CenterContainer/ConfirmDeleteDialog" to="CampaignManager/ScrollContainer/CenterContainer/ConfirmDeleteDialog" method="_on_ConfirmDeleteDialog_confirmed"]
+[connection signal="value_changed" from="CampaignEditor/VBoxContainer/HBoxContainer/VBoxContainer2/GridContainer/HBoxContainer/Missions" to="CampaignEditor/VBoxContainer/HBoxContainer/VBoxContainer2/GridContainer/HBoxContainer/Missions" method="_on_HSlider_value_changed"]
+[connection signal="pressed" from="CampaignEditor/VBoxContainer/HBoxContainer/GridContainer/CustomResource" to="CampaignEditor/VBoxContainer/HBoxContainer/GridContainer/CustomResource" method="_on_CustomResource_pressed"]
+[connection signal="pressed" from="CampaignEditor/VBoxContainer/HBoxContainer/GridContainer/Save" to="CampaignEditor/VBoxContainer/HBoxContainer/GridContainer/Save" method="_on_Save_pressed"]
+[connection signal="pressed" from="CampaignEditor/VBoxContainer/HBoxContainer/GridContainer/Discard" to="CampaignEditor/VBoxContainer/HBoxContainer/GridContainer/Discard" method="_on_Discard_pressed"]
+[connection signal="confirmed" from="CampaignEditor/DiscardConfirmationDialog" to="CampaignEditor/VBoxContainer/HBoxContainer/GridContainer/Discard" method="_on_DiscardConfirmationDialog_confirmed"]
+[connection signal="confirmed" from="CampaignEditor/OverwriteConfirmationDialog" to="CampaignEditor/VBoxContainer/HBoxContainer/GridContainer/Save" method="_on_OverwriteConfirmationDialog_confirmed"]
