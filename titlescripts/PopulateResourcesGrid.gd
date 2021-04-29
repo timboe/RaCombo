@@ -1,6 +1,9 @@
 extends GridContainer
 
-func _ready():
+func update_resource_recipy():
+	for c in get_children():
+		c.name = "delete"
+		c.queue_free()
 
 	for key in Global.data:
 		var d = Global.data[key]
@@ -20,4 +23,8 @@ func _ready():
 		note.name = key + "_note"
 		note.text = ""
 		add_child(note)
+
+func _ready():
+	update_resource_recipy()
+
 		

@@ -11,3 +11,16 @@ Assets:
  * pause by amantaka from the Noun Project
  * Circle by Chris Kerr from the Noun Project
  * hamburger menu by Robert Won from the Noun Project
+ * Up Up by Najaya Design from the Noun Project
+ * back by The Icon Z from the Noun Project
+ * Save by HASTA ICON from the Noun Project
+ * paste by kreationspace from the Noun Project
+ * copy by Rafael Farias Leão from the Noun Project
+ * editing by Syawaluddin from the Noun Project
+ * new by Alice Design from the Noun Project
+ * recipe by Heztasia from the Noun Project
+ * elements by priyanka from the Noun Project
+ * Spade by Adrien Coquet from the Noun Project
+ * open by Gregor Cresnar from the Noun Project
+ * Settings by Adriansyah from the Noun Project
+ * Exit by Morten Halvorsen from the Noun Project

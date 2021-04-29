@@ -1,30 +1,21 @@
-extends MenuButton
+extends OptionButton
 tool
 
-onready var pm : PopupMenu = get_popup() 
 onready var mission_container : VBoxContainer = find_parent("MissionContainer")
 
-export(String) var selected
-
-func _ready():
-
-	pm.clear()
-	pm.connect("index_pressed", self, "_on_MenuButton_index_pressed")
-	pm.add_item("None")
-	pm.set_item_metadata(0, "None")
-	selected = pm.get_item_metadata(0)
-	text = pm.get_item_text(0)
+func update_resource_recipy():
+	add_item("None", 0)
+	set_item_metadata(0, "None")
 	var i : int = 1
 	for key in Global.data:
 		if Global.data[key]["special"] == true:
 			continue
-		if Global.data[key]["from_sun"] == true:
-			continue
-		pm.add_item(key + Global.data[key]["mode"])
-		pm.set_item_metadata(i, key)
+		add_item(key + Global.data[key]["mode"], i)
+		set_item_metadata(i, key)
 		i += 1
-
-func _on_MenuButton_index_pressed(var i):
-	selected = pm.get_item_metadata(i)
-	text = pm.get_item_text(i)
+		
+func _ready():
+	update_resource_recipy()
+		
+func _on_OptionButton_item_selected(index):
 	mission_container.update_configuration()

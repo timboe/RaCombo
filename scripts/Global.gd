@@ -49,7 +49,6 @@ var data := {
 		"shape": "circle",
 		"builtin": true,
 		"special": true,
-		"from_sun": false,
 	},
 	"Sol": {
 		"color": Color(0.05, 0.05, 0.05),
@@ -57,7 +56,6 @@ var data := {
 		"shape": "triangle",
 		"builtin": true,
 		"special": true,
-		"from_sun": false,
 	},
 	"H": {
 		"color": Color(0.71, 0.4, 0.46),
@@ -65,7 +63,6 @@ var data := {
 		"shape": "diamond",
 		"builtin": true,
 		"special": false,
-		"from_sun": true,
 	},
 	"Ir": {
 		"color": Color(0.0, 0.0, 1.0),
@@ -73,7 +70,6 @@ var data := {
 		"shape": "trapezoid",
 		"builtin": true,
 		"special": false,
-		"from_sun": false,
 	},
 	"Cu": {
 		"color": Color(1.0, 1.0, 0.0),
@@ -81,7 +77,6 @@ var data := {
 		"shape": "circle",
 		"builtin": true,
 		"special": false,
-		"from_sun": false,
 	},
 	"St": {
 		"color": Color(1.0, 0.5, 0.0),
@@ -89,7 +84,6 @@ var data := {
 		"shape": "triangle",
 		"builtin": true,
 		"special": false,
-		"from_sun": false,
 	},
 	"Si": {
 		"color": Color(0.97, 0.15, 0.52),
@@ -97,7 +91,6 @@ var data := {
 		"shape": "diamond",
 		"builtin": true,
 		"special": false,
-		"from_sun": false,
 	},
 	"G": {
 		"color": Color(0.6, 0.9, 0.6),
@@ -105,7 +98,6 @@ var data := {
 		"shape": "trapezoid",
 		"builtin": true,
 		"special": false,
-		"from_sun": false,
 	},
 	"Hi": {
 		"color": Color(0.75, 0.0, 0.0),
@@ -113,7 +105,6 @@ var data := {
 		"shape": "circle",
 		"builtin": true,
 		"special": false,
-		"from_sun": false,
 	},
 	"Cf": {
 		"color": Color(0.75, 0.0, 0.8),
@@ -121,7 +112,6 @@ var data := {
 		"shape": "triangle",
 		"builtin": true,
 		"special": false,
-		"from_sun": false,
 	},
 	"T": {
 		"color": Color(1.0, 1.0, 0.0),
@@ -129,7 +119,6 @@ var data := {
 		"shape": "diamond",
 		"builtin": true,
 		"special": false,
-		"from_sun": true,
 	},
 	"Bg": {
 		"color": Color(0.34, 0.04, 0.68),
@@ -137,7 +126,6 @@ var data := {
 		"shape": "trapezoid",
 		"builtin": true,
 		"special": false,
-		"from_sun": false,
 	},
 	"Mt": {
 		"color": Color(1.0, 0.5, 0.5),
@@ -145,7 +133,6 @@ var data := {
 		"shape": "circle",
 		"builtin": true,
 		"special": false,
-		"from_sun": false,
 	},
 	"XA": {
 		"color": Color(1.0, 0.5, 0.5),
@@ -153,7 +140,6 @@ var data := {
 		"shape": "triangle",
 		"builtin": true,
 		"special": false,
-		"from_sun": false,
 	},
 	"XB": {
 		"color": Color(0.5, 1.5, 0.5),
@@ -161,7 +147,6 @@ var data := {
 		"shape": "diamond",
 		"builtin": true,
 		"special": false,
-		"from_sun": false,
 	},
 	"XC": {
 		"color": Color(0.5, 0.5, 1.0),
@@ -169,7 +154,6 @@ var data := {
 		"shape": "trapezoid",
 		"builtin": true,
 		"special": false,
-		"from_sun": false,
 	},
 	"CG": {
 		"color": Color(0.4, 0.3, 0.7),
@@ -177,7 +161,6 @@ var data := {
 		"shape": "circle",
 		"builtin": true,
 		"special": false,
-		"from_sun": false,
 	},
 	"SW": {
 		"color": Color(0.2, 0.7, 0.4),
@@ -185,7 +168,6 @@ var data := {
 		"shape": "triangle",
 		"builtin": true,
 		"special": false,
-		"from_sun": false,
 	},
 }
 

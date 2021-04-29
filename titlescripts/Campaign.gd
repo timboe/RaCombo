@@ -13,7 +13,7 @@ func reset():
 	campaign_name.text = ""
 	missions_in_campaign.value = 1
 	for c in tab_container.get_children():
-		c.name = "being_deleted"
+		c.name = "deleted"
 		c.queue_free()
 	var new_tab = load("res://scenes/MissionConfiguration.tscn").instance()
 	new_tab.name = "1"
@@ -46,7 +46,12 @@ func dedictionise_internal(var campaign : Dictionary) -> bool:
 		var new_tab = tab_container.get_child(mission_number)
 		mission_number += 1
 		
-		new_tab.find_node("GoalButton").selected = mission["goal"]
+		var g = new_tab.find_node("GoalButton")
+		for i in range(g.get_item_count()):
+			if g.get_item_metadata(i) == mission["goal"]:
+				g.select(i)
+				break
+
 		new_tab.find_node("GoalButton").text = mission["goal"] + Global.data[mission["goal"]]["mode"]
 		new_tab.find_node("GoalAmountSlider").value =  mission["goal_amount"]
 		new_tab.find_node("LanesSlider").value  =  mission["lanes"]
@@ -58,8 +63,11 @@ func dedictionise_internal(var campaign : Dictionary) -> bool:
 		for input_dict in mission["input_lanes"]:
 			if not "resource" in input_dict or not "rate" in input_dict:
 				return false
-			var menu_button = inputs_node.get_node("Input" + String(input_number) + "/MenuButton")
-			menu_button.selected = input_dict["resource"]
+			var menu_button = inputs_node.get_node("Input" + String(input_number) + "/OptionButton")
+			for i in range(menu_button.get_item_count()):
+				if menu_button.get_item_metadata(i) == input_dict["resource"]:
+					menu_button.select(i)
+					break
 			menu_button.text = input_dict["resource"] + Global.data[input_dict["resource"]]["mode"]
 			inputs_node.get_node("Input" + String(input_number) + "/RateSlider").value = input_dict["rate"]
 			input_number += 1
@@ -88,7 +96,7 @@ func dictionise() -> Dictionary:
 	var missions := []
 	for mission in tab_container.get_children():
 		var mission_dict := {}
-		mission_dict["goal"] = mission.find_node("GoalButton").selected
+		mission_dict["goal"] = mission.find_node("GoalButton").get_selected_metadata()
 		mission_dict["goal_amount"] = mission.find_node("GoalAmountSlider").value
 		mission_dict["lanes"] = mission.find_node("LanesSlider").value
 		mission_dict["rings"] = mission.find_node("RingsSlider").value
@@ -97,7 +105,7 @@ func dictionise() -> Dictionary:
 		var lanes := []
 		var inputs_node : GridContainer = mission.find_node("InputGridContainer",true,false)
 		for i in range(6):
-			var input_resource = inputs_node.get_node("Input" + String(i) + "/MenuButton").selected
+			var input_resource = inputs_node.get_node("Input" + String(i) + "/OptionButton").get_selected_metadata()
 			if input_resource == "None":
 				continue
 			var input_rate = inputs_node.get_node("Input" + String(i) + "/RateSlider").value
@@ -120,6 +128,9 @@ func dictionise() -> Dictionary:
 		mission_dict["resources"] = resources
 		missions.append(mission_dict)
 	result["missions"] = missions
+	
+	result["recipies"] = Global.recipies
+	result["resources"] = Global.data
 
 	return result
 	

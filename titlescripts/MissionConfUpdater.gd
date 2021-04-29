@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-onready var goal_node : MenuButton = find_node("GoalButton",true,false)
+onready var goal_node : OptionButton = find_node("GoalButton",true,false)
 onready var inputs_node : GridContainer = find_node("InputGridContainer",true,false)
 onready var recipies_node : GridContainer = find_node("RecipiesGridContainer",true,false)
 onready var resource_node : GridContainer = find_node("ResourceGridContainer",true,false)
@@ -27,11 +27,11 @@ func update_configuration():
 	untick_for(resource_node)
 	
 	# First we get the goal resource
-	var goal = goal_node.selected
+	var goal = goal_node.get_selected_metadata()
 	
 	# Now we get all incoming resources
 	for i in range(6):
-		var input_resource = inputs_node.get_node("Input" + String(i) + "/MenuButton").selected
+		var input_resource = inputs_node.get_node("Input" + String(i) + "/OptionButton").get_selected_metadata()
 		if input_resource == "None":
 			continue
 		if not input_resource in input_lanes:
@@ -46,6 +46,18 @@ func update_configuration():
 	add_required_resource(goal, "Goal resource")
 	recursive_check(goal)
 	
+	# And add any resources from manual recipies
+	for c in recipies_node.get_children():
+		if not c is CheckBox:
+			continue
+		if not c.pressed:
+			continue
+		if "delete" in c.name:
+			continue
+		add_required_resource(c.name, "Recipe active")
+		for input_resource in Global.recipies[c.name]["input"]:
+			add_required_resource(input_resource, "Required to make "+c.name+Global.data[c.name]["mode"])
+		
 	set_required(recipies_node, required_recipies)
 	set_required(resource_node, required_resources)
 	
@@ -88,6 +100,8 @@ func untick_for(var grid : GridContainer):
 			continue
 		if not c.disabled:
 			continue
+		if "delete" in c.name:
+			continue
 		c.disabled = false
 		c.pressed = false
 		grid.get_node(c.name + "_note").text = ""
@@ -101,7 +115,5 @@ func set_required(var node, var required):
 		cb.pressed = true
 		node.get_node(req + "_note").text = required[req]
 	
-
-
 func _on_WarningButton_pressed():
 	pd.show()

@@ -1,13 +1,19 @@
 extends GridContainer
 
-func _ready():
-	for key in Global.recipies:
+onready var mission_container : VBoxContainer = find_parent("MissionContainer")
 
+func update_resource_recipy():
+	for c in get_children():
+		c.name = "delete"
+		c.queue_free()
+	
+	for key in Global.recipies:
 		var cb = CheckBox.new()
 		add_child(cb)
 		cb.name = key
 		cb.disabled = true
 		cb.pressed = true
+		cb.connect("pressed", mission_container, "update_configuration")
 		
 		var d = Global.recipies[key]
 		
@@ -35,4 +41,8 @@ func _ready():
 		note.name = key + "_note"
 		note.text = ""
 		add_child(note)
+
+func _ready():
+	update_resource_recipy()
+
 		
