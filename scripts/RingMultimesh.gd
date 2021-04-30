@@ -9,6 +9,7 @@ export(float) var radius
 export(String) var lane_content = null
 export(bool) var source = false
 export(bool) var sink = false
+export(bool) var forbid_send = false
 var lane_provinance : Array = [] # Note: NOT exported, becomes shared!
 var laneswap_target : Array = [null] 
 

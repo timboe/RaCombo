@@ -13,9 +13,6 @@ var required_recipies = {}
 var input_lanes = []
 var missing = []
 
-func _ready():
-	update_configuration()
-
 func update_configuration():
 	required_resources.clear()
 	required_recipies.clear()
@@ -103,7 +100,6 @@ func untick_for(var grid : GridContainer):
 		if "delete" in c.name:
 			continue
 		c.disabled = false
-		c.pressed = false
 		grid.get_node(c.name + "_note").text = ""
 
 func set_required(var node, var required):

@@ -26,7 +26,7 @@ func set_show(var i : bool):
 
 func _draw():
 	var p : Node2D = get_parent()
-	var to_draw : int = p.set_lanes if p.name == "Ring0" else Global.lanes 
+	var to_draw : int = 0 if p.name == "Ring0" else Global.lanes 
 	var outer : float = p.radius_array[ to_draw-1] + p.LANE_OFFSET/2.0
 	var hl : float = 0.2 if highlight else 0.0
 	var c1 = Color(0.8 + hl, 0.8 + hl, 0.8 + hl)

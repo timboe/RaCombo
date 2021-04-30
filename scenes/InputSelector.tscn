@@ -16,6 +16,9 @@ tool
 onready var mission_container : VBoxContainer = find_parent(\"MissionContainer\")
 
 func update_resource_recipy():
+	if Global.data == null:
+		return
+	
 	var selected_at_reset : String = \"\"
 	if get_item_count() > 0:
 		selected_at_reset = get_selected_metadata() 

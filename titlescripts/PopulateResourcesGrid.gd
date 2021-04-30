@@ -1,7 +1,15 @@
 extends GridContainer
 
 func update_resource_recipy():
+	if Global.data == null:
+		return
+		
+	var was_pressed = []
 	for c in get_children():
+		if "Keep" in c.name:
+			continue
+		if c is CheckBox and c.pressed:
+			was_pressed.append(c.name)
 		c.name = "delete"
 		c.queue_free()
 
@@ -14,6 +22,7 @@ func update_resource_recipy():
 		var cb = CheckBox.new()
 		add_child(cb)
 		cb.name = key
+		cb.pressed = (key in was_pressed)
 		
 		var prod = Label.new()
 		prod.text += key + Global.data[ key ]["mode"]

@@ -3,7 +3,15 @@ extends GridContainer
 onready var mission_container : VBoxContainer = find_parent("MissionContainer")
 
 func update_resource_recipy():
+	if Global.recipies == null or Global.data == null:
+		return
+	
+	var was_pressed = []
 	for c in get_children():
+		if "Keep" in c.name:
+			continue
+		if c is CheckBox and c.pressed:
+			was_pressed.append(c.name)
 		c.name = "delete"
 		c.queue_free()
 	
@@ -12,7 +20,7 @@ func update_resource_recipy():
 		add_child(cb)
 		cb.name = key
 		cb.disabled = true
-		cb.pressed = true
+		cb.pressed = (key in was_pressed)
 		cb.connect("pressed", mission_container, "update_configuration")
 		
 		var d = Global.recipies[key]

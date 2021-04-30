@@ -28,11 +28,11 @@ func _on_Save_pressed():
 		warn_diag.show()
 		return
 		
-	if campaign_name.text == "Main Campaign":
-		warn_diag.dialog_text = "Cannot overwrite the 'Main Campaign'\n\n"
-		warn_diag.dialog_text += "Please choose a different name."
-		warn_diag.show()
-		return
+#	if campaign_name.text == "Main Campaign":
+#		warn_diag.dialog_text = "Cannot overwrite the 'Main Campaign'\n\n"
+#		warn_diag.dialog_text += "Please choose a different name."
+#		warn_diag.show()
+#		return
 		
 	if campaign_name.text == "":
 		warn_diag.dialog_text = "Please choose a campaign name."
@@ -51,9 +51,9 @@ func _on_Discard_pressed():
 
 func _on_DiscardConfirmationDialog_confirmed():
 	print("Discard")
-	main_menu.show_menu("MainMenu")
+	main_menu.show_menu("CampaignManager")
 
 func _on_OverwriteConfirmationDialog_confirmed():
 	Global.campaigns[ the_campaign["name"] ] = the_campaign
 	campaign.flush_campaign_to_disk()
-	main_menu.show_menu("MainMenu")
+	main_menu.show_menu("CampaignManager")

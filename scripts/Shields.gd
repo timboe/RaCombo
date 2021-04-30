@@ -9,6 +9,7 @@ onready var rendered_node = get_tree().get_root().find_node("Render", true, fals
 onready var shield_scene = load("res://scenes/Shield.tscn")
 
 func _ready():
+	Global.populate_data()
 	for n in get_children():
 		n.queue_free()
 	for n in rendered_node.get_children():
@@ -17,9 +18,6 @@ func _ready():
 
 func set_data():
 	for key in Global.data:
-		print(key)
-		print(rendered_node)
-		print(rendered_node.find_node(key))
 		Global.data[key]["texture"] = rendered_node.get_node(key).texture
 	Global.goto_scene("res://Game.tscn")
 	
@@ -29,7 +27,7 @@ func _process(var _delta):
 	var shield = shield_scene.instance()
 	shield.name = key
 	add_child(shield, true)
-	shield.set_owner(get_tree().get_edited_scene_root())
+	#shield.set_owner(get_tree().get_edited_scene_root())
 	var back : StyleBoxFlat = shield.get_node("Back").get_stylebox("panel")
 	back.bg_color = value["color"]
 	back.shadow_color = value["color"].darkened(0.2)
@@ -73,7 +71,7 @@ func _process(var _delta):
 	tex.create_from_image(img)
 	var tr := TextureRect.new()
 	rendered_node.add_child(tr)
-	tr.set_owner(get_tree().get_edited_scene_root())
+	#tr.set_owner(get_tree().get_edited_scene_root())
 	tr.texture = tex
 	tr.name = key
 	tr.margin_left = 256 * (count % 4)

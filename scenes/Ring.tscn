@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://scripts/RingMultimesh.gd" type="Script" id=1]
 [ext_resource path="res://scripts/Ring.gd" type="Script" id=2]
@@ -12,20 +12,20 @@
 [ext_resource path="res://images/circle.png" type="Texture" id=10]
 [ext_resource path="res://images/sol.png" type="Texture" id=11]
 
-[sub_resource type="Curve" id=22]
+[sub_resource type="Curve" id=1]
 min_value = -1.0
 _data = [ Vector2( 0.0191083, 0.129545 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.286364 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=23]
-curve = SubResource( 22 )
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
 
-[sub_resource type="Curve" id=24]
+[sub_resource type="Curve" id=3]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -3.49013, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=25]
-curve = SubResource( 24 )
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
 
-[sub_resource type="ParticlesMaterial" id=26]
+[sub_resource type="ParticlesMaterial" id=5]
 lifetime_randomness = 0.2
 flag_disable_z = true
 direction = Vector3( -1, 0, 0 )
@@ -43,47 +43,75 @@ angle = 360.0
 angle_random = 1.0
 scale = 0.01
 scale_random = 0.01
-scale_curve = SubResource( 25 )
-hue_variation_curve = SubResource( 23 )
+scale_curve = SubResource( 4 )
+hue_variation_curve = SubResource( 2 )
 
-[sub_resource type="CanvasItemMaterial" id=1]
+[sub_resource type="CanvasItemMaterial" id=6]
 
-[sub_resource type="QuadMesh" id=27]
+[sub_resource type="QuadMesh" id=7]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=28]
+[sub_resource type="MultiMesh" id=8]
 custom_data_format = 1
-mesh = SubResource( 27 )
+mesh = SubResource( 7 )
 
-[sub_resource type="QuadMesh" id=29]
+[sub_resource type="QuadMesh" id=9]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=30]
+[sub_resource type="MultiMesh" id=10]
 custom_data_format = 1
-mesh = SubResource( 29 )
+mesh = SubResource( 9 )
 
-[sub_resource type="QuadMesh" id=31]
+[sub_resource type="QuadMesh" id=11]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=32]
+[sub_resource type="MultiMesh" id=12]
 custom_data_format = 1
-mesh = SubResource( 31 )
-
-[sub_resource type="QuadMesh" id=33]
-size = Vector2( 10, 10 )
-
-[sub_resource type="MultiMesh" id=34]
-custom_data_format = 1
-mesh = SubResource( 33 )
-
-[sub_resource type="ImageTexture" id=10]
-
-[sub_resource type="CubeMesh" id=11]
-
-[sub_resource type="MeshTexture" id=12]
 mesh = SubResource( 11 )
 
-[sub_resource type="DynamicFont" id=13]
+[sub_resource type="QuadMesh" id=13]
+size = Vector2( 10, 10 )
+
+[sub_resource type="MultiMesh" id=14]
+custom_data_format = 1
+mesh = SubResource( 13 )
+
+[sub_resource type="QuadMesh" id=19]
+size = Vector2( 10, 10 )
+
+[sub_resource type="MultiMesh" id=20]
+custom_data_format = 1
+mesh = SubResource( 19 )
+
+[sub_resource type="QuadMesh" id=21]
+size = Vector2( 10, 10 )
+
+[sub_resource type="MultiMesh" id=22]
+custom_data_format = 1
+mesh = SubResource( 21 )
+
+[sub_resource type="QuadMesh" id=23]
+size = Vector2( 10, 10 )
+
+[sub_resource type="MultiMesh" id=24]
+custom_data_format = 1
+mesh = SubResource( 23 )
+
+[sub_resource type="QuadMesh" id=25]
+size = Vector2( 10, 10 )
+
+[sub_resource type="MultiMesh" id=26]
+custom_data_format = 1
+mesh = SubResource( 25 )
+
+[sub_resource type="ImageTexture" id=15]
+
+[sub_resource type="CubeMesh" id=16]
+
+[sub_resource type="MeshTexture" id=17]
+mesh = SubResource( 16 )
+
+[sub_resource type="DynamicFont" id=18]
 size = 18
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -114,7 +142,7 @@ outline_color = Color( 0.8, 0.8, 0.8, 1 )
 [node name="Particles2D" type="Particles2D" parent="ShipRotationTemplate/Ship"]
 amount = 64
 local_coords = false
-process_material = SubResource( 26 )
+process_material = SubResource( 5 )
 texture = ExtResource( 9 )
 
 [node name="Rotation" type="Node2D" parent="."]
@@ -124,8 +152,8 @@ texture = ExtResource( 9 )
 [node name="Lane0" type="MultiMeshInstance2D" parent="Rotation/Lanes" groups=[
 "LaneGroup",
 ]]
-material = SubResource( 1 )
-multimesh = SubResource( 28 )
+material = SubResource( 6 )
+multimesh = SubResource( 8 )
 texture = ExtResource( 10 )
 script = ExtResource( 1 )
 radians_per_slot = 0.0156298
@@ -134,8 +162,8 @@ lane_content = null
 [node name="Lane1" type="MultiMeshInstance2D" parent="Rotation/Lanes" groups=[
 "LaneGroup",
 ]]
-material = SubResource( 1 )
-multimesh = SubResource( 30 )
+material = SubResource( 6 )
+multimesh = SubResource( 10 )
 texture = ExtResource( 8 )
 script = ExtResource( 1 )
 radians_per_slot = 0.0156298
@@ -144,8 +172,8 @@ lane_content = null
 [node name="Lane2" type="MultiMeshInstance2D" parent="Rotation/Lanes" groups=[
 "LaneGroup",
 ]]
-material = SubResource( 1 )
-multimesh = SubResource( 32 )
+material = SubResource( 6 )
+multimesh = SubResource( 12 )
 texture = ExtResource( 10 )
 script = ExtResource( 1 )
 radians_per_slot = 0.0156298
@@ -154,7 +182,43 @@ lane_content = null
 [node name="Lane3" type="MultiMeshInstance2D" parent="Rotation/Lanes" groups=[
 "LaneGroup",
 ]]
-multimesh = SubResource( 34 )
+multimesh = SubResource( 14 )
+texture = ExtResource( 10 )
+script = ExtResource( 1 )
+radians_per_slot = 0.0156298
+lane_content = null
+
+[node name="Lane4" type="MultiMeshInstance2D" parent="Rotation/Lanes" groups=[
+"LaneGroup",
+]]
+multimesh = SubResource( 20 )
+texture = ExtResource( 10 )
+script = ExtResource( 1 )
+radians_per_slot = 0.0156298
+lane_content = null
+
+[node name="Lane5" type="MultiMeshInstance2D" parent="Rotation/Lanes" groups=[
+"LaneGroup",
+]]
+multimesh = SubResource( 22 )
+texture = ExtResource( 10 )
+script = ExtResource( 1 )
+radians_per_slot = 0.0156298
+lane_content = null
+
+[node name="Lane6" type="MultiMeshInstance2D" parent="Rotation/Lanes" groups=[
+"LaneGroup",
+]]
+multimesh = SubResource( 24 )
+texture = ExtResource( 10 )
+script = ExtResource( 1 )
+radians_per_slot = 0.0156298
+lane_content = null
+
+[node name="Lane7" type="MultiMeshInstance2D" parent="Rotation/Lanes" groups=[
+"LaneGroup",
+]]
+multimesh = SubResource( 26 )
 texture = ExtResource( 10 )
 script = ExtResource( 1 )
 radians_per_slot = 0.0156298
@@ -191,8 +255,8 @@ margin_left = 157.5
 margin_top = -20.0
 margin_right = 179.5
 margin_bottom = 20.0
-texture_normal = SubResource( 10 )
-texture_pressed = SubResource( 12 )
+texture_normal = SubResource( 15 )
+texture_pressed = SubResource( 17 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -204,7 +268,7 @@ margin_top = -20.0
 margin_right = 218.5
 margin_bottom = 3.0
 rect_rotation = 90.0
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 18 )
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false

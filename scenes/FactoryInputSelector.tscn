@@ -1,0 +1,89 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://titlescripts/SliderToText.gd" type="Script" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Label
+
+func _ready():
+	text = \"Input \" + String( get_parent().name.to_int() + 1 )
+"
+
+[node name="HBoxContainer1" type="HBoxContainer"]
+margin_top = 22.0
+margin_right = 480.0
+margin_bottom = 42.0
+custom_constants/separation = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Input" type="Label" parent="."]
+margin_top = 3.0
+margin_right = 50.0
+margin_bottom = 17.0
+text = "Input 0:"
+script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionButton" type="OptionButton" parent="."]
+margin_left = 58.0
+margin_right = 122.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 64, 16 )
+text = "None"
+items = [ "None", null, false, 0, "None", "H+", null, false, 1, "H", "Ir-", null, false, 2, "Ir", "Cu-", null, false, 3, "Cu", "St-", null, false, 4, "St", "Si-", null, false, 5, "Si", "G+", null, false, 6, "G", "Hi+", null, false, 7, "Hi", "Cf-", null, false, 8, "Cf", "T+", null, false, 9, "T", "Bg+", null, false, 10, "Bg", "Mt+", null, false, 11, "Mt", "XA-", null, false, 12, "XA", "XB+", null, false, 13, "XB", "XC+", null, false, 14, "XC", "CG+", null, false, 15, "CG", "SW+", null, false, 16, "SW" ]
+selected = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Margin" type="MarginContainer" parent="."]
+margin_left = 130.0
+margin_right = 146.0
+margin_bottom = 20.0
+custom_constants/margin_left = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Number" type="Label" parent="."]
+margin_left = 154.0
+margin_top = 3.0
+margin_right = 206.0
+margin_bottom = 17.0
+text = "Number"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="N" type="Label" parent="."]
+margin_left = 214.0
+margin_top = 3.0
+margin_right = 246.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 32, 0 )
+text = "1"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NumberSlider" type="HSlider" parent="."]
+margin_left = 254.0
+margin_right = 480.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 49.0
+value = 1.0
+tick_count = 25
+ticks_on_borders = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="value_changed" from="NumberSlider" to="NumberSlider" method="_on_HSlider_value_changed"]

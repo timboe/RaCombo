@@ -9,13 +9,30 @@ func _ready():
 	for c in get_children():
 		rings += 1
 		c.setup_resource(RING_RADIUS * rings)
-		if rings == 1: # Sol
-			c.get_lane(3).register_resource("H", null)
-			c.get_lane(3).set_as_source_lane()
-			c.get_lane(2).register_resource("Cf", null)
-			c.get_lane(1).register_resource("T", null)
-			# Any cunife deposited in lane 2 becomes tritium in lane 1
-			c.get_lane(2).set_laneswap( c.get_lane(1) )
-			c.get_lane(0).set_as_sink_lane()
+	setup_sol()
 
+# Note: Changing level does not affect this - only need to do it once
+func setup_sol():
+	var sol = get_child(0)
+	if sol.get_lane(7).source == false:
+		sol.get_lane(7).register_resource("H", null)
+		sol.get_lane(7).set_as_source_lane()
+	if sol.get_lane(0).sink == false:
+		sol.get_lane(0).set_as_sink_lane()
+	# Setup transmute
+	var next_out := 1
+	var next_in := 2
+	for r in Global.recipies:
+		if Global.recipies[r]["factory"] == true:
+			continue
+		var tranmute_from = Global.recipies[r]["input"][0]
+		var transmute_to = r
+		sol.get_lane(next_out).register_resource(transmute_to, null)
+		sol.get_lane(next_in).register_resource(tranmute_from, null)
+		sol.get_lane(next_out).forbid_send = true
+		# Any "tranmute_from" deposited in lane "next_in" becomes "transmute_to" in lane "next_out
+		sol.get_lane(next_in).set_laneswap( sol.get_lane(next_out) )
+		next_out += 2
+		next_in += 2
 
+	

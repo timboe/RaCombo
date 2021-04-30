@@ -56,7 +56,6 @@ func remove_spy(var spy):
 	spies.erase(spy)
 	
 func remove_any_ship():
-	print("remove any ship ",ring.ring_number," ship ",ship)
 	if ship != null and is_instance_valid(ship):
 		print("Ship removed by ring")
 		ship.remove()

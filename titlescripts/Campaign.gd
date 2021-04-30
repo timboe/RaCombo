@@ -10,6 +10,9 @@ func _ready():
 	load_campaign_from_disk()
 
 func reset():
+	Global.campaign = null
+	Global.data = null
+	Global.recipies = null
 	campaign_name.text = ""
 	missions_in_campaign.value = 1
 	for c in tab_container.get_children():
@@ -18,32 +21,48 @@ func reset():
 	var new_tab = load("res://scenes/MissionConfiguration.tscn").instance()
 	new_tab.name = "1"
 	tab_container.add_child(new_tab, true)
+	
+func update_resource_recipy():
+	for n in get_tree().get_nodes_in_group("ResRecUpdateGroup"):
+		n.update_resource_recipy()
+	# Note: Can not cache
+	var tab_container = get_tree().get_root().find_node("TabContainer", true, false)
+	for m in tab_container.get_children():
+		var m_c = tab_container.find_node("MissionContainer", true, false)
+		m_c.update_configuration()
 
-func dedictionise(var campaign : Dictionary):
+func dedictionise(var load_campaign : Dictionary):
 	reset()
-	if not dedictionise_internal(campaign):
+	if not dedictionise_internal(load_campaign):
 		reset()
 	
-func dedictionise_internal(var campaign : Dictionary) -> bool:
-	if not "name" in campaign:
+func dedictionise_internal(var load_campaign : Dictionary) -> bool:
+	if not "name" in load_campaign:
 		return false
 	
-	campaign_name.text = campaign["name"]
+	campaign_name.text = load_campaign["name"]
 
-	if not "missions" in campaign:
+	if not "missions" in load_campaign:
 		return false
 		
-	missions_in_campaign.value = campaign["missions"].size()
+	missions_in_campaign.value = load_campaign["missions"].size()
 	# This adds the new tabs
-
+	
+	if not "resources" in load_campaign or not "recipies" in load_campaign:
+		return false
+	
+	# Set main arrays
+	Global.populate_data()
+	update_resource_recipy()
+	
 	var mission_number = 0
-	for mission in campaign["missions"]:
+	for mission in load_campaign["missions"]:
 		if not "goal" in mission or not "goal_amount" in mission or not "lanes" in mission \
 			or not "rings" in mission or not "factories_collect_above" in mission or not "input_lanes" in mission \
 			or not "recipies" in mission or not "resources" in mission:
 				return false
 		
-		var new_tab = tab_container.get_child(mission_number)
+		var new_tab = tab_container.get_node(String(mission_number + 1))
 		mission_number += 1
 		
 		var g = new_tab.find_node("GoalButton")
@@ -73,18 +92,22 @@ func dedictionise_internal(var campaign : Dictionary) -> bool:
 			input_number += 1
 			
 		var recipies : GridContainer = new_tab.find_node("RecipiesGridContainer",true,false)
+		recipies.update_resource_recipy()
 		for r in mission["recipies"]:
 			var cb : CheckBox = recipies.get_node(r)
 			cb.pressed = true
 			
 		var resources : GridContainer = new_tab.find_node("ResourceGridContainer",true,false)
+		resources.update_resource_recipy()
 		for r in mission["resources"]:
 			var cb : CheckBox = resources.get_node(r)
 			cb.pressed = true
 			
 		var mission_container : VBoxContainer = new_tab.find_node("MissionContainer",true,false)
 		mission_container.call_deferred("update_configuration")
-				
+	
+	Global.campaign = load_campaign
+
 	return true
 	
 

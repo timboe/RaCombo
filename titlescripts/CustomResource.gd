@@ -5,7 +5,8 @@ onready var nme : LineEdit = find_node("LineEdit")
 onready var symb : OptionButton = find_node("SymbolButton")
 onready var mode : OptionButton = find_node("ModeButton")
 onready var tex_rec : TextureRect = find_node("TextureRect")
-
+onready var warn_diag : AcceptDialog = find_parent("CampaignEditor").find_node("WarningDialog", true, false)
+onready var campaign_editor : CenterContainer = find_parent("CampaignEditor")
 
 func show_for(var resource):
 	if resource != null:
@@ -27,25 +28,23 @@ func show_for(var resource):
 	tex_rec.update_prieview()
 	show()
 
-func update_resource_recipy():
-	for n in get_tree().get_nodes_in_group("ResRecUpdateGroup"):
-		n.update_resource_recipy()
-	# Note: Do not cache
-	var mission_container = get_tree().get_root().find_node("MissionContainer", true, false)
-	mission_container.update_configuration()
-
-
 func _on_Save_pressed():
 	if nme.text == "":
+		warn_diag.dialog_text = "New resource must have a name"
+		warn_diag.show()
+		return
+	if nme.text == "H" and mode.get_selected_metadata() == "-":
+		warn_diag.dialog_text = "H must be a +ve signed resource"
+		warn_diag.show()
 		return
 	var d = {}
 	d["color"] = col.color
+	d["color_hex"] = col.color.to_html()
 	d["mode"] = mode.get_selected_metadata()
 	d["shape"] = symb.get_selected_metadata()
-	d["builtin"] = true # remove this...
 	d["special"] = false
 	Global.data[nme.text] = d
-	update_resource_recipy()
+	campaign_editor.update_resource_recipy()
 	hide()
 
 func _on_Discard_pressed():
@@ -53,6 +52,10 @@ func _on_Discard_pressed():
 
 func _on_Delete_pressed():
 	var resource = nme.text
+	if resource == "H":
+		warn_diag.dialog_text = "Cannot delete the H resource"
+		warn_diag.show()
+		return
 	if resource in Global.data:
 		Global.data.erase(resource)
 	if resource in Global.recipies:
@@ -62,5 +65,5 @@ func _on_Delete_pressed():
 		if loc != -1:
 			Global.recipies[r]["input"].remove(loc)
 			Global.recipies[r]["amount_in"].remove(loc)
-	update_resource_recipy()
+	campaign_editor.update_resource_recipy()
 	hide()

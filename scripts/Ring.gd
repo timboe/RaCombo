@@ -6,7 +6,7 @@ const LANE_OFFSET := 5.0;
 const TWOPI := PI * 2.0
 const FACTORY_SPAN_DEGREES := 45.0
 
-export(int, 1, 4) var set_lanes
+export(int, 1, 8) var set_lanes
 export(Color) var set_debug_color
 
 export(int) var ring_number
@@ -19,6 +19,10 @@ func _ready():
 	$Rotation/FactoryTemplate.visible = false
 	$ShipRotationTemplate.visible = false
 	ring_number = name.to_int()
+	if ring_number != 0:
+		for i in range(4,8):
+			get_lane(i).name = "deleted"
+			get_lane(i).queue_free()
 	
 func reset():
 	for l in get_lanes():
@@ -66,34 +70,32 @@ func register_resource(var lane : int, var reg_resource : String, var provinace 
 	get_lane(lane).register_resource(reg_resource, provinace)
 
 func get_free_or_existing_lane(var desired_resource : String) -> int:
+	var max_lanes = get_lanes().size() if ring_number == 0 else Global.lanes
 	# Existing
-	var count = 0
-	for l in get_lanes():
-		if l.lane_content != null and l.lane_content == desired_resource:
-			return count
-		count += 1
+	for l in range(max_lanes):
+		if get_lane(l).lane_content != null and get_lane(l).lane_content == desired_resource and get_lane(l).forbid_send == false:
+			return l
 	# Free
-	count = 0
-	for l in get_lanes():
-		if l.lane_content == null:
-			return count
-		count += 1
+	for l in range(max_lanes):
+		if get_lane(l).lane_content == null and get_lane(l).forbid_send == false:
+			return l
 	return -1
 	
 func set_radius(var r : float):
 	radius_array.resize(set_lanes)
 	for i in range(set_lanes):
-		radius_array[i] = r + (i*LANE_OFFSET)
+		radius_array[i] = r + ((i%4)*LANE_OFFSET)
 	# To be physical this should be ~ sqrt(1/r)
 	angular_velocity = Global.M_SOL/r
 	var circ : float = 2.0 * PI * r
 	n = circ * DENSITY
 
+# TODO rename this to init or something
 func setup_resource(var r : float):
 	set_radius(r)
 	var count : int = 0
-	for l in get_lanes():
-		l.setup_resource(n, radius_array[count])
+	for l in range(set_lanes):
+		get_lane(l).setup_resource(n, radius_array[count])
 		count += 1
 	#vertical drop in ring0's factory template. Used to set angular width of all factory templates
 	var r0 : Node2D = $"../Ring0"
