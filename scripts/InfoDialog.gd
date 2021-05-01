@@ -13,7 +13,7 @@ func hide_diag():
 	page = ""
 	hide()
 
-func show_shared():
+func show_shared_internal():
 	current_building = null
 	current_ring = null
 	page = ""
@@ -23,45 +23,65 @@ func show_shared():
 	show()
 
 func show_ring_diag(var ring : Node2D):
-	show_shared()
+	show_shared_internal()
 	$RingContainer.visible = true
 	current_ring = ring
 	update_ring_diag()
 	
 func show_building_diag(var factory : Area2D):
-	show_shared()
+	show_shared_internal()
 	$FactoryContainer.visible = true
 	current_building = factory
 	update_building_diag()
 
 func toggle_menu_diag():
 	var show : bool = (page != "menu")
-	show_shared()
+	show_shared_internal()
 	if show:
 		$MenuContainer.visible = true
 		page = "menu"
 		window_title = "Menu"
+		$MenuContainer/Container/CenterContainer/Sandbox.visible = Global.sandbox
 	else:
 		hide_diag()
 
 func show_named_diag(var n : String):
-	show_shared()
+	show_shared_internal()
 	var node = find_node(n+"Container")
-	$SandboxContainer.visible = true
+	node.visible = true
 	page = n
 	window_title = n+" Settings"
 	if has_method("update_"+n+"_diag"):
 		call("update_"+n+"_diag")
-	
+		
+# Used to refresh the page when it is being displyed
 func update_diag():
 	if current_ring != null:
 		update_ring_diag()
 	elif current_building != null:
 		update_building_diag()
-	elif page == "menu":
+	else:
 		pass
-	elif page == "sandbox":
-		pass
+
+# Below used to update page on initial draw
+
+func update_Sol_diag():
+	window_title = "Sol"
+	
+func update_Mission_diag():
+	window_title = "Current Mission"
+	$MissionContainer/VBox/CampaignName.text = Global.campaign["name"]
+	var level_str = String(Global.level + 1) + " of " + String(Global.campaign["missions"].size())
+	$MissionContainer/VBox/InfoGrid/MissionNumber.text = level_str
+	$MissionContainer/VBox/InfoGrid/Rings.text = String(Global.rings - 1) # Avoid Sol
+	$MissionContainer/VBox/InfoGrid/Lanes.text = String(Global.lanes)
+	var from_above_str = "From above" if Global.factories_pull_from_above else "From below"
+	$MissionContainer/VBox/InfoGrid/FromAbove.text = from_above_str
+	var goal_res = Global.mission["goal"]
+	var goal_amount = Global.mission["goal_amount"]
+	print("goal res ", goal_res)
+	$MissionContainer/VBox/HBottomBox/GoalTextureRect.texture = Global.data[ goal_res ]["texture"]
+	$MissionContainer/VBox/HBottomBox/GoalNumber.text = "x" + String(goal_amount)
 
 func update_building_diag():
 	window_title = current_building.descriptive_name
@@ -150,3 +170,15 @@ func _on_UpdateTimer_timeout():
 	if current_building != null:
 		for mm in get_tree().get_nodes_in_group("InfoMultimeshGroup"):
 			mm.update_visible()
+
+func _on_Sandbox_pressed():
+	show_named_diag("Sandbox")
+
+func _on_Mission_pressed():
+	show_named_diag("Mission")
+
+func _on_Title_pressed():
+	Global.goto_scene("res://Title.tscn")
+
+func _on_Quit_pressed():
+	get_tree().quit()

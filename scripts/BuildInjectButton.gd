@@ -5,11 +5,6 @@ onready var id = get_tree().get_root().find_node("InfoDialog", true, false)
 
 onready var inj_node = get_tree().get_root().find_node("Injector"+String(int(name)), true, false).get_child(0)
 
-func _process(var _delta):
-	if name != "BuildMode":
-		icon = Global.data[inj_node.set_resource]["texture"]
-	set_process(false)
-
 func _on_Button_toggled(button_pressed):
 	if button_pressed:
 		# The button calling this method is the one that was just selected

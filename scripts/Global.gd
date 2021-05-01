@@ -9,18 +9,25 @@ const MAX_STORAGE := 49
 enum {BUILDING_UNSET, BUILDING_EXTRACTOR, BUILDING_INSERTER, BUILDING_FACTORY}
 enum {OUTWARDS, INWARDS}
 
-# Helper globals
+# Helper globals (transient)
 var last_pressed = null
 
 # Current level & configuration globals
 var campaign = null
+# Unpacked into vars...
 var data = null
 var recipies = null
-
-var level : int = 1
+var mission = null
 var rings : int = 10
 var lanes : int = 4
 var factories_pull_from_above : bool = true
+
+# Current game data
+var sandbox = false
+var level : int = 1
+var remaining : int = 1000
+var to_subtract : int = 0 # Used to animate remaining
+var exported = {} # Statistics
 
 # Helper functions
 func lighten(var c : Color) -> Color:
@@ -28,7 +35,7 @@ func lighten(var c : Color) -> Color:
 		c.s - (c.s * 0.75),  # Lighten
 		c.v)
 
-# Scene changing
+# Scene changing #####
 var current_scene = null
 
 func _ready():
@@ -51,6 +58,7 @@ func _deferred_goto_scene(path):
 	current_scene = s.instance()
 	get_tree().get_root().add_child(current_scene)
 	get_tree().set_current_scene(current_scene)
+# Scene changing #####
 
 # Cache of all campaign data
 var campaigns := {}

@@ -9,10 +9,8 @@ func _unhandled_input(event):
 	if event is InputEventMouseButton and event.is_pressed():
 		if event.button_index == BUTTON_WHEEL_UP:
 			zoom /= 1.1
-			print(zoom)
 		if event.button_index == BUTTON_WHEEL_DOWN:
 			zoom *= 1.1
-			print(zoom)
 	if event is InputEventMouseMotion and Input.is_action_pressed("ui_mouse_pan"):
 		global_position -= (event.relative * zoom)
 

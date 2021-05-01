@@ -17,6 +17,7 @@ export(float) var span_radians
 export(bool) var built = false
 
 export(int) var output_storage = 0
+export(String) var recipe = ""
 
 export(PoolColorArray) var ship_color
 export(Color) var outline_color
@@ -27,7 +28,8 @@ var points_vec = PoolVector2Array()
 
 var spies = [] # The multimeshes currently spying on the storage content here
 
-onready var id = get_tree().get_root().find_node("InfoDialog", true, false) 
+onready var id : WindowDialog = get_tree().get_root().find_node("InfoDialog", true, false) 
+onready var rule_changer : Node2D = get_tree().get_root().find_node("RuleChanger", true, false) 
 onready var something_changed_node = $"/root/Game/SomethingChanged"
 
 func _ready():
@@ -59,8 +61,9 @@ func setup_resource(var _radius : float, var i_radius : float, var o_radius : fl
 	$Particles2D.position.x = outer_radius
 	$Particles2D.emitting = false
 	
-func configure_ship(var recipy : String, var _factory : Node2D):
-	outline_color = Global.data[recipy]["color"]
+func configure_ship(var _recipe : String, var _factory : Node2D):
+	recipe = _recipe
+	outline_color = Global.data[recipe]["color"]
 	factory = _factory
 	ship_color[0] = Global.lighten(outline_color)
 	update()
@@ -85,7 +88,8 @@ func depart():
 	# TODO improve flyaway...
 	$Tween.interpolate_method(self, "set_radius_mod", 0.0, SHIP_DEPART_RADIUS,
 		SHIP_DEPART_TIME, Tween.TRANS_SINE, Tween.EASE_IN)
-	$Tween.interpolate_callback(self, SHIP_DEPART_TIME, "remove")
+	$Tween.interpolate_property(self, "rotation", null, PI/4.0, SHIP_DEPART_TIME/2.0)
+	$Tween.interpolate_callback(self, SHIP_DEPART_TIME, "deposit")
 	$Tween.start()
 	
 func set_radius_mod(var r):
@@ -99,6 +103,10 @@ func deregister_provider(var _provider):
 	for spy in spies:
 		spy.reset()
 	spies.clear()
+	
+func deposit():
+	rule_changer.deposit(recipe, output_storage)
+	remove()
 	
 func remove(): # Note: May remove through means other than depart()
 	deregister_provider(null)

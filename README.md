@@ -24,3 +24,4 @@ Assets:
  * open by Gregor Cresnar from the Noun Project
  * Settings by Adriansyah from the Noun Project
  * Exit by Morten Halvorsen from the Noun Project
+ * play by Adriansyah from the Noun Project

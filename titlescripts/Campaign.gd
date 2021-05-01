@@ -37,6 +37,7 @@ func dedictionise(var load_campaign : Dictionary):
 		reset()
 	
 func dedictionise_internal(var load_campaign : Dictionary) -> bool:
+	Global.campaign = load_campaign
 	if not "name" in load_campaign:
 		return false
 	
@@ -105,9 +106,7 @@ func dedictionise_internal(var load_campaign : Dictionary) -> bool:
 			
 		var mission_container : VBoxContainer = new_tab.find_node("MissionContainer",true,false)
 		mission_container.call_deferred("update_configuration")
-	
-	Global.campaign = load_campaign
-
+		
 	return true
 	
 

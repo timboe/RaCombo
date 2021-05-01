@@ -6,10 +6,6 @@ onready var rs : Node2D = get_tree().get_root().find_node("RingSystem", true, fa
 onready var button_group : ButtonGroup = get_tree().get_root().find_node("BuildMode", true, false).group
 onready var id = get_tree().get_root().find_node("InfoDialog", true, false) 
 
-onready var iron_inj_node = get_tree().get_root().find_node("IronInjection0", true, false)
-onready var copper_inj_node = get_tree().get_root().find_node("CopperInjection0", true, false)
-onready var silica_inj_node = get_tree().get_root().find_node("SilicaInjection0", true, false)
-
 var prev_ring : Node2D = null
 var ring : Node2D = null
 var cursor : Vector2
@@ -51,13 +47,13 @@ func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		# Update once per moving in/out of highlight
 		if prev_ring != ring:
-			if prev_ring != null:
+			if prev_ring != null and prev_ring.ring_number != 0:
 				prev_ring.get_node("Outline").set_highlight(false)
 				if (mode_build): 
 					prev_ring.set_factory_template_visible(false)
 				if mode_inject:
 					injection.stop_hint_resource()
-			if ring != null:
+			if ring != null and ring.ring_number != 0:
 				ring.get_node("Outline").set_highlight(true)
 				if mode_build: 
 					ring.set_factory_template_visible(true)
@@ -71,8 +67,7 @@ func _unhandled_input(event):
 	if event is InputEventMouseButton and ring != null and event.pressed and event.button_index == 1:
 		if button == null: # Select ring (but not the Sol ring)
 			if ring.ring_number == 0:
-				#TODO show Sol
-				pass
+				id.show_named_diag("Sol")
 			else:
 				id.show_ring_diag(ring)
 		elif mode_build and ring.ring_number != 0:

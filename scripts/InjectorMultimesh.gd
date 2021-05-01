@@ -4,7 +4,7 @@ tool
 const WIDTH := 512.0
 const EXTRA_MARGIN := 256.0
 
-export(String) var set_resource = ""
+export(String) var set_resource = "None"
 export(float) var set_period = 1.0
 
 export(int) var n
@@ -23,13 +23,40 @@ func _ready():
 	multimesh.mesh = QuadMesh.new()
 	multimesh.mesh.set_size(Vector2(10,10))
 	multimesh.transform_format = MultiMesh.TRANSFORM_2D
+	update_resource(set_resource, set_period)
+	
+func update_resource(var res, var period):
+	if placed and res != set_resource:
+		# Cannot modify the resorce of a live lane, only the period. Must Remove the lane first"
+		lane_cleared(null)
+	set_resource = res
+	set_period = period
 	if set_resource == "":
 		print("ERROR: Injector ",name," has no resource!")
 	modulate = Global.data[set_resource]["color"]
 	texture = load("res://images/"+Global.data[set_resource]["shape"]+".png")
 	var per_sec : float = 1.0 / set_period
 	injector_button.text = String(per_sec) + "/s"
-
+	injector_button.icon = Global.data[set_resource]["texture"]
+	injector_button.visible = (set_resource != "None")
+	update_internal()
+	
+# Called when we place a lane, or the fundamental properties of an
+# existing lane change and need updating
+func update_internal():
+	print(ring)
+	if ring == "": # Invalid
+		return
+	linear_velocity = get_node(ring).angular_velocity * radius
+	var total_length := WIDTH + EXTRA_MARGIN
+	n = round( (total_length/linear_velocity) / set_period ) 
+	multimesh.instance_count = n
+	for i in range(multimesh.instance_count):
+		var offset = i * (linear_velocity * set_period);
+		var orig := Vector2(-offset, -radius)
+		var t := Transform2D(Vector2.RIGHT, Vector2.DOWN, orig)
+		multimesh.set_instance_transform_2d(i, t)
+		
 func hint_resource(var attached_ring : Node2D, var ring_lane : int):
 	if ring_lane == -1: # Invalid - no room
 		ring = ""
@@ -50,15 +77,7 @@ func setup_resource_at_hint():
 		return
 	get_node(ring).register_resource(lane, set_resource, self)
 	placed = true
-	linear_velocity = get_node(ring).angular_velocity * radius
-	var total_length := WIDTH + EXTRA_MARGIN
-	n = round( (total_length/linear_velocity) / set_period ) 
-	multimesh.instance_count = n
-	for i in range(multimesh.instance_count):
-		var offset = i * (linear_velocity * set_period);
-		var orig := Vector2(-offset, -radius)
-		var t := Transform2D(Vector2.RIGHT, Vector2.DOWN, orig)
-		multimesh.set_instance_transform_2d(i, t)
+	update_internal()
 	transform.origin.x = -WIDTH
 	get_parent().update()
 	get_parent().visible = true

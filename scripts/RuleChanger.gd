@@ -1,24 +1,91 @@
 extends Node2D
 
-onready var id = get_tree().get_root().find_node("InfoDialog", true, false) 
+onready var id : WindowDialog = get_tree().get_root().find_node("InfoDialog", true, false) 
+onready var injection : Node2D = get_tree().get_root().find_node("InjectionSystem", true, false) 
+onready var gui_goal : TextureRect = get_tree().get_root().find_node("MissionTex", true, false) 
+onready var gui_remaining : Label  = get_tree().get_root().find_node("MissionRemaining", true, false) 
+onready var gui_mission : Label  = get_tree().get_root().find_node("MissionLabel", true, false) 
+onready var rs = get_tree().get_root().find_node("RingSystem", true, false)
 onready var something_changed_node = $"/root/Game/SomethingChanged"
 
-func change_level():
-	var level := Global.level
-	var rings :int = Global.campaign["missions"][level]["rings"]
+var t = 0
+
+func change_level(var level):
+	Global.level = level
+	Global.mission = Global.campaign["missions"][level]
+	Global.remaining = Global.mission["goal_amount"]
+	# Top Gui
+	if Global.sandbox:
+		gui_goal.texture = load("res://images/sandbox.png")
+		gui_remaining.text = "Sandbox"
+		gui_mission.text = ""
+	else:
+		gui_goal.texture = Global.data[ Global.mission["goal"] ]["texture"]
+		gui_remaining.text = "x" + String(Global.remaining)
+		gui_mission.text = "Mission " + String(Global.level + 1)
+	# Number of rings
+	var rings :int = Global.mission["rings"]
 	set_rings(rings)
-	var lanes : int = Global.campaign["missions"][level]["lanes"]
+	# Number of lanes
+	var lanes : int = Global.mission["lanes"]
 	set_lanes(lanes)
-	var from_above : bool = Global.campaign["missions"][level]["factories_collect_above"]
+	# Factory behaviour
+	var from_above : bool = Global.mission["factories_collect_above"]
 	set_factories_collect(from_above)
+	# Injectors
+	set_inectors(level)
+	# UI elements
+	for g in get_tree().get_nodes_in_group("UIGridsGroup"):
+		g.update_grid()
+	# Show new mission intro
+	if Global.sandbox:
+		id.show_named_diag("Sandbox")
+	else:
+		id.show_named_diag("Mission")
+
+# A ship has departed
+func deposit(var resource : String, var amount : int):
+	if not resource in Global.exported:
+		Global.exported[resource] = 0
+	Global.exported[resource] += amount
+	if resource == Global.mission["goal"]:
+		Global.to_subtract += amount
+		set_process(true)
+		
+func _process(delta):
+	t += delta
+	while t > 0.1:
+		t -= 0.1
+		if Global.to_subtract == 0:
+			set_process(false)
+			return
+		var sub = max(1, round(Global.to_subtract * 0.2))
+		Global.to_subtract -= sub
+		Global.remaining = int(max(0, Global.remaining - sub))
+		gui_remaining.text = "x" + String(Global.remaining)
+		if Global.remaining == 0:
+			Global.to_subtract = 0
+			change_level(Global.level + 1)
+
+func set_inectors(var level : int):
+	var inj_data : Array = Global.mission["input_lanes"]
+	for i in range(injection.N_INJECTORS): 
+		var injector : MultiMeshInstance2D = injection.get_node("Injector"+String(i)).get_node("InjectorMm")
+		if i < inj_data.size():
+			# Change or update
+			var res : String = inj_data[i]["resource"]
+			var rate : float = inj_data[i]["rate"]
+			injector.update_resource(res, 1.0/rate)
+		else:
+			injector.update_resource("None", 1.0)
 
 func set_factories_collect(var from_above):
 	pass
-	#TODO
+	#TODO. First clear all input lanes, change the rule, and let something_changed handle it
 
 func set_lanes(var l : int):
 	Global.lanes = l
-	var rs = get_tree().get_root().find_node("RingSystem", true, false)
+
 	for ring_i in range(rs.get_child_count() -1, -1, -1):
 		if ring_i == 0:
 			continue
@@ -59,6 +126,5 @@ func set_rings(var r : int):
 			for f in ring.get_factories():
 				f.check_add_remove_ship()
 
-
-func _on_CentreNode_ready():
-	change_level()
+func _on_Game_ready():
+	change_level(0)

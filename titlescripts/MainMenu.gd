@@ -34,3 +34,7 @@ func _on_Editor_pressed():
 
 func _on_Back_pressed():
 	show_menu("MainMenu")
+
+
+func _on_NewCampaign_pressed():
+	show_menu("NewCampaign")
