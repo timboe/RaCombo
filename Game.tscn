@@ -31,6 +31,7 @@
 [ext_resource path="res://images/pause.png" type="Texture" id=29]
 [ext_resource path="res://images/back.png" type="Texture" id=30]
 [ext_resource path="res://images/menu.png" type="Texture" id=31]
+[ext_resource path="res://images/infinity.png" type="Texture" id=32]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends ItemList
@@ -221,15 +222,6 @@ func _on_LanesSlider_value_changed(value):
 	rc.set_lanes(int(value))
 "
 
-[sub_resource type="GDScript" id=38]
-script/source = "extends Button
-
-onready var id = get_tree().get_root().find_node(\"InfoDialog\", true, false) 
-
-func _on_Back_pressed():
-	id.toggle_menu_diag()
-"
-
 [sub_resource type="InputEventAction" id=39]
 action = "ui_pause"
 
@@ -397,7 +389,7 @@ __meta__ = {
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 363.0
-margin_bottom = 330.0
+margin_bottom = 420.0
 custom_constants/separation = 6
 __meta__ = {
 "_edit_use_anchors_": false
@@ -563,16 +555,18 @@ text = "Satelites"
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer"]
 margin_top = 202.0
 margin_right = 355.0
-margin_bottom = 262.0
-rect_min_size = Vector2( 355, 60 )
+margin_bottom = 332.0
+rect_min_size = Vector2( 355, 130 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="FactoriesList" type="ItemList" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/ScrollContainer"]
-margin_right = 340.0
-margin_bottom = 50.0
+margin_right = 355.0
+margin_bottom = 130.0
 rect_min_size = Vector2( 340, 50 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
 auto_height = true
 script = SubResource( 1 )
 __meta__ = {
@@ -580,18 +574,18 @@ __meta__ = {
 }
 
 [node name="HSeparator3" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer"]
-margin_top = 268.0
+margin_top = 338.0
 margin_right = 355.0
-margin_bottom = 284.0
+margin_bottom = 354.0
 custom_constants/separation = 16
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="RemoveAll" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer"]
-margin_top = 290.0
+margin_top = 360.0
 margin_right = 355.0
-margin_bottom = 322.0
+margin_bottom = 392.0
 rect_min_size = Vector2( 0, 32 )
 text = "Remove All Lanes And Satelites"
 icon = ExtResource( 18 )
@@ -1375,10 +1369,8 @@ rect_min_size = Vector2( 128, 64 )
 text = "Back"
 icon = ExtResource( 30 )
 expand_icon = true
-script = SubResource( 38 )
 
 [node name="SolContainer" type="MarginContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog"]
-visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 custom_constants/margin_right = 8
@@ -1388,6 +1380,114 @@ custom_constants/margin_bottom = 8
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 363.0
+margin_bottom = 432.0
+custom_constants/separation = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Lanes" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer"]
+margin_right = 355.0
+margin_bottom = 14.0
+text = "Lanes"
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer"]
+margin_top = 20.0
+margin_right = 355.0
+margin_bottom = 84.0
+rect_min_size = Vector2( 355, 0 )
+custom_constants/vseparation = 6
+custom_constants/hseparation = 6
+columns = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="L1" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer/GridContainer"]
+margin_top = 25.0
+margin_right = 12.0
+margin_bottom = 39.0
+text = "1:"
+
+[node name="LIcon1" type="TextureRect" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer/GridContainer"]
+margin_left = 18.0
+margin_right = 82.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+expand = true
+
+[node name="Inf" type="TextureRect" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer/GridContainer"]
+margin_left = 88.0
+margin_top = 16.0
+margin_right = 120.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 32, 32 )
+size_flags_vertical = 4
+texture = ExtResource( 32 )
+expand = true
+
+[node name="HSeparator2" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer"]
+margin_top = 90.0
+margin_right = 355.0
+margin_bottom = 106.0
+custom_constants/separation = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Transmut" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer"]
+margin_top = 112.0
+margin_right = 355.0
+margin_bottom = 126.0
+text = "Transmutations"
+
+[node name="TransmuteGridSC" type="ScrollContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer"]
+margin_top = 132.0
+margin_right = 355.0
+margin_bottom = 312.0
+rect_min_size = Vector2( 355, 180 )
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TransmuteGrid" type="GridContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer/TransmuteGridSC" groups=[
+"UIGridsGroup",
+]]
+margin_right = 355.0
+margin_bottom = 180.0
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/vseparation = 8
+custom_constants/hseparation = 8
+columns = 5
+script = ExtResource( 23 )
+
+[node name="HSeparator3" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer"]
+margin_top = 318.0
+margin_right = 355.0
+margin_bottom = 334.0
+custom_constants/separation = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer"]
+margin_left = 227.0
+margin_top = 340.0
+margin_right = 355.0
+margin_bottom = 404.0
+rect_min_size = Vector2( 128, 64 )
+size_flags_horizontal = 8
+text = "Back"
+icon = ExtResource( 30 )
+expand_icon = true
 
 [node name="MissionContainer" type="MarginContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog"]
 visible = false
@@ -2079,7 +2179,8 @@ script = ExtResource( 21 )
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/CenterContainer/Quit" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Quit_pressed"]
 [connection signal="value_changed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/Ring/RingsSlider" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/Ring/RingsSlider" method="_on_RingsSlider_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/Lane/LanesSlider" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/Lane/LanesSlider" method="_on_LanesSlider_value_changed"]
-[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/HBoxContainer/Back" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/HBoxContainer/Back" method="_on_Back_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/HBoxContainer/Back" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Back_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer/Back" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Back_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MissionContainer/VBox/HBottomBox/Close" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="hide_diag"]
 [connection signal="timeout" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/UpdateTimer" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_UpdateTimer_timeout"]
 [connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Pause" to="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Pause" method="_on_Pause_toggled"]

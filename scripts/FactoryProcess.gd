@@ -43,9 +43,11 @@ func reset():
 	output_direction = null
 	output_lane = null
 	#
-	for spy in spies:
+	# Cannot iterate over a collection which is being erased. Iterate over dupe
+	var spies_copy : Array = spies.duplicate()
+	for spy in spies_copy:
 		spy.reset()
-	spies.clear()
+	spies.clear() # Shoule be alreay cleared...
 	#
 	mode = Global.BUILDING_UNSET # Note: do this last
 

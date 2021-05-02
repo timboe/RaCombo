@@ -4,7 +4,7 @@ func update_grid():
 	for c in get_children():
 		c.name = "deleted"
 		c.queue_free()
-	if name == "FactoryGrid" or name == "NewRecipiesGrid":
+	if name == "FactoryGrid" or name == "NewRecipiesGrid" or name == "TransmuteGrid":
 		update_grid_factory()
 	else:
 		update_grid_resource()
@@ -13,8 +13,13 @@ func include_recipe(var r : String ):
 	var this_level = Global.mission["recipies"]
 	if not Global.sandbox and not r in this_level:
 		return false 
-	if Global.recipies[r]["factory"] == false:
-		return false
+	var comaprison_bool := false
+	if name == "TransmuteGrid":
+		if Global.recipies[r]["factory"] == true:
+			return false
+	elif name == "FactoryGrid":
+		if Global.recipies[r]["factory"] == false:
+			return false
 	if name == "NewRecipies":
 		var last_level = []
 		if Global.level > 0:

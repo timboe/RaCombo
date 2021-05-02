@@ -280,8 +280,6 @@ __meta__ = {
 script = ExtResource( 7 )
 angle_back = -0.1155
 angle_front = 0.1155
-output_content = null
-output_direction = null
 
 [node name="Timer" type="Timer" parent="Rotation/FactoryTemplate/FactoryProcess"]
 process_mode = 0

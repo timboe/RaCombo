@@ -207,7 +207,6 @@ __meta__ = {
 [node name="MainMenu" type="CenterContainer" parent="." groups=[
 "PrimaryMenuElement",
 ]]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 5 )
@@ -232,36 +231,36 @@ icon = ExtResource( 14 )
 expand_icon = true
 
 [node name="Load" type="Button" parent="MainMenu/VBoxContainer"]
-margin_top = 96.0
+margin_top = 48.0
 margin_right = 200.0
-margin_bottom = 128.0
+margin_bottom = 80.0
 rect_min_size = Vector2( 0, 32 )
 text = "Load Game"
 icon = ExtResource( 22 )
 expand_icon = true
 
 [node name="Settings" type="Button" parent="MainMenu/VBoxContainer"]
-margin_top = 144.0
+margin_top = 96.0
 margin_right = 200.0
-margin_bottom = 176.0
+margin_bottom = 128.0
 rect_min_size = Vector2( 0, 32 )
 text = "Settings"
 icon = ExtResource( 20 )
 expand_icon = true
 
 [node name="Editor" type="Button" parent="MainMenu/VBoxContainer"]
-margin_top = 192.0
+margin_top = 144.0
 margin_right = 200.0
-margin_bottom = 224.0
+margin_bottom = 176.0
 rect_min_size = Vector2( 0, 32 )
 text = "Campaign Manager"
 icon = ExtResource( 19 )
 expand_icon = true
 
 [node name="Exit" type="Button" parent="MainMenu/VBoxContainer"]
-margin_top = 240.0
+margin_top = 192.0
 margin_right = 200.0
-margin_bottom = 272.0
+margin_bottom = 224.0
 rect_min_size = Vector2( 0, 32 )
 text = "Exit to Desktop"
 icon = ExtResource( 21 )
@@ -270,7 +269,6 @@ expand_icon = true
 [node name="CampaignManager" type="MarginContainer" parent="." groups=[
 "PrimaryMenuElement",
 ]]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/margin_right = 256
@@ -402,21 +400,21 @@ margin_bottom = 350.0
 rect_min_size = Vector2( 512, 350 )
 follow_focus = true
 
-[node name="Campaigns" type="VBoxContainer" parent="NewCampaign/VBoxContainer/ScrollContainer"]
+[node name="NewCampaignVBox" type="VBoxContainer" parent="NewCampaign/VBoxContainer/ScrollContainer"]
 margin_right = 512.0
 margin_bottom = 78.0
 size_flags_horizontal = 3
 custom_constants/separation = 8
 alignment = 1
 
-[node name="Container" type="VBoxContainer" parent="NewCampaign/VBoxContainer/ScrollContainer/Campaigns"]
+[node name="Container" type="VBoxContainer" parent="NewCampaign/VBoxContainer/ScrollContainer/NewCampaignVBox"]
 margin_right = 512.0
 margin_bottom = 66.0
 
-[node name="Campaign2" parent="NewCampaign/VBoxContainer/ScrollContainer/Campaigns/Container" instance=ExtResource( 26 )]
+[node name="Campaign2" parent="NewCampaign/VBoxContainer/ScrollContainer/NewCampaignVBox/Container" instance=ExtResource( 26 )]
 margin_bottom = 66.0
 
-[node name="HSeparator" type="HSeparator" parent="NewCampaign/VBoxContainer/ScrollContainer/Campaigns"]
+[node name="HSeparator" type="HSeparator" parent="NewCampaign/VBoxContainer/ScrollContainer/NewCampaignVBox"]
 margin_top = 74.0
 margin_right = 512.0
 margin_bottom = 78.0
@@ -1179,6 +1177,7 @@ gui_disable_input = true
 
 [connection signal="pressed" from="MainMenu/VBoxContainer/NewCampaign" to="MainMenu" method="_on_NewCampaign_pressed"]
 [connection signal="pressed" from="MainMenu/VBoxContainer/Editor" to="MainMenu" method="_on_Editor_pressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/Exit" to="MainMenu" method="_on_Exit_pressed"]
 [connection signal="pressed" from="CampaignManager/VBoxContainer/HBoxContainer/Import" to="CampaignManager/VBoxContainer/HBoxContainer/Import" method="_on_Import_pressed"]
 [connection signal="pressed" from="CampaignManager/VBoxContainer/HBoxContainer/New" to="CampaignManager/VBoxContainer/HBoxContainer/New" method="_on_New_pressed"]
 [connection signal="pressed" from="CampaignManager/VBoxContainer/HBoxContainer/Back" to="MainMenu" method="_on_Back_pressed"]

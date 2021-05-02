@@ -182,3 +182,6 @@ func _on_Title_pressed():
 
 func _on_Quit_pressed():
 	get_tree().quit()
+
+func _on_Back_pressed():
+	toggle_menu_diag()

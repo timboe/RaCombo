@@ -1,6 +1,7 @@
 extends CenterContainer
 
 onready var campaigns = get_tree().get_root().find_node("Campaigns", true, false)
+onready var new_campaign = get_tree().get_root().find_node("NewCampaignVBox", true, false)
 onready var camp_editor = get_tree().get_root().find_node("CampaignEditor", true, false)
 
 func _ready():
@@ -22,6 +23,14 @@ func CampaignManager(var _extra):
 		campaigns.get_node("Container").add_child(campaign)
 		campaign.get_node("CampaignName").text = camp
 
+func NewCampaign(var _extra):
+	for c in new_campaign.get_node("Container").get_children():
+		c.queue_free()
+	for camp in Global.campaigns:
+		var campaign = load("res://scenes/NewCampaignSelector.tscn").instance()
+		new_campaign.get_node("Container").add_child(campaign)
+		campaign.get_node("CampaignName").text = camp
+
 func CampaignEditor(var extra):
 	if extra is String:
 		camp_editor.dedictionise(Global.campaigns[extra])
@@ -31,10 +40,11 @@ func CampaignEditor(var extra):
 func _on_Editor_pressed():
 	show_menu("CampaignManager")
 
-
 func _on_Back_pressed():
 	show_menu("MainMenu")
 
-
 func _on_NewCampaign_pressed():
 	show_menu("NewCampaign")
+
+func _on_Exit_pressed():
+	get_tree().quit()
