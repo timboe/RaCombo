@@ -33,7 +33,10 @@ func change_level(var level):
 	var from_above : bool = Global.mission["factories_collect_above"]
 	set_factories_collect(from_above)
 	# Injectors
-	set_inectors(level)
+	if Global.sandbox:
+		set_inectors(Global.sandbox_injectors)
+	else:
+		set_inectors(Global.mission["input_lanes"])
 	# UI elements
 	for g in get_tree().get_nodes_in_group("UIGridsGroup"):
 		g.update_grid()
@@ -67,9 +70,8 @@ func _process(delta):
 			Global.to_subtract = 0
 			change_level(Global.level + 1)
 
-func set_inectors(var level : int):
-	var inj_data : Array = Global.mission["input_lanes"]
-	for i in range(injection.N_INJECTORS): 
+func set_inectors(var inj_data):
+	for i in range(Global.MAX_INPUT_LANES): 
 		var injector : MultiMeshInstance2D = injection.get_node("Injector"+String(i)).get_node("InjectorMm")
 		if i < inj_data.size():
 			# Change or update

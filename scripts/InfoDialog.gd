@@ -41,7 +41,7 @@ func toggle_menu_diag():
 		$MenuContainer.visible = true
 		page = "menu"
 		window_title = "Menu"
-		$MenuContainer/Container/CenterContainer/Sandbox.visible = Global.sandbox
+		$MenuContainer/Container/GridContainer/Sandbox.disabled = !Global.sandbox
 	else:
 		hide_diag()
 
@@ -67,6 +67,7 @@ func update_diag():
 
 func update_Sol_diag():
 	window_title = "Sol"
+	$SolContainer/VBoxContainer/GridContainer/LIcon1.texture = Global.data["H"]["texture"]
 	
 func update_Mission_diag():
 	window_title = "Current Mission"

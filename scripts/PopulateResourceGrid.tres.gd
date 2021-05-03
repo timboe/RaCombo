@@ -31,22 +31,31 @@ func include_recipe(var r : String ):
 func update_grid_factory():
 	for key in Global.recipies:
 		if include_recipe(key):
-			var dummy : int = 3 - Global.recipies[key]["input"].size()
-			for _d in range(dummy):
-				var c := Container.new()
-				c.rect_min_size = Vector2(64,64)
-				add_child(c)
-			for i in Global.recipies[key]["input"]:
-				var tr := TextureRect.new()
-				tr.rect_min_size = Vector2(64,64)
-				tr.expand = true
-				tr.texture = Global.data[i]["texture"]
-				add_child(tr)
-			var ch := TextureRect.new()
-			ch.rect_min_size = Vector2(64,64)
-			ch.expand = true
-			ch.texture = load("res://images/right-chevron.png")
-			add_child(ch)
+			# B + B + B + B = B = 9 entries in the grid
+			var recipe = Global.recipies[key]
+			var entries = 0
+			# Output - top
+			var out_txt = Label.new()
+			out_txt.text = String(recipe["amount_out"]) + "x " + String(recipe["time"]) + "s"
+			out_txt.align = HALIGN_CENTER
+			add_child(out_txt)
+			add_child(Label.new()) # =
+			entries += 2
+			# Input - top
+			for ai in range(recipe["amount_in"].size()):
+				var in_txt = Label.new()
+				in_txt.text = String(recipe["amount_in"][ai]) + "x"
+				in_txt.align = HALIGN_CENTER
+				add_child(in_txt)
+				entries += 1
+				if ai != recipe["amount_in"].size() - 1: # If not last
+					add_child(Label.new()) # +
+					entries += 1
+			while entries < 9:
+				add_child(Label.new()) # +
+				entries += 1
+			# Output - bottom
+			entries = 0
 			var n
 			if name == "FactoryGrid":
 				n = Button.new()
@@ -62,16 +71,40 @@ func update_grid_factory():
 				n.expand = true
 				n.texture = Global.data[ key ]["texture"]
 			add_child(n)
+			var out_txt2 = Label.new()
+			out_txt2.text = "="
+			out_txt2.align = HALIGN_CENTER
+			add_child(out_txt2)
+			entries += 2
+			# Input - bottom
+			for i in recipe["input"]:
+				var tr := TextureRect.new()
+				tr.rect_min_size = Vector2(64,64)
+				tr.expand = true
+				tr.texture = Global.data[ i ]["texture"]
+				add_child(tr)
+				entries += 1
+				if i != recipe["input"][ recipe["input"].size() - 1 ]: # If not last
+					var in_txt2 = Label.new()
+					in_txt2.align = HALIGN_CENTER
+					in_txt2.text = "+"
+					add_child(in_txt2)
+					entries += 1
+			while entries < 9:
+				add_child(Label.new()) # =
+				entries += 1
 
 func include_resource(var r : String ):
 	var this_level = Global.mission["resources"]
 	if not Global.sandbox and not r in this_level:
 		return false 
+	if Global.data[r]["special"]:
+		return false
 	if name == "ExtractorGrid":
-		if Global.data[r]["mode"] == "-" or Global.data[r]["special"]:
+		if Global.data[r]["mode"] == "-" :
 			return false
 	elif name == "InserterGrid":
-		if Global.data[r]["mode"] == "+" or Global.data[r]["special"]:
+		if Global.data[r]["mode"] == "+":
 			return false
 	elif name == "NewResourcesGrid":
 		var last_level = []

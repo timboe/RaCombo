@@ -5,6 +5,7 @@ tool
 const M_SOL := 80
 const INSERTER_RADIUS_MOD = 0.2
 const MAX_STORAGE := 49
+const MAX_INPUT_LANES := 6
 
 enum {BUILDING_UNSET, BUILDING_EXTRACTOR, BUILDING_INSERTER, BUILDING_FACTORY}
 enum {OUTWARDS, INWARDS}
@@ -24,6 +25,8 @@ var factories_pull_from_above : bool = true
 
 # Current game data
 var sandbox = false
+var sandbox_injectors = []
+#
 var level : int = 1
 var remaining : int = 1000
 var to_subtract : int = 0 # Used to animate remaining

@@ -13,7 +13,11 @@ func _ready():
 script/source = "extends OptionButton
 tool
 
+# Title screen only
 onready var mission_container : VBoxContainer = find_parent(\"MissionContainer\")
+
+# Game only
+onready var sandbox_container : MarginContainer = find_parent(\"SandboxContainer\")
 
 func update_resource_recipy():
 	if Global.data == null:
@@ -41,7 +45,11 @@ func _ready():
 	update_resource_recipy()
 		
 func _on_OptionButton_item_selected(index):
-	mission_container.update_configuration()
+	# For use on the title screen
+	if mission_container != null:
+		mission_container.update_configuration()
+	elif sandbox_container != null:
+		sandbox_container.update_inputs()
 "
 
 [node name="Input" type="HBoxContainer"]
@@ -67,7 +75,7 @@ margin_right = 118.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 64, 16 )
 text = "None"
-items = [ "None", null, false, 0, false, "0", null, true, 0, false, "Ir-", null, false, 0, false, "1", null, true, 0, false, "Cu-", null, false, 0, false, "2", null, true, 0, false, "St-", null, false, 0, false, "3", null, true, 0, false, "Si-", null, false, 0, false, "4", null, true, 0, false, "G+", null, false, 0, false, "5", null, true, 0, false, "Hi+", null, false, 0, false, "6", null, true, 0, false, "Cf-", null, false, 0, false, "7", null, true, 0, false, "Bg+", null, false, 0, false, "8", null, true, 0, false, "Mt+", null, false, 0, false, "9", null, true, 0, false, "XA-", null, false, 0, false, "10", null, true, 0, false, "XB+", null, false, 0, false, "11", null, true, 0, false, "XC+", null, false, 0, false, "12", null, true, 0, false, "CG+", null, false, 0, false, "13", null, true, 0, false, "SW+", null, false, 0, false, "14", null, true, 0, false ]
+items = [ "None", null, false, 0, "None", "0", null, true, 0, false, "Ir-", null, false, 0, false, "1", null, true, 0, false, "Cu-", null, false, 0, false, "2", null, true, 0, false, "St-", null, false, 0, false, "3", null, true, 0, false, "Si-", null, false, 0, false, "4", null, true, 0, false, "G+", null, false, 0, false, "5", null, true, 0, false, "Hi+", null, false, 0, false, "6", null, true, 0, false, "Cf-", null, false, 0, false, "7", null, true, 0, false, "Bg+", null, false, 0, false, "8", null, true, 0, false, "Mt+", null, false, 0, false, "9", null, true, 0, false, "XA-", null, false, 0, false, "10", null, true, 0, false, "XB+", null, false, 0, false, "11", null, true, 0, false, "XC+", null, false, 0, false, "12", null, true, 0, false, "CG+", null, false, 0, false, "13", null, true, 0, false, "SW+", null, false, 0, false, "14", null, true, 0, false, "None", null, false, 0, null ]
 selected = 0
 script = SubResource( 2 )
 

@@ -1,14 +1,17 @@
 extends HSlider
 
-onready var tab_container : TabContainer = find_parent("CampaignEditor").find_node("TabContainer", true, false)
+# Game only
+onready var sandbox_container : MarginContainer = find_parent("SandboxContainer")
 
 func _on_HSlider_value_changed(value):
 	get_parent().get_node("N").text = String(value)
 	if name == "Missions":
 		update_missions_tab(int(value))
+	elif sandbox_container != null:
+		sandbox_container.update_inputs()
 
 func update_missions_tab(var n : int):
-#	var tabs = tab_container.get_child_count()
+	var tab_container : TabContainer = find_parent("CampaignEditor").find_node("TabContainer", true, false)
 	var largest_tab = -1
 	for tab in tab_container.get_children():
 		if "deleted" in tab.name:

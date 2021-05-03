@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=2]
+[gd_scene load_steps=91 format=2]
 
 [ext_resource path="res://scripts/BinLane.gd" type="Script" id=1]
 [ext_resource path="res://resources/NewBuildingButtonGroup.tres" type="ButtonGroup" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://scripts/InjectorMultimesh.gd" type="Script" id=8]
 [ext_resource path="res://scripts/RingSystem.gd" type="Script" id=9]
 [ext_resource path="res://scripts/InfoDialog.gd" type="Script" id=10]
-[ext_resource path="res://scripts/InjectionSystem.gd" type="Script" id=11]
 [ext_resource path="res://scripts/InputCapture.gd" type="Script" id=12]
 [ext_resource path="res://scripts/BuildInjectButton.gd" type="Script" id=13]
 [ext_resource path="res://images/refreshing.png" type="Texture" id=14]
@@ -32,6 +31,14 @@
 [ext_resource path="res://images/back.png" type="Texture" id=30]
 [ext_resource path="res://images/menu.png" type="Texture" id=31]
 [ext_resource path="res://images/infinity.png" type="Texture" id=32]
+[ext_resource path="res://images/elements.png" type="Texture" id=33]
+[ext_resource path="res://images/save.png" type="Texture" id=34]
+[ext_resource path="res://images/recipe.png" type="Texture" id=35]
+[ext_resource path="res://images/exit.png" type="Texture" id=36]
+[ext_resource path="res://images/open.png" type="Texture" id=37]
+[ext_resource path="res://images/sandbox.png" type="Texture" id=38]
+[ext_resource path="res://scenes/InputSelector.tscn" type="PackedScene" id=39]
+[ext_resource path="res://scripts/SandboxUpdateInputs.gd" type="Script" id=40]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends ItemList
@@ -82,60 +89,60 @@ func _on_Remove_pressed():
 	id.hide_diag()
 "
 
-[sub_resource type="QuadMesh" id=62]
+[sub_resource type="QuadMesh" id=87]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=63]
+[sub_resource type="MultiMesh" id=88]
 instance_count = 49
-mesh = SubResource( 62 )
+mesh = SubResource( 87 )
 transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
 
 [sub_resource type="StreamTexture" id=11]
 flags = 5
 load_path = "res://.import/circle.png-5e04c73a6bc42d15cee139f3c4ec364c.stex"
 
-[sub_resource type="QuadMesh" id=64]
+[sub_resource type="QuadMesh" id=89]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=65]
+[sub_resource type="MultiMesh" id=90]
 instance_count = 49
-mesh = SubResource( 64 )
+mesh = SubResource( 89 )
 transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
 
 [sub_resource type="StreamTexture" id=14]
 flags = 5
 load_path = "res://.import/circle.png-5e04c73a6bc42d15cee139f3c4ec364c.stex"
 
-[sub_resource type="QuadMesh" id=66]
+[sub_resource type="QuadMesh" id=91]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=67]
+[sub_resource type="MultiMesh" id=92]
 instance_count = 49
-mesh = SubResource( 66 )
+mesh = SubResource( 91 )
 transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
 
 [sub_resource type="StreamTexture" id=17]
 flags = 5
 load_path = "res://.import/circle.png-5e04c73a6bc42d15cee139f3c4ec364c.stex"
 
-[sub_resource type="QuadMesh" id=68]
+[sub_resource type="QuadMesh" id=93]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=69]
+[sub_resource type="MultiMesh" id=94]
 instance_count = 49
-mesh = SubResource( 68 )
+mesh = SubResource( 93 )
 transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
 
 [sub_resource type="StreamTexture" id=20]
 flags = 5
 load_path = "res://.import/circle.png-5e04c73a6bc42d15cee139f3c4ec364c.stex"
 
-[sub_resource type="QuadMesh" id=70]
+[sub_resource type="QuadMesh" id=95]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=71]
+[sub_resource type="MultiMesh" id=96]
 instance_count = 49
-mesh = SubResource( 70 )
+mesh = SubResource( 95 )
 transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
 
 [sub_resource type="GDScript" id=23]
@@ -166,12 +173,12 @@ func set_resource(var recipy : String):
 	update()
 "
 
-[sub_resource type="QuadMesh" id=72]
+[sub_resource type="QuadMesh" id=97]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=73]
+[sub_resource type="MultiMesh" id=98]
 instance_count = 49
-mesh = SubResource( 72 )
+mesh = SubResource( 97 )
 transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
 
 [sub_resource type="GDScript" id=26]
@@ -264,41 +271,56 @@ func _on_Menu_pressed():
 	id.toggle_menu_diag()
 "
 
-[sub_resource type="QuadMesh" id=74]
+[sub_resource type="GDScript" id=86]
+script/source = "extends Node2D
+
+const N_INJECTORS = 6
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+#	var ring = get_tree().get_root().find_node(\"Ring6\",true,false)
+#	$Iron0/MultiMeshInstance2D.setup_resource(1.0, ring, 3)
+#	$Copper0/MultiMeshInstance2D.setup_resource(1.0, ring, 2)
+#	$Silica0/MultiMeshInstance2D.setup_resource(1.0, ring, 1)
+#	print(\"Running on \", ring)
+	pass
+"
+
+[sub_resource type="QuadMesh" id=99]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=75]
-mesh = SubResource( 74 )
+[sub_resource type="MultiMesh" id=100]
+mesh = SubResource( 99 )
 
-[sub_resource type="QuadMesh" id=76]
+[sub_resource type="QuadMesh" id=101]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=77]
-mesh = SubResource( 76 )
+[sub_resource type="MultiMesh" id=102]
+mesh = SubResource( 101 )
 
-[sub_resource type="QuadMesh" id=78]
+[sub_resource type="QuadMesh" id=103]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=79]
-mesh = SubResource( 78 )
+[sub_resource type="MultiMesh" id=104]
+mesh = SubResource( 103 )
 
-[sub_resource type="QuadMesh" id=80]
+[sub_resource type="QuadMesh" id=105]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=81]
-mesh = SubResource( 80 )
+[sub_resource type="MultiMesh" id=106]
+mesh = SubResource( 105 )
 
-[sub_resource type="QuadMesh" id=82]
+[sub_resource type="QuadMesh" id=107]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=83]
-mesh = SubResource( 82 )
+[sub_resource type="MultiMesh" id=108]
+mesh = SubResource( 107 )
 
-[sub_resource type="QuadMesh" id=84]
+[sub_resource type="QuadMesh" id=109]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=85]
-mesh = SubResource( 84 )
+[sub_resource type="MultiMesh" id=110]
+mesh = SubResource( 109 )
 
 [sub_resource type="Shader" id=57]
 code = "shader_type canvas_item;
@@ -325,11 +347,12 @@ noise = SubResource( 59 )
 
 [sub_resource type="Environment" id=61]
 background_mode = 4
-glow_intensity = 2.0
-glow_strength = 1.8
+glow_enabled = true
+glow_strength = 1.2
+glow_bloom = 0.02
 glow_blend_mode = 0
 glow_bicubic_upscale = true
-adjustment_enabled = true
+adjustment_saturation = 8.0
 
 [node name="Game" type="Node2D"]
 
@@ -360,11 +383,11 @@ __meta__ = {
 
 [node name="InfoDialog" type="WindowDialog" parent="CanvasLayer/UI/InfoUI/CenterContainer"]
 visible = true
-margin_left = 322.0
+margin_left = 284.0
 margin_top = 90.0
-margin_right = 702.0
+margin_right = 739.0
 margin_bottom = 510.0
-rect_min_size = Vector2( 380, 420 )
+rect_min_size = Vector2( 455, 420 )
 custom_constants/scaleborder_size = 0
 window_title = "Ring"
 resizable = true
@@ -375,8 +398,10 @@ __meta__ = {
 
 [node name="RingContainer" type="MarginContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog"]
 visible = false
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 371.0
+margin_bottom = 408.0
+rect_min_size = Vector2( 455, 420 )
+size_flags_horizontal = 3
 custom_constants/margin_right = 8
 custom_constants/margin_top = 8
 custom_constants/margin_left = 8
@@ -388,21 +413,22 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer"]
 margin_left = 8.0
 margin_top = 8.0
-margin_right = 363.0
-margin_bottom = 420.0
+margin_right = 447.0
+margin_bottom = 412.0
+size_flags_horizontal = 3
 custom_constants/separation = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Lanes" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer"]
-margin_right = 355.0
+margin_right = 429.0
 margin_bottom = 14.0
 text = "Lanes"
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer"]
 margin_top = 20.0
-margin_right = 355.0
+margin_right = 429.0
 margin_bottom = 154.0
 rect_min_size = Vector2( 355, 0 )
 custom_constants/vseparation = 6
@@ -539,7 +565,7 @@ __meta__ = {
 
 [node name="HSeparator2" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer"]
 margin_top = 160.0
-margin_right = 355.0
+margin_right = 429.0
 margin_bottom = 176.0
 custom_constants/separation = 16
 __meta__ = {
@@ -548,13 +574,13 @@ __meta__ = {
 
 [node name="Satelites" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer"]
 margin_top = 182.0
-margin_right = 355.0
+margin_right = 429.0
 margin_bottom = 196.0
 text = "Satelites"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer"]
 margin_top = 202.0
-margin_right = 355.0
+margin_right = 429.0
 margin_bottom = 332.0
 rect_min_size = Vector2( 355, 130 )
 __meta__ = {
@@ -562,7 +588,7 @@ __meta__ = {
 }
 
 [node name="FactoriesList" type="ItemList" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/ScrollContainer"]
-margin_right = 355.0
+margin_right = 429.0
 margin_bottom = 130.0
 rect_min_size = Vector2( 340, 50 )
 size_flags_horizontal = 3
@@ -575,7 +601,7 @@ __meta__ = {
 
 [node name="HSeparator3" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer"]
 margin_top = 338.0
-margin_right = 355.0
+margin_right = 429.0
 margin_bottom = 354.0
 custom_constants/separation = 16
 __meta__ = {
@@ -584,7 +610,7 @@ __meta__ = {
 
 [node name="RemoveAll" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer"]
 margin_top = 360.0
-margin_right = 355.0
+margin_right = 429.0
 margin_bottom = 392.0
 rect_min_size = Vector2( 0, 32 )
 text = "Remove All Lanes And Satelites"
@@ -597,8 +623,9 @@ __meta__ = {
 
 [node name="FactoryContainer" type="MarginContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog"]
 visible = false
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 445.0
+margin_bottom = 420.0
+rect_min_size = Vector2( 455, 420 )
 custom_constants/margin_right = 8
 custom_constants/margin_top = 8
 custom_constants/margin_left = 8
@@ -611,19 +638,22 @@ __meta__ = {
 visible = false
 margin_left = 8.0
 margin_top = 8.0
-margin_right = 363.0
-margin_bottom = 340.0
+margin_right = 447.0
+margin_bottom = 412.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_constants/separation = 6
+alignment = 1
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset"]
-margin_right = 355.0
+margin_right = 439.0
 margin_bottom = 88.0
 custom_constants/vseparation = 8
 custom_constants/hseparation = 8
 columns = 2
 
 [node name="Extractor" type="CheckButton" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset/GridContainer"]
-margin_right = 173.0
+margin_right = 215.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 pressed = true
@@ -633,8 +663,8 @@ align = 1
 script = SubResource( 2 )
 
 [node name="Inserter" type="CheckButton" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset/GridContainer"]
-margin_left = 181.0
-margin_right = 354.0
+margin_left = 223.0
+margin_right = 438.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 group = ExtResource( 2 )
@@ -647,7 +677,7 @@ __meta__ = {
 
 [node name="Factory" type="CheckButton" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset/GridContainer"]
 margin_top = 48.0
-margin_right = 173.0
+margin_right = 215.0
 margin_bottom = 88.0
 size_flags_horizontal = 3
 group = ExtResource( 2 )
@@ -656,9 +686,9 @@ align = 1
 script = SubResource( 4 )
 
 [node name="Remove" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset/GridContainer"]
-margin_left = 181.0
+margin_left = 223.0
 margin_top = 48.0
-margin_right = 354.0
+margin_right = 438.0
 margin_bottom = 88.0
 size_flags_horizontal = 3
 text = "Remove Satelite"
@@ -671,7 +701,7 @@ __meta__ = {
 
 [node name="HSeparator" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset"]
 margin_top = 94.0
-margin_right = 355.0
+margin_right = 439.0
 margin_bottom = 102.0
 custom_constants/separation = 8
 __meta__ = {
@@ -680,9 +710,9 @@ __meta__ = {
 
 [node name="ExtractorGridSC" type="ScrollContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset"]
 margin_top = 108.0
-margin_right = 355.0
-margin_bottom = 308.0
-rect_min_size = Vector2( 355, 200 )
+margin_right = 439.0
+margin_bottom = 334.0
+size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -690,9 +720,14 @@ __meta__ = {
 [node name="ExtractorGrid" type="GridContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset/ExtractorGridSC" groups=[
 "UIGridsGroup",
 ]]
+visible = false
+margin_right = 439.0
+margin_bottom = 226.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_constants/vseparation = 8
 custom_constants/hseparation = 8
-columns = 5
+columns = 6
 script = ExtResource( 23 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -700,10 +735,10 @@ __meta__ = {
 
 [node name="InserterGridSC" type="ScrollContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset"]
 visible = false
-margin_top = 312.0
-margin_right = 355.0
-margin_bottom = 512.0
-rect_min_size = Vector2( 355, 200 )
+margin_top = 108.0
+margin_right = 429.0
+margin_bottom = 218.0
+size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -711,12 +746,14 @@ __meta__ = {
 [node name="InserterGrid" type="GridContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset/InserterGridSC" groups=[
 "UIGridsGroup",
 ]]
-margin_right = 350.0
-margin_bottom = 140.0
-rect_min_size = Vector2( 350, 140 )
+visible = false
+margin_right = 429.0
+margin_bottom = 110.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_constants/vseparation = 8
 custom_constants/hseparation = 8
-columns = 5
+columns = 6
 script = ExtResource( 23 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -724,11 +761,11 @@ __meta__ = {
 
 [node name="FactoryGridSC" type="ScrollContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset"]
 visible = false
-margin_top = 518.0
-margin_right = 355.0
-margin_bottom = 718.0
-rect_min_size = Vector2( 355, 200 )
+margin_top = 108.0
+margin_right = 429.0
+margin_bottom = 334.0
 mouse_filter = 1
+size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -736,35 +773,49 @@ __meta__ = {
 [node name="FactoryGrid" type="GridContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset/FactoryGridSC" groups=[
 "UIGridsGroup",
 ]]
-margin_right = 355.0
-margin_bottom = 200.0
-rect_min_size = Vector2( 355, 200 )
+margin_right = 429.0
+margin_bottom = 226.0
 mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_constants/vseparation = 8
 custom_constants/hseparation = 8
-columns = 5
+columns = 9
 script = ExtResource( 23 )
+
+[node name="Back" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset"]
+margin_left = 311.0
+margin_top = 340.0
+margin_right = 439.0
+margin_bottom = 404.0
+rect_min_size = Vector2( 128, 64 )
+size_flags_horizontal = 8
+text = "Back"
+icon = ExtResource( 30 )
+expand_icon = true
 
 [node name="Set" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer"]
 margin_left = 8.0
 margin_top = 8.0
-margin_right = 363.0
-margin_bottom = 340.0
+margin_right = 447.0
+margin_bottom = 412.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_constants/separation = 6
 
 [node name="Inputs" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set"]
-margin_right = 355.0
+margin_right = 439.0
 margin_bottom = 182.0
 custom_constants/separation = 6
 
 [node name="Inputs" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs"]
-margin_right = 355.0
+margin_right = 439.0
 margin_bottom = 14.0
 text = "Inputs"
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs"]
 margin_top = 20.0
-margin_right = 355.0
+margin_right = 439.0
 margin_bottom = 160.0
 rect_min_size = Vector2( 355, 0 )
 custom_constants/vseparation = 12
@@ -810,7 +861,7 @@ __meta__ = {
 [node name="Mm" type="MultiMeshInstance2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs/GridContainer/I0/Count" groups=[
 "InfoMultimeshGroup",
 ]]
-multimesh = SubResource( 63 )
+multimesh = SubResource( 88 )
 texture = SubResource( 11 )
 script = ExtResource( 7 )
 
@@ -860,7 +911,7 @@ __meta__ = {
 [node name="Mm" type="MultiMeshInstance2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs/GridContainer/I1/Count" groups=[
 "InfoMultimeshGroup",
 ]]
-multimesh = SubResource( 65 )
+multimesh = SubResource( 90 )
 texture = SubResource( 14 )
 script = ExtResource( 7 )
 
@@ -901,7 +952,7 @@ __meta__ = {
 [node name="Mm" type="MultiMeshInstance2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs/GridContainer/I2/Count" groups=[
 "InfoMultimeshGroup",
 ]]
-multimesh = SubResource( 67 )
+multimesh = SubResource( 92 )
 texture = SubResource( 17 )
 script = ExtResource( 7 )
 
@@ -952,13 +1003,13 @@ __meta__ = {
 [node name="Mm" type="MultiMeshInstance2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs/GridContainer/I3/Count" groups=[
 "InfoMultimeshGroup",
 ]]
-multimesh = SubResource( 69 )
+multimesh = SubResource( 94 )
 texture = SubResource( 20 )
 script = ExtResource( 7 )
 
 [node name="HSeparator" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs"]
 margin_top = 166.0
-margin_right = 355.0
+margin_right = 439.0
 margin_bottom = 182.0
 rect_min_size = Vector2( 355, 0 )
 custom_constants/separation = 16
@@ -968,19 +1019,19 @@ __meta__ = {
 
 [node name="Output" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set"]
 margin_top = 188.0
-margin_right = 355.0
+margin_right = 439.0
 margin_bottom = 272.0
 rect_min_size = Vector2( 355, 0 )
 custom_constants/separation = 6
 
 [node name="Output" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Output"]
-margin_right = 355.0
+margin_right = 439.0
 margin_bottom = 14.0
 text = "Output"
 
 [node name="OutAndShip" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Output"]
 margin_top = 20.0
-margin_right = 355.0
+margin_right = 439.0
 margin_bottom = 84.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1022,7 +1073,7 @@ __meta__ = {
 [node name="Mm" type="MultiMeshInstance2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Output/OutAndShip/Out/Count" groups=[
 "InfoMultimeshGroup",
 ]]
-multimesh = SubResource( 71 )
+multimesh = SubResource( 96 )
 texture = ExtResource( 19 )
 script = ExtResource( 7 )
 
@@ -1077,13 +1128,13 @@ __meta__ = {
 [node name="Mm" type="MultiMeshInstance2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Output/OutAndShip/Ship/Count" groups=[
 "InfoMultimeshGroup",
 ]]
-multimesh = SubResource( 73 )
+multimesh = SubResource( 98 )
 texture = ExtResource( 19 )
 script = ExtResource( 7 )
 
 [node name="HSeparator2" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set"]
 margin_top = 278.0
-margin_right = 355.0
+margin_right = 439.0
 margin_bottom = 294.0
 rect_min_size = Vector2( 355, 0 )
 custom_constants/separation = 16
@@ -1093,7 +1144,7 @@ __meta__ = {
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set"]
 margin_top = 300.0
-margin_right = 355.0
+margin_right = 439.0
 margin_bottom = 332.0
 rect_min_size = Vector2( 355, 0 )
 __meta__ = {
@@ -1101,7 +1152,7 @@ __meta__ = {
 }
 
 [node name="Clear" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/HBoxContainer"]
-margin_right = 175.0
+margin_right = 217.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 0, 32 )
 size_flags_horizontal = 3
@@ -1114,8 +1165,8 @@ __meta__ = {
 }
 
 [node name="Remove" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/HBoxContainer"]
-margin_left = 179.0
-margin_right = 355.0
+margin_left = 221.0
+margin_right = 439.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 0, 32 )
 size_flags_horizontal = 3
@@ -1131,6 +1182,7 @@ __meta__ = {
 visible = false
 margin_right = 40.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 455, 420 )
 custom_constants/margin_right = 8
 custom_constants/margin_top = 8
 custom_constants/margin_left = 8
@@ -1139,90 +1191,97 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Container" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer"]
+[node name="Container" type="CenterContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer"]
 margin_left = 8.0
 margin_top = 8.0
-margin_right = 363.0
-margin_bottom = 312.0
+margin_right = 447.0
+margin_bottom = 412.0
 rect_min_size = Vector2( 355, 0 )
-alignment = 1
 
-[node name="CenterContainer" type="GridContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container"]
-margin_left = 53.0
-margin_right = 302.0
-margin_bottom = 304.0
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container"]
+margin_left = 11.0
+margin_top = 50.0
+margin_right = 427.0
+margin_bottom = 354.0
 custom_constants/vseparation = 16
 custom_constants/hseparation = 16
 columns = 2
 
-[node name="Save" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/CenterContainer"]
-margin_right = 120.0
+[node name="Save" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer"]
+margin_right = 200.0
 margin_bottom = 64.0
-rect_min_size = Vector2( 0, 64 )
+rect_min_size = Vector2( 200, 64 )
 text = "Save Game"
+icon = ExtResource( 34 )
+expand_icon = true
 
-[node name="Load" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/CenterContainer"]
-margin_left = 136.0
-margin_right = 249.0
+[node name="Load" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer"]
+margin_left = 216.0
+margin_right = 416.0
 margin_bottom = 64.0
-rect_min_size = Vector2( 0, 64 )
+rect_min_size = Vector2( 200, 64 )
 text = "Load Game"
+icon = ExtResource( 37 )
+expand_icon = true
 
-[node name="Recipy" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/CenterContainer"]
+[node name="Mission" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer"]
 margin_top = 80.0
-margin_right = 120.0
+margin_right = 200.0
 margin_bottom = 144.0
 rect_min_size = Vector2( 0, 64 )
-text = "Recipy Book"
+text = "Mission"
+icon = ExtResource( 33 )
+expand_icon = true
 
-[node name="Mission" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/CenterContainer"]
-margin_left = 136.0
+[node name="Sandbox" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer"]
+margin_left = 216.0
 margin_top = 80.0
-margin_right = 249.0
+margin_right = 416.0
 margin_bottom = 144.0
-rect_min_size = Vector2( 0, 64 )
-text = "Current Mission"
-
-[node name="Sandbox" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/CenterContainer"]
-margin_top = 160.0
-margin_right = 120.0
-margin_bottom = 224.0
 rect_min_size = Vector2( 0, 64 )
 hint_tooltip = "Only available in Sandbox game mode."
-text = "Sandbox Settings"
+text = "Sandbox "
+icon = ExtResource( 38 )
+expand_icon = true
 
-[node name="Tutorial" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/CenterContainer"]
-margin_left = 136.0
+[node name="Tutorial" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer"]
 margin_top = 160.0
-margin_right = 249.0
+margin_right = 200.0
 margin_bottom = 224.0
 rect_min_size = Vector2( 0, 64 )
 text = "Show Tutorial"
+icon = ExtResource( 35 )
+expand_icon = true
 script = SubResource( 33 )
 
-[node name="Title" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/CenterContainer"]
-margin_top = 240.0
-margin_right = 120.0
-margin_bottom = 304.0
+[node name="Title" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer"]
+margin_left = 216.0
+margin_top = 160.0
+margin_right = 416.0
+margin_bottom = 224.0
 rect_min_size = Vector2( 0, 64 )
 text = "Exit to Title"
+icon = ExtResource( 30 )
+expand_icon = true
 
-[node name="Quit" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/CenterContainer"]
-margin_left = 136.0
+[node name="Quit" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer"]
 margin_top = 240.0
-margin_right = 249.0
+margin_right = 200.0
 margin_bottom = 304.0
 rect_min_size = Vector2( 0, 64 )
-text = "Exit to Desktop"
+text = "Exit to Dekstop"
+icon = ExtResource( 36 )
+expand_icon = true
 
 [node name="SandboxContainer" type="MarginContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog"]
-visible = false
 margin_right = 40.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 455, 420 )
 custom_constants/margin_right = 8
 custom_constants/margin_top = 8
 custom_constants/margin_left = 8
 custom_constants/margin_bottom = 8
+script = ExtResource( 40 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1230,19 +1289,19 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer"]
 margin_left = 8.0
 margin_top = 8.0
-margin_right = 363.0
-margin_bottom = 276.0
+margin_right = 447.0
+margin_bottom = 412.0
 rect_min_size = Vector2( 355, 0 )
 custom_constants/separation = 6
 
 [node name="RingsLabel" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
-margin_right = 355.0
+margin_right = 439.0
 margin_bottom = 14.0
 text = "Rings"
 
 [node name="Ring" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
 margin_top = 20.0
-margin_right = 355.0
+margin_right = 439.0
 margin_bottom = 36.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1256,7 +1315,7 @@ text = "1"
 
 [node name="RingsSlider" type="HSlider" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/Ring"]
 margin_left = 12.0
-margin_right = 355.0
+margin_right = 439.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 min_value = 1.0
@@ -1266,20 +1325,21 @@ rounded = true
 tick_count = 9
 script = SubResource( 36 )
 
-[node name="HSeparator" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
+[node name="HSeparator3" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
 margin_top = 42.0
-margin_right = 355.0
+margin_right = 439.0
 margin_bottom = 46.0
+size_flags_horizontal = 3
 
-[node name="LanesLabel" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
+[node name="Label3" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
 margin_top = 52.0
-margin_right = 355.0
+margin_right = 439.0
 margin_bottom = 66.0
 text = "Lanes"
 
 [node name="Lane" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
 margin_top = 72.0
-margin_right = 355.0
+margin_right = 439.0
 margin_bottom = 88.0
 
 [node name="Label" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/Lane"]
@@ -1290,7 +1350,7 @@ text = "1"
 
 [node name="LanesSlider" type="HSlider" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/Lane"]
 margin_left = 12.0
-margin_right = 355.0
+margin_right = 439.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 min_value = 1.0
@@ -1302,30 +1362,70 @@ script = SubResource( 37 )
 
 [node name="HSeparator2" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
 margin_top = 94.0
-margin_right = 355.0
+margin_right = 439.0
 margin_bottom = 98.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+size_flags_horizontal = 3
 
-[node name="LanesLabel2" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
 margin_top = 104.0
-margin_right = 355.0
+margin_right = 439.0
 margin_bottom = 118.0
+text = "Input Resources"
+
+[node name="Input0" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer" instance=ExtResource( 39 )]
+margin_top = 124.0
+margin_right = 439.0
+margin_bottom = 144.0
+
+[node name="Input1" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer" instance=ExtResource( 39 )]
+margin_top = 150.0
+margin_right = 439.0
+margin_bottom = 170.0
+
+[node name="Input2" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer" instance=ExtResource( 39 )]
+margin_top = 176.0
+margin_right = 439.0
+margin_bottom = 196.0
+
+[node name="Input3" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer" instance=ExtResource( 39 )]
+margin_top = 202.0
+margin_right = 439.0
+margin_bottom = 222.0
+
+[node name="Input4" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer" instance=ExtResource( 39 )]
+margin_top = 228.0
+margin_right = 439.0
+margin_bottom = 248.0
+
+[node name="Input5" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer" instance=ExtResource( 39 )]
+margin_top = 254.0
+margin_right = 439.0
+margin_bottom = 274.0
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
+margin_top = 280.0
+margin_right = 439.0
+margin_bottom = 284.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
+margin_top = 290.0
+margin_right = 439.0
+margin_bottom = 304.0
 text = "Satelite Factories Collect From..."
 
 [node name="FactoryBehaviour" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
-margin_top = 124.0
-margin_right = 355.0
-margin_bottom = 188.0
+margin_top = 310.0
+margin_right = 439.0
+margin_bottom = 374.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Above" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/FactoryBehaviour"]
-margin_right = 175.0
+margin_right = 128.0
 margin_bottom = 64.0
-size_flags_horizontal = 3
+rect_min_size = Vector2( 128, 0 )
 toggle_mode = true
 group = ExtResource( 3 )
 text = "Above"
@@ -1333,46 +1433,48 @@ icon = ExtResource( 28 )
 expand_icon = true
 
 [node name="Below" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/FactoryBehaviour"]
-margin_left = 179.0
-margin_right = 355.0
+margin_left = 132.0
+margin_right = 260.0
 margin_bottom = 64.0
-rect_min_size = Vector2( 0, 64 )
-size_flags_horizontal = 3
+rect_min_size = Vector2( 128, 64 )
 toggle_mode = true
 group = ExtResource( 3 )
 text = "Below"
 icon = ExtResource( 25 )
 expand_icon = true
 
-[node name="HSeparator3" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
-margin_top = 194.0
-margin_right = 355.0
-margin_bottom = 198.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Container" type="Container" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/FactoryBehaviour"]
+margin_left = 264.0
+margin_right = 307.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
-margin_top = 204.0
-margin_right = 355.0
-margin_bottom = 268.0
-alignment = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Back" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 227.0
-margin_right = 355.0
+[node name="Back" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/FactoryBehaviour"]
+margin_left = 311.0
+margin_right = 439.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 128, 64 )
 text = "Back"
 icon = ExtResource( 30 )
 expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
+margin_top = 380.0
+margin_right = 439.0
+margin_bottom = 380.0
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="SolContainer" type="MarginContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog"]
+visible = false
 margin_right = 40.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 455, 420 )
 custom_constants/margin_right = 8
 custom_constants/margin_top = 8
 custom_constants/margin_left = 8
@@ -1384,21 +1486,21 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer"]
 margin_left = 8.0
 margin_top = 8.0
-margin_right = 363.0
-margin_bottom = 432.0
+margin_right = 447.0
+margin_bottom = 412.0
 custom_constants/separation = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Lanes" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer"]
-margin_right = 355.0
+margin_right = 429.0
 margin_bottom = 14.0
 text = "Lanes"
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer"]
 margin_top = 20.0
-margin_right = 355.0
+margin_right = 429.0
 margin_bottom = 84.0
 rect_min_size = Vector2( 355, 0 )
 custom_constants/vseparation = 6
@@ -1433,7 +1535,7 @@ expand = true
 
 [node name="HSeparator2" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer"]
 margin_top = 90.0
-margin_right = 355.0
+margin_right = 429.0
 margin_bottom = 106.0
 custom_constants/separation = 16
 __meta__ = {
@@ -1442,16 +1544,18 @@ __meta__ = {
 
 [node name="Transmut" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer"]
 margin_top = 112.0
-margin_right = 355.0
+margin_right = 429.0
 margin_bottom = 126.0
 text = "Transmutations"
 
 [node name="TransmuteGridSC" type="ScrollContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer"]
 margin_top = 132.0
-margin_right = 355.0
+margin_right = 429.0
 margin_bottom = 312.0
 rect_min_size = Vector2( 355, 180 )
 mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1459,19 +1563,19 @@ __meta__ = {
 [node name="TransmuteGrid" type="GridContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer/TransmuteGridSC" groups=[
 "UIGridsGroup",
 ]]
-margin_right = 355.0
+margin_right = 429.0
 margin_bottom = 180.0
 mouse_filter = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/vseparation = 8
 custom_constants/hseparation = 8
-columns = 5
+columns = 9
 script = ExtResource( 23 )
 
 [node name="HSeparator3" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer"]
 margin_top = 318.0
-margin_right = 355.0
+margin_right = 429.0
 margin_bottom = 334.0
 custom_constants/separation = 16
 __meta__ = {
@@ -1479,9 +1583,9 @@ __meta__ = {
 }
 
 [node name="Back" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer"]
-margin_left = 227.0
+margin_left = 301.0
 margin_top = 340.0
-margin_right = 355.0
+margin_right = 429.0
 margin_bottom = 404.0
 rect_min_size = Vector2( 128, 64 )
 size_flags_horizontal = 8
@@ -1493,7 +1597,7 @@ expand_icon = true
 visible = false
 margin_right = 120.0
 margin_bottom = 30.0
-rect_min_size = Vector2( 380, 350 )
+rect_min_size = Vector2( 455, 420 )
 custom_constants/margin_right = 8
 custom_constants/margin_top = 8
 custom_constants/margin_left = 8
@@ -1505,24 +1609,24 @@ __meta__ = {
 [node name="VBox" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MissionContainer"]
 margin_left = 8.0
 margin_top = 8.0
-margin_right = 372.0
+margin_right = 447.0
 margin_bottom = 412.0
 custom_constants/separation = 8
 
 [node name="CampaignName" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MissionContainer/VBox"]
-margin_right = 364.0
+margin_right = 429.0
 margin_bottom = 14.0
 text = "Campaign Name"
 align = 1
 
 [node name="HSeparator" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MissionContainer/VBox"]
 margin_top = 22.0
-margin_right = 364.0
+margin_right = 429.0
 margin_bottom = 26.0
 
 [node name="InfoGrid" type="GridContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MissionContainer/VBox"]
 margin_top = 34.0
-margin_right = 364.0
+margin_right = 429.0
 margin_bottom = 70.0
 custom_constants/vseparation = 8
 custom_constants/hseparation = 8
@@ -1542,15 +1646,15 @@ text = "1 of 5"
 
 [node name="Label7" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MissionContainer/VBox/InfoGrid"]
 margin_left = 106.0
-margin_right = 279.0
+margin_right = 344.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 text = "Factories Collect:"
 align = 2
 
 [node name="FromAbove" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MissionContainer/VBox/InfoGrid"]
-margin_left = 287.0
-margin_right = 364.0
+margin_left = 352.0
+margin_right = 429.0
 margin_bottom = 14.0
 text = "From Above"
 
@@ -1571,21 +1675,21 @@ text = "1"
 [node name="Label5" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MissionContainer/VBox/InfoGrid"]
 margin_left = 106.0
 margin_top = 22.0
-margin_right = 279.0
+margin_right = 344.0
 margin_bottom = 36.0
 text = "Lanes:"
 align = 2
 
 [node name="Lanes" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MissionContainer/VBox/InfoGrid"]
-margin_left = 287.0
+margin_left = 352.0
 margin_top = 22.0
-margin_right = 364.0
+margin_right = 429.0
 margin_bottom = 36.0
 text = "1"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MissionContainer/VBox"]
 margin_top = 78.0
-margin_right = 364.0
+margin_right = 429.0
 margin_bottom = 92.0
 custom_constants/separation = 16
 
@@ -1596,15 +1700,15 @@ text = "New Resources"
 
 [node name="HSeparator2" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MissionContainer/VBox/HBoxContainer"]
 margin_left = 114.0
-margin_right = 364.0
+margin_right = 429.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 
 [node name="NewResourceGridSC" type="ScrollContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MissionContainer/VBox"]
 margin_top = 100.0
-margin_right = 364.0
+margin_right = 429.0
 margin_bottom = 190.0
-rect_min_size = Vector2( 355, 90 )
+size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1612,9 +1716,13 @@ __meta__ = {
 [node name="NewResourcesGrid" type="GridContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MissionContainer/VBox/NewResourceGridSC" groups=[
 "UIGridsGroup",
 ]]
+margin_right = 429.0
+margin_bottom = 90.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_constants/vseparation = 8
 custom_constants/hseparation = 8
-columns = 5
+columns = 6
 script = ExtResource( 23 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1622,7 +1730,7 @@ __meta__ = {
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MissionContainer/VBox"]
 margin_top = 198.0
-margin_right = 364.0
+margin_right = 429.0
 margin_bottom = 212.0
 custom_constants/separation = 8
 
@@ -1633,15 +1741,16 @@ text = "New Recipies"
 
 [node name="HSeparator3" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MissionContainer/VBox/HBoxContainer2"]
 margin_left = 94.0
-margin_right = 364.0
+margin_right = 429.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 
 [node name="NewRecipeGridSC2" type="ScrollContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MissionContainer/VBox"]
 margin_top = 220.0
-margin_right = 364.0
+margin_right = 429.0
 margin_bottom = 310.0
-rect_min_size = Vector2( 355, 90 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1649,9 +1758,13 @@ __meta__ = {
 [node name="NewRecipiesGrid" type="GridContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MissionContainer/VBox/NewRecipeGridSC2" groups=[
 "UIGridsGroup",
 ]]
+margin_right = 429.0
+margin_bottom = 90.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_constants/vseparation = 8
 custom_constants/hseparation = 8
-columns = 5
+columns = 9
 script = ExtResource( 23 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1659,7 +1772,7 @@ __meta__ = {
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MissionContainer/VBox"]
 margin_top = 318.0
-margin_right = 364.0
+margin_right = 429.0
 margin_bottom = 332.0
 custom_constants/separation = 8
 __meta__ = {
@@ -1673,13 +1786,13 @@ text = "Goal"
 
 [node name="HSeparator3" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MissionContainer/VBox/HBoxContainer3"]
 margin_left = 37.0
-margin_right = 364.0
+margin_right = 429.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 
 [node name="HBottomBox" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MissionContainer/VBox"]
 margin_top = 340.0
-margin_right = 364.0
+margin_right = 429.0
 margin_bottom = 404.0
 custom_constants/separation = 8
 
@@ -1692,15 +1805,15 @@ expand = true
 [node name="GoalNumber" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MissionContainer/VBox/HBottomBox"]
 margin_left = 72.0
 margin_top = 25.0
-margin_right = 206.0
+margin_right = 271.0
 margin_bottom = 39.0
 size_flags_horizontal = 3
 text = "x100"
 valign = 1
 
 [node name="Close" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MissionContainer/VBox/HBottomBox"]
-margin_left = 214.0
-margin_right = 364.0
+margin_left = 279.0
+margin_right = 429.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 150, 64 )
 text = "Close"
@@ -1711,6 +1824,7 @@ expand_icon = true
 visible = false
 margin_right = 40.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 455, 420 )
 custom_constants/margin_right = 8
 custom_constants/margin_top = 8
 custom_constants/margin_left = 8
@@ -1844,7 +1958,7 @@ __meta__ = {
 }
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/UI/MainUI/MarginContainerSide"]
-margin_right = 96.0
+margin_right = 128.0
 margin_bottom = 600.0
 grow_horizontal = 2
 size_flags_horizontal = 3
@@ -1854,12 +1968,12 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer"]
 margin_top = 28.0
-margin_right = 96.0
+margin_right = 128.0
 margin_bottom = 572.0
 custom_constants/separation = 16
 
 [node name="BuildMode" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer"]
-margin_right = 96.0
+margin_right = 128.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 96, 64 )
 toggle_mode = true
@@ -1874,9 +1988,9 @@ __meta__ = {
 
 [node name="InjectorButton0" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer"]
 margin_top = 80.0
-margin_right = 96.0
+margin_right = 128.0
 margin_bottom = 144.0
-rect_min_size = Vector2( 96, 64 )
+rect_min_size = Vector2( 128, 64 )
 toggle_mode = true
 group = ExtResource( 4 )
 text = "10/s"
@@ -1888,9 +2002,9 @@ __meta__ = {
 
 [node name="InjectorButton1" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer"]
 margin_top = 160.0
-margin_right = 96.0
+margin_right = 128.0
 margin_bottom = 224.0
-rect_min_size = Vector2( 96, 64 )
+rect_min_size = Vector2( 128, 64 )
 toggle_mode = true
 group = ExtResource( 4 )
 text = "10/s"
@@ -1902,9 +2016,9 @@ __meta__ = {
 
 [node name="InjectorButton2" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer"]
 margin_top = 240.0
-margin_right = 96.0
+margin_right = 128.0
 margin_bottom = 304.0
-rect_min_size = Vector2( 96, 64 )
+rect_min_size = Vector2( 128, 64 )
 toggle_mode = true
 group = ExtResource( 4 )
 text = "10/s"
@@ -1916,9 +2030,9 @@ __meta__ = {
 
 [node name="InjectorButton3" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer"]
 margin_top = 320.0
-margin_right = 96.0
+margin_right = 128.0
 margin_bottom = 384.0
-rect_min_size = Vector2( 96, 64 )
+rect_min_size = Vector2( 128, 64 )
 toggle_mode = true
 group = ExtResource( 4 )
 text = "10/s"
@@ -1930,9 +2044,9 @@ __meta__ = {
 
 [node name="InjectorButton4" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer"]
 margin_top = 400.0
-margin_right = 96.0
+margin_right = 128.0
 margin_bottom = 464.0
-rect_min_size = Vector2( 96, 64 )
+rect_min_size = Vector2( 128, 64 )
 toggle_mode = true
 group = ExtResource( 4 )
 text = "10/s"
@@ -1944,9 +2058,9 @@ __meta__ = {
 
 [node name="InjectorButton5" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer"]
 margin_top = 480.0
-margin_right = 96.0
+margin_right = 128.0
 margin_bottom = 544.0
-rect_min_size = Vector2( 96, 64 )
+rect_min_size = Vector2( 128, 64 )
 toggle_mode = true
 group = ExtResource( 4 )
 text = "10/s"
@@ -1964,7 +2078,7 @@ texture = ExtResource( 16 )
 position = Vector2( 512, 300 )
 
 [node name="InjectionSystem" type="Node2D" parent="CentreNode"]
-script = ExtResource( 11 )
+script = SubResource( 86 )
 
 [node name="Injector0" type="Node2D" parent="CentreNode/InjectionSystem"]
 visible = false
@@ -1976,7 +2090,7 @@ show = true
 ]]
 modulate = Color( 0, 0, 1, 1 )
 position = Vector2( -3.46068, 0 )
-multimesh = SubResource( 75 )
+multimesh = SubResource( 100 )
 texture = ExtResource( 15 )
 script = ExtResource( 8 )
 
@@ -1990,7 +2104,7 @@ show = true
 ]]
 modulate = Color( 1, 1, 0, 1 )
 position = Vector2( -12.1307, 0 )
-multimesh = SubResource( 77 )
+multimesh = SubResource( 102 )
 texture = ExtResource( 19 )
 script = ExtResource( 8 )
 
@@ -2004,7 +2118,7 @@ show = true
 ]]
 modulate = Color( 0.97, 0.15, 0.52, 1 )
 position = Vector2( -20.7248, 0 )
-multimesh = SubResource( 79 )
+multimesh = SubResource( 104 )
 texture = ExtResource( 17 )
 script = ExtResource( 8 )
 
@@ -2018,7 +2132,7 @@ show = true
 ]]
 modulate = Color( 0.05, 0.05, 0.05, 1 )
 position = Vector2( -20.7248, 0 )
-multimesh = SubResource( 81 )
+multimesh = SubResource( 106 )
 texture = ExtResource( 19 )
 script = ExtResource( 8 )
 
@@ -2032,7 +2146,7 @@ show = true
 ]]
 modulate = Color( 0.05, 0.05, 0.05, 1 )
 position = Vector2( -20.7248, 0 )
-multimesh = SubResource( 83 )
+multimesh = SubResource( 108 )
 texture = ExtResource( 19 )
 script = ExtResource( 8 )
 
@@ -2046,7 +2160,7 @@ show = true
 ]]
 modulate = Color( 0.05, 0.05, 0.05, 1 )
 position = Vector2( -20.7248, 0 )
-multimesh = SubResource( 85 )
+multimesh = SubResource( 110 )
 texture = ExtResource( 19 )
 script = ExtResource( 8 )
 
@@ -2171,15 +2285,16 @@ script = ExtResource( 21 )
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset/GridContainer/Inserter" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset/GridContainer/Inserter" method="_on_Inserter_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset/GridContainer/Factory" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset/GridContainer/Factory" method="_on_Factory_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset/GridContainer/Remove" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset/GridContainer/Remove" method="_on_Remove_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset/Back" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Back_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/HBoxContainer/Clear" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/HBoxContainer/Clear" method="_on_Clear_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/HBoxContainer/Remove" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/HBoxContainer/Remove" method="_on_Remove_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/CenterContainer/Mission" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Mission_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/CenterContainer/Sandbox" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Sandbox_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/CenterContainer/Title" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Title_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/CenterContainer/Quit" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Quit_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer/Mission" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Mission_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer/Sandbox" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Sandbox_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer/Title" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Title_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer/Quit" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Quit_pressed"]
 [connection signal="value_changed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/Ring/RingsSlider" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/Ring/RingsSlider" method="_on_RingsSlider_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/Lane/LanesSlider" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/Lane/LanesSlider" method="_on_LanesSlider_value_changed"]
-[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/HBoxContainer/Back" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Back_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/FactoryBehaviour/Back" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Back_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer/Back" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Back_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MissionContainer/VBox/HBottomBox/Close" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="hide_diag"]
 [connection signal="timeout" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/UpdateTimer" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_UpdateTimer_timeout"]

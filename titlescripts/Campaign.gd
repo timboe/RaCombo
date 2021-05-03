@@ -126,7 +126,7 @@ func dictionise() -> Dictionary:
 		#
 		var lanes := []
 		var inputs_node : GridContainer = mission.find_node("InputGridContainer",true,false)
-		for i in range(6):
+		for i in range(Global.MAX_INPUT_LANES):
 			var input_resource = inputs_node.get_node("Input" + String(i) + "/OptionButton").get_selected_metadata()
 			if input_resource == "None":
 				continue
