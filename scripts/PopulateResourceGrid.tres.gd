@@ -10,9 +10,10 @@ func update_grid():
 		update_grid_resource()
 
 func include_recipe(var r : String ):
-	var this_level = Global.mission["recipies"]
-	if not Global.sandbox and not r in this_level:
-		return false 
+	if not Global.sandbox:
+		var this_level = Global.mission["recipies"]
+		if not r in this_level:
+			return false 
 	var comaprison_bool := false
 	if name == "TransmuteGrid":
 		if Global.recipies[r]["factory"] == true:
@@ -95,13 +96,15 @@ func update_grid_factory():
 				entries += 1
 
 func include_resource(var r : String ):
-	var this_level = Global.mission["resources"]
-	if not Global.sandbox and not r in this_level:
-		return false 
+	if not Global.sandbox:
+		var this_level = Global.mission["resources"]
+		if not r in this_level:
+			return false 
 	if Global.data[r]["special"]:
 		return false
 	if name == "ExtractorGrid":
-		if Global.data[r]["mode"] == "-" :
+		if Global.data[r]["mode"] == "-":
+			print("veto ",r," from ",name)
 			return false
 	elif name == "InserterGrid":
 		if Global.data[r]["mode"] == "+":

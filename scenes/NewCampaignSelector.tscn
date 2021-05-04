@@ -21,8 +21,9 @@ script/source = "extends Button
 func _on_Sandbox_pressed():
 	var name = get_parent().get_parent().get_node(\"CampaignName\").text
 	var dict : Dictionary = Global.campaigns[name]
+	dict[\"missions\"] = [] # Delete mission data, we don't need it
 	Global.campaign = dict
-	Global.level = 1
+	Global.level = 0
 	Global.sandbox = true
 	Global.goto_scene(\"res://Scenes/ShieldGen.tscn\")
 "

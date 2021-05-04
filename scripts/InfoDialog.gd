@@ -41,11 +41,14 @@ func toggle_menu_diag():
 		$MenuContainer.visible = true
 		page = "menu"
 		window_title = "Menu"
-		$MenuContainer/Container/GridContainer/Sandbox.disabled = !Global.sandbox
+		$MenuContainer/Container/GridContainer/Mission.disabled = Global.sandbox
 	else:
 		hide_diag()
 
 func show_named_diag(var n : String):
+	if page == n: # Also acts as a toggle
+		hide_diag()
+		return
 	show_shared_internal()
 	var node = find_node(n+"Container")
 	node.visible = true

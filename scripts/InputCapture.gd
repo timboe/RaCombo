@@ -34,7 +34,7 @@ func _unhandled_input(event):
 	if mode_inject:
 		injection = button.inj_node
 	
-	cursor = event.global_position + camera_node.global_position
+	cursor = (event.global_position + camera_node.global_position) * camera_node.zoom
 	var dist : float = round( abs( cursor.distance_to( centre_node.position ) ) )
 	var ring_index : int = int(dist / rs.RING_RADIUS) - 1 
 	if dist < rs.RING_RADIUS:

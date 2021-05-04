@@ -56,7 +56,6 @@ func _on_Extractor_pressed():
 	get_parent().get_parent().get_node(\"ExtractorGridSC\").visible = true
 	get_parent().get_parent().get_node(\"InserterGridSC\").visible = false
 	get_parent().get_parent().get_node(\"FactoryGridSC\").visible = false
-	print(\"Show extrators\")
 "
 
 [sub_resource type="GDScript" id=3]
@@ -66,7 +65,6 @@ func _on_Inserter_pressed():
 	get_parent().get_parent().get_node(\"ExtractorGridSC\").visible = false
 	get_parent().get_parent().get_node(\"InserterGridSC\").visible = true
 	get_parent().get_parent().get_node(\"FactoryGridSC\").visible = false
-	print(\"Show inserters\")
 "
 
 [sub_resource type="GDScript" id=4]
@@ -76,7 +74,6 @@ func _on_Factory_pressed():
 	get_parent().get_parent().get_node(\"ExtractorGridSC\").visible = false
 	get_parent().get_parent().get_node(\"InserterGridSC\").visible = false
 	get_parent().get_parent().get_node(\"FactoryGridSC\").visible = true
-	print(\"Show factories\")
 "
 
 [sub_resource type="GDScript" id=5]
@@ -325,13 +322,260 @@ mesh = SubResource( 109 )
 [sub_resource type="Shader" id=57]
 code = "shader_type canvas_item;
 
+//void fragment() {
+//	float a = 1.0;
+//	vec2 c = UV - 0.5;
+//	if (sqrt(c.x * c.x + c.y * c.y) > 0.5) {
+//		a = 0.0;
+//	} 
+//	COLOR = vec4(UV, 0.5, a);
+//}
+
+/*
+Zachary Shore
+DPA8090: Rendering and Shading
+HW2: Fractal Brownian Motion
+*/
+
+const float M_PI = 3.14159265359;
+
+//
+// Description : Array and textureless GLSL 2D/3D/4D simplex 
+//               noise functions.
+//      Author : Ian McEwan, Ashima Arts.
+//  Maintainer : stegu
+//     Lastmod : 20110822 (ijm)
+//     License : Copyright (C) 2011 Ashima Arts. All rights reserved.
+//               Distributed under the MIT License. See LICENSE file.
+//               https://github.com/ashima/webgl-noise
+//               https://github.com/stegu/webgl-noise
+// 
+
+vec3 mod289_v3(vec3 x) {
+    return x - floor(x * (1.0 / 289.0)) * 289.0;
+}
+
+vec4 mod289_v4(vec4 x) {
+    return x - floor(x * (1.0 / 289.0)) * 289.0;
+}
+
+vec4 permute(vec4 x) {
+    return mod289_v4(((x*34.0)+1.0)*x);
+}
+
+vec4 taylorInvSqrt(vec4 r)
+{
+    return 1.79284291400159 - 0.85373472095314 * r;
+}
+
+float snoise(vec3 v)
+{ 
+    const vec2  C = vec2(1.0/6.0, 1.0/3.0) ;
+    const vec4  D = vec4(0.0, 0.5, 1.0, 2.0);
+
+    // First corner
+    vec3 i  = floor(v + dot(v, C.yyy) );
+    vec3 x0 =   v - i + dot(i, C.xxx) ;
+
+    // Other corners
+    vec3 g = step(x0.yzx, x0.xyz);
+    vec3 l = 1.0 - g;
+    vec3 i1 = min( g.xyz, l.zxy );
+    vec3 i2 = max( g.xyz, l.zxy );
+
+    //   x0 = x0 - 0.0 + 0.0 * C.xxx;
+    //   x1 = x0 - i1  + 1.0 * C.xxx;
+    //   x2 = x0 - i2  + 2.0 * C.xxx;
+    //   x3 = x0 - 1.0 + 3.0 * C.xxx;
+    vec3 x1 = x0 - i1 + C.xxx;
+    vec3 x2 = x0 - i2 + C.yyy; // 2.0*C.x = 1/3 = C.y
+    vec3 x3 = x0 - D.yyy;      // -1.0+3.0*C.x = -0.5 = -D.y
+
+    // Permutations
+    i = mod289_v3(i); 
+    vec4 p = 
+        permute
+        (
+            permute
+            ( 
+                permute
+                (
+                    i.z + vec4(0.0, i1.z, i2.z, 1.0)
+                )
+                + i.y + vec4(0.0, i1.y, i2.y, 1.0 )
+            )
+            + i.x + vec4(0.0, i1.x, i2.x, 1.0 )
+        );
+
+    // Gradients: 7x7 points over a square, mapped onto an octahedron.
+    // The ring size 17*17 = 289 is close to a multiple of 49 (49*6 = 294)
+    float n_ = 0.142857142857; // 1.0/7.0
+    vec3  ns = n_ * D.wyz - D.xzx;
+
+    vec4 j = p - 49.0 * floor(p * ns.z * ns.z);  //  mod(p,7*7)
+
+    vec4 x_ = floor(j * ns.z);
+    vec4 y_ = floor(j - 7.0 * x_ );    // mod(j,N)
+
+    vec4 x = x_ *ns.x + ns.yyyy;
+    vec4 y = y_ *ns.x + ns.yyyy;
+    vec4 h = 1.0 - abs(x) - abs(y);
+
+    vec4 b0 = vec4( x.xy, y.xy );
+    vec4 b1 = vec4( x.zw, y.zw );
+
+    //vec4 s0 = vec4(lessThan(b0,0.0))*2.0 - 1.0;
+    //vec4 s1 = vec4(lessThan(b1,0.0))*2.0 - 1.0;
+    vec4 s0 = floor(b0)*2.0 + 1.0;
+    vec4 s1 = floor(b1)*2.0 + 1.0;
+    vec4 sh = -step(h, vec4(0.0));
+
+    vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy ;
+    vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww ;
+
+    vec3 p0 = vec3(a0.xy,h.x);
+    vec3 p1 = vec3(a0.zw,h.y);
+    vec3 p2 = vec3(a1.xy,h.z);
+    vec3 p3 = vec3(a1.zw,h.w);
+
+    //Normalise gradients
+    vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));
+    p0 *= norm.x;
+    p1 *= norm.y;
+    p2 *= norm.z;
+    p3 *= norm.w;
+
+    // Mix final noise value
+    vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);
+    m = m * m;
+    return 42.0 * dot( m*m, vec4( dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3) ) );
+}
+
+// p: position
+// o: how many layers
+// f: frequency
+// lac: how fast frequency changes between layers
+// r: how fast amplitude changes between layers
+float fbm4(vec3 p, float theta, float f, float lac, float r)
+{
+    mat3 mtx = mat3(
+        vec3(cos(theta), -sin(theta), 0.0),
+        vec3(sin(theta), cos(theta), 0.0),
+        vec3(0.0, 0.0, 1.0));
+
+    float frequency = f;
+    float lacunarity = lac;
+    float roughness = r;
+    float amp = 1.0;
+    float total_amp = 0.0;
+
+    float accum = 0.0;
+    vec3 X = p * frequency;
+    for(int i = 0; i < 4; i++)
+    {
+        accum += amp * snoise(X);
+        X *= (lacunarity + (snoise(X) + 0.1) * 0.006);
+        X = mtx * X;
+
+        total_amp += amp;
+        amp *= roughness;
+    }
+
+    return accum / total_amp;
+}
+
+float fbm8(vec3 p, float theta, float f, float lac, float r)
+{
+    mat3 mtx = mat3(
+        vec3(cos(theta), -sin(theta), 0.0),
+        vec3(sin(theta), cos(theta), 0.0),
+        vec3(0.0, 0.0, 1.0));
+
+    float frequency = f;
+    float lacunarity = lac;
+    float roughness = r;
+    float amp = 1.0;
+    float total_amp = 0.0;
+
+    float accum = 0.0;
+    vec3 X = p * frequency;
+    for(int i = 0; i < 8; i++)
+    {
+        accum += amp * snoise(X);
+        X *= (lacunarity + (snoise(X) + 0.1) * 0.006);
+        X = mtx * X;
+
+        total_amp += amp;
+        amp *= roughness;
+    }
+
+    return accum / total_amp;
+}
+
+float turbulence(float val)
+{
+    float n = 1.0 - abs(val);
+    return n * n;
+}
+
+float pattern(in vec3 p, inout vec3 q, inout vec3 r)
+{
+    q.x = fbm4( p + 0.0, 0.0, 1.0, 2.0, 0.33 );
+    q.y = fbm4( p + 6.0, 0.0, 1.0, 2.0, 0.33 );
+
+    r.x = fbm8( p + q - 2.4, 0.0, 1.0, 3.0, 0.5 );
+    r.y = fbm8( p + q + 8.2, 0.0, 1.0, 3.0, 0.5 );
+
+    q.x = turbulence( q.x );
+    q.y = turbulence( q.y );
+
+    float f = fbm4( p + (1.0 * r), 0.0, 1.0, 2.0, 0.5);
+
+    return f;
+}
+
 void fragment() {
+//void mainImage( out vec4 fragColor, in vec2 fragCoord ){
+    vec2 st = UV.xy * 3.0;
+    float aspect = SCREEN_PIXEL_SIZE.y / SCREEN_PIXEL_SIZE.x;
+    st.x *= aspect;
+
+    vec2 uv = st;
+
+    float t = TIME * 0.01;
+
+    vec3 spectrum[4];
+    spectrum[0] = vec3(1.00, 0.00, 0.00);
+    spectrum[1] = vec3(1.00, 0.82, 0.07);
+    spectrum[2] = vec3(1.00, 0.50, 0.00);
+    spectrum[3] = vec3(1.00, 0.00, 0.00);
+	
+
+    uv -= 0.5;
+    uv *= 3.5;
+
+    vec3 p = vec3(uv.x, uv.y, t);
+    vec3 q = vec3(0.0);
+    vec3 r = vec3(0.0);
+    float f = pattern(p, q, r);
+
+    vec3 color = vec3(0.0);
+    color = mix(spectrum[1], spectrum[3], pow(length(q), 4.0));
+    color = mix(color, spectrum[0], pow(length(r), 1.4));
+    color = mix(color, spectrum[2], f);
+
+    color = pow(color, vec3(2.0));
+	
+	// Radius
 	float a = 1.0;
 	vec2 c = UV - 0.5;
-	if (sqrt(c.x * c.x + c.y * c.y) > 0.5) {
-		a = 0.0;
+	float dist = sqrt(c.x * c.x + c.y * c.y);
+	if (dist > 0.4) {
+		float amount = 0.5 - dist;
+		a = max(amount * 10.0, 0.0);
 	} 
-	COLOR = vec4(UV, 0.5, a);
+
+    COLOR = vec4(color, a);
 }
 "
 
@@ -341,16 +585,13 @@ shader = SubResource( 57 )
 [sub_resource type="OpenSimplexNoise" id=59]
 
 [sub_resource type="NoiseTexture" id=60]
-width = 128
-height = 128
+width = 140
+height = 140
 noise = SubResource( 59 )
 
 [sub_resource type="Environment" id=61]
 background_mode = 4
 glow_enabled = true
-glow_strength = 1.2
-glow_bloom = 0.02
-glow_blend_mode = 0
 glow_bicubic_upscale = true
 adjustment_saturation = 8.0
 
@@ -382,7 +623,6 @@ __meta__ = {
 }
 
 [node name="InfoDialog" type="WindowDialog" parent="CanvasLayer/UI/InfoUI/CenterContainer"]
-visible = true
 margin_left = 284.0
 margin_top = 90.0
 margin_right = 739.0
@@ -635,7 +875,6 @@ __meta__ = {
 }
 
 [node name="Unset" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer"]
-visible = false
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 447.0
@@ -720,7 +959,6 @@ __meta__ = {
 [node name="ExtractorGrid" type="GridContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset/ExtractorGridSC" groups=[
 "UIGridsGroup",
 ]]
-visible = false
 margin_right = 439.0
 margin_bottom = 226.0
 size_flags_horizontal = 3
@@ -735,9 +973,9 @@ __meta__ = {
 
 [node name="InserterGridSC" type="ScrollContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset"]
 visible = false
-margin_top = 108.0
-margin_right = 429.0
-margin_bottom = 218.0
+margin_top = 224.0
+margin_right = 439.0
+margin_bottom = 334.0
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
@@ -746,8 +984,7 @@ __meta__ = {
 [node name="InserterGrid" type="GridContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset/InserterGridSC" groups=[
 "UIGridsGroup",
 ]]
-visible = false
-margin_right = 429.0
+margin_right = 439.0
 margin_bottom = 110.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -761,8 +998,8 @@ __meta__ = {
 
 [node name="FactoryGridSC" type="ScrollContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset"]
 visible = false
-margin_top = 108.0
-margin_right = 429.0
+margin_top = 262.0
+margin_right = 439.0
 margin_bottom = 334.0
 mouse_filter = 1
 size_flags_vertical = 3
@@ -773,8 +1010,8 @@ __meta__ = {
 [node name="FactoryGrid" type="GridContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset/FactoryGridSC" groups=[
 "UIGridsGroup",
 ]]
-margin_right = 429.0
-margin_bottom = 226.0
+margin_right = 439.0
+margin_bottom = 72.0
 mouse_filter = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -795,6 +1032,7 @@ icon = ExtResource( 30 )
 expand_icon = true
 
 [node name="Set" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer"]
+visible = false
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 447.0
@@ -1233,17 +1471,6 @@ text = "Mission"
 icon = ExtResource( 33 )
 expand_icon = true
 
-[node name="Sandbox" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer"]
-margin_left = 216.0
-margin_top = 80.0
-margin_right = 416.0
-margin_bottom = 144.0
-rect_min_size = Vector2( 0, 64 )
-hint_tooltip = "Only available in Sandbox game mode."
-text = "Sandbox "
-icon = ExtResource( 38 )
-expand_icon = true
-
 [node name="Tutorial" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer"]
 margin_top = 160.0
 margin_right = 200.0
@@ -1274,6 +1501,7 @@ icon = ExtResource( 36 )
 expand_icon = true
 
 [node name="SandboxContainer" type="MarginContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog"]
+visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 455, 420 )
@@ -1449,7 +1677,7 @@ margin_right = 307.0
 margin_bottom = 64.0
 size_flags_horizontal = 3
 
-[node name="Back" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/FactoryBehaviour"]
+[node name="Hide" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/FactoryBehaviour"]
 margin_left = 311.0
 margin_right = 439.0
 margin_bottom = 64.0
@@ -1872,8 +2100,8 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer"]
-margin_left = 253.0
-margin_right = 767.0
+margin_left = 205.0
+margin_right = 815.0
 margin_bottom = 64.0
 size_flags_horizontal = 3
 custom_constants/separation = 32
@@ -1898,29 +2126,37 @@ icon = ExtResource( 26 )
 expand_icon = true
 script = SubResource( 42 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
+[node name="SandboxButton" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
 margin_left = 192.0
-margin_right = 322.0
+margin_right = 256.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+icon = ExtResource( 38 )
+expand_icon = true
+
+[node name="MissionGUIContainer" type="HBoxContainer" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
+margin_left = 288.0
+margin_right = 418.0
 margin_bottom = 64.0
 
-[node name="MissionTex" type="TextureRect" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/HBoxContainer"]
+[node name="MissionTex" type="TextureRect" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/MissionGUIContainer"]
 margin_right = 64.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 expand = true
 
-[node name="MissinContainer" type="VBoxContainer" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/HBoxContainer"]
+[node name="MissionInnerContainer" type="VBoxContainer" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/MissionGUIContainer"]
 margin_left = 68.0
 margin_right = 130.0
 margin_bottom = 64.0
 
-[node name="MissionLabel" type="Label" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/HBoxContainer/MissinContainer"]
+[node name="MissionLabel" type="Label" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/MissionGUIContainer/MissionInnerContainer"]
 margin_right = 62.0
 margin_bottom = 14.0
 text = "Mission 1"
 align = 1
 
-[node name="MissionRemaining" type="Label" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/HBoxContainer/MissinContainer"]
+[node name="MissionRemaining" type="Label" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/MissionGUIContainer/MissionInnerContainer"]
 margin_top = 18.0
 margin_right = 62.0
 margin_bottom = 64.0
@@ -1930,8 +2166,8 @@ align = 1
 valign = 1
 
 [node name="Outlines" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
-margin_left = 354.0
-margin_right = 418.0
+margin_left = 450.0
+margin_right = 514.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 toggle_mode = true
@@ -1941,8 +2177,8 @@ expand_icon = true
 script = SubResource( 43 )
 
 [node name="Menu" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
-margin_left = 450.0
-margin_right = 514.0
+margin_left = 546.0
+margin_right = 610.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 icon = ExtResource( 31 )
@@ -1975,7 +2211,7 @@ custom_constants/separation = 16
 [node name="BuildMode" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer"]
 margin_right = 128.0
 margin_bottom = 64.0
-rect_min_size = Vector2( 96, 64 )
+rect_min_size = Vector2( 128, 64 )
 toggle_mode = true
 group = ExtResource( 4 )
 text = "Build"
@@ -2289,17 +2525,17 @@ script = ExtResource( 21 )
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/HBoxContainer/Clear" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/HBoxContainer/Clear" method="_on_Clear_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/HBoxContainer/Remove" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/HBoxContainer/Remove" method="_on_Remove_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer/Mission" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Mission_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer/Sandbox" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Sandbox_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer/Title" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Title_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer/Quit" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Quit_pressed"]
 [connection signal="value_changed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/Ring/RingsSlider" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/Ring/RingsSlider" method="_on_RingsSlider_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/Lane/LanesSlider" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/Lane/LanesSlider" method="_on_LanesSlider_value_changed"]
-[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/FactoryBehaviour/Back" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Back_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/FactoryBehaviour/Hide" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="hide_diag"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer/Back" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Back_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MissionContainer/VBox/HBottomBox/Close" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="hide_diag"]
 [connection signal="timeout" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/UpdateTimer" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_UpdateTimer_timeout"]
 [connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Pause" to="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Pause" method="_on_Pause_toggled"]
 [connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/FF" to="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/FF" method="_on_FF_toggled"]
+[connection signal="pressed" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/SandboxButton" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Sandbox_pressed"]
 [connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Outlines" to="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Outlines" method="_on_Outlines_toggled"]
 [connection signal="pressed" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Menu" to="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Menu" method="_on_Menu_pressed"]
 [connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/BuildMode" to="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/BuildMode" method="_on_Button_toggled"]
