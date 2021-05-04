@@ -1,6 +1,4 @@
 extends Control
-tool
-
 
 var keys = []
 var count = 0

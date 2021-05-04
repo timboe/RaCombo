@@ -1,5 +1,4 @@
 extends OptionButton
-tool
 
 onready var mission_container : VBoxContainer = find_parent("MissionContainer")
 

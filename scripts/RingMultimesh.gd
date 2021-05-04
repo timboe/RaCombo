@@ -1,5 +1,4 @@
 extends MultiMeshInstance2D
-tool
 
 const DISABLE := 100.0
 const INJECT_VELOCITY := 128.0
@@ -16,6 +15,32 @@ var laneswap_target : Array = [null]
 var ring_radius = load("res://scripts/RingSystem.gd").new().RING_RADIUS
 var in_flight = []
 
+func serialise() -> Dictionary:
+	var d := {}
+	d["radians_per_slot"] = radians_per_slot
+	d["radius"] = radius
+	d["lane_content"] = lane_content
+	d["source"] = source
+	d["sink"] = sink
+	d["forbid_send"] = forbid_send
+	d["lane_provinance"] = lane_provinance
+	d["radians_per_slot"] = radians_per_slot	
+	d["laneswap_target"] = laneswap_target[0].get_path() if laneswap_target[0] != null else null
+	#
+	var content = []
+	for i in range(multimesh.instance_count):
+		var flags : int = 0
+		var c = multimesh.get_instance_custom_data(i)
+		if c.r: flags |= 1
+		if c.g: flags |= 2
+		if c.b: flags |= 4
+		if c.a: flags |= 8
+		content.append(flags)
+	d["lane_content"] = content
+	#
+	
+	return d
+	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	multimesh = MultiMesh.new()
@@ -87,15 +112,17 @@ func register_resource(var new_resource : String, var provinance : Node):
 		lane_content = new_resource
 		modulate = Global.data[lane_content]["color"]
 		texture = load("res://images/"+Global.data[lane_content]["shape"]+".png")
-	lane_provinance.append(provinance)
+	if provinance != null:
+		lane_provinance.append(provinance.get_path())
 	for o in get_tree().get_nodes_in_group("RingOutlineGroup"):
 		o.update()
 	
 func deregister_provider(var provider):
-	if not provider in lane_provinance:
+	var path = provider.get_path()
+	if not path in lane_provinance:
 		print("ERROR trying to dereg provider ",provider.name, " from lane ",name," which isn't registered")
 		return
-	lane_provinance.erase(provider)
+	lane_provinance.erase(path)
 	provider.lane_cleared(self)
 	
 func deregister_resource():
@@ -104,7 +131,7 @@ func deregister_resource():
 		return
 	lane_content = null
 	for p in lane_provinance:
-		p.lane_cleared(self)
+		get_node(p).lane_cleared(self)
 	lane_provinance.clear()
 	for i in multimesh.instance_count:
 		set_slot_filled(i, false, true)

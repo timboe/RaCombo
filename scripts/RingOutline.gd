@@ -1,5 +1,4 @@
 extends Node2D
-tool
 
 export(bool) var highlight setget set_highlight
 export(String) var inject = ""
@@ -7,6 +6,13 @@ export(bool) var show setget set_show
 
 onready var ring = find_parent("Ring*")
 var lanes = []
+
+func serialise() -> Dictionary:
+	var d = {}
+	d["highlight"] = highlight
+	d["inject"] = inject
+	d["show"] = show
+	return d
 
 func _ready():
 	for l in ring.find_node("Lanes", true, false).get_children():

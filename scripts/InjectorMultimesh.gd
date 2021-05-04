@@ -1,5 +1,4 @@
 extends MultiMeshInstance2D
-tool
 
 const WIDTH := 512.0
 const EXTRA_MARGIN := 256.0
@@ -15,6 +14,18 @@ export(NodePath) var ring = ""
 export(bool) var placed = false
 
 onready var injector_button = get_tree().get_root().find_node("InjectorButton" + String(int(get_parent().name)), true, false)
+
+func serialise() -> Dictionary:
+	var d = {}
+	d["resource"] = set_resource
+	d["period"] = set_period
+	d["n"] = n
+	d["linear_velocity"] = linear_velocity
+	d["radius"] = radius
+	d["lane"] = lane
+	d["ring"] = ring
+	d["placed"] = placed
+	return d
 
 func _ready():
 	n = 0

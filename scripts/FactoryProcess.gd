@@ -1,5 +1,4 @@
 extends Node2D
-tool
 
 onready var ring := find_parent("Ring*") as Node2D
 onready var something_changed_node = $"/root/Game/SomethingChanged"

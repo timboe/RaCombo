@@ -12,15 +12,17 @@ onready var something_changed_node = $"/root/Game/SomethingChanged"
 
 var t = 0
 
-func change_level(var level):
+func change_level(var level, var with_popup := true):
 	Global.level = level
-	var rings : int = Global.MAX_RINGS
-	var lanes : int = Global.MAX_LANES
+	var rings : int
+	var lanes : int
 	var from_above := true
 	# Top Gui
 	if Global.sandbox:
 		Global.mission = null
 		Global.remaining = 0
+		rings = Global.rings
+		lanes = Global.lanes
 		gui_sandbox.visible = true
 		gui_mission.visible = false
 	else:
@@ -42,17 +44,18 @@ func change_level(var level):
 	set_factories_collect(from_above)
 	# Injectors
 	if Global.sandbox:
-		set_inectors(Global.sandbox_injectors)
+		set_injectors(Global.sandbox_injectors)
 	else:
-		set_inectors(Global.mission["input_lanes"])
+		set_injectors(Global.mission["input_lanes"])
 	# UI elements
 	for g in get_tree().get_nodes_in_group("UIGridsGroup"):
 		g.update_grid()
 	# Show new mission intro
-	if Global.sandbox:
-		id.show_named_diag("Sandbox")
-	else:
-		id.show_named_diag("Mission")
+	if with_popup:
+		if Global.sandbox:
+			id.show_named_diag("Sandbox")
+		else:
+			id.show_named_diag("Mission")
 
 # A ship has departed
 func deposit(var resource : String, var amount : int):
@@ -78,7 +81,7 @@ func _process(delta):
 			Global.to_subtract = 0
 			change_level(Global.level + 1)
 
-func set_inectors(var inj_data):
+func set_injectors(var inj_data):
 	for i in range(Global.MAX_INPUT_LANES): 
 		var injector : MultiMeshInstance2D = injection.get_node("Injector"+String(i)).get_node("InjectorMm")
 		if i < inj_data.size():
@@ -137,4 +140,9 @@ func set_rings(var r : int):
 				f.check_add_remove_ship()
 
 func _on_Game_ready():
-	change_level(0)
+	var with_popup = true
+	if Global.request_load != null:
+		with_popup = false
+		Global.sandbox_injectors = Global.request_load["sandbox_injectors"]
+	change_level(Global.level, with_popup)
+	# TODO load here

@@ -1,5 +1,4 @@
 extends Node2D
-tool
 
 const DENSITY := 0.2
 const LANE_OFFSET := 5.0;
@@ -13,6 +12,22 @@ export(int) var ring_number
 export(Array, float) var radius_array
 export(float) var angular_velocity
 export(int) var n
+
+func serialise() -> Dictionary:
+	var d := {}
+	d["rotation"] = $Rotation.rotation
+	#
+	d["lanes"] = set_lanes
+	d["debug_color"] = set_debug_color.to_html()
+	d["ring_number"] = ring_number
+	d["radius_array"] = radius_array
+	d["angular_velocity"] = angular_velocity
+	d["n"] = n
+	d["lanes"] = set_lanes
+	for lane in get_lanes():
+		d[lane.name] = lane.serialise()
+	d["outline"] = $Outline.serialise()
+	return d
 
 func _ready():
 	$Rotation.rotation = 0
@@ -48,7 +63,8 @@ func new_factory():
 	var new_factory = factory_template.duplicate(DUPLICATE_SCRIPTS|DUPLICATE_SIGNALS|DUPLICATE_GROUPS)
 	new_factory.name = "FactoryInstance1"
 	get_node("Rotation/Factories").add_child(new_factory, true)
-	new_factory.get_node("FactoryProcess").add_to_group("FactoryGroup", true)
+	new_factory.set_owner(get_tree().get_root())
+	new_factory.get_node("FactoryProcess").add_to_group("FactoryProcessGroup", true)
 	var new_factory_angle_start = (new_factory.global_rotation - new_factory.span_radians/2.0) - $Rotation.rotation
 	var new_factory_angle_end = (new_factory.global_rotation + new_factory.span_radians/2.0) - $Rotation.rotation
 	new_factory.factory_angle_start = new_factory_angle_start

@@ -1,5 +1,4 @@
 extends Node2D
-tool
 
 export(bool) var show setget set_show
 
@@ -19,3 +18,7 @@ func _draw():
 		draw_line(Vector2(0, -(mm.radius - r_scr.LANE_OFFSET/2.0)),
 		  Vector2(-(mm.WIDTH+mm.EXTRA_MARGIN), -(mm.radius - r_scr.LANE_OFFSET/2.0)), c)
 
+func serialise() -> Dictionary:
+	var d = mm.serialise()
+	d["show"] = show
+	return d

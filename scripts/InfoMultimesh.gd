@@ -1,5 +1,4 @@
 extends MultiMeshInstance2D
-tool
 
 var is_input : bool
 var input_index : int

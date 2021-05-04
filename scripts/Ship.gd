@@ -1,5 +1,4 @@
 extends Node2D
-tool
 
 const TWOPI := PI * 2.0
 const SHIP_SIZE = 10.0

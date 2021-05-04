@@ -38,6 +38,12 @@ func toggle_menu_diag():
 	var show : bool = (page != "menu")
 	show_shared_internal()
 	if show:
+		Global.snap = get_viewport().get_texture().get_data()
+		yield(get_tree(), "idle_frame")
+		yield(get_tree(), "idle_frame")
+		Global.snap.flip_y()
+		Global.snap.resize(512,300)
+		Global.snap.save_png("res://ss.png")
 		$MenuContainer.visible = true
 		page = "menu"
 		window_title = "Menu"

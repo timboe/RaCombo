@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://scenes/MissionConfiguration.tscn" type="PackedScene" id=1]
 [ext_resource path="res://titlescripts/SliderToText.gd" type="Script" id=2]
@@ -22,11 +22,12 @@
 [ext_resource path="res://images/settings.png" type="Texture" id=20]
 [ext_resource path="res://images/exit.png" type="Texture" id=21]
 [ext_resource path="res://images/open.png" type="Texture" id=22]
+[ext_resource path="res://titlescripts/NewGame.gd" type="Script" id=23]
 [ext_resource path="res://titlescripts/CustomRecipie.gd" type="Script" id=24]
 [ext_resource path="res://scenes/FactoryInputSelector.tscn" type="PackedScene" id=25]
 [ext_resource path="res://scenes/NewCampaignSelector.tscn" type="PackedScene" id=26]
 
-[sub_resource type="GDScript" id=2]
+[sub_resource type="GDScript" id=1]
 script/source = "extends Button
 
 onready var main_menu : CenterContainer = get_tree().get_root().find_node(\"MainMenu\", true, false)
@@ -53,7 +54,7 @@ func _on_Import_pressed():
 	
 "
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="GDScript" id=2]
 script/source = "extends Button
 
 onready var main_menu : CenterContainer = get_tree().get_root().find_node(\"MainMenu\", true, false)
@@ -76,7 +77,7 @@ func _on_ConfirmDeleteDialog_confirmed():
 	main_menu.show_menu(\"CampaignManager\")
 "
 
-[sub_resource type="GDScript" id=7]
+[sub_resource type="GDScript" id=4]
 script/source = "extends MenuButton
 
 onready var pm : PopupMenu = get_popup() 
@@ -110,7 +111,7 @@ func _on_MenuButton_index_pressed(var i):
 	diag.show_for(pm.get_item_metadata(i))
 "
 
-[sub_resource type="GDScript" id=9]
+[sub_resource type="GDScript" id=5]
 script/source = "extends MenuButton
 
 onready var pm : PopupMenu = get_popup() 
@@ -139,7 +140,7 @@ func _on_MenuButton_index_pressed(var i):
 	diag.show_for(pm.get_item_metadata(i))
 "
 
-[sub_resource type="GDScript" id=5]
+[sub_resource type="GDScript" id=6]
 script/source = "extends OptionButton
 
 
@@ -176,7 +177,7 @@ func _ready():
 
 "
 
-[sub_resource type="GDScript" id=6]
+[sub_resource type="GDScript" id=7]
 script/source = "extends OptionButton
 
 func _ready():
@@ -190,7 +191,7 @@ func _ready():
 [sub_resource type="ViewportTexture" id=8]
 viewport_path = NodePath("Viewport")
 
-[sub_resource type="GDScript" id=10]
+[sub_resource type="GDScript" id=9]
 script/source = "extends Label
 
 func _ready():
@@ -238,6 +239,7 @@ rect_min_size = Vector2( 0, 32 )
 text = "Load Game"
 icon = ExtResource( 22 )
 expand_icon = true
+script = ExtResource( 23 )
 
 [node name="Settings" type="Button" parent="MainMenu/VBoxContainer"]
 margin_top = 96.0
@@ -328,7 +330,7 @@ rect_min_size = Vector2( 200, 32 )
 text = "Import from Clipboard"
 icon = ExtResource( 13 )
 expand_icon = true
-script = SubResource( 2 )
+script = SubResource( 1 )
 
 [node name="New" type="Button" parent="CampaignManager/VBoxContainer/HBoxContainer"]
 margin_left = 254.0
@@ -338,7 +340,7 @@ rect_min_size = Vector2( 150, 32 )
 text = "New Campaign"
 icon = ExtResource( 14 )
 expand_icon = true
-script = SubResource( 4 )
+script = SubResource( 2 )
 
 [node name="Back" type="Button" parent="CampaignManager/VBoxContainer/HBoxContainer"]
 margin_left = 412.0
@@ -578,7 +580,7 @@ text = "Resources Editor"
 icon = ExtResource( 17 )
 flat = false
 expand_icon = true
-script = SubResource( 7 )
+script = SubResource( 4 )
 
 [node name="Save" type="Button" parent="CampaignEditor/VBoxContainer/HBoxContainer/GridContainer"]
 margin_left = 232.0
@@ -600,7 +602,7 @@ text = "Recipie Editor"
 icon = ExtResource( 18 )
 flat = false
 expand_icon = true
-script = SubResource( 9 )
+script = SubResource( 5 )
 
 [node name="Discard" type="Button" parent="CampaignEditor/VBoxContainer/HBoxContainer/GridContainer"]
 margin_left = 232.0
@@ -701,7 +703,7 @@ margin_bottom = 96.0
 rect_min_size = Vector2( 96, 64 )
 icon = ExtResource( 15 )
 expand_icon = true
-script = SubResource( 5 )
+script = SubResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -717,7 +719,7 @@ margin_left = 59.0
 margin_top = 104.0
 margin_right = 155.0
 margin_bottom = 124.0
-script = SubResource( 6 )
+script = SubResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -785,10 +787,10 @@ margin_bottom = 14.0
 text = "Color:"
 
 [node name="ColorPicker" type="ColorPicker" parent="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_left = 36.0
-margin_top = 54.0
-margin_right = 344.0
-margin_bottom = 466.0
+margin_left = 68.0
+margin_top = 86.0
+margin_right = 376.0
+margin_bottom = 498.0
 edit_alpha = false
 presets_enabled = false
 presets_visible = false
@@ -1096,7 +1098,7 @@ margin_top = 3.0
 margin_right = 38.0
 margin_bottom = 17.0
 text = "Input:"
-script = SubResource( 10 )
+script = SubResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1176,6 +1178,7 @@ gui_disable_input = true
 [node name="Shield" parent="Viewport" instance=ExtResource( 7 )]
 
 [connection signal="pressed" from="MainMenu/VBoxContainer/NewCampaign" to="MainMenu" method="_on_NewCampaign_pressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/Load" to="MainMenu/VBoxContainer/Load" method="_on_Load_pressed"]
 [connection signal="pressed" from="MainMenu/VBoxContainer/Editor" to="MainMenu" method="_on_Editor_pressed"]
 [connection signal="pressed" from="MainMenu/VBoxContainer/Exit" to="MainMenu" method="_on_Exit_pressed"]
 [connection signal="pressed" from="CampaignManager/VBoxContainer/HBoxContainer/Import" to="CampaignManager/VBoxContainer/HBoxContainer/Import" method="_on_Import_pressed"]

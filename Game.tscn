@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=2]
+[gd_scene load_steps=94 format=2]
 
 [ext_resource path="res://scripts/BinLane.gd" type="Script" id=1]
 [ext_resource path="res://resources/NewBuildingButtonGroup.tres" type="ButtonGroup" id=2]
@@ -10,11 +10,12 @@
 [ext_resource path="res://scripts/InjectorMultimesh.gd" type="Script" id=8]
 [ext_resource path="res://scripts/RingSystem.gd" type="Script" id=9]
 [ext_resource path="res://scripts/InfoDialog.gd" type="Script" id=10]
+[ext_resource path="res://images/sun.png" type="Texture" id=11]
 [ext_resource path="res://scripts/InputCapture.gd" type="Script" id=12]
 [ext_resource path="res://scripts/BuildInjectButton.gd" type="Script" id=13]
 [ext_resource path="res://images/refreshing.png" type="Texture" id=14]
 [ext_resource path="res://images/trapezoid.png" type="Texture" id=15]
-[ext_resource path="res://images/spacefield_a-000.png" type="Texture" id=16]
+[ext_resource path="res://images/space-2.png" type="Texture" id=16]
 [ext_resource path="res://images/diamond.png" type="Texture" id=17]
 [ext_resource path="res://images/trash.png" type="Texture" id=18]
 [ext_resource path="res://images/circle.png" type="Texture" id=19]
@@ -39,6 +40,8 @@
 [ext_resource path="res://images/sandbox.png" type="Texture" id=38]
 [ext_resource path="res://scenes/InputSelector.tscn" type="PackedScene" id=39]
 [ext_resource path="res://scripts/SandboxUpdateInputs.gd" type="Script" id=40]
+[ext_resource path="res://images/space-1.png" type="Texture" id=41]
+[ext_resource path="res://scripts/SaveGame.gd" type="Script" id=42]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends ItemList
@@ -86,63 +89,63 @@ func _on_Remove_pressed():
 	id.hide_diag()
 "
 
-[sub_resource type="QuadMesh" id=87]
+[sub_resource type="QuadMesh" id=6]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=88]
+[sub_resource type="MultiMesh" id=7]
 instance_count = 49
-mesh = SubResource( 87 )
+mesh = SubResource( 6 )
+transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
+
+[sub_resource type="StreamTexture" id=8]
+flags = 5
+load_path = "res://.import/circle.png-5e04c73a6bc42d15cee139f3c4ec364c.stex"
+
+[sub_resource type="QuadMesh" id=9]
+size = Vector2( 10, 10 )
+
+[sub_resource type="MultiMesh" id=10]
+instance_count = 49
+mesh = SubResource( 9 )
 transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
 
 [sub_resource type="StreamTexture" id=11]
 flags = 5
 load_path = "res://.import/circle.png-5e04c73a6bc42d15cee139f3c4ec364c.stex"
 
-[sub_resource type="QuadMesh" id=89]
+[sub_resource type="QuadMesh" id=12]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=90]
+[sub_resource type="MultiMesh" id=13]
 instance_count = 49
-mesh = SubResource( 89 )
+mesh = SubResource( 12 )
 transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
 
 [sub_resource type="StreamTexture" id=14]
 flags = 5
 load_path = "res://.import/circle.png-5e04c73a6bc42d15cee139f3c4ec364c.stex"
 
-[sub_resource type="QuadMesh" id=91]
+[sub_resource type="QuadMesh" id=15]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=92]
+[sub_resource type="MultiMesh" id=16]
 instance_count = 49
-mesh = SubResource( 91 )
+mesh = SubResource( 15 )
 transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
 
 [sub_resource type="StreamTexture" id=17]
 flags = 5
 load_path = "res://.import/circle.png-5e04c73a6bc42d15cee139f3c4ec364c.stex"
 
-[sub_resource type="QuadMesh" id=93]
+[sub_resource type="QuadMesh" id=18]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=94]
+[sub_resource type="MultiMesh" id=19]
 instance_count = 49
-mesh = SubResource( 93 )
+mesh = SubResource( 18 )
 transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
 
-[sub_resource type="StreamTexture" id=20]
-flags = 5
-load_path = "res://.import/circle.png-5e04c73a6bc42d15cee139f3c4ec364c.stex"
-
-[sub_resource type="QuadMesh" id=95]
-size = Vector2( 10, 10 )
-
-[sub_resource type="MultiMesh" id=96]
-instance_count = 49
-mesh = SubResource( 95 )
-transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
-
-[sub_resource type="GDScript" id=23]
+[sub_resource type="GDScript" id=20]
 script/source = "extends Node2D
 tool
 
@@ -170,15 +173,15 @@ func set_resource(var recipy : String):
 	update()
 "
 
-[sub_resource type="QuadMesh" id=97]
+[sub_resource type="QuadMesh" id=21]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=98]
+[sub_resource type="MultiMesh" id=22]
 instance_count = 49
-mesh = SubResource( 97 )
+mesh = SubResource( 21 )
 transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 10, 0, 1, 0, 0, 1, 20, 0, 1, 0, 0, 1, 30, 0, 1, 0, 0, 1, 40, 0, 1, 0, 0, 1, 50, 0, 1, 0, 0, 1, 60, 0, 1, 0, 0, 1, 0, 10, 1, 0, 0, 1, 10, 10, 1, 0, 0, 1, 20, 10, 1, 0, 0, 1, 30, 10, 1, 0, 0, 1, 40, 10, 1, 0, 0, 1, 50, 10, 1, 0, 0, 1, 60, 10, 1, 0, 0, 1, 0, 20, 1, 0, 0, 1, 10, 20, 1, 0, 0, 1, 20, 20, 1, 0, 0, 1, 30, 20, 1, 0, 0, 1, 40, 20, 1, 0, 0, 1, 50, 20, 1, 0, 0, 1, 60, 20, 1, 0, 0, 1, 0, 30, 1, 0, 0, 1, 10, 30, 1, 0, 0, 1, 20, 30, 1, 0, 0, 1, 30, 30, 1, 0, 0, 1, 40, 30, 1, 0, 0, 1, 50, 30, 1, 0, 0, 1, 60, 30, 1, 0, 0, 1, 0, 40, 1, 0, 0, 1, 10, 40, 1, 0, 0, 1, 20, 40, 1, 0, 0, 1, 30, 40, 1, 0, 0, 1, 40, 40, 1, 0, 0, 1, 50, 40, 1, 0, 0, 1, 60, 40, 1, 0, 0, 1, 0, 50, 1, 0, 0, 1, 10, 50, 1, 0, 0, 1, 20, 50, 1, 0, 0, 1, 30, 50, 1, 0, 0, 1, 40, 50, 1, 0, 0, 1, 50, 50, 1, 0, 0, 1, 60, 50, 1, 0, 0, 1, 0, 60, 1, 0, 0, 1, 10, 60, 1, 0, 0, 1, 20, 60, 1, 0, 0, 1, 30, 60, 1, 0, 0, 1, 40, 60, 1, 0, 0, 1, 50, 60, 1, 0, 0, 1, 60, 60 )
 
-[sub_resource type="GDScript" id=26]
+[sub_resource type="GDScript" id=23]
 script/source = "extends Button
 
 onready var id : WindowDialog = get_tree().get_root().find_node(\"InfoDialog\",true,false)
@@ -188,7 +191,7 @@ func _on_Clear_pressed():
 	id.update_diag()
 "
 
-[sub_resource type="GDScript" id=27]
+[sub_resource type="GDScript" id=24]
 script/source = "extends Button
 
 onready var id : WindowDialog = get_tree().get_root().find_node(\"InfoDialog\",true,false)
@@ -198,24 +201,28 @@ func _on_Remove_pressed():
 	id.hide_diag()
 "
 
-[sub_resource type="GDScript" id=33]
+[sub_resource type="GDScript" id=25]
 script/source = "extends Button
 
 onready var id = get_tree().get_root().find_node(\"InfoDialog\", true, false) 
 "
 
-[sub_resource type="GDScript" id=36]
+[sub_resource type="GDScript" id=26]
 script/source = "extends HSlider
 
 onready var label = get_parent().get_node(\"Label\")
 onready var rc = get_tree().get_root().find_node(\"RuleChanger\", true, false)
+
+func _ready():
+	max_value = Global.MAX_RINGS
+	tick_count = Global.MAX_RINGS
 
 func _on_RingsSlider_value_changed(value):
 	label.text = String(int(value))
 	rc.set_rings(int(value)) # +1 because of the sun ring
 "
 
-[sub_resource type="GDScript" id=37]
+[sub_resource type="GDScript" id=27]
 script/source = "extends HSlider
 
 onready var label = get_parent().get_node(\"Label\")
@@ -226,13 +233,13 @@ func _on_LanesSlider_value_changed(value):
 	rc.set_lanes(int(value))
 "
 
-[sub_resource type="InputEventAction" id=39]
+[sub_resource type="InputEventAction" id=28]
 action = "ui_pause"
 
-[sub_resource type="ShortCut" id=40]
-shortcut = SubResource( 39 )
+[sub_resource type="ShortCut" id=29]
+shortcut = SubResource( 28 )
 
-[sub_resource type="GDScript" id=41]
+[sub_resource type="GDScript" id=30]
 script/source = "extends Button
 
 func _on_Pause_toggled(button_pressed):
@@ -241,7 +248,7 @@ func _on_Pause_toggled(button_pressed):
 	Physics2DServer.set_active(true)
 "
 
-[sub_resource type="GDScript" id=42]
+[sub_resource type="GDScript" id=31]
 script/source = "extends Button
 
 func _on_FF_toggled(button_pressed):
@@ -249,7 +256,7 @@ func _on_FF_toggled(button_pressed):
 	print(\"Game speed \", Engine.time_scale)
 "
 
-[sub_resource type="GDScript" id=43]
+[sub_resource type="GDScript" id=32]
 script/source = "extends Button
 
 func _on_Outlines_toggled(button_pressed):
@@ -259,7 +266,7 @@ func _on_Outlines_toggled(button_pressed):
 		i.get_parent().set_show(button_pressed)
 "
 
-[sub_resource type="GDScript" id=44]
+[sub_resource type="GDScript" id=33]
 script/source = "extends Button
 
 onready var id = get_tree().get_root().find_node(\"InfoDialog\", true, false) 
@@ -268,7 +275,7 @@ func _on_Menu_pressed():
 	id.toggle_menu_diag()
 "
 
-[sub_resource type="GDScript" id=86]
+[sub_resource type="GDScript" id=34]
 script/source = "extends Node2D
 
 const N_INJECTORS = 6
@@ -283,43 +290,43 @@ func _ready():
 	pass
 "
 
-[sub_resource type="QuadMesh" id=99]
+[sub_resource type="QuadMesh" id=35]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=100]
-mesh = SubResource( 99 )
+[sub_resource type="MultiMesh" id=36]
+mesh = SubResource( 35 )
 
-[sub_resource type="QuadMesh" id=101]
+[sub_resource type="QuadMesh" id=37]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=102]
-mesh = SubResource( 101 )
+[sub_resource type="MultiMesh" id=38]
+mesh = SubResource( 37 )
 
-[sub_resource type="QuadMesh" id=103]
+[sub_resource type="QuadMesh" id=39]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=104]
-mesh = SubResource( 103 )
+[sub_resource type="MultiMesh" id=40]
+mesh = SubResource( 39 )
 
-[sub_resource type="QuadMesh" id=105]
+[sub_resource type="QuadMesh" id=41]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=106]
-mesh = SubResource( 105 )
+[sub_resource type="MultiMesh" id=42]
+mesh = SubResource( 41 )
 
-[sub_resource type="QuadMesh" id=107]
+[sub_resource type="QuadMesh" id=43]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=108]
-mesh = SubResource( 107 )
+[sub_resource type="MultiMesh" id=44]
+mesh = SubResource( 43 )
 
-[sub_resource type="QuadMesh" id=109]
+[sub_resource type="QuadMesh" id=45]
 size = Vector2( 10, 10 )
 
-[sub_resource type="MultiMesh" id=110]
-mesh = SubResource( 109 )
+[sub_resource type="MultiMesh" id=46]
+mesh = SubResource( 45 )
 
-[sub_resource type="Shader" id=57]
+[sub_resource type="Shader" id=47]
 code = "shader_type canvas_item;
 
 //void fragment() {
@@ -579,19 +586,20 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id=58]
-shader = SubResource( 57 )
+[sub_resource type="ShaderMaterial" id=48]
+shader = SubResource( 47 )
 
-[sub_resource type="OpenSimplexNoise" id=59]
+[sub_resource type="OpenSimplexNoise" id=49]
 
-[sub_resource type="NoiseTexture" id=60]
+[sub_resource type="NoiseTexture" id=50]
 width = 140
 height = 140
-noise = SubResource( 59 )
+noise = SubResource( 49 )
 
-[sub_resource type="Environment" id=61]
+[sub_resource type="Environment" id=51]
 background_mode = 4
 glow_enabled = true
+glow_bloom = 0.5
 glow_bicubic_upscale = true
 adjustment_saturation = 8.0
 
@@ -1099,8 +1107,8 @@ __meta__ = {
 [node name="Mm" type="MultiMeshInstance2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs/GridContainer/I0/Count" groups=[
 "InfoMultimeshGroup",
 ]]
-multimesh = SubResource( 88 )
-texture = SubResource( 11 )
+multimesh = SubResource( 7 )
+texture = SubResource( 8 )
 script = ExtResource( 7 )
 
 [node name="I1" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs/GridContainer"]
@@ -1149,8 +1157,8 @@ __meta__ = {
 [node name="Mm" type="MultiMeshInstance2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs/GridContainer/I1/Count" groups=[
 "InfoMultimeshGroup",
 ]]
-multimesh = SubResource( 90 )
-texture = SubResource( 14 )
+multimesh = SubResource( 10 )
+texture = SubResource( 11 )
 script = ExtResource( 7 )
 
 [node name="I2" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs/GridContainer"]
@@ -1190,8 +1198,8 @@ __meta__ = {
 [node name="Mm" type="MultiMeshInstance2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs/GridContainer/I2/Count" groups=[
 "InfoMultimeshGroup",
 ]]
-multimesh = SubResource( 92 )
-texture = SubResource( 17 )
+multimesh = SubResource( 13 )
+texture = SubResource( 14 )
 script = ExtResource( 7 )
 
 [node name="I3" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs/GridContainer"]
@@ -1241,8 +1249,8 @@ __meta__ = {
 [node name="Mm" type="MultiMeshInstance2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs/GridContainer/I3/Count" groups=[
 "InfoMultimeshGroup",
 ]]
-multimesh = SubResource( 94 )
-texture = SubResource( 20 )
+multimesh = SubResource( 16 )
+texture = SubResource( 17 )
 script = ExtResource( 7 )
 
 [node name="HSeparator" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs"]
@@ -1311,7 +1319,7 @@ __meta__ = {
 [node name="Mm" type="MultiMeshInstance2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Output/OutAndShip/Out/Count" groups=[
 "InfoMultimeshGroup",
 ]]
-multimesh = SubResource( 96 )
+multimesh = SubResource( 19 )
 texture = ExtResource( 19 )
 script = ExtResource( 7 )
 
@@ -1345,7 +1353,7 @@ __meta__ = {
 }
 
 [node name="Ship" type="Node2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Output/OutAndShip/Ship/Ship"]
-script = SubResource( 23 )
+script = SubResource( 20 )
 
 [node name="Spacer" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Output/OutAndShip/Ship"]
 margin_left = 104.0
@@ -1366,7 +1374,7 @@ __meta__ = {
 [node name="Mm" type="MultiMeshInstance2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Output/OutAndShip/Ship/Count" groups=[
 "InfoMultimeshGroup",
 ]]
-multimesh = SubResource( 98 )
+multimesh = SubResource( 22 )
 texture = ExtResource( 19 )
 script = ExtResource( 7 )
 
@@ -1397,7 +1405,7 @@ size_flags_horizontal = 3
 text = "Reset Satelite"
 icon = ExtResource( 14 )
 expand_icon = true
-script = SubResource( 26 )
+script = SubResource( 23 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1411,7 +1419,7 @@ size_flags_horizontal = 3
 text = "Remove Satelite"
 icon = ExtResource( 18 )
 expand_icon = true
-script = SubResource( 27 )
+script = SubResource( 24 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1438,9 +1446,9 @@ rect_min_size = Vector2( 355, 0 )
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container"]
 margin_left = 11.0
-margin_top = 50.0
+margin_top = 90.0
 margin_right = 427.0
-margin_bottom = 354.0
+margin_bottom = 314.0
 custom_constants/vseparation = 16
 custom_constants/hseparation = 16
 columns = 2
@@ -1452,6 +1460,7 @@ rect_min_size = Vector2( 200, 64 )
 text = "Save Game"
 icon = ExtResource( 34 )
 expand_icon = true
+script = ExtResource( 42 )
 
 [node name="Load" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer"]
 margin_left = 216.0
@@ -1479,7 +1488,7 @@ rect_min_size = Vector2( 0, 64 )
 text = "Show Tutorial"
 icon = ExtResource( 35 )
 expand_icon = true
-script = SubResource( 33 )
+script = SubResource( 25 )
 
 [node name="Title" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer"]
 margin_left = 216.0
@@ -1551,7 +1560,7 @@ max_value = 9.0
 value = 1.0
 rounded = true
 tick_count = 9
-script = SubResource( 36 )
+script = SubResource( 26 )
 
 [node name="HSeparator3" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
 margin_top = 42.0
@@ -1586,7 +1595,7 @@ max_value = 4.0
 value = 1.0
 rounded = true
 tick_count = 4
-script = SubResource( 37 )
+script = SubResource( 27 )
 
 [node name="HSeparator2" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
 margin_top = 94.0
@@ -2111,10 +2120,10 @@ margin_right = 64.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 toggle_mode = true
-shortcut = SubResource( 40 )
+shortcut = SubResource( 29 )
 icon = ExtResource( 29 )
 expand_icon = true
-script = SubResource( 41 )
+script = SubResource( 30 )
 
 [node name="FF" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
 margin_left = 96.0
@@ -2124,7 +2133,7 @@ rect_min_size = Vector2( 64, 64 )
 toggle_mode = true
 icon = ExtResource( 26 )
 expand_icon = true
-script = SubResource( 42 )
+script = SubResource( 31 )
 
 [node name="SandboxButton" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
 margin_left = 192.0
@@ -2174,7 +2183,7 @@ toggle_mode = true
 pressed = true
 icon = ExtResource( 24 )
 expand_icon = true
-script = SubResource( 43 )
+script = SubResource( 32 )
 
 [node name="Menu" type="Button" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer"]
 margin_left = 546.0
@@ -2183,7 +2192,7 @@ margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 icon = ExtResource( 31 )
 expand_icon = true
-script = SubResource( 44 )
+script = SubResource( 33 )
 
 [node name="MarginContainerSide" type="MarginContainer" parent="CanvasLayer/UI/MainUI"]
 pause_mode = 2
@@ -2306,17 +2315,35 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="spacefield_a-000" type="Sprite" parent="."]
-position = Vector2( 512, 299.206 )
+[node name="spacefield" type="TextureRect" parent="."]
+margin_left = -1024.0
+margin_top = -1024.0
+margin_right = 2048.0
+margin_bottom = 2048.0
+rect_min_size = Vector2( 3072, 3072 )
+mouse_filter = 2
 texture = ExtResource( 16 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="spacefield1" type="TextureRect" parent="."]
+mouse_filter = 2
+texture = ExtResource( 41 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CentreNode" type="Node2D" parent="."]
 position = Vector2( 512, 300 )
 
 [node name="InjectionSystem" type="Node2D" parent="CentreNode"]
-script = SubResource( 86 )
+script = SubResource( 34 )
 
-[node name="Injector0" type="Node2D" parent="CentreNode/InjectionSystem"]
+[node name="Injector0" type="Node2D" parent="CentreNode/InjectionSystem" groups=[
+"InjectorParentGroup",
+]]
 visible = false
 script = ExtResource( 6 )
 show = true
@@ -2326,11 +2353,13 @@ show = true
 ]]
 modulate = Color( 0, 0, 1, 1 )
 position = Vector2( -3.46068, 0 )
-multimesh = SubResource( 100 )
+multimesh = SubResource( 36 )
 texture = ExtResource( 15 )
 script = ExtResource( 8 )
 
-[node name="Injector1" type="Node2D" parent="CentreNode/InjectionSystem"]
+[node name="Injector1" type="Node2D" parent="CentreNode/InjectionSystem" groups=[
+"InjectorParentGroup",
+]]
 visible = false
 script = ExtResource( 6 )
 show = true
@@ -2340,11 +2369,13 @@ show = true
 ]]
 modulate = Color( 1, 1, 0, 1 )
 position = Vector2( -12.1307, 0 )
-multimesh = SubResource( 102 )
+multimesh = SubResource( 38 )
 texture = ExtResource( 19 )
 script = ExtResource( 8 )
 
-[node name="Injector2" type="Node2D" parent="CentreNode/InjectionSystem"]
+[node name="Injector2" type="Node2D" parent="CentreNode/InjectionSystem" groups=[
+"InjectorParentGroup",
+]]
 visible = false
 script = ExtResource( 6 )
 show = true
@@ -2354,11 +2385,13 @@ show = true
 ]]
 modulate = Color( 0.97, 0.15, 0.52, 1 )
 position = Vector2( -20.7248, 0 )
-multimesh = SubResource( 104 )
+multimesh = SubResource( 40 )
 texture = ExtResource( 17 )
 script = ExtResource( 8 )
 
-[node name="Injector3" type="Node2D" parent="CentreNode/InjectionSystem"]
+[node name="Injector3" type="Node2D" parent="CentreNode/InjectionSystem" groups=[
+"InjectorParentGroup",
+]]
 visible = false
 script = ExtResource( 6 )
 show = true
@@ -2368,11 +2401,13 @@ show = true
 ]]
 modulate = Color( 0.05, 0.05, 0.05, 1 )
 position = Vector2( -20.7248, 0 )
-multimesh = SubResource( 106 )
+multimesh = SubResource( 42 )
 texture = ExtResource( 19 )
 script = ExtResource( 8 )
 
-[node name="Injector4" type="Node2D" parent="CentreNode/InjectionSystem"]
+[node name="Injector4" type="Node2D" parent="CentreNode/InjectionSystem" groups=[
+"InjectorParentGroup",
+]]
 visible = false
 script = ExtResource( 6 )
 show = true
@@ -2382,11 +2417,13 @@ show = true
 ]]
 modulate = Color( 0.05, 0.05, 0.05, 1 )
 position = Vector2( -20.7248, 0 )
-multimesh = SubResource( 108 )
+multimesh = SubResource( 44 )
 texture = ExtResource( 19 )
 script = ExtResource( 8 )
 
-[node name="Injector5" type="Node2D" parent="CentreNode/InjectionSystem"]
+[node name="Injector5" type="Node2D" parent="CentreNode/InjectionSystem" groups=[
+"InjectorParentGroup",
+]]
 visible = false
 script = ExtResource( 6 )
 show = true
@@ -2396,7 +2433,7 @@ show = true
 ]]
 modulate = Color( 0.05, 0.05, 0.05, 1 )
 position = Vector2( -20.7248, 0 )
-multimesh = SubResource( 110 )
+multimesh = SubResource( 46 )
 texture = ExtResource( 19 )
 script = ExtResource( 8 )
 
@@ -2408,76 +2445,92 @@ set_lanes = 8
 set_debug_color = Color( 1, 0, 0, 1 )
 radius_array = [ 40.0, 45.0, 50.0, 55.0, 40.0, 45.0, 50.0, 55.0 ]
 angular_velocity = 2.0
-n = 50.2655
 
 [node name="Ring1" parent="CentreNode/RingSystem" instance=ExtResource( 22 )]
 set_debug_color = Color( 1, 0.631373, 0, 1 )
 ring_number = 1
 radius_array = [ 80.0, 85.0, 90.0, 95.0 ]
 angular_velocity = 1.0
-n = 100.531
 
 [node name="Ring2" parent="CentreNode/RingSystem" instance=ExtResource( 22 )]
 set_debug_color = Color( 1, 0.937255, 0, 1 )
 ring_number = 2
 radius_array = [ 120.0, 125.0, 130.0, 135.0 ]
 angular_velocity = 0.666667
-n = 150.796
 
 [node name="Ring3" parent="CentreNode/RingSystem" instance=ExtResource( 22 )]
 set_debug_color = Color( 0, 0.0627451, 1, 1 )
 ring_number = 3
 radius_array = [ 160.0, 165.0, 170.0, 175.0 ]
 angular_velocity = 0.5
-n = 201.062
 
 [node name="Ring4" parent="CentreNode/RingSystem" instance=ExtResource( 22 )]
 set_debug_color = Color( 0, 0.952941, 1, 1 )
 ring_number = 4
 radius_array = [ 200.0, 205.0, 210.0, 215.0 ]
 angular_velocity = 0.4
-n = 251.327
 
 [node name="Ring5" parent="CentreNode/RingSystem" instance=ExtResource( 22 )]
 set_debug_color = Color( 0.101961, 0, 1, 1 )
 ring_number = 5
 radius_array = [ 240.0, 245.0, 250.0, 255.0 ]
 angular_velocity = 0.333333
-n = 301.593
 
 [node name="Ring6" parent="CentreNode/RingSystem" instance=ExtResource( 22 )]
 set_debug_color = Color( 0.384314, 0, 1, 1 )
 ring_number = 6
 radius_array = [ 280.0, 285.0, 290.0, 295.0 ]
 angular_velocity = 0.285714
-n = 351.858
 
 [node name="Ring7" parent="CentreNode/RingSystem" instance=ExtResource( 22 )]
 set_debug_color = Color( 0.756863, 0, 1, 1 )
 ring_number = 7
 angular_velocity = 0.25
-n = 402.124
 
 [node name="Ring8" parent="CentreNode/RingSystem" instance=ExtResource( 22 )]
 set_debug_color = Color( 1, 0, 0.537255, 1 )
 ring_number = 8
 radius_array = [ 360.0, 365.0, 370.0, 375.0 ]
 angular_velocity = 0.222222
-n = 452.389
 
 [node name="Ring9" parent="CentreNode/RingSystem" instance=ExtResource( 22 )]
+position = Vector2( 0, 1 )
 set_debug_color = Color( 1, 0, 0.537255, 1 )
 ring_number = 9
 radius_array = [ 400.0, 405.0, 410.0, 415.0 ]
 angular_velocity = 0.2
-n = 502.655
+
+[node name="Ring10" parent="CentreNode/RingSystem" instance=ExtResource( 22 )]
+set_debug_color = Color( 1, 0, 0.537255, 1 )
+ring_number = 10
+radius_array = [ 400.0, 405.0, 410.0, 415.0 ]
+angular_velocity = 0.2
+
+[node name="Ring11" parent="CentreNode/RingSystem" instance=ExtResource( 22 )]
+set_debug_color = Color( 1, 0, 0.537255, 1 )
+ring_number = 11
+radius_array = [ 400.0, 405.0, 410.0, 415.0 ]
+angular_velocity = 0.2
+
+[node name="Light2D" type="Light2D" parent="CentreNode"]
+visible = false
+texture = ExtResource( 19 )
+texture_scale = 1.7
+color = Color( 1, 0, 0, 1 )
+shadow_enabled = true
+shadow_color = Color( 0, 0.180392, 1, 1 )
+
+[node name="Sol2" type="Sprite" parent="CentreNode"]
+modulate = Color( 0.921569, 0.921569, 0.862745, 1 )
+scale = Vector2( 2.2, 2.2 )
+texture = ExtResource( 11 )
 
 [node name="Sol" type="Sprite" parent="CentreNode"]
-material = SubResource( 58 )
-texture = SubResource( 60 )
+material = SubResource( 48 )
+texture = SubResource( 50 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 61 )
+environment = SubResource( 51 )
 
 [node name="Line2D" type="Line2D" parent="."]
 visible = false
@@ -2524,6 +2577,7 @@ script = ExtResource( 21 )
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset/Back" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Back_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/HBoxContainer/Clear" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/HBoxContainer/Clear" method="_on_Clear_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/HBoxContainer/Remove" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/HBoxContainer/Remove" method="_on_Remove_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer/Save" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer/Save" method="_on_Save_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer/Mission" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Mission_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer/Title" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Title_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer/Quit" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Quit_pressed"]

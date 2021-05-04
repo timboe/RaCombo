@@ -76,6 +76,20 @@ size = Vector2( 10, 10 )
 custom_data_format = 1
 mesh = SubResource( 13 )
 
+[sub_resource type="QuadMesh" id=15]
+size = Vector2( 10, 10 )
+
+[sub_resource type="MultiMesh" id=16]
+custom_data_format = 1
+mesh = SubResource( 15 )
+
+[sub_resource type="QuadMesh" id=17]
+size = Vector2( 10, 10 )
+
+[sub_resource type="MultiMesh" id=18]
+custom_data_format = 1
+mesh = SubResource( 17 )
+
 [sub_resource type="QuadMesh" id=19]
 size = Vector2( 10, 10 )
 
@@ -90,28 +104,14 @@ size = Vector2( 10, 10 )
 custom_data_format = 1
 mesh = SubResource( 21 )
 
-[sub_resource type="QuadMesh" id=23]
-size = Vector2( 10, 10 )
+[sub_resource type="ImageTexture" id=23]
 
-[sub_resource type="MultiMesh" id=24]
-custom_data_format = 1
-mesh = SubResource( 23 )
+[sub_resource type="CubeMesh" id=24]
 
-[sub_resource type="QuadMesh" id=25]
-size = Vector2( 10, 10 )
+[sub_resource type="MeshTexture" id=25]
+mesh = SubResource( 24 )
 
-[sub_resource type="MultiMesh" id=26]
-custom_data_format = 1
-mesh = SubResource( 25 )
-
-[sub_resource type="ImageTexture" id=15]
-
-[sub_resource type="CubeMesh" id=16]
-
-[sub_resource type="MeshTexture" id=17]
-mesh = SubResource( 16 )
-
-[sub_resource type="DynamicFont" id=18]
+[sub_resource type="DynamicFont" id=26]
 size = 18
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -157,7 +157,6 @@ multimesh = SubResource( 8 )
 texture = ExtResource( 10 )
 script = ExtResource( 1 )
 radians_per_slot = 0.0156298
-lane_content = null
 
 [node name="Lane1" type="MultiMeshInstance2D" parent="Rotation/Lanes" groups=[
 "LaneGroup",
@@ -167,7 +166,6 @@ multimesh = SubResource( 10 )
 texture = ExtResource( 8 )
 script = ExtResource( 1 )
 radians_per_slot = 0.0156298
-lane_content = null
 
 [node name="Lane2" type="MultiMeshInstance2D" parent="Rotation/Lanes" groups=[
 "LaneGroup",
@@ -177,7 +175,6 @@ multimesh = SubResource( 12 )
 texture = ExtResource( 10 )
 script = ExtResource( 1 )
 radians_per_slot = 0.0156298
-lane_content = null
 
 [node name="Lane3" type="MultiMeshInstance2D" parent="Rotation/Lanes" groups=[
 "LaneGroup",
@@ -186,48 +183,45 @@ multimesh = SubResource( 14 )
 texture = ExtResource( 10 )
 script = ExtResource( 1 )
 radians_per_slot = 0.0156298
-lane_content = null
 
 [node name="Lane4" type="MultiMeshInstance2D" parent="Rotation/Lanes" groups=[
+"LaneGroup",
+]]
+multimesh = SubResource( 16 )
+texture = ExtResource( 10 )
+script = ExtResource( 1 )
+radians_per_slot = 0.0156298
+
+[node name="Lane5" type="MultiMeshInstance2D" parent="Rotation/Lanes" groups=[
+"LaneGroup",
+]]
+multimesh = SubResource( 18 )
+texture = ExtResource( 10 )
+script = ExtResource( 1 )
+radians_per_slot = 0.0156298
+
+[node name="Lane6" type="MultiMeshInstance2D" parent="Rotation/Lanes" groups=[
 "LaneGroup",
 ]]
 multimesh = SubResource( 20 )
 texture = ExtResource( 10 )
 script = ExtResource( 1 )
 radians_per_slot = 0.0156298
-lane_content = null
 
-[node name="Lane5" type="MultiMeshInstance2D" parent="Rotation/Lanes" groups=[
+[node name="Lane7" type="MultiMeshInstance2D" parent="Rotation/Lanes" groups=[
 "LaneGroup",
 ]]
 multimesh = SubResource( 22 )
 texture = ExtResource( 10 )
 script = ExtResource( 1 )
 radians_per_slot = 0.0156298
-lane_content = null
-
-[node name="Lane6" type="MultiMeshInstance2D" parent="Rotation/Lanes" groups=[
-"LaneGroup",
-]]
-multimesh = SubResource( 24 )
-texture = ExtResource( 10 )
-script = ExtResource( 1 )
-radians_per_slot = 0.0156298
-lane_content = null
-
-[node name="Lane7" type="MultiMeshInstance2D" parent="Rotation/Lanes" groups=[
-"LaneGroup",
-]]
-multimesh = SubResource( 26 )
-texture = ExtResource( 10 )
-script = ExtResource( 1 )
-radians_per_slot = 0.0156298
-lane_content = null
 
 [node name="Factories" type="Node2D" parent="Rotation"]
 pause_mode = 2
 
-[node name="FactoryTemplate" type="Area2D" parent="Rotation"]
+[node name="FactoryTemplate" type="Area2D" parent="Rotation" groups=[
+"FactoryGroup",
+]]
 pause_mode = 2
 visible = false
 script = ExtResource( 3 )
@@ -236,7 +230,6 @@ outer_radius = 177.5
 span_radians = 0.231
 factory_color = PoolColorArray( 0.6, 0.6, 0.6, 1 )
 factory_outline_color = Color( 0.8, 0.8, 0.8, 1 )
-recipy = null
 descriptive_name = "#0: Unassigned Satelite"
 
 [node name="NewShip" type="Timer" parent="Rotation/FactoryTemplate"]
@@ -255,8 +248,8 @@ margin_left = 157.5
 margin_top = -20.0
 margin_right = 179.5
 margin_bottom = 20.0
-texture_normal = SubResource( 15 )
-texture_pressed = SubResource( 17 )
+texture_normal = SubResource( 23 )
+texture_pressed = SubResource( 25 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -268,7 +261,7 @@ margin_top = -20.0
 margin_right = 218.5
 margin_bottom = 3.0
 rect_rotation = 90.0
-custom_fonts/font = SubResource( 18 )
+custom_fonts/font = SubResource( 26 )
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false

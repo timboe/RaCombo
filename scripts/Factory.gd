@@ -1,5 +1,4 @@
 extends Area2D
-tool
 
 const POINTS := 32
 
@@ -176,6 +175,7 @@ func _on_NewShip_timeout():
 	var sr = ring.get_node("ShipRotationTemplate").duplicate(DUPLICATE_SCRIPTS|DUPLICATE_GROUPS|DUPLICATE_SIGNALS)
 	sr.name = "ShipRotation1"
 	ring.add_child(sr, true)
+	sr.set_owner(get_tree().get_root())
 	sr.global_rotation = self.global_rotation
 	$FactoryProcess.ship = sr.get_child(0)
 	$FactoryProcess.ship.configure_ship(recipy, self)

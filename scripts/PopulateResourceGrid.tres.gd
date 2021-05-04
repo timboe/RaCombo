@@ -104,7 +104,6 @@ func include_resource(var r : String ):
 		return false
 	if name == "ExtractorGrid":
 		if Global.data[r]["mode"] == "-":
-			print("veto ",r," from ",name)
 			return false
 	elif name == "InserterGrid":
 		if Global.data[r]["mode"] == "+":

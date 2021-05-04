@@ -15,5 +15,5 @@ func update_inputs():
 		d["resource"] = resource.get_selected_metadata()
 		config.append(d)
 	Global.sandbox_injectors = config
-	rule_changer.set_inectors(Global.sandbox_injectors)
+	rule_changer.set_injectors(Global.sandbox_injectors)
 	
