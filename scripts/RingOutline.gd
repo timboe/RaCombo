@@ -13,6 +13,12 @@ func serialise() -> Dictionary:
 	d["inject"] = inject
 	d["show"] = show
 	return d
+	
+func deserialise(var d : Dictionary):
+	highlight = d["highlight"]
+	inject = d["inject"]
+	show = d["show"] 
+	#update()
 
 func _ready():
 	for l in ring.find_node("Lanes", true, false).get_children():
@@ -38,7 +44,7 @@ func _draw():
 	var c1 = Color(0.8 + hl, 0.8 + hl, 0.8 + hl)
 	var c2 = Color(0.6 + hl, 0.6 + hl, 0.6 + hl)
 	
-	var hb = $HBoxContainer
+	var hb = $"../HBoxContainer"
 	if show:
 		for c in hb.get_children():
 			c.visible = false

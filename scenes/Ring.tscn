@@ -126,6 +126,12 @@ script = ExtResource( 2 )
 set_lanes = 4
 radius_array = [ 320.0, 325.0, 330.0, 335.0 ]
 
+[node name="Outline" type="Node2D" parent="." groups=[
+"RingOutlineGroup",
+]]
+script = ExtResource( 5 )
+show = true
+
 [node name="ShipRotationTemplate" type="Node2D" parent="."]
 visible = false
 
@@ -225,9 +231,6 @@ pause_mode = 2
 pause_mode = 2
 visible = false
 script = ExtResource( 3 )
-inner_radius = 157.5
-outer_radius = 177.5
-span_radians = 0.231
 factory_color = PoolColorArray( 0.6, 0.6, 0.6, 1 )
 factory_outline_color = Color( 0.8, 0.8, 0.8, 1 )
 descriptive_name = "#0: Unassigned Satelite"
@@ -238,7 +241,6 @@ wait_time = 2.5
 one_shot = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Rotation/FactoryTemplate"]
-polygon = PoolVector2Array( 156.451, -18.1508, 156.578, -17.021, 156.696, -15.8903, 156.807, -14.7587, 156.909, -13.6264, 157.004, -12.4933, 157.09, -11.3597, 157.168, -10.2254, 157.237, -9.09057, 157.299, -7.95529, 157.352, -6.81959, 157.397, -5.68353, 157.434, -4.54718, 157.463, -3.41059, 157.484, -2.27383, 157.496, -1.13694, 157.5, 0, 157.496, 1.13694, 157.484, 2.27383, 157.463, 3.41059, 157.434, 4.54718, 157.397, 5.68353, 157.352, 6.81959, 157.299, 7.95529, 157.237, 9.09057, 157.168, 10.2254, 157.09, 11.3597, 157.004, 12.4933, 156.909, 13.6264, 156.807, 14.7587, 156.696, 15.8903, 156.578, 17.021, 156.451, 18.1508, 172.344, 19.9947, 181.5, 0, 172.344, -19.9947, 156.451, -18.1508 )
 
 [node name="TextureButton" type="TextureButton" parent="Rotation/FactoryTemplate" groups=[
 "FactoryButtonGroup",
@@ -271,8 +273,6 @@ __meta__ = {
 "FactoryProcessGroup",
 ]]
 script = ExtResource( 7 )
-angle_back = -0.1155
-angle_front = 0.1155
 
 [node name="Timer" type="Timer" parent="Rotation/FactoryTemplate/FactoryProcess"]
 process_mode = 0
@@ -283,13 +283,7 @@ visible = false
 points = PoolVector2Array( 0, 0, 400, 0 )
 default_color = Color( 0.24, 0.0768, 0.14208, 1 )
 
-[node name="Outline" type="Node2D" parent="." groups=[
-"RingOutlineGroup",
-]]
-script = ExtResource( 5 )
-show = true
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Outline"]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_left = -337.5
 margin_top = -337.5
 margin_right = 337.5
@@ -301,7 +295,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LaneDisplay0" type="TextureRect" parent="Outline/HBoxContainer"]
+[node name="LaneDisplay0" type="TextureRect" parent="HBoxContainer"]
 visible = false
 margin_left = 261.0
 margin_right = 293.0
@@ -314,7 +308,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LaneDisplay1" type="TextureRect" parent="Outline/HBoxContainer"]
+[node name="LaneDisplay1" type="TextureRect" parent="HBoxContainer"]
 visible = false
 margin_left = 301.0
 margin_right = 333.0
@@ -327,7 +321,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LaneDisplay2" type="TextureRect" parent="Outline/HBoxContainer"]
+[node name="LaneDisplay2" type="TextureRect" parent="HBoxContainer"]
 visible = false
 margin_left = 341.0
 margin_right = 373.0
@@ -340,7 +334,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LaneDisplay3" type="TextureRect" parent="Outline/HBoxContainer"]
+[node name="LaneDisplay3" type="TextureRect" parent="HBoxContainer"]
 visible = false
 margin_left = 381.0
 margin_right = 413.0

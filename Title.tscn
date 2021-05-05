@@ -787,10 +787,10 @@ margin_bottom = 14.0
 text = "Color:"
 
 [node name="ColorPicker" type="ColorPicker" parent="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_left = 68.0
-margin_top = 86.0
-margin_right = 376.0
-margin_bottom = 498.0
+margin_left = 84.0
+margin_top = 102.0
+margin_right = 392.0
+margin_bottom = 514.0
 edit_alpha = false
 presets_enabled = false
 presets_visible = false

@@ -24,10 +24,31 @@ func serialise() -> Dictionary:
 	d["angular_velocity"] = angular_velocity
 	d["n"] = n
 	d["lanes"] = set_lanes
+	#
 	for lane in get_lanes():
 		d[lane.name] = lane.serialise()
+	#
 	d["outline"] = $Outline.serialise()
 	return d
+	
+func deserialise(var d : Dictionary):
+	$Rotation.rotation = d["rotation"]
+	#
+	set_lanes = d["lanes"]
+	set_debug_color = Color(d["debug_color"])
+	ring_number = d["ring_number"]
+	radius_array = d["radius_array"]
+	angular_velocity = d["angular_velocity"]
+	n = d["n"]
+	set_lanes = d["lanes"]
+	#
+	for lane in get_lanes():
+		if "deleted" in lane.name: 
+			continue
+		lane.deserialise( d[lane.name] )
+	#
+	$Outline.deserialise( d["outline"] )
+
 
 func _ready():
 	$Rotation.rotation = 0
@@ -126,6 +147,4 @@ func setup_resource(var r : float):
 	#$Outline.highlight = false
 
 func _physics_process(delta):
-	$Rotation.rotation += delta * angular_velocity
-	if $Rotation.rotation > TWOPI:
-		$Rotation.rotation -= TWOPI
+	$Rotation.rotation = fmod($Rotation.rotation + (delta * angular_velocity), TWOPI)

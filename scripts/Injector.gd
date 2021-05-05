@@ -21,4 +21,11 @@ func _draw():
 func serialise() -> Dictionary:
 	var d = mm.serialise()
 	d["show"] = show
+	d["visible"] = visible
 	return d
+
+func deserialise(var d : Dictionary):
+	show = d["show"]
+	visible = d["visible"]
+	mm.deserialise(d)
+	update()

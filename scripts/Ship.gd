@@ -127,6 +127,4 @@ func try_send(var _angle : float, var _direction : int) -> bool:
 
 func _physics_process(delta):
 	var angular_velocity = Global.M_SOL/radius
-	get_parent().rotation += delta * angular_velocity
-	if get_parent().rotation > TWOPI:
-		get_parent().rotation -= TWOPI
+	get_parent().rotation = fmod(get_parent().rotation + (delta * angular_velocity), TWOPI)

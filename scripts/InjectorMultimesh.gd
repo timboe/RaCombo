@@ -17,6 +17,7 @@ onready var injector_button = get_tree().get_root().find_node("InjectorButton" +
 
 func serialise() -> Dictionary:
 	var d = {}
+	d["x"] = transform.origin.x
 	d["resource"] = set_resource
 	d["period"] = set_period
 	d["n"] = n
@@ -26,7 +27,24 @@ func serialise() -> Dictionary:
 	d["ring"] = ring
 	d["placed"] = placed
 	return d
-
+	
+func deserialise(var d : Dictionary):
+	transform.origin.x = d["x"]
+	set_resource = d["resource"]
+	set_period = d["period"]
+	n = d["n"]
+	linear_velocity = d["linear_velocity"]
+	radius = d["radius"]
+	lane = d["lane"]
+	ring = d["ring"]
+	placed = d["placed"]
+	#
+	set_properties_internal()
+	# We have already deseralised the ring, so can properly reg the injector
+	if ring != "":
+		get_node(ring).register_resource(lane, set_resource, self)
+		update_internal()
+	
 func _ready():
 	n = 0
 	multimesh = MultiMesh.new()
@@ -44,18 +62,26 @@ func update_resource(var res, var period):
 	set_period = period
 	if set_resource == "":
 		print("ERROR: Injector ",name," has no resource!")
+	set_properties_internal()
+	update_internal()
+
+# Called by update_resource or deserialise()	
+func set_properties_internal():
 	modulate = Global.data[set_resource]["color"]
 	texture = load("res://images/"+Global.data[set_resource]["shape"]+".png")
 	var per_sec : float = 1.0 / set_period
-	injector_button.text = String(per_sec) + "/s"
+	injector_button.text = String(stepify(per_sec,0.5)) + "/s"
 	injector_button.icon = Global.data[set_resource]["texture"]
 	injector_button.visible = (set_resource != "None")
-	update_internal()
+	if placed:
+		injector_button.pressed = false
+		injector_button.disabled = true
+	else:
+		injector_button.disabled = false
 	
 # Called when we place a lane, or the fundamental properties of an
 # existing lane change and need updating
 func update_internal():
-	print(ring)
 	if ring == "": # Invalid
 		return
 	linear_velocity = get_node(ring).angular_velocity * radius

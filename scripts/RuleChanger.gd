@@ -145,4 +145,36 @@ func _on_Game_ready():
 		with_popup = false
 		Global.sandbox_injectors = Global.request_load["sandbox_injectors"]
 	change_level(Global.level, with_popup)
-	# TODO load here
+	# Load save file
+	if Global.request_load != null:
+		# Button state
+		get_tree().get_root().find_node("Pause",true,false).pressed = Global.request_load["paused"] 
+		get_tree().get_root().find_node("FF",true,false).pressed = Global.request_load["ff"]
+		get_tree().get_root().find_node("Outlines",true,false).pressed = Global.request_load["outlines"]
+		# First rings
+		for i in get_tree().get_nodes_in_group("RingGroup"):
+			i.deserialise( Global.request_load["saved_rings"][i.name] )
+		# Second injectors
+		for i in get_tree().get_nodes_in_group("InjectorParentGroup"):
+			i.deserialise( Global.request_load["saved_injectors"][i.name] )
+		# Third satelites
+		var all_satelite_data = Global.request_load["saved_satelites"]
+		for s in all_satelite_data:
+			var satelite_data : Dictionary = all_satelite_data[s]
+			var parent_ring = get_node(satelite_data["parent_ring"])
+			var new_factory = parent_ring.get_node("Rotation/FactoryTemplate").duplicate(DUPLICATE_SCRIPTS|DUPLICATE_SIGNALS|DUPLICATE_GROUPS)
+			new_factory.visible = true
+			new_factory.name = satelite_data["name"]
+			new_factory.get_node("TextureButton").visible = true
+			parent_ring.get_node("Rotation/Factories").add_child(new_factory, true)
+			new_factory.set_owner(get_tree().get_root())
+			new_factory.deserialise(satelite_data)
+#			#TODO check and remove this add_to_group line, done in editor
+			new_factory.get_node("FactoryProcess").add_to_group("FactoryProcessGroup", true)
+			# TODO this is hanging?
+#			for l in parent_ring.get_lanes():
+#				print("set to ",l.name)
+#				l.set_range_fillable(satelite_data["factory_angle_start"], satelite_data["factory_angle_end"], false)
+			print("Factory ",new_factory.name," placed")
+		$"/root/Game/SomethingChanged".something_changed()
+

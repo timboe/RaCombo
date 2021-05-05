@@ -36,11 +36,48 @@ func serialise() -> Dictionary:
 		if c.b: flags |= 4
 		if c.a: flags |= 8
 		content.append(flags)
-	d["lane_content"] = content
+	d["multimesh_custom_data"] = content
 	#
-	
+	# in flight?
 	return d
 	
+func deserialise(var d : Dictionary):
+	radians_per_slot = d["radians_per_slot"]
+	radius = d["radius"]
+	lane_content = d["lane_content"]
+	source = d["source"]
+	sink = d["sink"]
+	forbid_send = d["forbid_send"]
+	lane_provinance = d["lane_provinance"]
+	radians_per_slot = d["radians_per_slot"]
+	laneswap_target[0] = null if d["laneswap_target"] == null else get_node(d["laneswap_target"])
+	if lane_content != null:
+		register_resource(lane_content, null)
+	#
+	# Don't actually currently need to re-setup the multimesh. Setup here is static.
+	#
+	var content : Array = d["multimesh_custom_data"]
+	for i in range(multimesh.instance_count):
+		var flags : int = content[i]
+		var c = Color(0,0,0,0)
+		c.r = flags & 1 
+		c.g = flags & 2
+		c.b = flags & 4
+		c.a = flags & 8
+		# While we are not saving in-flight data, we have to overwrite the capturable and fillable data
+		if c.r == 0: # Not filled
+			c.g = 0 # capturable
+			c.b = 1 # fillable
+		else:
+			c.g = 1 # capturable
+			c.b = 0 # fillable
+			var t : Transform2D = multimesh.get_instance_transform_2d(i)
+			t.origin /= DISABLE
+			multimesh.set_instance_transform_2d(i, t)
+		multimesh.set_instance_custom_data(i, c)
+	#
+	# in flight?
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	multimesh = MultiMesh.new()

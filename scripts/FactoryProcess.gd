@@ -6,7 +6,7 @@ onready var something_changed_node = $"/root/Game/SomethingChanged"
 var input_factory_required = [] # Number of items required per input for factory mode
 var input_storage = [] # Number of stored items per input
 var input_content = [] # List of strings, name of each input
-var input_lanes = [] # This is a list of lists. Providers of each input
+var input_lanes = [] # This is a list of lists of Node. Providers of each input
 var input_lanes_distance = [] # This is a list of lists. How far away are each provider (1 or 2)
 
 var spies = [] # The multimeshes currently spying on the storage content here
@@ -22,6 +22,56 @@ export(int) var output_direction = null
 var output_lane : Node2D = null
 
 export(int) var mode = Global.BUILDING_UNSET
+
+func serialise() -> Dictionary:
+	var d := {}
+	d["input_factory_required"] = input_factory_required
+	d["input_storage"] = input_storage
+	d["input_content"] = input_content
+	# Need to re-work input laned
+	var input_lanes_save = []
+	for i in range(input_lanes.size()):
+		var inner = []
+		for j in range(input_lanes[i].size()):
+			inner.append(input_lanes[i][j].get_path())
+		input_lanes_save.append(inner)
+	d["input_lanes"] = input_lanes_save
+	d["input_lanes_distance"] = input_lanes_distance
+	# spies - not saved
+	# ship - TODO
+	d["angle_back"] = angle_back
+	d["angle_front"] = angle_front
+	d["output_amount"] = output_amount
+	d["output_storage"] = output_storage
+	d["output_content"] = output_content
+	d["output_direction"] = output_direction
+	d["output_lane"] = null if output_lane == null else output_lane.get_path()
+	return d
+	
+func deserialise(var d : Dictionary):
+	input_factory_required = d["input_factory_required"]
+	input_storage = d["input_storage"]
+	input_content = d["input_content"]
+	# Need to re-work input laned
+	var input_lanes_save = d["input_lanes"]
+	input_lanes = []
+	# Try NOT restoring this
+#	for i in range(input_lanes_save.size()):
+#		var inner = []
+#		for j in range(input_lanes_save[i].size()):
+#			inner.append(get_node(input_lanes_save[i][j]))
+#		input_lanes.append(inner)
+#	input_lanes_distance = d["input_lanes_distance"]
+	# spies - not saved
+	# ship - TODO
+	angle_back = d["angle_back"]
+	angle_front = d["angle_front"]
+	output_amount = d["output_amount"]
+	output_storage = d["output_storage"]
+	output_content = d["output_content"]
+	output_direction = d["output_direction"]
+	# Try NOT restoring this
+#	output_lane = null if d["output_lane"] == null else get_node( d["output_lane"] )
 
 func reset():
 	#

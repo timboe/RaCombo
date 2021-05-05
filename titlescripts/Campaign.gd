@@ -114,6 +114,7 @@ func dictionise() -> Dictionary:
 	var result := {}
 	
 	result["name"] = campaign_name.text
+	result["version"] = Global.CAMPAIGN_FORMAT_VERSION
 	
 	var missions := []
 	for mission in tab_container.get_children():

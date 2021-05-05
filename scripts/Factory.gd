@@ -22,6 +22,46 @@ export(String) var descriptive_name = ""
 
 var points_vec = PoolVector2Array()
 
+func serialise() -> Dictionary:
+	var d : Dictionary = $FactoryProcess.serialise()
+	d["name"] = name
+	d["parent_ring"] = ring.get_path()
+	#
+	d["global_rotation"] = global_rotation
+	#
+	d["inner_radius"] = inner_radius
+	d["outer_radius"] = outer_radius
+	d["span_radians"] = span_radians
+	d["factory_angle_start"] = factory_angle_start
+	d["factory_angle_end"] = factory_angle_end
+	d["factory_color"] = factory_color[0].to_html()
+	d["factory_outline_color"] = factory_outline_color.to_html()
+	d["mode"] = mode
+	d["recipy"] = recipy
+	d["descriptive_name"] = descriptive_name
+	return d
+
+func deserialise(var d : Dictionary):
+	global_rotation = d["global_rotation"]
+	#
+	inner_radius = d["inner_radius"]
+	outer_radius = d["outer_radius"]
+	span_radians = d["span_radians"] 
+	factory_angle_start = d["factory_angle_start"]
+	factory_angle_end = d["factory_angle_end"]
+	factory_color[0] = Color(d["factory_color"])
+	factory_outline_color = Color(d["factory_outline_color"])
+	mode = d["mode"]
+	recipy = d["recipy"]
+	descriptive_name = d["descriptive_name"]
+	if recipy != null:
+		$Label.text = recipy + Global.data[recipy]["mode"]
+	update()
+	$FactoryProcess.deserialise(d)
+	# TODO make ring un-fillable
+
+	return
+
 func _ready():
 	reset()
 
@@ -137,7 +177,7 @@ func set_descriptive_name():
 	elif mode == Global.BUILDING_EXTRACTOR:
 		descriptive_name += " " + "Extractor"
 
-func setup_resource(var i_radius : float, var o_radius : float, var _span : float ):
+func setup_resource(var i_radius : float, var o_radius : float, var _span : float):
 	inner_radius = i_radius
 	outer_radius = o_radius
 	span_radians = _span
