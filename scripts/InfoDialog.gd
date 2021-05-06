@@ -7,6 +7,19 @@ var current_ring : Node2D = null
 var current_lanes : Array = []
 var page : String = ""
 
+var sb_gray := StyleBoxFlat.new()
+var sb_green := StyleBoxFlat.new()
+var sb_blue := StyleBoxFlat.new()
+var sb_purple := StyleBoxFlat.new()
+var sb_orange := StyleBoxFlat.new()
+
+func _ready():
+	sb_gray.bg_color = Color.gray
+	sb_green.bg_color = Color.greenyellow
+	sb_blue.bg_color = Color.blue
+	sb_purple.bg_color =  Color.purple
+	sb_orange.bg_color = Color.orange
+
 func hide_diag():
 	current_ring = null
 	current_building = null
@@ -47,7 +60,8 @@ func toggle_menu_diag():
 		$MenuContainer.visible = true
 		page = "menu"
 		window_title = "Menu"
-		$MenuContainer/Container/GridContainer/Mission.disabled = Global.sandbox
+		$MenuContainer/Container/GridContainer/Mission.visible = !Global.sandbox
+		$MenuContainer/Container/GridContainer/Export.visible = Global.sandbox
 	else:
 		hide_diag()
 
@@ -69,10 +83,56 @@ func update_diag():
 		update_ring_diag()
 	elif current_building != null:
 		update_building_diag()
+	elif page == "Export":
+		update_Export_diag()
 	else:
 		pass
 
 # Below used to update page on initial draw
+
+func update_Export_diag():
+	window_title = "Export"
+	if not "H" in Global.exported:
+		Global.exported["H"] = 50
+	#Global.exported["H"] += 50
+	var g = $ExportContainer/VBox/ExportedResourceGridSC/ExportedResourcesGrid
+	for i in range(0, g.get_child_count(), 2):
+		var n : int = 0
+		var res = g.get_child(i).name
+		if res in Global.exported:
+			n = min(Global.exported[res], 100000)
+		var current : float = g.get_child(i + 1).get_child(0).value
+		var add = max(1, round((n - current) * 0.01))
+		if current != n:
+			current += add
+		g.get_child(i + 1).get_child(0).max_value = leet_n(current)
+		g.get_child(i + 1).get_child(0).value = current
+		g.get_child(i + 1).get_child(0).set("custom_styles/fg", leet_color(current))
+		g.get_child(i + 1).get_child(1).text = String(current)
+
+func leet_n(var n : int) -> int:
+	if n < 10:
+		return 10
+	elif n < 100:
+		return 100
+	elif n < 1000:
+		return 1000
+	elif n < 10000:
+		return 10000
+	else:
+		return 100000
+
+func leet_color(var n : int) -> StyleBoxFlat:
+	if n < 10:
+		return sb_gray
+	elif n < 100:
+		return sb_green
+	elif n < 1000:
+		return sb_blue
+	elif n < 10000:
+		return sb_purple
+	else:
+		return sb_orange
 
 func update_Sol_diag():
 	window_title = "Sol"
@@ -180,6 +240,8 @@ func _on_UpdateTimer_timeout():
 	if current_building != null:
 		for mm in get_tree().get_nodes_in_group("InfoMultimeshGroup"):
 			mm.update_visible()
+	elif page == "Export":
+		update_Export_diag()
 
 func _on_Sandbox_pressed():
 	show_named_diag("Sandbox")
@@ -195,3 +257,7 @@ func _on_Quit_pressed():
 
 func _on_Back_pressed():
 	toggle_menu_diag()
+
+func _on_Export_pressed():
+	show_named_diag("Export")
+

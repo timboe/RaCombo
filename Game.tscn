@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=2]
+[gd_scene load_steps=98 format=2]
 
 [ext_resource path="res://scripts/BinLane.gd" type="Script" id=1]
 [ext_resource path="res://resources/NewBuildingButtonGroup.tres" type="ButtonGroup" id=2]
@@ -42,6 +42,9 @@
 [ext_resource path="res://scripts/SandboxUpdateInputs.gd" type="Script" id=40]
 [ext_resource path="res://images/space-1.png" type="Texture" id=41]
 [ext_resource path="res://scripts/SaveGame.gd" type="Script" id=42]
+[ext_resource path="res://images/new.png" type="Texture" id=43]
+[ext_resource path="res://ss.png" type="Texture" id=44]
+[ext_resource path="res://images/replace.png" type="Texture" id=45]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends ItemList
@@ -233,6 +236,9 @@ func _on_LanesSlider_value_changed(value):
 	rc.set_lanes(int(value))
 "
 
+[sub_resource type="StyleBoxFlat" id=52]
+bg_color = Color( 0.333333, 0.0627451, 0.0627451, 1 )
+
 [sub_resource type="InputEventAction" id=28]
 action = "ui_pause"
 
@@ -242,10 +248,13 @@ shortcut = SubResource( 28 )
 [sub_resource type="GDScript" id=30]
 script/source = "extends Button
 
+onready var sol = get_tree().get_root().find_node(\"Sol\",true,false)
+
 func _on_Pause_toggled(button_pressed):
 	print(\"Pause \", button_pressed)
 	get_tree().paused = button_pressed
 	Physics2DServer.set_active(true)
+	sol.get_material().set_shader_param(\"pause\", button_pressed)
 "
 
 [sub_resource type="GDScript" id=31]
@@ -329,6 +338,20 @@ mesh = SubResource( 45 )
 [sub_resource type="Shader" id=47]
 code = "shader_type canvas_item;
 
+uniform bool paused = false;
+
+varying float time_prev;
+varying float time;
+
+void vertex() {
+	
+	float time_diff = TIME - time_prev;
+	time_prev = TIME;
+	
+	if (!paused) {
+		time += time_diff;
+	}
+}
 //void fragment() {
 //	float a = 1.0;
 //	vec2 c = UV - 0.5;
@@ -548,8 +571,9 @@ void fragment() {
     st.x *= aspect;
 
     vec2 uv = st;
+	
 
-    float t = TIME * 0.01;
+    float t = time * 0.01;
 
     vec3 spectrum[4];
     spectrum[0] = vec3(1.00, 0.00, 0.00);
@@ -588,6 +612,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id=48]
 shader = SubResource( 47 )
+shader_param/paused = false
 
 [sub_resource type="OpenSimplexNoise" id=49]
 
@@ -631,6 +656,7 @@ __meta__ = {
 }
 
 [node name="InfoDialog" type="WindowDialog" parent="CanvasLayer/UI/InfoUI/CenterContainer"]
+visible = true
 margin_left = 284.0
 margin_top = 90.0
 margin_right = 739.0
@@ -1480,6 +1506,15 @@ text = "Mission"
 icon = ExtResource( 33 )
 expand_icon = true
 
+[node name="Export" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer"]
+margin_top = 80.0
+margin_right = 200.0
+margin_bottom = 144.0
+rect_min_size = Vector2( 0, 64 )
+text = "Export"
+icon = ExtResource( 33 )
+expand_icon = true
+
 [node name="Tutorial" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer"]
 margin_top = 160.0
 margin_right = 200.0
@@ -2057,10 +2092,10 @@ text = "Close"
 icon = ExtResource( 30 )
 expand_icon = true
 
-[node name="TutorialContainer" type="MarginContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog"]
+[node name="ExportContainer" type="MarginContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog"]
 visible = false
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 120.0
+margin_bottom = 30.0
 rect_min_size = Vector2( 455, 420 )
 custom_constants/margin_right = 8
 custom_constants/margin_top = 8
@@ -2070,10 +2105,226 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer4" type="MarginContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog"]
+[node name="VBox" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/ExportContainer"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 447.0
+margin_bottom = 412.0
+custom_constants/separation = 8
+
+[node name="CampaignName" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/ExportContainer/VBox"]
+margin_right = 439.0
+margin_bottom = 14.0
+text = "Exported Resources"
+
+[node name="ExportedResourceGridSC" type="ScrollContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/ExportContainer/VBox"]
+margin_top = 22.0
+margin_right = 439.0
+margin_bottom = 332.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExportedResourcesGrid" type="GridContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/ExportContainer/VBox/ExportedResourceGridSC" groups=[
+"UIGridsGroup",
+]]
+margin_right = 439.0
+margin_bottom = 310.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/vseparation = 8
+custom_constants/hseparation = 8
+columns = 2
+script = ExtResource( 23 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="MarginContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/ExportContainer/VBox/ExportedResourceGridSC/ExportedResourcesGrid"]
+margin_right = 219.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/ExportContainer/VBox/ExportedResourceGridSC/ExportedResourcesGrid/Container"]
+margin_right = 219.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_styles/fg = SubResource( 52 )
+step = 1.0
+value = 50.0
+percent_visible = false
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/ExportContainer/VBox/ExportedResourceGridSC/ExportedResourcesGrid/Container"]
+margin_right = 219.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "1000"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/ExportContainer/VBox"]
+margin_top = 340.0
+margin_right = 439.0
+margin_bottom = 404.0
+alignment = 2
+
+[node name="Close" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/ExportContainer/VBox/HBoxContainer"]
+margin_left = 289.0
+margin_right = 439.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 150, 64 )
+text = "Close"
+icon = ExtResource( 30 )
+expand_icon = true
+
+[node name="SaveContainer" type="MarginContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog"]
+margin_right = 120.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 455, 420 )
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SaveContainer"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 447.0
+margin_bottom = 412.0
+custom_constants/separation = 8
+
+[node name="SaveContainerSC" type="ScrollContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SaveContainer/VBox"]
+margin_right = 439.0
+margin_bottom = 332.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SaveContainer/VBox/SaveContainerSC"]
+margin_right = 439.0
+margin_bottom = 112.0
+size_flags_horizontal = 3
+custom_constants/separation = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SaveContainer/VBox/SaveContainerSC/VBox"]
+margin_right = 439.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+custom_constants/separation = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SaveContainer/VBox/SaveContainerSC/VBox/HBoxContainer"]
+margin_right = 261.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+custom_constants/separation = 8
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SaveContainer/VBox/SaveContainerSC/VBox/HBoxContainer/VBoxContainer"]
+margin_right = 261.0
+margin_bottom = 36.0
+custom_constants/vseparation = 8
+custom_constants/hseparation = 16
+columns = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SaveContainer/VBox/SaveContainerSC/VBox/HBoxContainer/VBoxContainer/GridContainer"]
+margin_right = 97.0
+margin_bottom = 14.0
+text = "Save 0001"
+
+[node name="Label3" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SaveContainer/VBox/SaveContainerSC/VBox/HBoxContainer/VBoxContainer/GridContainer"]
+margin_left = 113.0
+margin_right = 205.0
+margin_bottom = 14.0
+text = "Time 00:03:22"
+
+[node name="Label2" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SaveContainer/VBox/SaveContainerSC/VBox/HBoxContainer/VBoxContainer/GridContainer"]
+margin_top = 22.0
+margin_right = 97.0
+margin_bottom = 36.0
+text = "Main Campaign"
+
+[node name="Label4" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SaveContainer/VBox/SaveContainerSC/VBox/HBoxContainer/VBoxContainer/GridContainer"]
+margin_left = 113.0
+margin_top = 22.0
+margin_right = 205.0
+margin_bottom = 36.0
+text = "Sandbox"
+
+[node name="Button" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SaveContainer/VBox/SaveContainerSC/VBox/HBoxContainer/VBoxContainer"]
+margin_top = 44.0
+margin_right = 261.0
+margin_bottom = 100.0
+size_flags_vertical = 3
+text = "Overrwrite"
+icon = ExtResource( 45 )
+expand_icon = true
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SaveContainer/VBox/SaveContainerSC/VBox/HBoxContainer"]
+margin_left = 269.0
+margin_right = 439.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 170, 100 )
+texture = ExtResource( 44 )
+expand = true
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SaveContainer/VBox/SaveContainerSC/VBox"]
+margin_top = 108.0
+margin_right = 439.0
+margin_bottom = 112.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SaveContainer/VBox"]
+margin_top = 340.0
+margin_right = 439.0
+margin_bottom = 404.0
+
+[node name="NewSave" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SaveContainer/VBox/HBoxContainer"]
+margin_right = 150.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 150, 64 )
+text = "New Save"
+icon = ExtResource( 43 )
+expand_icon = true
+
+[node name="Container" type="Container" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SaveContainer/VBox/HBoxContainer"]
+margin_left = 154.0
+margin_right = 285.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+
+[node name="Back" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SaveContainer/VBox/HBoxContainer"]
+margin_left = 289.0
+margin_right = 439.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 150, 64 )
+text = "Back"
+icon = ExtResource( 30 )
+expand_icon = true
+
+[node name="MarginContainer5" type="MarginContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog"]
 visible = false
 margin_right = 40.0
 margin_bottom = 40.0
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TutorialContainer" type="MarginContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 455, 420 )
 custom_constants/margin_right = 8
 custom_constants/margin_top = 8
 custom_constants/margin_left = 8
@@ -2579,6 +2830,7 @@ script = ExtResource( 21 )
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/HBoxContainer/Remove" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/HBoxContainer/Remove" method="_on_Remove_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer/Save" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer/Save" method="_on_Save_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer/Mission" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Mission_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer/Export" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Export_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer/Title" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Title_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer/Quit" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Quit_pressed"]
 [connection signal="value_changed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/Ring/RingsSlider" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/Ring/RingsSlider" method="_on_RingsSlider_value_changed"]
@@ -2586,6 +2838,9 @@ script = ExtResource( 21 )
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/FactoryBehaviour/Hide" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="hide_diag"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer/Back" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Back_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MissionContainer/VBox/HBottomBox/Close" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="hide_diag"]
+[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/ExportContainer/VBox/HBoxContainer/Close" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="hide_diag"]
+[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SaveContainer/VBox/HBoxContainer/NewSave" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="hide_diag"]
+[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SaveContainer/VBox/HBoxContainer/Back" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Back_pressed"]
 [connection signal="timeout" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/UpdateTimer" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_UpdateTimer_timeout"]
 [connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Pause" to="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Pause" method="_on_Pause_toggled"]
 [connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/FF" to="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/FF" method="_on_FF_toggled"]

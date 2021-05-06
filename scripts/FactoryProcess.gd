@@ -46,6 +46,7 @@ func serialise() -> Dictionary:
 	d["output_content"] = output_content
 	d["output_direction"] = output_direction
 	d["output_lane"] = null if output_lane == null else output_lane.get_path()
+	d["mode"] = mode
 	return d
 	
 func deserialise(var d : Dictionary):
@@ -55,13 +56,12 @@ func deserialise(var d : Dictionary):
 	# Need to re-work input laned
 	var input_lanes_save = d["input_lanes"]
 	input_lanes = []
-	# Try NOT restoring this
-#	for i in range(input_lanes_save.size()):
-#		var inner = []
-#		for j in range(input_lanes_save[i].size()):
-#			inner.append(get_node(input_lanes_save[i][j]))
-#		input_lanes.append(inner)
-#	input_lanes_distance = d["input_lanes_distance"]
+	for i in range(input_lanes_save.size()):
+		var inner = []
+		for j in range(input_lanes_save[i].size()):
+			inner.append(get_node(input_lanes_save[i][j]))
+		input_lanes.append(inner)
+	input_lanes_distance = d["input_lanes_distance"]
 	# spies - not saved
 	# ship - TODO
 	angle_back = d["angle_back"]
@@ -70,8 +70,10 @@ func deserialise(var d : Dictionary):
 	output_storage = d["output_storage"]
 	output_content = d["output_content"]
 	output_direction = d["output_direction"]
-	# Try NOT restoring this
-#	output_lane = null if d["output_lane"] == null else get_node( d["output_lane"] )
+	output_lane = null if d["output_lane"] == null else get_node( d["output_lane"] )
+	mode = d["mode"]
+	check_process()
+
 
 func reset():
 	#

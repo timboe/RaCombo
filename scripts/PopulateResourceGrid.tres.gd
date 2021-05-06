@@ -6,6 +6,8 @@ func update_grid():
 		c.queue_free()
 	if name == "FactoryGrid" or name == "NewRecipiesGrid" or name == "TransmuteGrid":
 		update_grid_factory()
+	elif name == "ExportedResourcesGrid":
+		update_grid_exported()
 	else:
 		update_grid_resource()
 
@@ -102,7 +104,7 @@ func include_resource(var r : String ):
 			return false 
 	if Global.data[r]["special"]:
 		return false
-	if name == "ExtractorGrid":
+	if name == "ExtractorGrid" or name == "ExportedResourcesGrid":
 		if Global.data[r]["mode"] == "-":
 			return false
 	elif name == "InserterGrid":
@@ -115,7 +117,6 @@ func include_resource(var r : String ):
 		if r in last_level:
 			return false
 	return true
-	
 
 func update_grid_resource():
 	for key in Global.data:
@@ -135,4 +136,30 @@ func update_grid_resource():
 				n.rect_min_size = Vector2(64,64)
 				n.texture = Global.data[key]["texture"]
 			add_child(n)
+
+func update_grid_exported():
+	for key in Global.data:
+		if include_resource(key):
+			var n = TextureRect.new()
+			n.expand = true
+			n.rect_min_size = Vector2(64,64)
+			n.texture = Global.data[key]["texture"]
+			n.name = key
+			add_child(n)
+			var mc = MarginContainer.new()
+			mc.size_flags_horizontal = SIZE_FILL | SIZE_EXPAND
+			mc.size_flags_vertical = SIZE_FILL
+			var pb = ProgressBar.new()
+			pb.size_flags_horizontal = SIZE_FILL | SIZE_EXPAND
+			pb.size_flags_vertical = SIZE_FILL
+			pb.percent_visible = false
+			var lbl = Label.new()
+			lbl.size_flags_horizontal = SIZE_FILL | SIZE_EXPAND
+			lbl.size_flags_vertical = SIZE_FILL
+			lbl.align = HALIGN_CENTER
+			lbl.valign = VALIGN_CENTER
+			mc.add_child(pb)
+			mc.add_child(lbl)
+			add_child(mc)
+
 

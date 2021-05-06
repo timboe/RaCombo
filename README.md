@@ -25,3 +25,6 @@ Assets:
  * Settings by Adriansyah from the Noun Project
  * Exit by Morten Halvorsen from the Noun Project
  * play by Adriansyah from the Noun Project
+ * Infinity by Dmitry Mirolyubov from the Noun Project
+ * replace by Arthur Shlain from the Noun Project
+ https://opengameart.org/content/space-backgrounds-0
