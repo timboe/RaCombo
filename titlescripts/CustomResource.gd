@@ -26,16 +26,16 @@ func show_for(var resource):
 		mode.select(0)
 		col.color = Color.white
 	tex_rec.update_prieview()
-	show()
+	popup_centered()
 
 func _on_Save_pressed():
 	if nme.text == "":
 		warn_diag.dialog_text = "New resource must have a name"
-		warn_diag.show()
+		warn_diag.popup_centered()
 		return
 	if nme.text == "H" and mode.get_selected_metadata() == "-":
 		warn_diag.dialog_text = "H must be a +ve signed resource"
-		warn_diag.show()
+		warn_diag.popup_centered()
 		return
 	var d = {}
 	d["color"] = col.color
@@ -54,7 +54,7 @@ func _on_Delete_pressed():
 	var resource = nme.text
 	if resource == "H":
 		warn_diag.dialog_text = "Cannot delete the H resource"
-		warn_diag.show()
+		warn_diag.popup_centered()
 		return
 	if resource in Global.data:
 		Global.data.erase(resource)

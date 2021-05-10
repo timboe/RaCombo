@@ -1,6 +1,5 @@
 extends Button
 
-onready var pause = get_tree().get_root().find_node("Pause", true, false) 
 onready var id = get_tree().get_root().find_node("InfoDialog", true, false) 
 
 onready var inj_node = get_tree().get_root().find_node("Injector"+String(int(name)), true, false).get_child(0)
@@ -20,6 +19,7 @@ func _on_Button_toggled(button_pressed):
 			Global.last_pressed = pressed_button
 	
 	if button_pressed:
+		print("build inj hide diag")
 		id.hide_diag()
 		
 	for tb in get_tree().get_nodes_in_group("FactoryButtonGroup"):

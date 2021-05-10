@@ -78,7 +78,7 @@ func show_for(var resource):
 			count += 1
 		transmute.select(set_select)
 
-	show()
+	popup_centered()
 
 func _on_Save_pressed():
 	var tab = tab_container.current_tab
@@ -119,7 +119,7 @@ func _on_Save_pressed():
 		if where_used.size() >= 3:
 			warn_diag.dialog_text = "Cannot have more than three transmutation recipies.\n\n"
 			warn_diag.dialog_text += "Remove transmutation from one of " + current_transmutes + "first"
-			warn_diag.show()
+			warn_diag.popup_centered()
 			return
 		# Each input can only be used once
 		var transmute_input = transmute_tab.find_node("TransmuteOptionButton",true,false).get_selected_metadata()
@@ -127,7 +127,7 @@ func _on_Save_pressed():
 			warn_diag.dialog_text = "Each input can be used for a single transmute.\n\n"
 			warn_diag.dialog_text += "Remove " + transmute_input + Global.data[transmute_input]["mode"]
 			warn_diag.dialog_text += " from transmuting into " + where_used[transmute_input] + Global.data[where_used[transmute_input]]["mode"] + " first."
-			warn_diag.show()
+			warn_diag.popup_centered()
 			return
 		var d := {}
 		d["time"] = 0

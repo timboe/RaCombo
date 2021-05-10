@@ -105,9 +105,6 @@ margin_left = 37.0
 margin_right = 101.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 64, 16 )
-text = "H+"
-items = [ "H+", null, false, 0, false, "0", null, true, 0, false, "G+", null, false, 0, false, "1", null, true, 0, false, "Hi+", null, false, 0, false, "2", null, true, 0, false, "T+", null, false, 0, false, "3", null, true, 0, false, "Bg+", null, false, 0, false, "4", null, true, 0, false, "Mt+", null, false, 0, false, "5", null, true, 0, false, "XB+", null, false, 0, false, "6", null, true, 0, false, "XC+", null, false, 0, false, "7", null, true, 0, false, "CG+", null, false, 0, false, "8", null, true, 0, false, "SW+", null, false, 0, false, "9", null, true, 0, false ]
-selected = 0
 script = SubResource( 1 )
 
 [node name="WarningButton" type="Button" parent="MissionContainer/GridContainer2/HBoxContainer"]

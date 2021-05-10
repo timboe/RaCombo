@@ -5,6 +5,7 @@ onready var camera_node : Camera2D = get_tree().get_root().find_node("Camera2D",
 onready var rs : Node2D = get_tree().get_root().find_node("RingSystem", true, false)
 onready var button_group : ButtonGroup = get_tree().get_root().find_node("BuildMode", true, false).group
 onready var id = get_tree().get_root().find_node("InfoDialog", true, false) 
+onready var pause : Button = get_tree().get_root().find_node("Pause", true, false) 
 
 var prev_ring : Node2D = null
 var ring : Node2D = null
@@ -13,9 +14,12 @@ var cursor : Vector2
 func _ready():
 	set_process_unhandled_input(true)
 
-func _process(_delta):
+func _process(var delta):
 	var button = button_group.get_pressed_button()
 	var mode_build = (button != null and button.name == "BuildMode")
+	
+	if not pause.pressed:
+		Global.time_played += delta
 	
 	# Update once per frame
 	if mode_build and ring != null:
@@ -67,8 +71,10 @@ func _unhandled_input(event):
 	if event is InputEventMouseButton and ring != null and event.pressed and event.button_index == 1:
 		if button == null: # Select ring (but not the Sol ring)
 			if ring.ring_number == 0:
+				print("Show sol diag")
 				id.show_named_diag("Sol")
 			else:
+				print("Show ring diag ",ring)
 				id.show_ring_diag(ring)
 		elif mode_build and ring.ring_number != 0:
 			ring.new_factory()

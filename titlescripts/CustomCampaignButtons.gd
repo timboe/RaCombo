@@ -25,29 +25,29 @@ func _on_Save_pressed():
 		warn_diag.dialog_text = "Problems with the configuration!\n\n"
 		warn_diag.dialog_text += "Fix issues on the following missions before saving.\n\n"
 		warn_diag.dialog_text += bad_missions
-		warn_diag.show()
+		warn_diag.popup_centered()
 		return
 		
 #	if campaign_name.text == "Main Campaign":
 #		warn_diag.dialog_text = "Cannot overwrite the 'Main Campaign'\n\n"
 #		warn_diag.dialog_text += "Please choose a different name."
-#		warn_diag.show()
+#		warn_diag.popup_centered()
 #		return
 		
 	if campaign_name.text == "":
 		warn_diag.dialog_text = "Please choose a campaign name."
-		warn_diag.show()
+		warn_diag.popup_centered()
 		return
 		
 	the_campaign = campaign.dictionise()
 	if the_campaign["name"] in Global.campaigns:
-		overwrite_conf_diag.show()
+		overwrite_conf_diag.popup_centered()
 	else:
 		_on_OverwriteConfirmationDialog_confirmed()
 
 	
 func _on_Discard_pressed():
-	discard_conf_diag.show()
+	discard_conf_diag.popup_centered()
 
 func _on_DiscardConfirmationDialog_confirmed():
 	print("Discard")

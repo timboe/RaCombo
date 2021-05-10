@@ -4,11 +4,6 @@ onready var campaign_name : LineEdit = find_node("CampaignName",true,false)
 onready var missions_in_campaign : HSlider = find_node("Missions",true,false)
 onready var tab_container : TabContainer = find_node("TabContainer", true, false)
 
-const campaign_save := "user://custom_campaign_data.dat"
-
-func _ready():
-	load_campaign_from_disk()
-
 func reset():
 	Global.campaign = null
 	Global.data = null
@@ -31,10 +26,15 @@ func update_resource_recipy():
 		var m_c = tab_container.find_node("MissionContainer", true, false)
 		m_c.update_configuration()
 
+func set_new():
+	reset()
+	Global.set_basics()
+	update_resource_recipy()
+
 func dedictionise(var load_campaign : Dictionary):
 	reset()
 	if not dedictionise_internal(load_campaign):
-		reset()
+		set_new()
 	
 func dedictionise_internal(var load_campaign : Dictionary) -> bool:
 	Global.campaign = load_campaign
@@ -159,18 +159,6 @@ func dictionise() -> Dictionary:
 	
 func flush_campaign_to_disk():
 	var file = File.new()
-	file.open(campaign_save, File.WRITE)
+	file.open(Global.CAMPAIGN_SAVE_FILE, File.WRITE)
 	file.store_string(JSON.print(Global.campaigns))
 	file.close()
-	
-func load_campaign_from_disk():
-	var file = File.new()
-	if file.file_exists(campaign_save):
-		file.open(campaign_save, File.READ)
-		var result = JSON.parse( file.get_as_text() )
-		if result.error == OK:
-			Global.campaigns.clear()
-			Global.campaigns = result.result
-		else:
-			print("ERROR: JSON ERROR ", result.error_string)
-		file.close()

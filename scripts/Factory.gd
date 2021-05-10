@@ -58,9 +58,7 @@ func deserialise(var d : Dictionary):
 		$Label.text = recipy + Global.data[recipy]["mode"]
 	update()
 	$FactoryProcess.deserialise(d)
-	# TODO make ring un-fillable
 
-	return
 
 func _ready():
 	reset()
@@ -205,6 +203,7 @@ func _on_FactoryTemplate_area_exited(_area):
 		update()
 
 func _on_TextureButton_pressed():
+	print("show building diag")
 	id.show_building_diag(self)
 
 func _on_NewShip_timeout():

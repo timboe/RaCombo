@@ -124,6 +124,8 @@ func set_radius(var r : float):
 		radius_array[i] = r + ((i%4)*LANE_OFFSET)
 	# To be physical this should be ~ sqrt(1/r)
 	angular_velocity = Global.M_SOL/r
+	if ring_number == 0:
+		angular_velocity *= 0.8 # Hack - stopSol ring rorating too fast
 	var circ : float = 2.0 * PI * r
 	n = circ * DENSITY
 

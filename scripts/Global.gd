@@ -10,6 +10,10 @@ const MAX_LANES := 4
 const SAVE_FORMAT_VERSION = 1
 const CAMPAIGN_FORMAT_VERSION = 1
 
+const GAME_SAVE_FILE := "user://save_data.json"
+const SETTINGS_SAVE_FILE := "user://settings.json"
+const CAMPAIGN_SAVE_FILE := "user://custom_campaign_data.dat"
+
 enum {BUILDING_UNSET, BUILDING_EXTRACTOR, BUILDING_INSERTER, BUILDING_FACTORY}
 enum {OUTWARDS, INWARDS}
 
@@ -42,6 +46,8 @@ var level : int = 1
 var remaining : int = 1000
 var to_subtract : int = 0 # Used to animate remaining
 var exported = {} # Statistics
+var time_played : float = 0
+var tutorial_message = 0
 
 #####################################################
 # Helper functions
@@ -64,7 +70,32 @@ func populate_data():
 		data = campaign["resources"]
 		for r in data:
 			data[r]["color"] = Color(data[r]["color_hex"])
-
+			
+func set_basics():
+	if data == null or recipies == null:
+		recipies = {}
+		data = {}
+		var none = {}
+		none["color_hex"] = "ff000000"
+		none["mode"] = ""
+		none["shape"] = "circle"
+		none["special"] = true
+		var sol = {}
+		sol["color_hex"] = "ff000000"
+		sol["mode"] = ""
+		sol["shape"] = "circle"
+		sol["special"] = true
+		var H = {}
+		H["color_hex"] = "ffda1717"
+		H["mode"] = "+"
+		H["shape"] = "circle"
+		H["special"] = false
+		Global.data["None"] = none
+		Global.data["Sol"] = sol
+		Global.data["H"] = H
+		for r in data:
+			data[r]["color"] = Color(data[r]["color_hex"])
+			
 func goto_scene(path):
 	call_deferred("_deferred_goto_scene", path)
 
@@ -78,3 +109,5 @@ func _deferred_goto_scene(path):
 #####################################################
 # Cache of all campaign data
 var campaigns := {}
+var saves := {}
+var settings := {}

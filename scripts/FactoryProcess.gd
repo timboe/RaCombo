@@ -25,6 +25,7 @@ export(int) var mode = Global.BUILDING_UNSET
 
 func serialise() -> Dictionary:
 	var d := {}
+	# Ship is saved separatly
 	d["input_factory_required"] = input_factory_required
 	d["input_storage"] = input_storage
 	d["input_content"] = input_content
@@ -38,7 +39,6 @@ func serialise() -> Dictionary:
 	d["input_lanes"] = input_lanes_save
 	d["input_lanes_distance"] = input_lanes_distance
 	# spies - not saved
-	# ship - TODO
 	d["angle_back"] = angle_back
 	d["angle_front"] = angle_front
 	d["output_amount"] = output_amount
@@ -50,6 +50,7 @@ func serialise() -> Dictionary:
 	return d
 	
 func deserialise(var d : Dictionary):
+	# When ship deserialises, it will add itself to the ship var here
 	input_factory_required = d["input_factory_required"]
 	input_storage = d["input_storage"]
 	input_content = d["input_content"]
@@ -63,7 +64,7 @@ func deserialise(var d : Dictionary):
 		input_lanes.append(inner)
 	input_lanes_distance = d["input_lanes_distance"]
 	# spies - not saved
-	# ship - TODO
+
 	angle_back = d["angle_back"]
 	angle_front = d["angle_front"]
 	output_amount = d["output_amount"]
@@ -301,7 +302,7 @@ func check_factory_production():
 	for i in range(input_storage.size()):
 		if input_storage[i] < input_factory_required[i]:
 			return
-	# Make new item
+	# Make newnew item
 	for i in range(input_storage.size()):
 		input_storage[i] -= input_factory_required[i]
 	$Timer.start()

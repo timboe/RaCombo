@@ -1,6 +1,9 @@
 extends WindowDialog
 
 onready var shields = get_tree().get_root().find_node("Shields", true, false) 
+onready var save_vbox = get_tree().get_root().find_node("SaveVBox", true, false) 
+onready var load_vbox = get_tree().get_root().find_node("LoadVBox", true, false) 
+onready var save_load = get_tree().get_root().find_node("SaveLoad", true, false) 
 
 var current_building : Area2D  = null
 var current_ring : Node2D = null
@@ -13,6 +16,10 @@ var sb_blue := StyleBoxFlat.new()
 var sb_purple := StyleBoxFlat.new()
 var sb_orange := StyleBoxFlat.new()
 
+var tut_current : int = 0
+var tut_max : int =  0
+var show_mission_after_tut : bool = false
+
 func _ready():
 	sb_gray.bg_color = Color.gray
 	sb_green.bg_color = Color.greenyellow
@@ -21,10 +28,13 @@ func _ready():
 	sb_orange.bg_color = Color.orange
 
 func hide_diag():
+	print("hide")
 	current_ring = null
 	current_building = null
 	page = ""
 	hide()
+	if show_mission_after_tut:
+		_on_Mission_pressed()
 
 func show_shared_internal():
 	current_building = null
@@ -33,7 +43,7 @@ func show_shared_internal():
 	for c in get_children():
 		if c is MarginContainer:
 			c.visible = false
-	show()
+	popup_centered()
 
 func show_ring_diag(var ring : Node2D):
 	show_shared_internal()
@@ -51,22 +61,19 @@ func toggle_menu_diag():
 	var show : bool = (page != "menu")
 	show_shared_internal()
 	if show:
-		Global.snap = get_viewport().get_texture().get_data()
-		yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame")
-		Global.snap.flip_y()
-		Global.snap.resize(512,300)
-		Global.snap.save_png("res://ss.png")
+		save_load.snap()
 		$MenuContainer.visible = true
 		page = "menu"
 		window_title = "Menu"
 		$MenuContainer/Container/GridContainer/Mission.visible = !Global.sandbox
 		$MenuContainer/Container/GridContainer/Export.visible = Global.sandbox
 	else:
+		print("toggle menu off")
 		hide_diag()
 
 func show_named_diag(var n : String):
 	if page == n: # Also acts as a toggle
+		print("show named toggle off")
 		hide_diag()
 		return
 	show_shared_internal()
@@ -85,16 +92,46 @@ func update_diag():
 		update_building_diag()
 	elif page == "Export":
 		update_Export_diag()
+	elif page == "Load":
+		update_Load_diag()
 	else:
 		pass
 
 # Below used to update page on initial draw
 
+func update_Tutorial_diag():
+	window_title = "Tutorial Message " + String(tut_current + 1)
+	$TutorialContainer/VBox/HBox/ShowTutorialCheckbox.pressed = Global.settings["tutorial"]
+	for t in get_tree().get_nodes_in_group("TutorialGroup"):
+		t.visible = (t.name == String(tut_current))
+	$TutorialContainer/VBox/HBox2/Prev.disabled = (tut_current == 0)
+	$TutorialContainer/VBox/HBox2/Next.disabled = (tut_current == (tut_max - 1))
+
+func update_Save_diag():
+	window_title = "Save Game"
+	update_SaveLoad_common(save_vbox)
+
+func update_Load_diag():
+	window_title = "Load Game"
+	update_SaveLoad_common(load_vbox)
+	
+func update_SaveLoad_common(var vbox):
+	var sls = load("res://scenes/SaveLoadSelector.tscn")
+	for c in vbox.get_children():
+		c.name = "deleted"
+		c.queue_free()
+	vbox.add_child(HSeparator.new())
+	for key in Global.saves:
+		var inst = sls.instance()
+		inst.name = String(key)
+		vbox.add_child(inst, true)
+		vbox.add_child(HSeparator.new())
+
 func update_Export_diag():
+	var newly_opened = (window_title != "Export")
 	window_title = "Export"
-	if not "H" in Global.exported:
-		Global.exported["H"] = 50
-	#Global.exported["H"] += 50
+#	if not "H" in Global.exported:
+#		Global.exported["H"] = 50
 	var g = $ExportContainer/VBox/ExportedResourceGridSC/ExportedResourcesGrid
 	for i in range(0, g.get_child_count(), 2):
 		var n : int = 0
@@ -103,7 +140,9 @@ func update_Export_diag():
 			n = min(Global.exported[res], 100000)
 		var current : float = g.get_child(i + 1).get_child(0).value
 		var add = max(1, round((n - current) * 0.01))
-		if current != n:
+		if newly_opened:
+			current = n
+		elif current != n:
 			current += add
 		g.get_child(i + 1).get_child(0).max_value = leet_n(current)
 		g.get_child(i + 1).get_child(0).value = current
@@ -248,6 +287,7 @@ func _on_Sandbox_pressed():
 
 func _on_Mission_pressed():
 	show_named_diag("Mission")
+	show_mission_after_tut = false
 
 func _on_Title_pressed():
 	Global.goto_scene("res://Title.tscn")
@@ -256,8 +296,28 @@ func _on_Quit_pressed():
 	get_tree().quit()
 
 func _on_Back_pressed():
-	toggle_menu_diag()
+	if show_mission_after_tut:
+		_on_Mission_pressed()
+	else:
+		toggle_menu_diag()
 
 func _on_Export_pressed():
 	show_named_diag("Export")
+
+func _on_Save_pressed():
+	show_named_diag("Save")
+
+func _on_Load_pressed():
+	show_named_diag("Load")
+
+func _on_Tutorial_pressed():
+	show_named_diag("Tutorial")
+
+func _on_Next_pressed():
+	tut_current += 1 
+	update_Tutorial_diag()
+
+func _on_Prev_pressed():
+	tut_current -= 1 
+	update_Tutorial_diag()
 

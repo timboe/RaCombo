@@ -167,6 +167,7 @@ func deregister_resource():
 		print("ERROR trying to dereg in lane ",name," which isn'rt registered")
 		return
 	lane_content = null
+	laneswap_target[0] = null
 	for p in lane_provinance:
 		get_node(p).lane_cleared(self)
 	lane_provinance.clear()

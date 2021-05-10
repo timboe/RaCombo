@@ -13,5 +13,6 @@ func _on_Button_pressed():
 	else:
 		print("ERROR in assigning new building job")
 	id.current_building.configure_building(mode, name)
+	print("building mode assigned, hide diag")
 	id.hide_diag()
 

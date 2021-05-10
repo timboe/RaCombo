@@ -132,7 +132,9 @@ radius_array = [ 320.0, 325.0, 330.0, 335.0 ]
 script = ExtResource( 5 )
 show = true
 
-[node name="ShipRotationTemplate" type="Node2D" parent="."]
+[node name="ShipRotationTemplate" type="Node2D" parent="." groups=[
+"ShipRotationGroup",
+]]
 visible = false
 
 [node name="Ship" type="Node2D" parent="ShipRotationTemplate"]
@@ -236,6 +238,7 @@ factory_outline_color = Color( 0.8, 0.8, 0.8, 1 )
 descriptive_name = "#0: Unassigned Satelite"
 
 [node name="NewShip" type="Timer" parent="Rotation/FactoryTemplate"]
+pause_mode = 1
 process_mode = 0
 wait_time = 2.5
 one_shot = true
@@ -275,6 +278,7 @@ __meta__ = {
 script = ExtResource( 7 )
 
 [node name="Timer" type="Timer" parent="Rotation/FactoryTemplate/FactoryProcess"]
+pause_mode = 1
 process_mode = 0
 one_shot = true
 

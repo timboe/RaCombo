@@ -39,7 +39,9 @@ func set_show(var i : bool):
 func _draw():
 	var p : Node2D = get_parent()
 	var to_draw : int = 0 if p.name == "Ring0" else Global.lanes 
+	var inner : float = p.radius_array[ 0 ] - p.LANE_OFFSET/2.0
 	var outer : float = p.radius_array[ to_draw-1] + p.LANE_OFFSET/2.0
+	var width = (outer - inner) / 2.0
 	var hl : float = 0.2 if highlight else 0.0
 	var c1 = Color(0.8 + hl, 0.8 + hl, 0.8 + hl)
 	var c2 = Color(0.6 + hl, 0.6 + hl, 0.6 + hl)
@@ -56,7 +58,7 @@ func _draw():
 				hb.get_child(i).texture = Global.data[lanes[i].lane_content]["texture"]
 				hb.get_child(i).visible = true
 		hb.visible = true
-		hb.rect_position = Vector2(-outer, -outer)
+		hb.rect_position = Vector2(-outer, -(inner + width + 16))
 		hb.rect_size.x = 2*outer
 		
 		draw_arc(Vector2(0,0), outer, 0, 2*PI, 256, c1, 1, true)
@@ -64,8 +66,6 @@ func _draw():
 		hb.visible = false
 	
 	if inject != "" and get_parent().get_free_or_existing_lane(inject) != -1:
-		var inner = p.radius_array[0] - p.LANE_OFFSET/2.0
-		var width = (outer - inner) / 2.0
 		var mid = inner + width
 		draw_arc(Vector2(0, -mid), width, 0, 2*PI, 128, c2, 1, true)
 		draw_arc(Vector2(0, -mid), width + p.LANE_OFFSET, 0, 2*PI, 128, c1, 1, true)

@@ -112,4 +112,4 @@ func set_required(var node, var required):
 		node.get_node(req + "_note").text = required[req]
 	
 func _on_WarningButton_pressed():
-	pd.show()
+	pd.popup_centered()

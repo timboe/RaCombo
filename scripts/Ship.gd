@@ -14,6 +14,7 @@ export(float) var outer_radius
 export(float) var span_radians
 
 export(bool) var built = false
+export(bool) var launch = false
 
 export(int) var output_storage = 0
 export(String) var recipe = ""
@@ -21,7 +22,7 @@ export(String) var recipe = ""
 export(PoolColorArray) var ship_color
 export(Color) var outline_color
 
-var factory
+export(NodePath) var factory = ""
 
 var points_vec = PoolVector2Array()
 
@@ -31,10 +32,55 @@ onready var id : WindowDialog = get_tree().get_root().find_node("InfoDialog", tr
 onready var rule_changer : Node2D = get_tree().get_root().find_node("RuleChanger", true, false) 
 onready var something_changed_node = $"/root/Game/SomethingChanged"
 
+func serialise() -> Dictionary:
+	var d := {}
+	d["parent_ring"] = get_parent().get_parent().get_path()
+	#
+	d["shiprotator_name"] = get_parent().name
+	d["shiprotator_global_rotation"] = get_parent().global_rotation
+	#
+	d["inner_radius"] = inner_radius
+	d["outer_radius"] = outer_radius
+	d["span_radians"] = span_radians
+	d["built"] = built
+	d["launch"] = launch
+	d["output_storage"] = output_storage
+	d["recipe"] = recipe
+	d["ship_color"] = ship_color[0].to_html()
+	d["outline_color"] = outline_color.to_html()
+	d["factory"] = factory
+	return d
+
+func deserialise(var d : Dictionary):
+	inner_radius = d["inner_radius"] 
+	outer_radius = d["outer_radius"]
+	span_radians = d["span_radians"]
+	built = d["built"]
+	launch = d["launch"]
+	output_storage = d["output_storage"]
+	recipe = d["recipe"]
+	ship_color[0] = Color(d["ship_color"])
+	outline_color = Color(d["outline_color"])
+	factory = d["factory"]
+	# Force bulding to finish
+	if not built:
+		appear_complete()
+	update()
+	set_physics_process(true)
+	visible = true
+	get_parent().visible = true
+	# Add to factory
+	var fac = get_node(factory)
+	if fac == null:
+		print("ERROR deserialising ship ",get_path()," was not able to find its factory at ",factory)
+	else:
+		fac.get_node("FactoryProcess").ship = self
+
 func _ready():
 	outline_color = Color(0.8, 0.8, 0.8, 1.0)
 	ship_color = PoolColorArray([Color(0.6, 0.6, 0.6, 1.0)])
 	built = false
+	launch = false
 	set_physics_process(false)
 
 func _draw():
@@ -63,12 +109,13 @@ func setup_resource(var _radius : float, var i_radius : float, var o_radius : fl
 func configure_ship(var _recipe : String, var _factory : Node2D):
 	recipe = _recipe
 	outline_color = Global.data[recipe]["color"]
-	factory = _factory
+	factory = _factory.get_path()
 	ship_color[0] = Global.lighten(outline_color)
 	update()
 	set_physics_process(true)
 	visible = true
 	get_parent().visible = true
+	modulate = Color(1,1,1,0)
 	$Tween.interpolate_property(self, "modulate", Color(1,1,1,0), Color(1,1,1,1),
 		SHIP_APPEAR_TIME, Tween.TRANS_SINE, Tween.EASE_OUT)
 	$Tween.interpolate_callback(self, SHIP_APPEAR_TIME, "appear_complete")
@@ -80,10 +127,11 @@ func appear_complete():
 
 func depart():
 	print("Ship departing")
-	factory.get_node("NewShip").start()
+	get_node(factory).get_node("NewShip").start()
 	$Particles2D.emitting = true
 	deregister_provider(null)
 	id.update_diag()
+	launch = true
 	# TODO improve flyaway...
 	$Tween.interpolate_method(self, "set_radius_mod", 0.0, SHIP_DEPART_RADIUS,
 		SHIP_DEPART_TIME, Tween.TRANS_SINE, Tween.EASE_IN)
@@ -96,14 +144,18 @@ func set_radius_mod(var r):
 	self.position.x = r
 	
 func deregister_provider(var _provider):
-	if factory != null:
-		factory.lane_cleared(self) 
-		factory = null
+	if factory != "":
+		get_node(factory).lane_cleared(self) 
+		factory = ""
 	for spy in spies:
 		spy.reset()
 	spies.clear()
 	
 func deposit():
+	$Tween.interpolate_property(get_parent(), "modulate", Color(1,1,1,1), Color(1,1,1,0),
+		SHIP_APPEAR_TIME)
+	$Tween.interpolate_callback(self, SHIP_APPEAR_TIME, "remove")
+	$Tween.start()
 	rule_changer.deposit(recipe, output_storage)
 	remove()
 	

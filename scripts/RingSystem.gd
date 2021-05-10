@@ -12,6 +12,8 @@ func _ready():
 
 # Note: Changing level does not affect this - only need to do it once
 func setup_sol():
+	var fancy_sol = get_parent().get_node("Sol")
+	fancy_sol.visible = Global.settings["fancy_sun"]
 	var sol = get_child(0)
 	if sol.get_lane(7).source == false:
 		sol.get_lane(7).register_resource("H", null)
@@ -19,6 +21,14 @@ func setup_sol():
 	if sol.get_lane(0).sink == false:
 		sol.get_lane(0).set_as_sink_lane()
 	# Setup transmute
+	update_transmute()
+	
+func update_transmute():
+	var sol = get_child(0)
+	for i in range(1,7):
+		if sol.get_lane(i).lane_content != null:
+			sol.get_lane(i).deregister_resource()
+			
 	var next_out := 1
 	var next_in := 2
 	for r in Global.recipies:
@@ -34,4 +44,5 @@ func setup_sol():
 		next_out += 2
 		next_in += 2
 
-	
+func update_grid():
+	update_transmute()

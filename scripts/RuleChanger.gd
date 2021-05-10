@@ -8,6 +8,7 @@ onready var gui_remaining : Label  = get_tree().get_root().find_node("MissionRem
 onready var gui_mission_label : Label  = get_tree().get_root().find_node("MissionLabel", true, false) 
 onready var gui_sandbox : Button  = get_tree().get_root().find_node("SandboxButton", true, false) 
 onready var rs = get_tree().get_root().find_node("RingSystem", true, false)
+onready var save_load = get_tree().get_root().find_node("SaveLoad", true, false)
 onready var something_changed_node = $"/root/Game/SomethingChanged"
 
 var t = 0
@@ -23,6 +24,7 @@ func change_level(var level, var with_popup := true):
 		Global.remaining = 0
 		rings = Global.rings
 		lanes = Global.lanes
+		from_above = Global.factories_pull_from_above
 		gui_sandbox.visible = true
 		gui_mission.visible = false
 	else:
@@ -53,19 +55,41 @@ func change_level(var level, var with_popup := true):
 	# Show new mission intro
 	if with_popup:
 		if Global.sandbox:
+			print("popup sandbox")
 			id.show_named_diag("Sandbox")
+			id.tut_max = get_tree().get_nodes_in_group("TutorialGroup").size()
 		else:
-			id.show_named_diag("Mission")
+			print("popup mission or tut")
+			var tut = get_tutorial_range()
+			if tut == [-1,-1]:
+				id.tut_max = get_tree().get_nodes_in_group("TutorialGroup").size()
+			else:
+				id.tut_current = tut[0]
+				id.tut_max = tut[1]
+			if tut == [-1,-1] or Global.settings["tutorial"] == false:
+				id.show_named_diag("Mission")
+			else:
+				id.show_mission_after_tut = true
+				id.show_named_diag("Tutorial")
 
 # A ship has departed
 func deposit(var resource : String, var amount : int):
 	if not resource in Global.exported:
 		Global.exported[resource] = 0
 	Global.exported[resource] += amount
-	if resource == Global.mission["goal"]:
+	if not Global.sandbox and resource == Global.mission["goal"]:
 		Global.to_subtract += amount
 		set_process(true)
-		
+
+func get_tutorial_range() -> Array:
+	if Global.sandbox or Global.campaign["name"] != "Main Campaign":
+		return [-1,-1]
+	match Global.level:
+		0: return [0,5]
+		1: return [5,8]
+		2: return [8,9]
+	return [-1,-1]
+
 func _process(delta):
 	t += delta
 	while t > 0.1:
@@ -111,12 +135,9 @@ func set_lanes(var l : int):
 				continue
 			if lane_i >= Global.lanes: # Remove
 				if lane.lane_content != null:
-					print("LANE ", lane_i ," REMOVE")
 					lane.deregister_resource()
 					id.update_diag()
 					something_changed_node.something_changed()
-			else:
-				print("LANE ", lane_i ," KEEP")
 	for o in get_tree().get_nodes_in_group("RingOutlineGroup"):
 		o.update()
 	
@@ -130,11 +151,9 @@ func set_rings(var r : int):
 			continue
 		var ring = rs.get_node("Ring"+String(i))
 		if i >= r: # Disable
-			print("RING ", i ," REMOVE")
 			ring.reset()
 			ring.visible = false
 		else:
-			print("RING ", i ," KEEP")
 			ring.visible = true
 			for f in ring.get_factories():
 				f.check_add_remove_ship()
@@ -143,38 +162,8 @@ func _on_Game_ready():
 	var with_popup = true
 	if Global.request_load != null:
 		with_popup = false
-		Global.sandbox_injectors = Global.request_load["sandbox_injectors"]
 	change_level(Global.level, with_popup)
 	# Load save file
 	if Global.request_load != null:
-		# Button state
-		get_tree().get_root().find_node("Pause",true,false).pressed = Global.request_load["paused"] 
-		get_tree().get_root().find_node("FF",true,false).pressed = Global.request_load["ff"]
-		get_tree().get_root().find_node("Outlines",true,false).pressed = Global.request_load["outlines"]
-		# First rings
-		for i in get_tree().get_nodes_in_group("RingGroup"):
-			i.deserialise( Global.request_load["saved_rings"][i.name] )
-		# Second injectors
-		for i in get_tree().get_nodes_in_group("InjectorParentGroup"):
-			i.deserialise( Global.request_load["saved_injectors"][i.name] )
-		# Third satelites
-		var all_satelite_data = Global.request_load["saved_satelites"]
-		for s in all_satelite_data:
-			var satelite_data : Dictionary = all_satelite_data[s]
-			var parent_ring = get_node(satelite_data["parent_ring"])
-			var new_factory = parent_ring.get_node("Rotation/FactoryTemplate").duplicate(DUPLICATE_SCRIPTS|DUPLICATE_SIGNALS|DUPLICATE_GROUPS)
-			new_factory.visible = true
-			new_factory.name = satelite_data["name"]
-			new_factory.get_node("TextureButton").visible = true
-			parent_ring.get_node("Rotation/Factories").add_child(new_factory, true)
-			new_factory.set_owner(get_tree().get_root())
-			new_factory.deserialise(satelite_data)
-#			#TODO check and remove this add_to_group line, done in editor
-			new_factory.get_node("FactoryProcess").add_to_group("FactoryProcessGroup", true)
-			# TODO this is hanging?
-#			for l in parent_ring.get_lanes():
-#				print("set to ",l.name)
-#				l.set_range_fillable(satelite_data["factory_angle_start"], satelite_data["factory_angle_end"], false)
-			print("Factory ",new_factory.name," placed")
-		$"/root/Game/SomethingChanged".something_changed()
+		save_load.do_load()
 
