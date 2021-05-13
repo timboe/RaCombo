@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=2]
+[gd_scene load_steps=97 format=2]
 
 [ext_resource path="res://scripts/BinLane.gd" type="Script" id=1]
 [ext_resource path="res://resources/NewBuildingButtonGroup.tres" type="ButtonGroup" id=2]
@@ -46,6 +46,7 @@
 [ext_resource path="res://images/next.png" type="Texture" id=44]
 [ext_resource path="res://images/prev.png" type="Texture" id=45]
 [ext_resource path="res://scripts/MainUI.gd" type="Script" id=46]
+[ext_resource path="res://images/right-chevron.png" type="Texture" id=47]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends ItemList
@@ -205,7 +206,7 @@ func _on_Remove_pressed():
 	id.hide_diag()
 "
 
-[sub_resource type="GDScript" id=26]
+[sub_resource type="GDScript" id=25]
 script/source = "extends HSlider
 
 onready var label = get_parent().get_node(\"Label\")
@@ -220,7 +221,7 @@ func _on_RingsSlider_value_changed(value):
 	rc.set_rings(int(value)) # +1 because of the sun ring
 "
 
-[sub_resource type="GDScript" id=27]
+[sub_resource type="GDScript" id=26]
 script/source = "extends HSlider
 
 onready var label = get_parent().get_node(\"Label\")
@@ -231,10 +232,10 @@ func _on_LanesSlider_value_changed(value):
 	rc.set_lanes(int(value))
 "
 
-[sub_resource type="StyleBoxFlat" id=28]
+[sub_resource type="StyleBoxFlat" id=27]
 bg_color = Color( 0.333333, 0.0627451, 0.0627451, 1 )
 
-[sub_resource type="GDScript" id=53]
+[sub_resource type="GDScript" id=28]
 script/source = "extends CheckBox
 
 func _on_ShowTutorialCheckbox_toggled(button_pressed):
@@ -251,7 +252,7 @@ action = "ui_pause"
 [sub_resource type="ShortCut" id=30]
 shortcut = SubResource( 29 )
 
-[sub_resource type="GDScript" id=35]
+[sub_resource type="GDScript" id=31]
 script/source = "extends Node2D
 
 const N_INJECTORS = 6
@@ -265,6 +266,18 @@ func _ready():
 #	print(\"Running on \", ring)
 	pass
 "
+
+[sub_resource type="QuadMesh" id=32]
+size = Vector2( 10, 10 )
+
+[sub_resource type="MultiMesh" id=33]
+mesh = SubResource( 32 )
+
+[sub_resource type="QuadMesh" id=34]
+size = Vector2( 10, 10 )
+
+[sub_resource type="MultiMesh" id=35]
+mesh = SubResource( 34 )
 
 [sub_resource type="QuadMesh" id=36]
 size = Vector2( 10, 10 )
@@ -290,19 +303,7 @@ size = Vector2( 10, 10 )
 [sub_resource type="MultiMesh" id=43]
 mesh = SubResource( 42 )
 
-[sub_resource type="QuadMesh" id=44]
-size = Vector2( 10, 10 )
-
-[sub_resource type="MultiMesh" id=45]
-mesh = SubResource( 44 )
-
-[sub_resource type="QuadMesh" id=46]
-size = Vector2( 10, 10 )
-
-[sub_resource type="MultiMesh" id=47]
-mesh = SubResource( 46 )
-
-[sub_resource type="Shader" id=48]
+[sub_resource type="Shader" id=44]
 code = "shader_type canvas_item;
 
 uniform bool paused = false;
@@ -577,23 +578,25 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id=49]
-shader = SubResource( 48 )
+[sub_resource type="ShaderMaterial" id=45]
+shader = SubResource( 44 )
 shader_param/paused = false
 
-[sub_resource type="OpenSimplexNoise" id=50]
+[sub_resource type="OpenSimplexNoise" id=46]
 
-[sub_resource type="NoiseTexture" id=51]
+[sub_resource type="NoiseTexture" id=47]
 width = 140
 height = 140
-noise = SubResource( 50 )
+noise = SubResource( 46 )
 
-[sub_resource type="Environment" id=52]
+[sub_resource type="Environment" id=48]
 background_mode = 4
 glow_enabled = true
 glow_bloom = 0.5
 glow_bicubic_upscale = true
 adjustment_saturation = 8.0
+
+[sub_resource type="OpenSimplexNoise" id=49]
 
 [node name="Game" type="Node2D"]
 
@@ -663,13 +666,13 @@ __meta__ = {
 }
 
 [node name="Lanes" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer"]
-margin_right = 429.0
+margin_right = 439.0
 margin_bottom = 14.0
 text = "Lanes"
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer"]
 margin_top = 20.0
-margin_right = 429.0
+margin_right = 439.0
 margin_bottom = 154.0
 rect_min_size = Vector2( 355, 0 )
 custom_constants/vseparation = 6
@@ -806,7 +809,7 @@ __meta__ = {
 
 [node name="HSeparator2" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer"]
 margin_top = 160.0
-margin_right = 429.0
+margin_right = 439.0
 margin_bottom = 176.0
 custom_constants/separation = 16
 __meta__ = {
@@ -815,13 +818,13 @@ __meta__ = {
 
 [node name="Satelites" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer"]
 margin_top = 182.0
-margin_right = 429.0
+margin_right = 439.0
 margin_bottom = 196.0
 text = "Satelites"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer"]
 margin_top = 202.0
-margin_right = 429.0
+margin_right = 439.0
 margin_bottom = 332.0
 rect_min_size = Vector2( 355, 130 )
 __meta__ = {
@@ -829,7 +832,7 @@ __meta__ = {
 }
 
 [node name="FactoriesList" type="ItemList" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/ScrollContainer"]
-margin_right = 429.0
+margin_right = 439.0
 margin_bottom = 130.0
 rect_min_size = Vector2( 340, 50 )
 size_flags_horizontal = 3
@@ -842,7 +845,7 @@ __meta__ = {
 
 [node name="HSeparator3" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer"]
 margin_top = 338.0
-margin_right = 429.0
+margin_right = 439.0
 margin_bottom = 354.0
 custom_constants/separation = 16
 __meta__ = {
@@ -851,7 +854,7 @@ __meta__ = {
 
 [node name="RemoveAll" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer"]
 margin_top = 360.0
-margin_right = 429.0
+margin_right = 439.0
 margin_bottom = 392.0
 rect_min_size = Vector2( 0, 32 )
 text = "Remove All Lanes And Satelites"
@@ -951,7 +954,7 @@ __meta__ = {
 [node name="ExtractorGridSC" type="ScrollContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset"]
 margin_top = 108.0
 margin_right = 439.0
-margin_bottom = 334.0
+margin_bottom = 404.0
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
@@ -961,7 +964,7 @@ __meta__ = {
 "UIGridsGroup",
 ]]
 margin_right = 439.0
-margin_bottom = 226.0
+margin_bottom = 296.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/vseparation = 8
@@ -1020,17 +1023,6 @@ custom_constants/vseparation = 8
 custom_constants/hseparation = 8
 columns = 9
 script = ExtResource( 23 )
-
-[node name="Back" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset"]
-margin_left = 311.0
-margin_top = 340.0
-margin_right = 439.0
-margin_bottom = 404.0
-rect_min_size = Vector2( 128, 64 )
-size_flags_horizontal = 8
-text = "Back"
-icon = ExtResource( 30 )
-expand_icon = true
 
 [node name="Set" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer"]
 visible = false
@@ -1561,7 +1553,7 @@ max_value = 9.0
 value = 1.0
 rounded = true
 tick_count = 9
-script = SubResource( 26 )
+script = SubResource( 25 )
 
 [node name="HSeparator3" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
 margin_top = 42.0
@@ -1596,7 +1588,7 @@ max_value = 4.0
 value = 1.0
 rounded = true
 tick_count = 4
-script = SubResource( 27 )
+script = SubResource( 26 )
 
 [node name="HSeparator2" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
 margin_top = 94.0
@@ -1732,13 +1724,13 @@ __meta__ = {
 }
 
 [node name="Lanes" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer"]
-margin_right = 429.0
+margin_right = 439.0
 margin_bottom = 14.0
 text = "Lanes"
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer"]
 margin_top = 20.0
-margin_right = 429.0
+margin_right = 439.0
 margin_bottom = 84.0
 rect_min_size = Vector2( 355, 0 )
 custom_constants/vseparation = 6
@@ -1773,7 +1765,7 @@ expand = true
 
 [node name="HSeparator2" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer"]
 margin_top = 90.0
-margin_right = 429.0
+margin_right = 439.0
 margin_bottom = 106.0
 custom_constants/separation = 16
 __meta__ = {
@@ -1782,14 +1774,14 @@ __meta__ = {
 
 [node name="Transmut" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer"]
 margin_top = 112.0
-margin_right = 429.0
+margin_right = 439.0
 margin_bottom = 126.0
 text = "Transmutations"
 
 [node name="TransmuteGridSC" type="ScrollContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer"]
 margin_top = 132.0
-margin_right = 429.0
-margin_bottom = 312.0
+margin_right = 439.0
+margin_bottom = 404.0
 rect_min_size = Vector2( 355, 180 )
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -1801,8 +1793,8 @@ __meta__ = {
 [node name="TransmuteGrid" type="GridContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer/TransmuteGridSC" groups=[
 "UIGridsGroup",
 ]]
-margin_right = 429.0
-margin_bottom = 180.0
+margin_right = 439.0
+margin_bottom = 272.0
 mouse_filter = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -1810,26 +1802,6 @@ custom_constants/vseparation = 8
 custom_constants/hseparation = 8
 columns = 9
 script = ExtResource( 23 )
-
-[node name="HSeparator3" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer"]
-margin_top = 318.0
-margin_right = 429.0
-margin_bottom = 334.0
-custom_constants/separation = 16
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Back" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer"]
-margin_left = 301.0
-margin_top = 340.0
-margin_right = 429.0
-margin_bottom = 404.0
-rect_min_size = Vector2( 128, 64 )
-size_flags_horizontal = 8
-text = "Back"
-icon = ExtResource( 30 )
-expand_icon = true
 
 [node name="MissionContainer" type="MarginContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog"]
 visible = false
@@ -2117,7 +2089,7 @@ margin_right = 219.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
-custom_styles/fg = SubResource( 28 )
+custom_styles/fg = SubResource( 27 )
 step = 1.0
 value = 50.0
 percent_visible = false
@@ -2270,6 +2242,7 @@ __meta__ = {
 }
 
 [node name="TutorialContainer" type="MarginContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog"]
+visible = false
 margin_right = 455.0
 margin_bottom = 420.0
 rect_min_size = Vector2( 455, 420 )
@@ -2510,7 +2483,7 @@ text = "Show Tutorial:"
 margin_left = 93.0
 margin_right = 117.0
 margin_bottom = 24.0
-script = SubResource( 53 )
+script = SubResource( 28 )
 
 [node name="HBox2" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox"]
 margin_top = 340.0
@@ -2659,6 +2632,7 @@ expand_icon = true
 [node name="MarginContainerSide" type="MarginContainer" parent="CanvasLayer/UI/MainUI"]
 pause_mode = 2
 anchor_right = 0.454
+margin_right = 128.0
 margin_bottom = 600.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2801,101 +2775,112 @@ __meta__ = {
 position = Vector2( 512, 300 )
 
 [node name="InjectionSystem" type="Node2D" parent="CentreNode"]
-script = SubResource( 35 )
+script = SubResource( 31 )
 
-[node name="Injector0" type="Node2D" parent="CentreNode/InjectionSystem" groups=[
-"InjectorParentGroup",
+[node name="Injector0" type="Node2D" parent="CentreNode/InjectionSystem"]
+
+[node name="InjectorLines" type="Node2D" parent="CentreNode/InjectionSystem/Injector0" groups=[
+"InjectorLinesGroup",
 ]]
 visible = false
 script = ExtResource( 6 )
-show = true
 
 [node name="InjectorMm" type="MultiMeshInstance2D" parent="CentreNode/InjectionSystem/Injector0" groups=[
 "InjectorGroup",
 ]]
+visible = false
 modulate = Color( 0, 0, 1, 1 )
 position = Vector2( -3.46068, 0 )
-multimesh = SubResource( 37 )
+multimesh = SubResource( 33 )
 texture = ExtResource( 15 )
 script = ExtResource( 8 )
 
-[node name="Injector1" type="Node2D" parent="CentreNode/InjectionSystem" groups=[
-"InjectorParentGroup",
+[node name="Injector1" type="Node2D" parent="CentreNode/InjectionSystem"]
+
+[node name="InjectorLines" type="Node2D" parent="CentreNode/InjectionSystem/Injector1" groups=[
+"InjectorLinesGroup",
 ]]
 visible = false
 script = ExtResource( 6 )
-show = true
 
 [node name="InjectorMm" type="MultiMeshInstance2D" parent="CentreNode/InjectionSystem/Injector1" groups=[
 "InjectorGroup",
 ]]
+visible = false
 modulate = Color( 1, 1, 0, 1 )
 position = Vector2( -12.1307, 0 )
-multimesh = SubResource( 39 )
+multimesh = SubResource( 35 )
 texture = ExtResource( 19 )
 script = ExtResource( 8 )
 
-[node name="Injector2" type="Node2D" parent="CentreNode/InjectionSystem" groups=[
-"InjectorParentGroup",
+[node name="Injector2" type="Node2D" parent="CentreNode/InjectionSystem"]
+
+[node name="InjectorLines" type="Node2D" parent="CentreNode/InjectionSystem/Injector2" groups=[
+"InjectorLinesGroup",
 ]]
 visible = false
 script = ExtResource( 6 )
-show = true
 
 [node name="InjectorMm" type="MultiMeshInstance2D" parent="CentreNode/InjectionSystem/Injector2" groups=[
 "InjectorGroup",
 ]]
+visible = false
 modulate = Color( 0.97, 0.15, 0.52, 1 )
 position = Vector2( -20.7248, 0 )
-multimesh = SubResource( 41 )
+multimesh = SubResource( 37 )
 texture = ExtResource( 17 )
 script = ExtResource( 8 )
 
-[node name="Injector3" type="Node2D" parent="CentreNode/InjectionSystem" groups=[
-"InjectorParentGroup",
+[node name="Injector3" type="Node2D" parent="CentreNode/InjectionSystem"]
+
+[node name="InjectorLines" type="Node2D" parent="CentreNode/InjectionSystem/Injector3" groups=[
+"InjectorLinesGroup",
 ]]
 visible = false
 script = ExtResource( 6 )
-show = true
 
 [node name="InjectorMm" type="MultiMeshInstance2D" parent="CentreNode/InjectionSystem/Injector3" groups=[
 "InjectorGroup",
 ]]
+visible = false
 modulate = Color( 0.05, 0.05, 0.05, 1 )
 position = Vector2( -20.7248, 0 )
-multimesh = SubResource( 43 )
+multimesh = SubResource( 39 )
 texture = ExtResource( 19 )
 script = ExtResource( 8 )
 
-[node name="Injector4" type="Node2D" parent="CentreNode/InjectionSystem" groups=[
-"InjectorParentGroup",
+[node name="Injector4" type="Node2D" parent="CentreNode/InjectionSystem"]
+
+[node name="InjectorLines" type="Node2D" parent="CentreNode/InjectionSystem/Injector4" groups=[
+"InjectorLinesGroup",
 ]]
 visible = false
 script = ExtResource( 6 )
-show = true
 
 [node name="InjectorMm" type="MultiMeshInstance2D" parent="CentreNode/InjectionSystem/Injector4" groups=[
 "InjectorGroup",
 ]]
+visible = false
 modulate = Color( 0.05, 0.05, 0.05, 1 )
 position = Vector2( -20.7248, 0 )
-multimesh = SubResource( 45 )
+multimesh = SubResource( 41 )
 texture = ExtResource( 19 )
 script = ExtResource( 8 )
 
-[node name="Injector5" type="Node2D" parent="CentreNode/InjectionSystem" groups=[
-"InjectorParentGroup",
-]]
+[node name="Injector5" type="Node2D" parent="CentreNode/InjectionSystem"]
+
+[node name="InjectorLines" type="Node2D" parent="CentreNode/InjectionSystem/Injector5"]
 visible = false
+position = Vector2( -512, -300 )
 script = ExtResource( 6 )
-show = true
 
 [node name="InjectorMm" type="MultiMeshInstance2D" parent="CentreNode/InjectionSystem/Injector5" groups=[
 "InjectorGroup",
 ]]
+visible = false
 modulate = Color( 0.05, 0.05, 0.05, 1 )
 position = Vector2( -20.7248, 0 )
-multimesh = SubResource( 47 )
+multimesh = SubResource( 43 )
 texture = ExtResource( 19 )
 script = ExtResource( 8 )
 
@@ -2990,11 +2975,11 @@ scale = Vector2( 2.2, 2.2 )
 texture = ExtResource( 11 )
 
 [node name="Sol" type="Sprite" parent="CentreNode"]
-material = SubResource( 49 )
-texture = SubResource( 51 )
+material = SubResource( 45 )
+texture = SubResource( 47 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 52 )
+environment = SubResource( 48 )
 
 [node name="Line2D" type="Line2D" parent="."]
 visible = false
@@ -3011,6 +2996,7 @@ pause_mode = 2
 offset = Vector2( 512, 300 )
 current = true
 script = ExtResource( 5 )
+noise = SubResource( 49 )
 
 [node name="SomethingChanged" type="Timer" parent="."]
 pause_mode = 2
@@ -3022,6 +3008,11 @@ script = ExtResource( 20 )
 [node name="InputCapture" type="Node2D" parent="."]
 pause_mode = 2
 script = ExtResource( 12 )
+
+[node name="Sprite" type="Sprite" parent="InputCapture"]
+visible = false
+scale = Vector2( 0.02, 0.02 )
+texture = ExtResource( 47 )
 
 [node name="RuleChanger" type="Node2D" parent="."]
 script = ExtResource( 21 )
@@ -3045,7 +3036,6 @@ autostart = true
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset/GridContainer/Inserter" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset/GridContainer/Inserter" method="_on_Inserter_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset/GridContainer/Factory" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset/GridContainer/Factory" method="_on_Factory_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset/GridContainer/Remove" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset/GridContainer/Remove" method="_on_Remove_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Unset/Back" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Back_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/HBoxContainer/Clear" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/HBoxContainer/Clear" method="_on_Clear_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/HBoxContainer/Remove" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/HBoxContainer/Remove" method="_on_Remove_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer/Save" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Save_pressed"]
@@ -3058,7 +3048,6 @@ autostart = true
 [connection signal="value_changed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/Ring/RingsSlider" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/Ring/RingsSlider" method="_on_RingsSlider_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/Lane/LanesSlider" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/Lane/LanesSlider" method="_on_LanesSlider_value_changed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/FactoryBehaviour/Hide" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="hide_diag"]
-[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer/Back" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Back_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MissionContainer/VBox/HBottomBox/Close" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="hide_diag"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/ExportContainer/VBox/HBoxContainer/Close" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="hide_diag"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SaveContainer/VBox/HBoxContainer/NewSave" to="SaveLoad" method="_on_NewSave_pressed"]

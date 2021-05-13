@@ -17,7 +17,7 @@ func _on_Play_pressed():
 	Global.level = 0
 	# Rings, lanes, factories_pull_from_above - will be read from campaign missions data
 	Global.sandbox = false
-	Global.goto_scene("res://Scenes/ShieldGen.tscn")
+	Global.goto_scene("res://scenes/ShieldGen.tscn")
 
 func _on_Sandbox_pressed():
 	new_game_common()
@@ -27,4 +27,4 @@ func _on_Sandbox_pressed():
 	Global.lanes = Global.MAX_LANES
 	Global.factories_pull_from_above = true
 	Global.sandbox = true
-	Global.goto_scene("res://Scenes/ShieldGen.tscn")
+	Global.goto_scene("res://scenes/ShieldGen.tscn")

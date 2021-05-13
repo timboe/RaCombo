@@ -151,8 +151,8 @@ func register_resource(var new_resource : String, var provinance : Node):
 		texture = load("res://images/"+Global.data[lane_content]["shape"]+".png")
 	if provinance != null:
 		lane_provinance.append(provinance.get_path())
-	for o in get_tree().get_nodes_in_group("RingOutlineGroup"):
-		o.update()
+	for c in get_tree().get_nodes_in_group("RingContentGroup"):
+		c.update_content()
 	
 func deregister_provider(var provider):
 	var path = provider.get_path()

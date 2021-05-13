@@ -6,10 +6,14 @@ onready var rs : Node2D = get_tree().get_root().find_node("RingSystem", true, fa
 onready var button_group : ButtonGroup = get_tree().get_root().find_node("BuildMode", true, false).group
 onready var id = get_tree().get_root().find_node("InfoDialog", true, false) 
 onready var pause : Button = get_tree().get_root().find_node("Pause", true, false) 
+onready var cam : Camera2D = get_tree().get_root().find_node("Camera2D", true, false) 
+onready var outlines : Button = get_tree().get_root().find_node("Outlines", true, false) 
 
 var prev_ring : Node2D = null
 var ring : Node2D = null
 var cursor : Vector2
+
+const HALF_SIZE = Vector2(512,300)
 
 func _ready():
 	set_process_unhandled_input(true)
@@ -38,12 +42,17 @@ func _unhandled_input(event):
 	if mode_inject:
 		injection = button.inj_node
 	
-	cursor = (event.global_position + camera_node.global_position) * camera_node.zoom
+	cursor = event.global_position 
+	cursor -= HALF_SIZE
+	cursor *= camera_node.zoom
+	cursor += HALF_SIZE
+	cursor += camera_node.global_position 
+	
 	var dist : float = round( abs( cursor.distance_to( centre_node.position ) ) )
 	var ring_index : int = int(dist / rs.RING_RADIUS) - 1 
 	if dist < rs.RING_RADIUS:
 		ring = rs.get_child(0)
-	elif int(dist) % int(rs.RING_RADIUS) > rs.RING_WIDTH or ring_index > Global.rings:
+	elif int(dist) % int(rs.RING_RADIUS) > rs.RING_WIDTH or ring_index >= Global.rings:
 		ring = null
 	else:
 		ring = rs.get_child(ring_index)
@@ -52,13 +61,13 @@ func _unhandled_input(event):
 		# Update once per moving in/out of highlight
 		if prev_ring != ring:
 			if prev_ring != null and prev_ring.ring_number != 0:
-				prev_ring.get_node("Outline").set_highlight(false)
+				prev_ring.get_node("OutlineHighlight").visible = false
 				if (mode_build): 
 					prev_ring.set_factory_template_visible(false)
 				if mode_inject:
-					injection.stop_hint_resource()
+					injection.stop_hint_resource() 
 			if ring != null and ring.ring_number != 0:
-				ring.get_node("Outline").set_highlight(true)
+				ring.get_node("OutlineHighlight").visible = outlines.pressed
 				if mode_build: 
 					ring.set_factory_template_visible(true)
 				if mode_inject:
@@ -78,8 +87,11 @@ func _unhandled_input(event):
 				id.show_ring_diag(ring)
 		elif mode_build and ring.ring_number != 0:
 			ring.new_factory()
+			cam.add_trauma(0.2)
+			print("New factory")
 		elif mode_inject and ring.ring_number != 0:
 			injection.setup_resource_at_hint()
+			print("Set injection")
 			
 	# Right click
 	if event is InputEventMouseButton and event.pressed and event.button_index == 2:

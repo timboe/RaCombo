@@ -10,9 +10,12 @@ config_version=4
 
 [application]
 
-config/name="RaCombo"
+config/name="Spherifactory"
 run/main_scene="res://Title.tscn"
-config/icon="res://icon.png"
+boot_splash/image="res://images/splash.png"
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
+config/icon="res://images/ico.png"
+config/windows_native_icon="res://images/ico.ico"
 
 [autoload]
 
@@ -25,7 +28,7 @@ window/stretch/aspect="keep_width"
 
 [global]
 
-color=false
+export=false
 
 [input]
 

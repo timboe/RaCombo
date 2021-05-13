@@ -2,7 +2,7 @@ extends Button
 
 onready var id = get_tree().get_root().find_node("InfoDialog", true, false) 
 
-onready var inj_node = get_tree().get_root().find_node("Injector"+String(int(name)), true, false).get_child(0)
+onready var inj_node = get_tree().get_root().find_node("Injector"+String(int(name)), true, false).get_child(1)
 
 func _on_Button_toggled(button_pressed):
 	if button_pressed:
@@ -32,7 +32,9 @@ func _on_Button_toggled(button_pressed):
 	else: # Inject mode
 		# Show injection circle targets
 		for r in get_tree().get_nodes_in_group("RingGroup"):
-			r.get_node("Outline").set_inject(button_pressed, inj_node.set_resource)
+			var it = r.get_node("OutlineInjectorTarget")
+			it.set_inject(inj_node.set_resource)
+			it.visible = button_pressed
 		# Hide if not placed
 		if button_pressed == false:
 			for r in get_tree().get_nodes_in_group("InjectorGroup"):

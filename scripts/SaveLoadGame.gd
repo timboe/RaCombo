@@ -32,7 +32,7 @@ func save(var slot, var autosave = false):
 	
 	# Save injectors
 	var injector_dict = {}
-	for i in get_tree().get_nodes_in_group("InjectorParentGroup"):
+	for i in get_tree().get_nodes_in_group("InjectorLinesGroup"):
 		injector_dict[i.name] = i.serialise()
 	save_dict["saved_injectors"] = injector_dict
 	

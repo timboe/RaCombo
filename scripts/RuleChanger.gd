@@ -140,6 +140,10 @@ func set_lanes(var l : int):
 					something_changed_node.something_changed()
 	for o in get_tree().get_nodes_in_group("RingOutlineGroup"):
 		o.update()
+	for o in get_tree().get_nodes_in_group("RingOutlineHLGroup"):
+		o.update()
+	for o in get_tree().get_nodes_in_group("RingOutlineITGroup"):
+		o.update()
 	
 func set_rings(var r : int):
 	var rs = get_tree().get_root().find_node("RingSystem", true, false)

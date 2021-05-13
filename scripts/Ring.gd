@@ -29,6 +29,8 @@ func serialise() -> Dictionary:
 		d[lane.name] = lane.serialise()
 	#
 	d["outline"] = $Outline.serialise()
+	d["outline_highlight"] = $OutlineHighlight.serialise()
+	d["outline_injector"] = $OutlineInjectorTarget.serialise()
 	return d
 	
 func deserialise(var d : Dictionary):
@@ -48,8 +50,9 @@ func deserialise(var d : Dictionary):
 		lane.deserialise( d[lane.name] )
 	#
 	$Outline.deserialise( d["outline"] )
-
-
+	$OutlineHighlight.deserialise( d["outline_highlight"] )
+	$OutlineInjectorTarget.deserialise( d["outline_injector"] )
+	
 func _ready():
 	$Rotation.rotation = 0
 	$Rotation/FactoryTemplate.visible = false

@@ -60,7 +60,7 @@ func _on_Load_pressed():
 	Global.to_subtract = Global.request_load["to_subtract"]
 	Global.exported = Global.request_load["exported"]
 	Global.tutorial_message = Global.request_load["tutorial_message"]
-	Global.goto_scene("res://Scenes/ShieldGen.tscn")
+	Global.goto_scene("res://scenes/ShieldGen.tscn")
 
 func _on_DeleteConfirmationDialog_confirmed():
 	print("Erasing save ", save_number)

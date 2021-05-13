@@ -13,7 +13,9 @@ export(int) var lane
 export(NodePath) var ring = ""
 export(bool) var placed = false
 
+onready var outlines : Button = get_tree().get_root().find_node("Outlines", true, false)
 onready var injector_button = get_tree().get_root().find_node("InjectorButton" + String(int(get_parent().name)), true, false)
+onready var guide_lines : Node2D = get_parent().find_node("InjectorLines")
 
 func serialise() -> Dictionary:
 	var d = {}
@@ -101,28 +103,33 @@ func hint_resource(var attached_ring : Node2D, var ring_lane : int):
 	radius = attached_ring.radius_array[ring_lane]
 	lane = ring_lane
 	ring = attached_ring.get_path()
-	get_parent().update()
-	get_parent().visible = true
+	guide_lines.update()
+	guide_lines.visible = true if outlines.pressed else false
 	
 func stop_hint_resource():
 	if not placed:
 		ring = ""
-		get_parent().visible = false
+		visible = false
+		guide_lines.visible = false
 
 func setup_resource_at_hint():
+	print("T1")
 	if ring == "": # Invalid
 		return
+	print("T2")
 	get_node(ring).register_resource(lane, set_resource, self)
 	placed = true
 	update_internal()
 	transform.origin.x = -WIDTH
-	get_parent().update()
-	get_parent().visible = true
+	guide_lines.update()
+	guide_lines.visible = true if outlines.pressed else false
+	visible = true
 	# Disable my button
 	Global.last_pressed = null
 	injector_button.pressed = false
 	injector_button.disabled = true
 	# Propagate the change
+	print("T3")
 	$"/root/Game/SomethingChanged".something_changed()
 	
 # Called when a lane rejects the input

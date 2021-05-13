@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://scripts/RingMultimesh.gd" type="Script" id=1]
 [ext_resource path="res://scripts/Ring.gd" type="Script" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://images/light_03.png" type="Texture" id=9]
 [ext_resource path="res://images/circle.png" type="Texture" id=10]
 [ext_resource path="res://images/sol.png" type="Texture" id=11]
+[ext_resource path="res://scripts/RingContent.gd" type="Script" id=12]
+[ext_resource path="res://scripts/RingOutlineInjectorTarget.gd" type="Script" id=13]
 
 [sub_resource type="Curve" id=1]
 min_value = -1.0
@@ -130,7 +132,18 @@ radius_array = [ 320.0, 325.0, 330.0, 335.0 ]
 "RingOutlineGroup",
 ]]
 script = ExtResource( 5 )
-show = true
+
+[node name="OutlineHighlight" type="Node2D" parent="." groups=[
+"RingOutlineHLGroup",
+]]
+visible = false
+script = ExtResource( 5 )
+
+[node name="OutlineInjectorTarget" type="Node2D" parent="." groups=[
+"RingOutlineITGroup",
+]]
+visible = false
+script = ExtResource( 13 )
 
 [node name="ShipRotationTemplate" type="Node2D" parent="." groups=[
 "ShipRotationGroup",
@@ -287,7 +300,9 @@ visible = false
 points = PoolVector2Array( 0, 0, 400, 0 )
 default_color = Color( 0.24, 0.0768, 0.14208, 1 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." groups=[
+"RingContentGroup",
+]]
 margin_left = -337.5
 margin_top = -337.5
 margin_right = 337.5
@@ -295,6 +310,7 @@ margin_bottom = -305.5
 mouse_filter = 2
 custom_constants/separation = 8
 alignment = 1
+script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
