@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=2]
+[gd_scene load_steps=100 format=2]
 
 [ext_resource path="res://scripts/BinLane.gd" type="Script" id=1]
 [ext_resource path="res://resources/NewBuildingButtonGroup.tres" type="ButtonGroup" id=2]
@@ -47,6 +47,9 @@
 [ext_resource path="res://images/prev.png" type="Texture" id=45]
 [ext_resource path="res://scripts/MainUI.gd" type="Script" id=46]
 [ext_resource path="res://images/right-chevron.png" type="Texture" id=47]
+[ext_resource path="res://images/circle_smooth.png" type="Texture" id=48]
+[ext_resource path="res://images/triangle.png" type="Texture" id=49]
+[ext_resource path="res://images/circle_n.png" type="Texture" id=50]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends ItemList
@@ -3023,6 +3026,21 @@ script = ExtResource( 42 )
 [node name="Autosave" type="Timer" parent="SaveLoad"]
 wait_time = 60.0
 autostart = true
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 17.6389, -91.9742 )
+texture = ExtResource( 48 )
+color = Color( 0.243137, 1, 0, 1 )
+range_height = 1319.2
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 32.7579, -60.4762 )
+texture = ExtResource( 19 )
+normal_map = ExtResource( 50 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 456.091, -128.512 )
+texture = ExtResource( 49 )
 
 [connection signal="ready" from="." to="RuleChanger" method="_on_Game_ready"]
 [connection signal="popup_hide" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="hide_diag"]

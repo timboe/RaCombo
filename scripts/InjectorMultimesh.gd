@@ -71,6 +71,7 @@ func update_resource(var res, var period):
 func set_properties_internal():
 	modulate = Global.data[set_resource]["color"]
 	texture = load("res://images/"+Global.data[set_resource]["shape"]+".png")
+	normal_map = load("res://images/"+Global.data[set_resource]["shape"]+"_n.png")
 	var per_sec : float = 1.0 / set_period
 	injector_button.text = String(stepify(per_sec,0.5)) + "/s"
 	injector_button.icon = Global.data[set_resource]["texture"]

@@ -46,3 +46,4 @@ func set_resource(var _resource : String, var _factory_process, var _is_input : 
 	factory_process.set_spy(self)
 	modulate = Global.data[resource]["color"]
 	texture = load("res://images/"+Global.data[resource]["shape"]+".png")
+	normal_map = load("res://images/"+Global.data[resource]["shape"]+"_n.png")

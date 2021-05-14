@@ -149,6 +149,7 @@ func register_resource(var new_resource : String, var provinance : Node):
 		lane_content = new_resource
 		modulate = Global.data[lane_content]["color"]
 		texture = load("res://images/"+Global.data[lane_content]["shape"]+".png")
+		normal_map = load("res://images/"+Global.data[lane_content]["shape"]+"_n.png")
 	if provinance != null:
 		lane_provinance.append(provinance.get_path())
 	for c in get_tree().get_nodes_in_group("RingContentGroup"):
