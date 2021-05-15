@@ -14,7 +14,6 @@ onready var something_changed_node = $"/root/Game/SomethingChanged"
 var t = 0
 
 func change_level(var level, var with_popup := true):
-	Global.level = level
 	var rings : int
 	var lanes : int
 	var from_above := true
@@ -28,16 +27,22 @@ func change_level(var level, var with_popup := true):
 		gui_sandbox.visible = true
 		gui_mission.visible = false
 	else:
+		if level == Global.campaign["missions"].size():
+			# Game finished
+			level -= 1
+			Global.game_finished = true
 		Global.mission = Global.campaign["missions"][level]
-		Global.remaining = Global.mission["goal_amount"]
+		if with_popup and not Global.game_finished: # Otherwise already set in SaveLoadSelector
+			Global.remaining = Global.mission["goal_amount"]
 		gui_sandbox.visible = false
 		gui_mission.visible = true
 		gui_goal.texture = Global.data[ Global.mission["goal"] ]["texture"]
 		gui_remaining.text = "x" + String(Global.remaining)
-		gui_mission_label.text = "Mission " + String(Global.level + 1)
+		gui_mission_label.text = "Mission " + String(level + 1)
 		rings = Global.mission["rings"]
 		lanes = Global.mission["lanes"]
 		from_above = Global.mission["factories_collect_above"]
+	Global.level = level
 	# Number of rings
 	set_rings(rings)
 	# Number of lanes
@@ -58,6 +63,8 @@ func change_level(var level, var with_popup := true):
 			print("popup sandbox")
 			id.show_named_diag("Sandbox")
 			id.tut_max = get_tree().get_nodes_in_group("TutorialGroup").size()
+		elif Global.game_finished:
+			id.show_named_diag("Win")
 		else:
 			print("popup mission or tut")
 			var tut = get_tutorial_range()
@@ -101,9 +108,11 @@ func _process(delta):
 		Global.to_subtract -= sub
 		Global.remaining = int(max(0, Global.remaining - sub))
 		gui_remaining.text = "x" + String(Global.remaining)
-		if Global.remaining == 0:
+		if Global.remaining == 0: 
 			Global.to_subtract = 0
-			change_level(Global.level + 1)
+			set_process(false)
+			if not Global.game_finished:
+				change_level(Global.level + 1)
 
 func set_injectors(var inj_data):
 	for i in range(Global.MAX_INPUT_LANES): 
@@ -117,8 +126,14 @@ func set_injectors(var inj_data):
 			injector.update_resource("None", 1.0)
 
 func set_factories_collect(var from_above):
-	pass
-	#TODO. First clear all input lanes, change the rule, and let something_changed handle it
+	if Global.factories_pull_from_above == from_above:
+		return
+	var sc = false
+	for f in get_tree().get_nodes_in_group("FactoryProcessGroup"):
+		sc = sc or f.reset_inputs()
+	if sc:
+		something_changed_node.something_changed()
+	Global.factories_pull_from_above = from_above
 
 func set_lanes(var l : int):
 	Global.lanes = l

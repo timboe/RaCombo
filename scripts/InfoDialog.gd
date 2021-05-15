@@ -43,7 +43,7 @@ func show_shared_internal():
 	for c in get_children():
 		if c is MarginContainer:
 			c.visible = false
-	popup_centered()
+	show()
 
 func show_ring_diag(var ring : Node2D):
 	show_shared_internal()
@@ -65,8 +65,9 @@ func toggle_menu_diag():
 		$MenuContainer.visible = true
 		page = "menu"
 		window_title = "Menu"
-		$MenuContainer/Container/GridContainer/Mission.visible = !Global.sandbox
-		$MenuContainer/Container/GridContainer/Export.visible = Global.sandbox
+		var show_export : bool = (Global.sandbox or Global.game_finished)
+		$MenuContainer/Container/GridContainer/Mission.visible = !show_export
+		$MenuContainer/Container/GridContainer/Export.visible = show_export
 	else:
 		print("toggle menu off")
 		hide_diag()
@@ -98,6 +99,17 @@ func update_diag():
 		pass
 
 # Below used to update page on initial draw
+
+func update_Win_diag():
+	var h : int = int(Global.time_played) / 3600
+	var remainder : int = int(Global.time_played) % 3600
+	var m = remainder / 60
+	var s = remainder % 60
+	window_title = "Congratulations!"
+	$WinContainer/VBox/FinishedText.text = Global.campaign["name"] + " Finished in:\n\n"
+	$WinContainer/VBox/FinishedText.text += String(h) + " hours, "
+	$WinContainer/VBox/FinishedText.text += String(m) + " minutes, "
+	$WinContainer/VBox/FinishedText.text += String(s) + " seconds. "
 
 func update_Tutorial_diag():
 	window_title = "Tutorial Message " + String(tut_current + 1)

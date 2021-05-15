@@ -58,6 +58,7 @@ func _on_Load_pressed():
 	Global.time_played = Global.request_load["time_played"] 
 	Global.remaining = Global.request_load["remaining"]
 	Global.to_subtract = Global.request_load["to_subtract"]
+	Global.game_finished = Global.request_load["game_finished"]
 	Global.exported = Global.request_load["exported"]
 	Global.tutorial_message = Global.request_load["tutorial_message"]
 	Global.goto_scene("res://scenes/ShieldGen.tscn")

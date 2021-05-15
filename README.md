@@ -28,4 +28,12 @@ Assets:
  * Infinity by Dmitry Mirolyubov from the Noun Project
  * replace by Sophia Bai from the Noun Project
  * Next by shashank singh from the Noun Project
+ * congratulations by IOHK Design Department from the Noun Project
  https://opengameart.org/content/space-backgrounds-0
+
+ Music by <a href="/users/aderitosilva-18974644/?tab=audio&amp;utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=audio&amp;utm_content=4314">AderitoSilva</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=4314">Pixabay</a>
+
+ https://www.shadertoy.com/view/WssSz8
+ or
+ https://www.shadertoy.com/view/4sBfDw
+ http://www.picturetopeople.org/p2p/text_effects_generator.p2p/banner-generator

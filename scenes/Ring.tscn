@@ -266,6 +266,7 @@ margin_left = 157.5
 margin_top = -20.0
 margin_right = 179.5
 margin_bottom = 20.0
+button_mask = 3
 texture_normal = SubResource( 23 )
 texture_pressed = SubResource( 25 )
 expand = true
@@ -370,5 +371,5 @@ __meta__ = {
 [connection signal="area_entered" from="Rotation/FactoryTemplate" to="Rotation/FactoryTemplate" method="_on_FactoryTemplate_area_entered"]
 [connection signal="area_exited" from="Rotation/FactoryTemplate" to="Rotation/FactoryTemplate" method="_on_FactoryTemplate_area_exited"]
 [connection signal="timeout" from="Rotation/FactoryTemplate/NewShip" to="Rotation/FactoryTemplate" method="_on_NewShip_timeout"]
-[connection signal="pressed" from="Rotation/FactoryTemplate/TextureButton" to="Rotation/FactoryTemplate" method="_on_TextureButton_pressed"]
+[connection signal="gui_input" from="Rotation/FactoryTemplate/TextureButton" to="Rotation/FactoryTemplate" method="_on_TextureButton_gui_input"]
 [connection signal="timeout" from="Rotation/FactoryTemplate/FactoryProcess/Timer" to="Rotation/FactoryTemplate/FactoryProcess" method="_on_Timer_timeout"]

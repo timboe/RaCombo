@@ -12,7 +12,9 @@ func _on_Button_pressed():
 		mode = Global.BUILDING_FACTORY
 	else:
 		print("ERROR in assigning new building job")
-	id.current_building.configure_building(mode, name)
+	Global.last_satelite_type = mode
+	Global.last_satelite_recipe = name
+	id.current_building.configure_building()
 	print("building mode assigned, hide diag")
 	id.hide_diag()
 

@@ -17,3 +17,9 @@ func update_inputs():
 	Global.sandbox_injectors = config
 	rule_changer.set_injectors(Global.sandbox_injectors)
 	
+
+func _on_Above_pressed():
+	rule_changer.set_factories_collect(true)
+
+func _on_Below_pressed():
+	rule_changer.set_factories_collect(false)

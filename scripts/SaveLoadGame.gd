@@ -18,6 +18,7 @@ func save(var slot, var autosave = false):
 		
 	save_dict["remaining"] = Global.remaining # only needed for campaign
 	save_dict["to_subtract"] = Global.to_subtract # Only needed for campaign
+	save_dict["game_finished"] = Global.game_finished # Only needed for campaign
 	# Remember what has been exported so far
 	save_dict["rings"] = Global.rings - 1 # Only needed for sandbox. Subtract the Sol ring
 	save_dict["lanes"] = Global.lanes # Only needed for sandbox

@@ -324,3 +324,5 @@ fonts/texte.csv
 fonts/texte.en.translation
 
 fonts/texte.fr.translation
+
+assets/godot_theme/unedited_gui.theme

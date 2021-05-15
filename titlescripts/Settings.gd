@@ -37,3 +37,8 @@ func _on_Back_pressed():
 	file.close()
 	
 	get_parent().get_node("MainMenu")._on_Back_pressed()
+
+
+func _on_MusicSlider_value_changed(value):
+	Music.volume_db = linear2db(value * 0.01)
+	 

@@ -12,7 +12,8 @@ const CAMPAIGN_FORMAT_VERSION = 1
 
 const GAME_SAVE_FILE := "user://save_data.json"
 const SETTINGS_SAVE_FILE := "user://settings.json"
-const CAMPAIGN_SAVE_FILE := "user://custom_campaign_data.dat"
+const CAMPAIGN_SAVE_FILE := "user://campaign_data.json"
+const CAMPAIGN_INITIAL_FILE := "res://resources/campaign_data.json"
 
 enum {BUILDING_UNSET, BUILDING_EXTRACTOR, BUILDING_INSERTER, BUILDING_FACTORY}
 enum {OUTWARDS, INWARDS}
@@ -20,11 +21,13 @@ enum {OUTWARDS, INWARDS}
 #####################################################
 # Helper globals (transient)
 var last_pressed = null
+var last_satelite_type = null
+var last_satelite_recipe = null
 
 #####################################################
 # Helper - save / load game
 var request_load = null
-var snap
+var snap # screenshot data
 
 #####################################################
 # Current level & configuration globals
@@ -45,6 +48,7 @@ var lanes : int = 4 # Only need to persist in sandbox mode
 var level : int = 1
 var remaining : int = 1000
 var to_subtract : int = 0 # Used to animate remaining
+var game_finished : bool = false
 var exported = {} # Statistics
 var time_played : float = 0
 var tutorial_message = 0

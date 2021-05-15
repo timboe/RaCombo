@@ -14,7 +14,7 @@ func _on_Copy_pressed():
 	var dict : Dictionary = Global.campaigns[name]
 	OS.set_clipboard(JSON.print(dict))
 	info.dialog_text = \"Campaign Copied to Clipboard\"
-	info.show()
+	info.popup_centered()
 "
 
 [sub_resource type="GDScript" id=2]
@@ -30,11 +30,17 @@ func _on_Edit_pressed():
 script/source = "extends Button
 
 onready var confirm : AcceptDialog = find_parent(\"CampaignManager\").find_node(\"ConfirmDeleteDialog\", true, false)
+onready var info : AcceptDialog = find_parent(\"CampaignManager\").find_node(\"InfoDialog\", true, false)
 
 func _on_Delete_pressed():
-	confirm.campaign = get_parent().get_parent().get_node(\"CampaignName\").text
-	confirm.dialog_text = \"Delete campaign:\\n\\n\" + confirm.campaign 
-	confirm.popup_centered()
+	var cname = get_parent().get_parent().get_node(\"CampaignName\").text
+	if cname == \"Main Campaign\":
+		info.dialog_text = \"Cannot delete the main campaign.\"
+		info.popup_centered()
+	else:
+		confirm.campaign = cname
+		confirm.dialog_text = \"Delete campaign:\\n\\n\" + confirm.campaign 
+		confirm.popup_centered()
 "
 
 [node name="Campaign" type="VBoxContainer"]

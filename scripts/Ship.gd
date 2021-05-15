@@ -126,14 +126,14 @@ func appear_complete():
 	something_changed_node.something_changed()
 
 func depart():
-	print("Ship departing")
+	#print("Ship departing")
 	get_node(factory).get_node("NewShip").start()
 	$Particles2D.emitting = true
 	deregister_provider(null)
 	id.update_diag()
 	launch = true
 	# TODO improve flyaway...
-	$Tween.interpolate_method(self, "set_radius_mod", 0.0, SHIP_DEPART_RADIUS,
+	$Tween.interpolate_method(self, "set_radius_mod", 0.0, SHIP_DEPART_RADIUS + base_radius,
 		SHIP_DEPART_TIME, Tween.TRANS_SINE, Tween.EASE_IN)
 	$Tween.interpolate_property(self, "rotation", null, PI/4.0, SHIP_DEPART_TIME/2.0)
 	$Tween.interpolate_callback(self, SHIP_DEPART_TIME, "deposit")

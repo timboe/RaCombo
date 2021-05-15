@@ -94,12 +94,6 @@ func _draw():
 		var mod_r = inner_radius + (outer_radius - inner_radius)/2.0
 		var mod_angle = span_radians/2.0 + span_radians * Global.INSERTER_RADIUS_MOD
 		points_vec.push_back(Vector2(cos(mod_angle), sin(mod_angle)) * mod_r)
-#	if true or mode == BUILDING_FACTORY: # Curvy edge?
-#		var centre = Vector2.ZERO
-#		var small_circ_radius = (outer_radius - inner_radius)/2.0
-#		centre.x = inner_radius + small_circ_radius
-#		centre.y = tan(span_radians/2.0) * centre.x
-#		add_arc(POINTS/2, PI, -PI, centre, small_circ_radius)
 	###
 	if mode == Global.BUILDING_EXTRACTOR:
 		points_vec.push_back(Vector2(cos(+span_radians/2.0), sin(+span_radians/2.0)) * (outer_radius - radius_mod))
@@ -128,13 +122,17 @@ func _draw():
 	$TextureButton.rect_position.x = inner_radius
 	$Label.rect_position.x = inner_radius + 21 # Magic number from size of rotated text box
 	
-func configure_building(var _mode : int, var _recipy : String):
-	mode = _mode
-	recipy = _recipy
-	$FactoryProcess.configure(_mode, _recipy)
+func configure_building():
+	if Global.last_satelite_type == null:
+		return
+	if mode != Global.BUILDING_UNSET:
+		reset()
+	mode = Global.last_satelite_type
+	recipy = Global.last_satelite_recipe
+	$FactoryProcess.configure(mode, recipy)
 	factory_outline_color = Global.data[recipy]["color"]
 	factory_color[0] = Global.lighten(factory_outline_color)
-	$Label.text = _recipy + Global.data[recipy]["mode"]
+	$Label.text = recipy + Global.data[recipy]["mode"]
 	update()
 	set_descriptive_name()
 	check_add_remove_ship()
@@ -202,10 +200,6 @@ func _on_FactoryTemplate_area_exited(_area):
 		colliding = false
 		update()
 
-func _on_TextureButton_pressed():
-	print("show building diag")
-	id.show_building_diag(self)
-
 func _on_NewShip_timeout():
 	if ring.ring_number + 1 != Global.rings:
 		print("_on_NewShip_timeout cancelled due to not being outer ring")
@@ -219,3 +213,12 @@ func _on_NewShip_timeout():
 	$FactoryProcess.ship = sr.get_child(0)
 	$FactoryProcess.ship.configure_ship(recipy, self)
 	id.update_diag()
+
+
+func _on_TextureButton_gui_input(event):
+	if event is InputEventMouseButton and event.pressed:
+		match event.button_index:
+			BUTTON_LEFT:
+				id.show_building_diag(self)
+			BUTTON_RIGHT:
+				configure_building()

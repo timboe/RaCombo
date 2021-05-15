@@ -5,16 +5,25 @@ onready var new_campaign = get_tree().get_root().find_node("NewCampaignVBox", tr
 onready var camp_editor = get_tree().get_root().find_node("CampaignEditor", true, false)
 onready var load_vbox = get_tree().get_root().find_node("LoadVBox", true, false)
 onready var setings = get_tree().get_root().find_node("Settings", true, false)
+onready var foot_label = get_tree().get_root().find_node("FootLabel", true, false)
 
 func _ready():
 	# Load 
 	Global.saves = load_from_disk(Global.GAME_SAVE_FILE)
+	#
 	Global.campaigns = load_from_disk(Global.CAMPAIGN_SAVE_FILE)
+	if Global.campaigns.size() == 0:
+		var dir = Directory.new()
+		dir.copy(Global.CAMPAIGN_INITIAL_FILE, Global.CAMPAIGN_SAVE_FILE)
+		Global.campaigns = load_from_disk(Global.CAMPAIGN_SAVE_FILE)
+	#
 	Global.settings = load_from_disk(Global.SETTINGS_SAVE_FILE)
 	if Global.settings.size() == 0:
 		setings.set_default()
 	if Global.settings["fullscreen"] != OS.window_fullscreen:
 		OS.window_fullscreen = Global.settings["fullscreen"]
+	print("loaded with music ", Global.settings["music"])
+	Music.volume_db = linear2db(Global.settings["music"] * 0.01)
 	show_menu("MainMenu")
 
 func load_from_disk(var file_path) -> Dictionary:
@@ -33,6 +42,7 @@ func show_menu(var menu : String, var extra = null):
 	for c in get_tree().get_nodes_in_group("PrimaryMenuElement"):
 		c.visible = false
 	get_parent().get_node(menu).visible = true
+	foot_label.visible = true
 	
 	if self.has_method(menu):
 		self.call(menu, extra)
@@ -56,6 +66,7 @@ func NewCampaign(var _extra):
 		campaign.get_node("CampaignName").text = camp
 
 func CampaignEditor(var extra):
+	foot_label.visible = false
 	if extra is String:
 		camp_editor.dedictionise(Global.campaigns[extra])
 	else:

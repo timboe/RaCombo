@@ -140,20 +140,39 @@ func configure(var _mode : int, var recipy : String):
 	output_lane = null
 	lane_system_changed()
 	
+func reset_inputs() -> bool:
+	if mode != Global.BUILDING_FACTORY:
+		return false
+	var something_changed = false
+	for i in range(input_lanes.size()):
+		if input_lanes[i].size() > 0:
+			something_changed = true
+			input_lanes[i].clear()
+			input_lanes_distance[i].clear()
+	return something_changed
+	
 func lane_cleared(var lane_or_ship : Node2D):
 	if mode == Global.BUILDING_UNSET: # Called on all buildings by the Bin fn
 		return
 	var something_changed : bool = false
 	if output_lane == lane_or_ship:
 		output_lane = null
-		print("ship = null by lane_cleared, was ", ship)
+		#print("ship = null by lane_cleared, was ", ship)
 		ship = null
 		something_changed = true
-	for input_resource in input_lanes:
-		for idx in range(input_resource.size() -1, -1):
-			if input_resource[idx] == lane_or_ship:
-				input_resource.remove(idx)
-				something_changed = true
+#	for input_resource in input_lanes:
+#		for idx in range(input_resource.size() -1, -1):
+#			if input_resource[idx] == lane_or_ship:
+#				input_resource.remove(idx)
+#				# TODO - we also have to remve from input_lanes_distance here too...
+# reworked below - delete this comment block
+#				something_changed = true			
+	for i in range(input_lanes.size()):
+		for j in range(input_lanes[i].size() -1, -1):
+			if input_lanes[i][j] == lane_or_ship:
+				input_lanes[i].remove(j)
+				input_lanes_distance[i].remove(j)
+				something_changed = true			
 	check_process()
 	if something_changed:
 		something_changed_node.something_changed()
@@ -166,8 +185,13 @@ func lane_system_changed():
 	if mode == Global.BUILDING_FACTORY:
 		# We check the two outermost rings for input
 		var distance : int = 0 # One or two. Factories can reach over 1 ring
-		for ring_idx in range(ring.ring_number + 1, ring.ring_number + 3):
-			if ring_idx >= Global.rings:
+		var check_rings
+		if Global.factories_pull_from_above:
+			check_rings = [ring.ring_number + 1, ring.ring_number + 2]
+		else:
+			 check_rings = [ring.ring_number - 1, ring.ring_number - 2]
+		for ring_idx in check_rings:
+			if ring_idx >= Global.rings or ring_idx <= 0: # Avoid sun. avoid overflow
 				break
 			distance += 1
 			for l in ring.get_parent().get_child(ring_idx).get_lanes():
@@ -178,10 +202,10 @@ func lane_system_changed():
 						if not input_lanes[input_idx].has(l):
 							input_lanes[input_idx].append(l)
 							input_lanes_distance[input_idx].append(distance)
-							print("The ",name," will now import ",input_content[input_idx]," from ",l," (total of ",input_lanes[input_idx].size()," sources)")
+							#print("The ",name," will now import ",input_content[input_idx]," from ",l," (total of ",input_lanes[input_idx].size()," sources)")
 							something_changed = true
 	else: # Inserter or extractor
-		input_lanes.append([])
+		#input_lanes.append([]) # TODO - why was this here?
 		# input-resources propagate inwards
 		var in_ring_n = ring.ring_number + 1 if Global.data[input_content[0]]["mode"] == "-" else ring.ring_number - 1
 		if in_ring_n != Global.rings: # If not trying to insert from outside the outermost ring
@@ -189,14 +213,14 @@ func lane_system_changed():
 				if l.lane_content != null and l.lane_content == input_content[0]:
 					if not input_lanes[0].has(l):
 						input_lanes[0].append(l)
-						print("The ",name," will now import ",input_content[0]," from ",l," (total of ",input_lanes[0].size()," sources)")
+						#print("The ",name," will now import ",input_content[0]," from ",l," (total of ",input_lanes[0].size()," sources)")
 						something_changed = true
 	# Output
 	var out_ring_n = ring.ring_number - 1 if Global.data[output_content]["mode"] == "-" else ring.ring_number + 1
 	if out_ring_n == Global.rings :
 		if output_lane == null and ship != null and is_instance_valid(ship): # Setup output to ship
 			output_lane = ship
-			print("The ",name," will now export ",output_content," to the ship ",ship)
+			#print("The ",name," will now export ",output_content," to the ship ",ship)
 			# Note: this is a self-contained operation, so something_changed = false
 	elif output_storage > 0: 	# Only link the output if we have something to output...
 		var out_ring = ring.get_parent().get_child(out_ring_n)
@@ -206,7 +230,7 @@ func lane_system_changed():
 			if output_lane != the_out_lane:
 				output_lane = the_out_lane
 				the_out_lane.register_resource(output_content, self)
-				print("The ",name," will now export ",output_content," to ",the_out_lane)
+				#print("The ",name," will now export ",output_content," to ",the_out_lane)
 				something_changed = true
 	check_process()
 	if something_changed:
@@ -238,12 +262,20 @@ func check_process():
 		return
 	# OK - but do we still have outputs to send?
 	var can_send_outputs : bool = false
-	if output_storage > 0 and output_lane != null:
-		can_send_outputs = true
+	if output_lane != null:
+		if output_storage > 0: # We have stuff to send
+			can_send_outputs = true
+		elif mode == Global.BUILDING_FACTORY: # Check if we have the resources to make stuff to send
+			can_send_outputs = true
+			for i in range(input_storage.size()):
+				if input_storage[i] < input_factory_required[i]:#
+					can_send_outputs = false
+					break
 	if can_send_outputs:
 		set_physics_process(true)
 		return
 	# Deactivate until there is a change in the lane situation
+	print("check process concluded false")
 	set_physics_process(false)
 	
 func _physics_process(_delta):
@@ -274,7 +306,12 @@ func _physics_process(_delta):
 				for j in range(input_lanes[i].size()):
 					# Factories capture from ABOVE, 1 or two rings
 					var lane = input_lanes[i][j]
-					lane.try_capture(angle_front + global_rotation, self, Global.INWARDS, input_lanes_distance[i][j])
+					var d : int = Global.INWARDS 
+					var a : float = angle_front
+					if not Global.factories_pull_from_above:
+						d = Global.OUTWARDS
+						a = angle_back
+					lane.try_capture(a + global_rotation, self, d, input_lanes_distance[i][j])
 		# Outputs
 		if output_storage > 0 and output_lane != null:
 			var direction : int = Global.INWARDS if Global.data[output_content]["mode"] == "-" else Global.OUTWARDS
@@ -309,6 +346,6 @@ func check_factory_production():
 	
 func _on_Timer_timeout():
 	output_storage += output_amount
-	if output_storage == output_amount and output_lane == null:
+	if output_storage == output_amount and output_lane == null: # If first thing we made
 		lane_system_changed()
 	check_factory_production()

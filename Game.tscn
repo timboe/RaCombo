@@ -47,9 +47,9 @@
 [ext_resource path="res://images/prev.png" type="Texture" id=45]
 [ext_resource path="res://scripts/MainUI.gd" type="Script" id=46]
 [ext_resource path="res://images/right-chevron.png" type="Texture" id=47]
-[ext_resource path="res://images/circle_smooth.png" type="Texture" id=48]
-[ext_resource path="res://images/triangle.png" type="Texture" id=49]
-[ext_resource path="res://images/circle_n.png" type="Texture" id=50]
+[ext_resource path="res://assets/godot_theme/gui.theme" type="Theme" id=48]
+[ext_resource path="res://images/congratulations.png" type="Texture" id=49]
+[ext_resource path="res://images/finished.png" type="Texture" id=50]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends ItemList
@@ -609,6 +609,7 @@ pause_mode = 2
 [node name="UI" type="Control" parent="CanvasLayer"]
 margin_right = 40.0
 margin_bottom = 40.0
+theme = ExtResource( 48 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1608,57 +1609,58 @@ text = "Input Resources"
 [node name="Input0" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer" instance=ExtResource( 39 )]
 margin_top = 124.0
 margin_right = 439.0
-margin_bottom = 144.0
+margin_bottom = 146.0
 
 [node name="Input1" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer" instance=ExtResource( 39 )]
-margin_top = 150.0
+margin_top = 152.0
 margin_right = 439.0
-margin_bottom = 170.0
+margin_bottom = 174.0
 
 [node name="Input2" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer" instance=ExtResource( 39 )]
-margin_top = 176.0
+margin_top = 180.0
 margin_right = 439.0
-margin_bottom = 196.0
+margin_bottom = 202.0
 
 [node name="Input3" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer" instance=ExtResource( 39 )]
-margin_top = 202.0
+margin_top = 208.0
 margin_right = 439.0
-margin_bottom = 222.0
+margin_bottom = 230.0
 
 [node name="Input4" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer" instance=ExtResource( 39 )]
-margin_top = 228.0
+margin_top = 236.0
 margin_right = 439.0
-margin_bottom = 248.0
+margin_bottom = 258.0
 
 [node name="Input5" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer" instance=ExtResource( 39 )]
-margin_top = 254.0
+margin_top = 264.0
 margin_right = 439.0
-margin_bottom = 274.0
+margin_bottom = 286.0
 
 [node name="HSeparator" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
-margin_top = 280.0
+margin_top = 292.0
 margin_right = 439.0
-margin_bottom = 284.0
+margin_bottom = 296.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
-margin_top = 290.0
+margin_top = 302.0
 margin_right = 439.0
-margin_bottom = 304.0
+margin_bottom = 316.0
 text = "Satelite Factories Collect From..."
 
 [node name="FactoryBehaviour" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
-margin_top = 310.0
+margin_top = 322.0
 margin_right = 439.0
-margin_bottom = 374.0
+margin_bottom = 386.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Above" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/FactoryBehaviour"]
-margin_right = 128.0
+margin_right = 143.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 128, 0 )
+size_flags_horizontal = 3
 toggle_mode = true
 group = ExtResource( 3 )
 text = "Above"
@@ -1666,27 +1668,23 @@ icon = ExtResource( 28 )
 expand_icon = true
 
 [node name="Below" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/FactoryBehaviour"]
-margin_left = 132.0
-margin_right = 260.0
+margin_left = 147.0
+margin_right = 291.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 128, 64 )
+size_flags_horizontal = 3
 toggle_mode = true
 group = ExtResource( 3 )
 text = "Below"
 icon = ExtResource( 25 )
 expand_icon = true
 
-[node name="Container" type="Container" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/FactoryBehaviour"]
-margin_left = 264.0
-margin_right = 307.0
-margin_bottom = 64.0
-size_flags_horizontal = 3
-
 [node name="Hide" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/FactoryBehaviour"]
-margin_left = 311.0
+margin_left = 295.0
 margin_right = 439.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 128, 64 )
+size_flags_horizontal = 3
 text = "Back"
 icon = ExtResource( 30 )
 expand_icon = true
@@ -1695,9 +1693,9 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer"]
-margin_top = 380.0
+margin_top = 392.0
 margin_right = 439.0
-margin_bottom = 380.0
+margin_bottom = 392.0
 alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2232,18 +2230,6 @@ text = "Back"
 icon = ExtResource( 30 )
 expand_icon = true
 
-[node name="MarginContainer5" type="MarginContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog"]
-visible = false
-margin_right = 40.0
-margin_bottom = 40.0
-custom_constants/margin_right = 8
-custom_constants/margin_top = 8
-custom_constants/margin_left = 8
-custom_constants/margin_bottom = 8
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="TutorialContainer" type="MarginContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog"]
 visible = false
 margin_right = 455.0
@@ -2266,7 +2252,7 @@ custom_constants/separation = 8
 
 [node name="TutorialContainerSC" type="ScrollContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox"]
 margin_right = 439.0
-margin_bottom = 300.0
+margin_bottom = 308.0
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2274,22 +2260,21 @@ __meta__ = {
 
 [node name="TutorialVBox" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC"]
 margin_right = 439.0
-margin_bottom = 99.0
+margin_bottom = 337.0
 size_flags_horizontal = 3
 custom_constants/separation = 8
 
 [node name="0" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox" groups=[
 "TutorialGroup",
 ]]
-visible = false
-margin_right = 439.0
-margin_bottom = 235.0
+margin_right = 431.0
+margin_bottom = 337.0
 size_flags_horizontal = 3
 custom_constants/separation = 8
 
 [node name="Label" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/0"]
-margin_right = 439.0
-margin_bottom = 235.0
+margin_right = 431.0
+margin_bottom = 201.0
 text = "Welcome to Spherifactory!
 
 CAMERA CONTROLS
@@ -2301,148 +2286,163 @@ Move the camera with:
 
 Zoom the camera in and out with:
   - The Q and E keys,
-  - The scroll wheel.
+  - The scroll wheel."
 
-"
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/0"]
+margin_left = 15.0
+margin_top = 209.0
+margin_right = 415.0
+margin_bottom = 337.0
+rect_min_size = Vector2( 400, 128 )
+size_flags_horizontal = 4
 
 [node name="1" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox" groups=[
 "TutorialGroup",
 ]]
 visible = false
-margin_right = 439.0
-margin_bottom = 133.0
+margin_right = 431.0
+margin_bottom = 150.0
 size_flags_horizontal = 3
 custom_constants/separation = 8
 
 [node name="Label" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/1"]
-margin_right = 439.0
-margin_bottom = 133.0
+margin_right = 431.0
+margin_bottom = 150.0
 text = "RESOURCES
 
-The sun provides an unlimited supply of the H+ resource.
-Other resources will be provided in later missions.
+The sun provides an unlimited supply of the [H+] resource.
+Other basic resources will need to be imported.
 
-Resources with a + sign always move outwards from the Sun.
+Resources with a [+] sign always move outwards, 
+away from the Sun.
 
-Resources with a - sign always move inwards towards the Sun."
+Resources with a [-] sign always move inwards, towards the Sun."
 
 [node name="2" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox" groups=[
 "TutorialGroup",
 ]]
 visible = false
-margin_right = 439.0
+margin_right = 431.0
 margin_bottom = 201.0
 size_flags_horizontal = 3
 custom_constants/separation = 8
 
 [node name="Label" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/2"]
-margin_right = 439.0
+margin_right = 431.0
 margin_bottom = 201.0
 text = "RINGS AND LANES
 
-There is currently one ring around the Sun, and it has one lane.
+The sun is surrounded by a system of rings, and each ring is 
+divided into a number of lanes,
 
-Future missions will have additional rings, and additional 
-lanes per ring.
-
-Each lane can carry a single resource.
+Each lane can only carry a single resource.
 
 Satelites are built on rings, and extend over all of the ring's lanes.
 Each satelite will reduce the number of resources which can fit
-on the ring's lanes."
+around the ring.
+
+Click on a ring to manage its lanes and satelites."
 
 [node name="3" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox" groups=[
 "TutorialGroup",
 ]]
 visible = false
-margin_right = 439.0
+margin_right = 431.0
 margin_bottom = 99.0
 size_flags_horizontal = 3
 custom_constants/separation = 8
 
 [node name="Label" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/3"]
-margin_right = 439.0
+margin_right = 431.0
 margin_bottom = 99.0
 text = "SATELITES: EXTACTOR
 
-Satelites in Extractor mode move + resources:
-  - From the ring below to the ring above.
-  - If built on the first ring, it will extract from the Sun.
-  - If built on the outermost ring, it will export the resource."
+Satelites in Extractor mode move [+] resources.
+  - [+] resources move from ring below to the ring above.
+  - If built on the first ring, it will extract [+] resources from the Sun.
+  - If built on the outermost ring, it will export the [+] resource."
 
 [node name="4" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox" groups=[
 "TutorialGroup",
 ]]
 visible = false
 margin_right = 439.0
-margin_bottom = 116.0
+margin_bottom = 201.0
 size_flags_horizontal = 3
 custom_constants/separation = 8
 
 [node name="Label" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/4"]
 margin_right = 439.0
-margin_bottom = 116.0
-text = "MISSIONS
+margin_bottom = 201.0
+text = "MISSIONS AND EXPORTS
 
 Each mission tasks you to produce and export a certain number
-of a + resource.
+of a [+] resource using Extractor satelites on the outermost ring. 
 
-For this first mission, build Satelites in Ring 1. Click on each 
-unasigned Satelite and switch it to H+ Extractor mode."
+Example, to export [H+] with only one Ring.
+ - Click the Build Satelite button on the left of the screen
+ - Place some unassigned satelites in Ring 1
+- Click the unassigned satelites and configure them as [H+] Extractor
+
+Extractor satelites in the outermost ring will load the [+] resource
+into ships and launch these into space."
 
 [node name="5" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox" groups=[
 "TutorialGroup",
 ]]
 visible = false
 margin_right = 439.0
-margin_bottom = 116.0
+margin_bottom = 150.0
 size_flags_horizontal = 3
 custom_constants/separation = 8
 
 [node name="Label" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/5"]
 margin_right = 439.0
-margin_bottom = 116.0
+margin_bottom = 150.0
 text = "INJECTORS
 
-Some resources are supplied as inputs to your factory, these
+Some resources are supplied as inputs to your factory, available
 injectors are shown in the menu on the left.
 
 Choose an unassigned injector and click on a ring with a free lane
-to assign the injector to the lane."
+to assign the injector to the lane.
+
+To move an injector, first click on the current ring and clear the lane."
 
 [node name="6" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox" groups=[
 "TutorialGroup",
 ]]
 visible = false
 margin_right = 439.0
-margin_bottom = 133.0
+margin_bottom = 150.0
 size_flags_horizontal = 3
 custom_constants/separation = 8
 
 [node name="Label" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/6"]
 margin_right = 439.0
-margin_bottom = 133.0
+margin_bottom = 150.0
 text = "SATELITES: INSERTERS
 
-Satelites in Inserter mode move - resources:
-  - From the ring above to the ring below.
-  - If built on the first ring, it will throw the resource into the sun.
+Satelites in Inserter mode move [-] resources.
+  - [-] resources are moved from the ring above to the ring below.
+  - If built on the first ring, the [-] resource will be 
+    thrown into the sun.
 
-Some - resources have a special behaviour when they are thrown
-into the sun, others are destroyed."
+Some [-] resources will transmute  if they are thrown into the sun, 
+others are destroyed."
 
 [node name="7" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox" groups=[
 "TutorialGroup",
 ]]
 visible = false
-margin_right = 427.0
-margin_bottom = 150.0
+margin_right = 439.0
+margin_bottom = 201.0
 size_flags_horizontal = 3
 custom_constants/separation = 8
 
 [node name="Label" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/7"]
-margin_right = 427.0
-margin_bottom = 150.0
+margin_right = 439.0
+margin_bottom = 201.0
 text = "SATELITES: FACTORIES
 
 Satelites in Factory mode combine resources together into a new
@@ -2450,12 +2450,16 @@ resource. The factory will:
   - Collect up to four resources, depending on the recipe.
   - Resources are collected from the lanes in the two rings
     above the factory.
-	  - Deposit a constructed + resource into the ring above.
-	  - Deposit a constructed - resource into the ring below."
+	  - Deposit a constructed [+] resource into the ring above.
+	  - Deposit a constructed [-] resource into the ring below.
+	
+Each recipy specifies the number of each input resource required, 
+the amount of the output resource produced, and the time taken."
 
 [node name="8" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox" groups=[
 "TutorialGroup",
 ]]
+visible = false
 margin_right = 439.0
 margin_bottom = 99.0
 size_flags_horizontal = 3
@@ -2466,26 +2470,26 @@ margin_right = 439.0
 margin_bottom = 99.0
 text = "TRANSMUTATION
 
-Some - resources can be transmuted into a different + resource
+Some [-] resources can be transmuted into a different [+] resource
 by discarding them into the Sun.
 
 Click on the sun to see possible transmuations."
 
 [node name="HBox" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox"]
-margin_top = 308.0
+margin_top = 316.0
 margin_right = 439.0
 margin_bottom = 332.0
 
 [node name="Label" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/HBox"]
-margin_top = 5.0
+margin_top = 1.0
 margin_right = 89.0
-margin_bottom = 19.0
+margin_bottom = 15.0
 text = "Show Tutorial:"
 
 [node name="ShowTutorialCheckbox" type="CheckBox" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/HBox"]
 margin_left = 93.0
-margin_right = 117.0
-margin_bottom = 24.0
+margin_right = 109.0
+margin_bottom = 16.0
 script = SubResource( 28 )
 
 [node name="HBox2" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox"]
@@ -2519,6 +2523,90 @@ margin_right = 439.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 130, 64 )
 size_flags_horizontal = 3
+text = "Back"
+icon = ExtResource( 30 )
+expand_icon = true
+
+[node name="WinContainer" type="MarginContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog"]
+margin_right = 152.0
+margin_bottom = 152.0
+rect_min_size = Vector2( 455, 420 )
+size_flags_vertical = 3
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/WinContainer"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 447.0
+margin_bottom = 412.0
+custom_constants/separation = 8
+
+[node name="HBox" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/WinContainer/VBox"]
+margin_right = 439.0
+margin_bottom = 162.0
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/WinContainer/VBox/HBox"]
+margin_right = 64.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 49 )
+expand = true
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/WinContainer/VBox/HBox"]
+margin_left = 68.0
+margin_right = 371.0
+margin_bottom = 162.0
+size_flags_horizontal = 3
+texture = ExtResource( 50 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/WinContainer/VBox/HBox"]
+margin_left = 375.0
+margin_right = 439.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 49 )
+expand = true
+flip_h = true
+
+[node name="FinishedText" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/WinContainer/VBox"]
+margin_top = 170.0
+margin_right = 439.0
+margin_bottom = 332.0
+size_flags_vertical = 7
+text = "CAMPAIGN NAME Finished in:
+XX hours, XX minutes, XX seconds. "
+align = 1
+valign = 1
+
+[node name="HBox2" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/WinContainer/VBox"]
+margin_top = 340.0
+margin_right = 439.0
+margin_bottom = 404.0
+custom_constants/separation = 8
+alignment = 2
+
+[node name="Back" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/WinContainer/VBox/HBox2"]
+margin_left = 309.0
+margin_right = 439.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 130, 64 )
+size_flags_horizontal = 9
 text = "Back"
 icon = ExtResource( 30 )
 expand_icon = true
@@ -3027,22 +3115,8 @@ script = ExtResource( 42 )
 wait_time = 60.0
 autostart = true
 
-[node name="Light2D" type="Light2D" parent="."]
-position = Vector2( 17.6389, -91.9742 )
-texture = ExtResource( 48 )
-color = Color( 0.243137, 1, 0, 1 )
-range_height = 1319.2
-
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 32.7579, -60.4762 )
-texture = ExtResource( 19 )
-normal_map = ExtResource( 50 )
-
-[node name="Sprite2" type="Sprite" parent="."]
-position = Vector2( 456.091, -128.512 )
-texture = ExtResource( 49 )
-
 [connection signal="ready" from="." to="RuleChanger" method="_on_Game_ready"]
+[connection signal="hide" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="hide_diag"]
 [connection signal="popup_hide" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="hide_diag"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/GridContainer/LBin1" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/GridContainer/LBin1" method="_on_Button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/GridContainer/LBin2" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/RingContainer/VBoxContainer/GridContainer/LBin2" method="_on_Button_pressed"]
@@ -3065,6 +3139,8 @@ texture = ExtResource( 49 )
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer/Quit" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Quit_pressed"]
 [connection signal="value_changed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/Ring/RingsSlider" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/Ring/RingsSlider" method="_on_RingsSlider_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/Lane/LanesSlider" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/Lane/LanesSlider" method="_on_LanesSlider_value_changed"]
+[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/FactoryBehaviour/Above" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer" method="_on_Above_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/FactoryBehaviour/Below" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer" method="_on_Below_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SandboxContainer/VBoxContainer/FactoryBehaviour/Hide" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="hide_diag"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MissionContainer/VBox/HBottomBox/Close" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="hide_diag"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/ExportContainer/VBox/HBoxContainer/Close" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="hide_diag"]
@@ -3076,6 +3152,7 @@ texture = ExtResource( 49 )
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/HBox2/Prev" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Prev_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/HBox2/Next" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Next_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/HBox2/Back" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Back_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/WinContainer/VBox/HBox2/Back" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Back_pressed"]
 [connection signal="timeout" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/UpdateTimer" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_UpdateTimer_timeout"]
 [connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Pause" to="CanvasLayer/UI/MainUI" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Pause" to="CanvasLayer/UI/MainUI" method="_on_mouse_exited"]
