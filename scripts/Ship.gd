@@ -26,8 +26,6 @@ export(NodePath) var factory = ""
 
 var points_vec = PoolVector2Array()
 
-var spies = [] # The multimeshes currently spying on the storage content here
-
 onready var id : WindowDialog = get_tree().get_root().find_node("InfoDialog", true, false) 
 onready var rule_changer : Node2D = get_tree().get_root().find_node("RuleChanger", true, false) 
 onready var something_changed_node = $"/root/Game/SomethingChanged"
@@ -147,9 +145,6 @@ func deregister_provider(var _provider):
 	if factory != "":
 		get_node(factory).lane_cleared(self) 
 		factory = ""
-	for spy in spies:
-		spy.reset()
-	spies.clear()
 	
 func deposit():
 	$Tween.interpolate_property(get_parent(), "modulate", Color(1,1,1,1), Color(1,1,1,0),
@@ -162,12 +157,6 @@ func deposit():
 func remove(): # Note: May remove through means other than depart()
 	deregister_provider(null)
 	get_parent().queue_free()
-	
-func set_spy(var spy):
-	spies.append(spy)
-	
-func remove_spy(var spy):
-	spies.erase(spy)
 
 func try_send(var _angle : float, var _direction : int) -> bool:
 	if not built or output_storage >= Global.MAX_STORAGE:

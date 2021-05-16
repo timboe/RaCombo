@@ -19,12 +19,16 @@ func _ready():
 		multimesh.set_instance_transform_2d(i, t)
 
 func reset():
-	if factory_process != null:
-		factory_process.remove_spy(self)
 	factory_process = null
 
 func update_visible():
 	if factory_process == null:
+		return
+	if not is_instance_valid(factory_process):
+		reset()
+		return
+	if factory_process.get_parent().mode == Global.BUILDING_UNSET:
+		reset()
 		return
 	if is_input:
 		multimesh.visible_instance_count = factory_process.input_storage[input_index]
@@ -40,10 +44,7 @@ func set_resource(var _resource : String, var _factory_process, var _is_input : 
 	is_input = _is_input
 	input_index = _index
 	resource = _resource
-	if factory_process != null:
-		factory_process.remove_spy(self)
 	factory_process = _factory_process
-	factory_process.set_spy(self)
 	modulate = Global.data[resource]["color"]
 	texture = load("res://images/"+Global.data[resource]["shape"]+".png")
 	normal_map = load("res://images/"+Global.data[resource]["shape"]+"_n.png")

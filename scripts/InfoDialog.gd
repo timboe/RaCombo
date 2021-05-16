@@ -110,6 +110,8 @@ func update_Win_diag():
 	$WinContainer/VBox/FinishedText.text += String(h) + " hours, "
 	$WinContainer/VBox/FinishedText.text += String(m) + " minutes, "
 	$WinContainer/VBox/FinishedText.text += String(s) + " seconds. "
+	$WinContainer/Confetti1.emitting = true
+	$WinContainer/Confetti2.emitting = true
 
 func update_Tutorial_diag():
 	window_title = "Tutorial Message " + String(tut_current + 1)

@@ -23,9 +23,9 @@ func _ready():
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.is_pressed():
-		if event.button_index == BUTTON_WHEEL_UP:
+		if event.button_index == BUTTON_WHEEL_UP and zoom.x > 0.05:
 			zoom /= 1.1
-		if event.button_index == BUTTON_WHEEL_DOWN:
+		if event.button_index == BUTTON_WHEEL_DOWN and zoom.x < 2.0:
 			zoom *= 1.1
 	if event is InputEventMouseMotion and Input.is_action_pressed("ui_mouse_pan"):
 		global_position -= (event.relative * zoom)
@@ -34,13 +34,13 @@ func _process(delta):
 	apply_shake(delta)
 	decay_trauma(delta)
 	if Input.is_action_pressed("ui_left"):
-		global_position += Vector2.LEFT * delta * MOVE_SPEED
+		global_position += Vector2.LEFT * delta * MOVE_SPEED * zoom.x
 	elif Input.is_action_pressed("ui_right"):
-		global_position += Vector2.RIGHT * delta * MOVE_SPEED
+		global_position += Vector2.RIGHT * delta * MOVE_SPEED * zoom.x
 	if Input.is_action_pressed("ui_up"):
-		global_position += Vector2.UP * delta * MOVE_SPEED
+		global_position += Vector2.UP * delta * MOVE_SPEED * zoom.x
 	elif Input.is_action_pressed("ui_down"):
-		global_position += Vector2.DOWN * delta * MOVE_SPEED
+		global_position += Vector2.DOWN * delta * MOVE_SPEED * zoom.x
 
 func add_trauma(var amount):
 	if Global.settings["shake"] == false:

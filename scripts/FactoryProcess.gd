@@ -9,7 +9,6 @@ var input_content = [] # List of strings, name of each input
 var input_lanes = [] # This is a list of lists of Node. Providers of each input
 var input_lanes_distance = [] # This is a list of lists. How far away are each provider (1 or 2)
 
-var spies = [] # The multimeshes currently spying on the storage content here
 var ship = null
 
 export(float) var angle_back
@@ -95,19 +94,7 @@ func reset():
 	output_direction = null
 	output_lane = null
 	#
-	# Cannot iterate over a collection which is being erased. Iterate over dupe
-	var spies_copy : Array = spies.duplicate()
-	for spy in spies_copy:
-		spy.reset()
-	spies.clear() # Shoule be alreay cleared...
-	#
 	mode = Global.BUILDING_UNSET # Note: do this last
-
-func set_spy(var spy):
-	spies.append(spy)
-	
-func remove_spy(var spy):
-	spies.erase(spy)
 	
 func remove_any_ship():
 	if ship != null and is_instance_valid(ship):
