@@ -33,6 +33,7 @@ func hide_diag():
 	current_building = null
 	page = ""
 	hide()
+	$UpdateTimer.stop()
 	if show_mission_after_tut:
 		_on_Mission_pressed()
 
@@ -55,6 +56,7 @@ func show_building_diag(var factory : Area2D):
 	show_shared_internal()
 	$FactoryContainer.visible = true
 	current_building = factory
+	$UpdateTimer.start()
 	update_building_diag()
 
 func toggle_menu_diag():
@@ -114,13 +116,20 @@ func update_Win_diag():
 	$WinContainer/Confetti2.emitting = true
 
 func update_Tutorial_diag():
-	window_title = "Tutorial Message " + String(tut_current + 1)
+	if tut_current == 0:
+		window_title = "Tutorial: Welcome to Spherifactory!"
+	else:
+		window_title = "Tutorial: Message " + String(tut_current + 1)
 	$TutorialContainer/VBox/HBox/ShowTutorialCheckbox.pressed = Global.settings["tutorial"]
 	for t in get_tree().get_nodes_in_group("TutorialGroup"):
+		var cur : bool  = (t.name == String(tut_current))
 		t.visible = (t.name == String(tut_current))
 	$TutorialContainer/VBox/HBox2/Prev.disabled = (tut_current == 0)
 	$TutorialContainer/VBox/HBox2/Next.disabled = (tut_current == (tut_max - 1))
-
+	$"TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/7/Label_above".visible = Global.factories_pull_from_above
+	$"TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/7/ColorRect_above".visible = Global.factories_pull_from_above
+	$"TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/7/Label_below".visible = !Global.factories_pull_from_above
+	$"TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/7/ColorRect_below".visible = !Global.factories_pull_from_above	
 func update_Save_diag():
 	window_title = "Save Game"
 	update_SaveLoad_common(save_vbox)

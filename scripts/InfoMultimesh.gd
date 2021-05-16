@@ -27,7 +27,10 @@ func update_visible():
 	if not is_instance_valid(factory_process):
 		reset()
 		return
-	if factory_process.get_parent().mode == Global.BUILDING_UNSET:
+	if "delted" in factory_process.name:
+		reset()
+		return
+	if factory_process.mode == Global.BUILDING_UNSET:
 		reset()
 		return
 	if is_input:

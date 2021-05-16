@@ -36,11 +36,17 @@ func update_transmute():
 			continue
 		var tranmute_from = Global.recipies[r]["input"][0]
 		var transmute_to = r
+		
 		sol.get_lane(next_out).register_resource(transmute_to, null)
-		sol.get_lane(next_in).register_resource(tranmute_from, null)
 		sol.get_lane(next_out).forbid_send = true
+		
+		# Reset the sink flag such that we can register_resource
+		sol.get_lane(next_in).sink = false
+		sol.get_lane(next_in).register_resource(tranmute_from, null)
+
 		# Any "tranmute_from" deposited in lane "next_in" becomes "transmute_to" in lane "next_out
 		sol.get_lane(next_in).set_laneswap( sol.get_lane(next_out) )
+		
 		next_out += 2
 		next_in += 2
 

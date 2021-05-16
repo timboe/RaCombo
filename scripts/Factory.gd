@@ -152,8 +152,10 @@ func reset():
 
 func remove():
 	$FactoryProcess.reset()
+	$FactoryProcess.name == "deletd"
 	for l in ring.get_lanes():
 		l.set_range_fillable(factory_angle_start, factory_angle_end, true)
+	name == "deleted"
 	queue_free()
 
 func lane_cleared(var lane_or_ship : Node2D):

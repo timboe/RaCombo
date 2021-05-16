@@ -8,6 +8,7 @@
 [node name="Sfx" type="Node"]
 
 [node name="Thud" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
 stream = ExtResource( 3 )
 bus = "Sfx"
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=2]
+[gd_scene load_steps=117 format=2]
 
 [ext_resource path="res://scripts/BinLane.gd" type="Script" id=1]
 [ext_resource path="res://resources/NewBuildingButtonGroup.tres" type="ButtonGroup" id=2]
@@ -52,6 +52,19 @@
 [ext_resource path="res://images/rocket.png" type="Texture" id=50]
 [ext_resource path="res://scenes/Sfx.tscn" type="PackedScene" id=51]
 [ext_resource path="res://scenes/Confetti.tscn" type="PackedScene" id=52]
+[ext_resource path="res://images/t1.png" type="Texture" id=53]
+[ext_resource path="res://images/t0.png" type="Texture" id=54]
+[ext_resource path="res://images/t2.png" type="Texture" id=55]
+[ext_resource path="res://images/t3a.png" type="Texture" id=56]
+[ext_resource path="res://images/t3b.png" type="Texture" id=57]
+[ext_resource path="res://images/t3c.png" type="Texture" id=58]
+[ext_resource path="res://images/t4.png" type="Texture" id=59]
+[ext_resource path="res://images/t5.png" type="Texture" id=60]
+[ext_resource path="res://images/t6a.png" type="Texture" id=61]
+[ext_resource path="res://images/t6b.png" type="Texture" id=62]
+[ext_resource path="res://images/t7a.png" type="Texture" id=63]
+[ext_resource path="res://images/t7b.png" type="Texture" id=64]
+[ext_resource path="res://images/t8.png" type="Texture" id=65]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends ItemList
@@ -2245,7 +2258,6 @@ icon = ExtResource( 30 )
 expand_icon = true
 
 [node name="TutorialContainer" type="MarginContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog"]
-visible = false
 margin_right = 455.0
 margin_bottom = 420.0
 rect_min_size = Vector2( 455, 420 )
@@ -2274,53 +2286,53 @@ __meta__ = {
 
 [node name="TutorialVBox" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC"]
 margin_right = 439.0
-margin_bottom = 337.0
+margin_bottom = 235.0
 size_flags_horizontal = 3
 custom_constants/separation = 8
 
 [node name="0" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox" groups=[
 "TutorialGroup",
 ]]
-margin_right = 431.0
-margin_bottom = 337.0
+visible = false
+margin_right = 439.0
+margin_bottom = 303.0
 size_flags_horizontal = 3
 custom_constants/separation = 8
 
 [node name="Label" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/0"]
-margin_right = 431.0
-margin_bottom = 201.0
-text = "Welcome to Spherifactory!
+margin_right = 439.0
+margin_bottom = 167.0
+text = "CAMERA CONTROLS
 
-CAMERA CONTROLS
-
-Move the camera with:
-  - The W,A,S,D keys,
-  - The Arrow keys,
-  - Right clicking and dragging the mouse.
+Move the camera:
+  - With the W,A,S,D keys,
+  - With the Arrow keys,
+  - By holding the middle mouse button and moving the mouse.
 
 Zoom the camera in and out with:
   - The Q and E keys,
-  - The scroll wheel."
+  - The mouse's scroll wheel."
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/0"]
-margin_left = 15.0
-margin_top = 209.0
-margin_right = 415.0
-margin_bottom = 337.0
+[node name="ColorRect" type="TextureRect" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/0"]
+margin_left = 19.0
+margin_top = 175.0
+margin_right = 419.0
+margin_bottom = 303.0
 rect_min_size = Vector2( 400, 128 )
 size_flags_horizontal = 4
+texture = ExtResource( 54 )
 
 [node name="1" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox" groups=[
 "TutorialGroup",
 ]]
 visible = false
-margin_right = 431.0
-margin_bottom = 150.0
+margin_right = 439.0
+margin_bottom = 286.0
 size_flags_horizontal = 3
 custom_constants/separation = 8
 
 [node name="Label" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/1"]
-margin_right = 431.0
+margin_right = 439.0
 margin_bottom = 150.0
 text = "RESOURCES
 
@@ -2332,12 +2344,21 @@ away from the Sun.
 
 Resources with a [-] sign always move inwards, towards the Sun."
 
+[node name="ColorRect2" type="TextureRect" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/1"]
+margin_left = 19.0
+margin_top = 158.0
+margin_right = 419.0
+margin_bottom = 286.0
+rect_min_size = Vector2( 400, 128 )
+size_flags_horizontal = 4
+texture = ExtResource( 53 )
+
 [node name="2" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox" groups=[
 "TutorialGroup",
 ]]
 visible = false
 margin_right = 431.0
-margin_bottom = 201.0
+margin_bottom = 337.0
 size_flags_horizontal = 3
 custom_constants/separation = 8
 
@@ -2357,31 +2378,78 @@ around the ring.
 
 Click on a ring to manage its lanes and satelites."
 
+[node name="ColorRect3" type="TextureRect" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/2"]
+margin_left = 15.0
+margin_top = 209.0
+margin_right = 415.0
+margin_bottom = 337.0
+rect_min_size = Vector2( 400, 128 )
+size_flags_horizontal = 4
+texture = ExtResource( 55 )
+
 [node name="3" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox" groups=[
 "TutorialGroup",
 ]]
 visible = false
 margin_right = 431.0
-margin_bottom = 99.0
+margin_bottom = 534.0
 size_flags_horizontal = 3
 custom_constants/separation = 8
 
 [node name="Label" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/3"]
 margin_right = 431.0
-margin_bottom = 99.0
+margin_bottom = 82.0
 text = "SATELITES: EXTACTOR
 
 Satelites in Extractor mode move [+] resources.
-  - [+] resources move from ring below to the ring above.
-  - If built on the first ring, it will extract [+] resources from the Sun.
-  - If built on the outermost ring, it will export the [+] resource."
+  
+[+] resources move from ring below to the ring above."
+
+[node name="ColorRect5" type="TextureRect" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/3"]
+margin_left = 15.0
+margin_top = 90.0
+margin_right = 415.0
+margin_bottom = 218.0
+rect_min_size = Vector2( 400, 128 )
+size_flags_horizontal = 4
+texture = ExtResource( 57 )
+
+[node name="Label2" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/3"]
+margin_top = 226.0
+margin_right = 431.0
+margin_bottom = 240.0
+text = " If built on the first ring, it will extract [+] resources from the Sun."
+
+[node name="ColorRect4" type="TextureRect" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/3"]
+margin_left = 15.0
+margin_top = 248.0
+margin_right = 415.0
+margin_bottom = 376.0
+rect_min_size = Vector2( 400, 128 )
+size_flags_horizontal = 4
+texture = ExtResource( 56 )
+
+[node name="Label3" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/3"]
+margin_top = 384.0
+margin_right = 431.0
+margin_bottom = 398.0
+text = "If built on the outermost ring, it will export the [+] resource."
+
+[node name="ColorRect6" type="TextureRect" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/3"]
+margin_left = 15.0
+margin_top = 406.0
+margin_right = 415.0
+margin_bottom = 534.0
+rect_min_size = Vector2( 400, 128 )
+size_flags_horizontal = 4
+texture = ExtResource( 58 )
 
 [node name="4" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox" groups=[
 "TutorialGroup",
 ]]
 visible = false
 margin_right = 439.0
-margin_bottom = 201.0
+margin_bottom = 337.0
 size_flags_horizontal = 3
 custom_constants/separation = 8
 
@@ -2396,17 +2464,26 @@ of a [+] resource using Extractor satelites on the outermost ring.
 Example, to export [H+] with only one Ring.
  - Click the Build Satelite button on the left of the screen
  - Place some unassigned satelites in Ring 1
-- Click the unassigned satelites and configure them as [H+] Extractor
+ - Click the unassigned satelites and configure them as [H+] Extractor
 
 Extractor satelites in the outermost ring will load the [+] resource
 into ships and launch these into space."
+
+[node name="ColorRect7" type="TextureRect" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/4"]
+margin_left = 19.0
+margin_top = 209.0
+margin_right = 419.0
+margin_bottom = 337.0
+rect_min_size = Vector2( 400, 128 )
+size_flags_horizontal = 4
+texture = ExtResource( 59 )
 
 [node name="5" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox" groups=[
 "TutorialGroup",
 ]]
 visible = false
 margin_right = 439.0
-margin_bottom = 150.0
+margin_bottom = 286.0
 size_flags_horizontal = 3
 custom_constants/separation = 8
 
@@ -2423,39 +2500,71 @@ to assign the injector to the lane.
 
 To move an injector, first click on the current ring and clear the lane."
 
+[node name="ColorRect8" type="TextureRect" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/5"]
+margin_left = 19.0
+margin_top = 158.0
+margin_right = 419.0
+margin_bottom = 286.0
+rect_min_size = Vector2( 400, 128 )
+size_flags_horizontal = 4
+texture = ExtResource( 60 )
+
 [node name="6" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox" groups=[
 "TutorialGroup",
 ]]
 visible = false
-margin_right = 439.0
-margin_bottom = 150.0
+margin_right = 433.0
+margin_bottom = 427.0
 size_flags_horizontal = 3
 custom_constants/separation = 8
 
 [node name="Label" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/6"]
-margin_right = 439.0
-margin_bottom = 150.0
+margin_right = 433.0
+margin_bottom = 82.0
 text = "SATELITES: INSERTERS
 
 Satelites in Inserter mode move [-] resources.
-  - [-] resources are moved from the ring above to the ring below.
-  - If built on the first ring, the [-] resource will be 
-    thrown into the sun.
+
+ [-] resources are moved from the ring above to the ring below."
+
+[node name="ColorRect9" type="TextureRect" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/6"]
+margin_left = 16.0
+margin_top = 90.0
+margin_right = 416.0
+margin_bottom = 218.0
+rect_min_size = Vector2( 400, 128 )
+size_flags_horizontal = 4
+texture = ExtResource( 61 )
+
+[node name="Label2" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/6"]
+margin_top = 226.0
+margin_right = 433.0
+margin_bottom = 291.0
+text = " If built on the first ring, the [-] resource will be thrown into the sun.
 
 Some [-] resources will transmute  if they are thrown into the sun, 
 others are destroyed."
+
+[node name="ColorRect10" type="TextureRect" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/6"]
+margin_left = 16.0
+margin_top = 299.0
+margin_right = 416.0
+margin_bottom = 427.0
+rect_min_size = Vector2( 400, 128 )
+size_flags_horizontal = 4
+texture = ExtResource( 62 )
 
 [node name="7" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox" groups=[
 "TutorialGroup",
 ]]
 visible = false
-margin_right = 439.0
-margin_bottom = 201.0
+margin_right = 431.0
+margin_bottom = 337.0
 size_flags_horizontal = 3
 custom_constants/separation = 8
 
-[node name="Label" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/7"]
-margin_right = 439.0
+[node name="Label_above" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/7"]
+margin_right = 431.0
 margin_bottom = 201.0
 text = "SATELITES: FACTORIES
 
@@ -2470,12 +2579,45 @@ resource. The factory will:
 Each recipy specifies the number of each input resource required, 
 the amount of the output resource produced, and the time taken."
 
+[node name="Label_below" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/7"]
+margin_right = 431.0
+margin_bottom = 201.0
+text = "SATELITES: FACTORIES
+
+Satelites in Factory mode combine resources together into a new
+resource. The factory will:
+  - Collect up to four resources, depending on the recipe.
+  - Resources are collected from the lanes in the two rings
+    below the factory.
+	  - Deposit a constructed [+] resource into the ring above.
+	  - Deposit a constructed [-] resource into the ring below.
+	
+Each recipy specifies the number of each input resource required, 
+the amount of the output resource produced, and the time taken."
+
+[node name="ColorRect_above" type="TextureRect" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/7"]
+margin_left = 15.0
+margin_top = 209.0
+margin_right = 415.0
+margin_bottom = 337.0
+rect_min_size = Vector2( 400, 128 )
+size_flags_horizontal = 4
+texture = ExtResource( 63 )
+
+[node name="ColorRect_below" type="TextureRect" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/7"]
+margin_left = 15.0
+margin_top = 209.0
+margin_right = 415.0
+margin_bottom = 337.0
+rect_min_size = Vector2( 400, 128 )
+size_flags_horizontal = 4
+texture = ExtResource( 64 )
+
 [node name="8" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox" groups=[
 "TutorialGroup",
 ]]
-visible = false
 margin_right = 439.0
-margin_bottom = 99.0
+margin_bottom = 235.0
 size_flags_horizontal = 3
 custom_constants/separation = 8
 
@@ -2488,6 +2630,15 @@ Some [-] resources can be transmuted into a different [+] resource
 by discarding them into the Sun.
 
 Click on the sun to see possible transmuations."
+
+[node name="ColorRect12" type="TextureRect" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/8"]
+margin_left = 19.0
+margin_top = 107.0
+margin_right = 419.0
+margin_bottom = 235.0
+rect_min_size = Vector2( 400, 128 )
+size_flags_horizontal = 4
+texture = ExtResource( 65 )
 
 [node name="HBox" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox"]
 margin_top = 316.0
@@ -2542,6 +2693,7 @@ icon = ExtResource( 30 )
 expand_icon = true
 
 [node name="WinContainer" type="MarginContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog"]
+visible = false
 margin_right = 455.0
 margin_bottom = 420.0
 rect_min_size = Vector2( 455, 420 )
@@ -2659,7 +2811,6 @@ one_shot = true
 [node name="UpdateTimer" type="Timer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog"]
 process_mode = 0
 wait_time = 0.2
-autostart = true
 
 [node name="MainUI" type="Control" parent="CanvasLayer/UI"]
 script = ExtResource( 46 )
@@ -3246,52 +3397,52 @@ autostart = true
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/HBox2/Back" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Back_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/WinContainer/VBox/HBox2/Back" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Back_pressed"]
 [connection signal="timeout" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/UpdateTimer" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_UpdateTimer_timeout"]
-[connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Pause" to="CanvasLayer/UI/MainUI" method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Pause" to="Sfx/Click" method="play"]
+[connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Pause" to="CanvasLayer/UI/MainUI" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Pause" to="CanvasLayer/UI/MainUI" method="_on_mouse_exited"]
 [connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Pause" to="CanvasLayer/UI/MainUI" method="_on_Pause_toggled"]
-[connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/FF" to="CanvasLayer/UI/MainUI" method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/FF" to="Sfx/Click" method="play"]
+[connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/FF" to="CanvasLayer/UI/MainUI" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/FF" to="CanvasLayer/UI/MainUI" method="_on_mouse_exited"]
 [connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/FF" to="CanvasLayer/UI/MainUI" method="_on_FF_toggled"]
-[connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/SandboxButton" to="CanvasLayer/UI/MainUI" method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/SandboxButton" to="Sfx/Click" method="play"]
+[connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/SandboxButton" to="CanvasLayer/UI/MainUI" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/SandboxButton" to="CanvasLayer/UI/MainUI" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/SandboxButton" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Sandbox_pressed"]
-[connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Outlines" to="CanvasLayer/UI/MainUI" method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Outlines" to="Sfx/Click" method="play"]
+[connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Outlines" to="CanvasLayer/UI/MainUI" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Outlines" to="CanvasLayer/UI/MainUI" method="_on_mouse_exited"]
 [connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Outlines" to="CanvasLayer/UI/MainUI" method="_on_Outlines_toggled"]
-[connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Menu" to="CanvasLayer/UI/MainUI" method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Menu" to="Sfx/Click" method="play"]
+[connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Menu" to="CanvasLayer/UI/MainUI" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Menu" to="CanvasLayer/UI/MainUI" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer/HBoxContainer/Menu" to="CanvasLayer/UI/MainUI" method="_on_Menu_pressed"]
-[connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/BuildMode" to="CanvasLayer/UI/MainUI" method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/BuildMode" to="Sfx/Click" method="play"]
+[connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/BuildMode" to="CanvasLayer/UI/MainUI" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/BuildMode" to="CanvasLayer/UI/MainUI" method="_on_mouse_exited"]
 [connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/BuildMode" to="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/BuildMode" method="_on_Button_toggled"]
-[connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton0" to="CanvasLayer/UI/MainUI" method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton0" to="Sfx/Click" method="play"]
+[connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton0" to="CanvasLayer/UI/MainUI" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton0" to="CanvasLayer/UI/MainUI" method="_on_mouse_exited"]
 [connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton0" to="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton0" method="_on_Button_toggled"]
-[connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton1" to="CanvasLayer/UI/MainUI" method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton1" to="Sfx/Click" method="play"]
+[connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton1" to="CanvasLayer/UI/MainUI" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton1" to="CanvasLayer/UI/MainUI" method="_on_mouse_exited"]
 [connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton1" to="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton1" method="_on_Button_toggled"]
-[connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton2" to="CanvasLayer/UI/MainUI" method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton2" to="Sfx/Click" method="play"]
+[connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton2" to="CanvasLayer/UI/MainUI" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton2" to="CanvasLayer/UI/MainUI" method="_on_mouse_exited"]
 [connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton2" to="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton2" method="_on_Button_toggled"]
-[connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton3" to="CanvasLayer/UI/MainUI" method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton3" to="Sfx/Click" method="play"]
+[connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton3" to="CanvasLayer/UI/MainUI" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton3" to="CanvasLayer/UI/MainUI" method="_on_mouse_exited"]
 [connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton3" to="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton3" method="_on_Button_toggled"]
-[connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton4" to="CanvasLayer/UI/MainUI" method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton4" to="Sfx/Click" method="play"]
+[connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton4" to="CanvasLayer/UI/MainUI" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton4" to="CanvasLayer/UI/MainUI" method="_on_mouse_exited"]
 [connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton4" to="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton4" method="_on_Button_toggled"]
-[connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton5" to="CanvasLayer/UI/MainUI" method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton5" to="Sfx/Click" method="play"]
+[connection signal="mouse_entered" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton5" to="CanvasLayer/UI/MainUI" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton5" to="CanvasLayer/UI/MainUI" method="_on_mouse_exited"]
 [connection signal="toggled" from="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton5" to="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer/VBoxContainer/InjectorButton5" method="_on_Button_toggled"]
 [connection signal="timeout" from="SomethingChanged" to="SomethingChanged" method="_on_SomethingChanged_timeout"]

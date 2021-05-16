@@ -143,7 +143,7 @@ func set_lanes(var l : int):
 	for ring_i in range(rs.get_child_count() -1, -1, -1):
 		if ring_i == 0:
 			continue
-		print("Processing ring ", ring_i)
+		#print("Processing ring ", ring_i)
 		var ring = rs.get_node("Ring"+String(ring_i))
 		var lanes = ring.get_node("Rotation/Lanes")
 		for lane_i in lanes.get_child_count():

@@ -114,10 +114,8 @@ func stop_hint_resource():
 		guide_lines.visible = false
 
 func setup_resource_at_hint():
-	print("T1")
 	if ring == "": # Invalid
 		return
-	print("T2")
 	get_node(ring).register_resource(lane, set_resource, self)
 	placed = true
 	update_internal()
