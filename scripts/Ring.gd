@@ -13,6 +13,8 @@ export(Array, float) var radius_array
 export(float) var angular_velocity
 export(int) var n
 
+onready var thud : AudioStreamPlayer = get_tree().get_root().find_node("Thud",true,false)
+
 func serialise() -> Dictionary:
 	var d := {}
 	d["rotation"] = $Rotation.rotation
@@ -96,6 +98,7 @@ func new_factory():
 	for l in get_lanes():
 		l.set_range_fillable(new_factory_angle_start, new_factory_angle_end, false)
 	print("Factory ",new_factory.name," placed")
+	thud.play()
 
 func get_lane(var i) -> Node:
 	return $Rotation/Lanes.get_child(i)

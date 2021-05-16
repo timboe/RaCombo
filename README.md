@@ -36,4 +36,10 @@ Assets:
  https://www.shadertoy.com/view/WssSz8
  or
  https://www.shadertoy.com/view/4sBfDw
- http://www.picturetopeople.org/p2p/text_effects_generator.p2p/banner-generator
+
+still to do
+---
+
+ https://freesound.org/people/SilverIllusionist/sounds/462249/
+
+ Rocket by Maxim Kulikov from the Noun Project

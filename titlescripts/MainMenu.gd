@@ -49,6 +49,9 @@ func show_menu(var menu : String, var extra = null):
 
 # Extra methods
 
+func MainMenu(var _extra):
+	$MarginContainer/MarginContainer/VBoxContainer/LoadButton.disabled = (Global.saves.size() == 0)
+
 func CampaignManager(var _extra):
 	for c in campaigns.get_node("Container").get_children():
 		c.queue_free()

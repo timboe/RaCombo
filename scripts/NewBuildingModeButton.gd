@@ -1,6 +1,7 @@
 extends Button
 
 onready var id : WindowDialog = get_tree().get_root().find_node("InfoDialog",true,false)
+onready var click : AudioStreamPlayer = get_tree().get_root().find_node("Click",true,false)
 
 func _on_Button_pressed():
 	var mode : int
@@ -12,6 +13,7 @@ func _on_Button_pressed():
 		mode = Global.BUILDING_FACTORY
 	else:
 		print("ERROR in assigning new building job")
+	click.play()
 	Global.last_satelite_type = mode
 	Global.last_satelite_recipe = name
 	id.current_building.configure_building()

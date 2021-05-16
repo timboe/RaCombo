@@ -9,6 +9,7 @@ onready var gui_mission_label : Label  = get_tree().get_root().find_node("Missio
 onready var gui_sandbox : Button  = get_tree().get_root().find_node("SandboxButton", true, false) 
 onready var rs = get_tree().get_root().find_node("RingSystem", true, false)
 onready var save_load = get_tree().get_root().find_node("SaveLoad", true, false)
+onready var victory = get_tree().get_root().find_node("Victory", true, false)
 onready var something_changed_node = $"/root/Game/SomethingChanged"
 
 var t = 0
@@ -113,6 +114,7 @@ func _process(delta):
 			set_process(false)
 			if not Global.game_finished:
 				change_level(Global.level + 1)
+				victory.play()
 
 func set_injectors(var inj_data):
 	for i in range(Global.MAX_INPUT_LANES): 
