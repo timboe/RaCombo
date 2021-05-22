@@ -86,9 +86,9 @@ func _unhandled_input(event):
 				print("Show ring diag ",ring)
 				id.show_ring_diag(ring)
 		elif mode_build and ring.ring_number != 0:
-			ring.new_factory()
-			cam.add_trauma(0.2)
-			print("New factory")
+			if ring.new_factory():
+				cam.add_trauma(0.2)
+				print("New factory")
 		elif mode_inject and ring.ring_number != 0:
 			injection.setup_resource_at_hint()
 			print("Set injection")

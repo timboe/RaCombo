@@ -264,25 +264,25 @@ func _on_ShowTutorialCheckbox_toggled(button_pressed):
 	file.close()
 "
 
-[sub_resource type="DynamicFontData" id=50]
+[sub_resource type="DynamicFontData" id=29]
 font_path = "res://resources/advent-pro.bold.ttf"
 
-[sub_resource type="DynamicFont" id=51]
+[sub_resource type="DynamicFont" id=30]
 resource_local_to_scene = true
 size = 74
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 use_mipmaps = true
 use_filter = true
-font_data = SubResource( 50 )
+font_data = SubResource( 29 )
 
-[sub_resource type="InputEventAction" id=29]
+[sub_resource type="InputEventAction" id=31]
 action = "ui_pause"
 
-[sub_resource type="ShortCut" id=30]
-shortcut = SubResource( 29 )
+[sub_resource type="ShortCut" id=32]
+shortcut = SubResource( 31 )
 
-[sub_resource type="GDScript" id=31]
+[sub_resource type="GDScript" id=33]
 script/source = "extends Node2D
 
 const N_INJECTORS = 6
@@ -296,12 +296,6 @@ func _ready():
 #	print(\"Running on \", ring)
 	pass
 "
-
-[sub_resource type="QuadMesh" id=32]
-size = Vector2( 10, 10 )
-
-[sub_resource type="MultiMesh" id=33]
-mesh = SubResource( 32 )
 
 [sub_resource type="QuadMesh" id=34]
 size = Vector2( 10, 10 )
@@ -333,7 +327,13 @@ size = Vector2( 10, 10 )
 [sub_resource type="MultiMesh" id=43]
 mesh = SubResource( 42 )
 
-[sub_resource type="Shader" id=44]
+[sub_resource type="QuadMesh" id=44]
+size = Vector2( 10, 10 )
+
+[sub_resource type="MultiMesh" id=45]
+mesh = SubResource( 44 )
+
+[sub_resource type="Shader" id=46]
 code = "shader_type canvas_item;
 
 uniform bool paused = false;
@@ -608,25 +608,25 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id=45]
-shader = SubResource( 44 )
+[sub_resource type="ShaderMaterial" id=47]
+shader = SubResource( 46 )
 shader_param/paused = false
 
-[sub_resource type="OpenSimplexNoise" id=46]
+[sub_resource type="OpenSimplexNoise" id=48]
 
-[sub_resource type="NoiseTexture" id=47]
+[sub_resource type="NoiseTexture" id=49]
 width = 140
 height = 140
-noise = SubResource( 46 )
+noise = SubResource( 48 )
 
-[sub_resource type="Environment" id=48]
+[sub_resource type="Environment" id=50]
 background_mode = 4
 glow_enabled = true
 glow_bloom = 0.5
 glow_bicubic_upscale = true
 adjustment_saturation = 8.0
 
-[sub_resource type="OpenSimplexNoise" id=49]
+[sub_resource type="OpenSimplexNoise" id=51]
 
 [node name="Game" type="Node2D"]
 
@@ -2732,7 +2732,7 @@ expand = true
 margin_left = 78.0
 margin_right = 360.0
 margin_bottom = 183.0
-custom_fonts/font = SubResource( 51 )
+custom_fonts/font = SubResource( 30 )
 text = "Campaign
 Finished!"
 __meta__ = {
@@ -2846,7 +2846,7 @@ margin_right = 64.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 toggle_mode = true
-shortcut = SubResource( 30 )
+shortcut = SubResource( 32 )
 icon = ExtResource( 29 )
 expand_icon = true
 
@@ -3062,7 +3062,7 @@ __meta__ = {
 position = Vector2( 512, 300 )
 
 [node name="InjectionSystem" type="Node2D" parent="CentreNode"]
-script = SubResource( 31 )
+script = SubResource( 33 )
 
 [node name="Injector0" type="Node2D" parent="CentreNode/InjectionSystem"]
 
@@ -3078,7 +3078,7 @@ script = ExtResource( 6 )
 visible = false
 modulate = Color( 0, 0, 1, 1 )
 position = Vector2( -3.46068, 0 )
-multimesh = SubResource( 33 )
+multimesh = SubResource( 35 )
 texture = ExtResource( 15 )
 script = ExtResource( 8 )
 
@@ -3096,7 +3096,7 @@ script = ExtResource( 6 )
 visible = false
 modulate = Color( 1, 1, 0, 1 )
 position = Vector2( -12.1307, 0 )
-multimesh = SubResource( 35 )
+multimesh = SubResource( 37 )
 texture = ExtResource( 19 )
 script = ExtResource( 8 )
 
@@ -3114,7 +3114,7 @@ script = ExtResource( 6 )
 visible = false
 modulate = Color( 0.97, 0.15, 0.52, 1 )
 position = Vector2( -20.7248, 0 )
-multimesh = SubResource( 37 )
+multimesh = SubResource( 39 )
 texture = ExtResource( 17 )
 script = ExtResource( 8 )
 
@@ -3132,7 +3132,7 @@ script = ExtResource( 6 )
 visible = false
 modulate = Color( 0.05, 0.05, 0.05, 1 )
 position = Vector2( -20.7248, 0 )
-multimesh = SubResource( 39 )
+multimesh = SubResource( 41 )
 texture = ExtResource( 19 )
 script = ExtResource( 8 )
 
@@ -3150,7 +3150,7 @@ script = ExtResource( 6 )
 visible = false
 modulate = Color( 0.05, 0.05, 0.05, 1 )
 position = Vector2( -20.7248, 0 )
-multimesh = SubResource( 41 )
+multimesh = SubResource( 43 )
 texture = ExtResource( 19 )
 script = ExtResource( 8 )
 
@@ -3167,7 +3167,7 @@ script = ExtResource( 6 )
 visible = false
 modulate = Color( 0.05, 0.05, 0.05, 1 )
 position = Vector2( -20.7248, 0 )
-multimesh = SubResource( 43 )
+multimesh = SubResource( 45 )
 texture = ExtResource( 19 )
 script = ExtResource( 8 )
 
@@ -3262,11 +3262,11 @@ scale = Vector2( 2.2, 2.2 )
 texture = ExtResource( 11 )
 
 [node name="Sol" type="Sprite" parent="CentreNode"]
-material = SubResource( 45 )
-texture = SubResource( 47 )
+material = SubResource( 47 )
+texture = SubResource( 49 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 48 )
+environment = SubResource( 50 )
 
 [node name="Line2D" type="Line2D" parent="."]
 visible = false
@@ -3283,7 +3283,7 @@ pause_mode = 2
 offset = Vector2( 512, 300 )
 current = true
 script = ExtResource( 5 )
-noise = SubResource( 49 )
+noise = SubResource( 51 )
 
 [node name="SomethingChanged" type="Timer" parent="."]
 pause_mode = 2

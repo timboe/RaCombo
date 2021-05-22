@@ -240,7 +240,7 @@ radians_per_slot = 0.0156298
 [node name="Factories" type="Node2D" parent="Rotation"]
 pause_mode = 2
 
-[node name="FactoryTemplate" type="Area2D" parent="Rotation" groups=[
+[node name="FactoryTemplate" type="Node2D" parent="Rotation" groups=[
 "FactoryGroup",
 ]]
 pause_mode = 2
@@ -255,8 +255,6 @@ pause_mode = 1
 process_mode = 0
 wait_time = 2.5
 one_shot = true
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Rotation/FactoryTemplate"]
 
 [node name="TextureButton" type="TextureButton" parent="Rotation/FactoryTemplate" groups=[
 "FactoryButtonGroup",
@@ -368,8 +366,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="area_entered" from="Rotation/FactoryTemplate" to="Rotation/FactoryTemplate" method="_on_FactoryTemplate_area_entered"]
-[connection signal="area_exited" from="Rotation/FactoryTemplate" to="Rotation/FactoryTemplate" method="_on_FactoryTemplate_area_exited"]
 [connection signal="timeout" from="Rotation/FactoryTemplate/NewShip" to="Rotation/FactoryTemplate" method="_on_NewShip_timeout"]
 [connection signal="gui_input" from="Rotation/FactoryTemplate/TextureButton" to="Rotation/FactoryTemplate" method="_on_TextureButton_gui_input"]
 [connection signal="timeout" from="Rotation/FactoryTemplate/FactoryProcess/Timer" to="Rotation/FactoryTemplate/FactoryProcess" method="_on_Timer_timeout"]

@@ -1,9 +1,10 @@
-extends Area2D
+extends Node2D
 
 const POINTS := 32
 
 onready var id = get_tree().get_root().find_node("InfoDialog", true, false) 
 onready var ring = find_parent("Ring*")
+onready var rotation_node = find_parent("Rotation")
 
 export(float) var inner_radius
 export(float) var outer_radius
@@ -59,9 +60,23 @@ func deserialise(var d : Dictionary):
 	update()
 	$FactoryProcess.deserialise(d)
 
-
 func _ready():
 	reset()
+	set_process(false)
+
+# Process handles factory collision when placing
+func _process(var _delta):
+	factory_angle_start = (global_rotation - span_radians/2.0) - rotation_node.rotation
+	factory_angle_end = (global_rotation + span_radians/2.0) - rotation_node.rotation
+	# Jus checking the innermost lane is fine
+	var placeable = ring.get_lane(0).get_range_fillable(factory_angle_start, factory_angle_end)
+	if !placeable != colliding:
+		colliding = !placeable
+		if colliding:
+			factory_color = PoolColorArray([Color(0.5, 0.0, 0.17, 1.0)])
+		else:
+			factory_color = PoolColorArray([Color(0.6, 0.6, 0.6, 1.0)])
+		update()
 
 func add_arc(var points : int,
   var start : float, var end : float,
@@ -72,9 +87,7 @@ func add_arc(var points : int,
 		points_vec.push_back(centre + (Vector2(cos(angle_point), sin(angle_point)) * radius))
 
 func _draw():
-	
 	#mode = BUILDING_EXTRACTOR
-	
 	var radius_mod : float = (outer_radius - inner_radius) * Global.INSERTER_RADIUS_MOD
 	var span_mod = span_radians * Global.INSERTER_RADIUS_MOD
 	points_vec.resize(0)
@@ -115,7 +128,6 @@ func _draw():
 	###
 	draw_polygon(points_vec, factory_color, PoolVector2Array(), null, null, true)
 	draw_polyline(points_vec, factory_outline_color, 2.0, true)
-	$CollisionPolygon2D.polygon = points_vec
 	$FactoryProcess.angle_back = -span_radians/2.0
 	$FactoryProcess.angle_front = span_radians/2.0
 	#
@@ -190,18 +202,6 @@ func check_add_remove_ship():
 		print("rmove any ships from ",ring.ring_number + 1," (note +1) which is not ", Global.rings)
 		$FactoryProcess.remove_any_ship()
 
-func _on_FactoryTemplate_area_entered(_area):
-	if name == "FactoryTemplate":
-		factory_color = PoolColorArray([Color(0.5, 0.0, 0.17, 1.0)])
-		colliding = true
-		update()
-
-func _on_FactoryTemplate_area_exited(_area):
-	if name == "FactoryTemplate" and get_overlapping_areas().size() == 0:
-		factory_color = PoolColorArray([Color(0.6, 0.6, 0.6, 1.0)])
-		colliding = false
-		update()
-
 func _on_NewShip_timeout():
 	if ring.ring_number + 1 != Global.rings:
 		print("_on_NewShip_timeout cancelled due to not being outer ring")
@@ -224,3 +224,4 @@ func _on_TextureButton_gui_input(event):
 				id.show_building_diag(self)
 			BUTTON_RIGHT:
 				configure_building()
+				

@@ -115,14 +115,6 @@ func add_to_ring(var angle : float):
 			set_slot_filled(i_wrap, true, true)
 			return true
 	return false
-	
-func set_range_fillable(var start : float, var end : float, var fillable : bool):
-	var slot_start : int = wrap_i(round(wrap_a(start) / radians_per_slot))
-	var slot_end : int = wrap_i(round(wrap_a(end) / radians_per_slot))
-	while true:
-		set_slot_fillable(slot_start, fillable)
-		slot_start = wrap_i(slot_start + 1)
-		if (slot_start == slot_end): break
 
 func set_as_source_lane():
 	source = true
@@ -290,7 +282,25 @@ func set_slot_filled(var i : int, var filled : bool, var capturable : bool):
 	c.r = filled
 	c.g = capturable
 	multimesh.set_instance_custom_data(i, c)
-	
+
+func get_range_fillable(var start : float, var end : float) -> bool:
+	var slot_start : int = wrap_i(round(wrap_a(start) / radians_per_slot))
+	var slot_end : int = wrap_i(round(wrap_a(end) / radians_per_slot))
+	while true:
+		if not get_slot_fillable(slot_start):
+			return false
+		slot_start = wrap_i(slot_start + 1)
+		if (slot_start == slot_end): break
+	return true
+
+func set_range_fillable(var start : float, var end : float, var fillable : bool):
+	var slot_start : int = wrap_i(round(wrap_a(start) / radians_per_slot))
+	var slot_end : int = wrap_i(round(wrap_a(end) / radians_per_slot))
+	while true:
+		set_slot_fillable(slot_start, fillable)
+		slot_start = wrap_i(slot_start + 1)
+		if (slot_start == slot_end): break
+
 func set_slot_fillable(var i : int, var fillable : bool):
 	var c : Color = multimesh.get_instance_custom_data(i)
 	c.b = int(fillable)

@@ -28,11 +28,12 @@ var points_vec = PoolVector2Array()
 
 onready var id : WindowDialog = get_tree().get_root().find_node("InfoDialog", true, false) 
 onready var rule_changer : Node2D = get_tree().get_root().find_node("RuleChanger", true, false) 
+onready var ring = find_parent("Ring*")
 onready var something_changed_node = $"/root/Game/SomethingChanged"
 
 func serialise() -> Dictionary:
 	var d := {}
-	d["parent_ring"] = get_parent().get_parent().get_path()
+	d["parent_ring"] = ring.get_path()
 	#
 	d["shiprotator_name"] = get_parent().name
 	d["shiprotator_global_rotation"] = get_parent().global_rotation

@@ -14,6 +14,7 @@ export(float) var angular_velocity
 export(int) var n
 
 onready var thud : AudioStreamPlayer = get_tree().get_root().find_node("Thud",true,false)
+onready var factory_template = $Rotation/FactoryTemplate
 
 func serialise() -> Dictionary:
 	var d := {}
@@ -57,7 +58,7 @@ func deserialise(var d : Dictionary):
 	
 func _ready():
 	$Rotation.rotation = 0
-	$Rotation/FactoryTemplate.visible = false
+	factory_template.visible = false
 	$ShipRotationTemplate.visible = false
 	ring_number = name.to_int()
 	if ring_number != 0:
@@ -78,14 +79,13 @@ func add_to_ring(var angle : float, var lane : int):
 	return get_lane(lane).add_to_ring(angle_mod)
 
 func set_factory_template_visible(var v : bool):
-	$Rotation/FactoryTemplate.visible = v
-	if v:
-		$Rotation/FactoryTemplate._on_FactoryTemplate_area_exited(null)
-	
-func new_factory():
+	factory_template.visible = v
+	factory_template.set_process(v)
+
+func new_factory() -> bool:
 	var factory_template = $Rotation/FactoryTemplate
 	if factory_template.colliding:
-		return
+		return false
 	var new_factory = factory_template.duplicate(DUPLICATE_SCRIPTS|DUPLICATE_SIGNALS|DUPLICATE_GROUPS)
 	new_factory.name = "FactoryInstance1"
 	get_node("Rotation/Factories").add_child(new_factory, true)
@@ -99,6 +99,7 @@ func new_factory():
 		l.set_range_fillable(new_factory_angle_start, new_factory_angle_end, false)
 	print("Factory ",new_factory.name," placed")
 	thud.play()
+	return true
 
 func get_lane(var i) -> Node:
 	return $Rotation/Lanes.get_child(i)

@@ -5,7 +5,7 @@ onready var save_vbox = get_tree().get_root().find_node("SaveVBox", true, false)
 onready var load_vbox = get_tree().get_root().find_node("LoadVBox", true, false) 
 onready var save_load = get_tree().get_root().find_node("SaveLoad", true, false) 
 
-var current_building : Area2D  = null
+var current_building : Node2D  = null
 var current_ring : Node2D = null
 var current_lanes : Array = []
 var page : String = ""
@@ -52,7 +52,7 @@ func show_ring_diag(var ring : Node2D):
 	current_ring = ring
 	update_ring_diag()
 	
-func show_building_diag(var factory : Area2D):
+func show_building_diag(var factory : Node2D):
 	show_shared_internal()
 	$FactoryContainer.visible = true
 	current_building = factory
