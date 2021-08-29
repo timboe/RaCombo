@@ -11,6 +11,7 @@ export(bool) var sink = false
 export(bool) var forbid_send = false
 var lane_provinance : Array = [] # Note: NOT exported, becomes shared!
 var laneswap_target : Array = [null] 
+var items_in_lane := 0
 
 var ring_radius = load("res://scripts/RingSystem.gd").new().RING_RADIUS
 var in_flight = []
@@ -24,7 +25,8 @@ func serialise() -> Dictionary:
 	d["sink"] = sink
 	d["forbid_send"] = forbid_send
 	d["lane_provinance"] = lane_provinance
-	d["radians_per_slot"] = radians_per_slot	
+	d["radians_per_slot"] = radians_per_slot
+	d["items_in_lane"] = items_in_lane
 	d["laneswap_target"] = laneswap_target[0].get_path() if laneswap_target[0] != null else null
 	#
 	var content = []
@@ -50,6 +52,7 @@ func deserialise(var d : Dictionary):
 	forbid_send = d["forbid_send"]
 	lane_provinance = d["lane_provinance"]
 	radians_per_slot = d["radians_per_slot"]
+	items_in_lane = d["items_in_lane"]
 	laneswap_target[0] = null if d["laneswap_target"] == null else get_node(d["laneswap_target"])
 	if lane_content != null:
 		register_resource(lane_content, null)
@@ -100,7 +103,7 @@ func wrap_a(var f : float):
 		f -= PI*2
 	return f
 	
-func add_to_ring(var angle : float):
+func add_to_ring(var angle : float) -> bool:
 	var slot : int = round(wrap_a(angle) / radians_per_slot)
 	# Try and fill up ahead
 	for i in range(slot, slot+3):
@@ -161,6 +164,7 @@ func deregister_resource():
 		return
 	lane_content = null
 	laneswap_target[0] = null
+	in_flight.clear()
 	for p in lane_provinance:
 		get_node(p).lane_cleared(self)
 	lane_provinance.clear()
@@ -245,6 +249,7 @@ func _physics_process(var delta):
 					multimesh.set_instance_custom_data(i, Color(1,1,1,0))
 				else:
 					t.origin *= DISABLE
+					items_in_lane -= 1
 					multimesh.set_instance_custom_data(i, Color(0,1,1,0))
 				var call = d["call"] 
 				if call != null and is_instance_valid(call): # This might have been deleted in the time to move the item!
@@ -275,8 +280,10 @@ func set_slot_filled(var i : int, var filled : bool, var capturable : bool):
 		var t : Transform2D = multimesh.get_instance_transform_2d(i)
 		if filled:
 			t.origin /= DISABLE
+			items_in_lane += 1
 		else:
 			t.origin *= DISABLE
+			items_in_lane -= 1
 		multimesh.set_instance_transform_2d(i, t)
 	var c : Color = multimesh.get_instance_custom_data(i)
 	c.r = filled

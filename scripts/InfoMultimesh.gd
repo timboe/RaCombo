@@ -30,7 +30,7 @@ func update_visible():
 	if "delted" in factory_process.name:
 		reset()
 		return
-	if factory_process.mode == Global.BUILDING_UNSET:
+	if factory_process.name != "Ship" and factory_process.mode == Global.BUILDING_UNSET:
 		reset()
 		return
 	if is_input:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://scenes/MissionConfiguration.tscn" type="PackedScene" id=1]
 [ext_resource path="res://titlescripts/SliderToText.gd" type="Script" id=2]
@@ -31,7 +31,6 @@
 [ext_resource path="res://images/circle_05.png" type="Texture" id=29]
 [ext_resource path="res://titlescripts/Settings.gd" type="Script" id=30]
 [ext_resource path="res://assets/godot_theme/gui.theme" type="Theme" id=31]
-[ext_resource path="res://scenes/Sfx.tscn" type="PackedScene" id=32]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Node2D
@@ -584,7 +583,7 @@ follow_focus = true
 
 [node name="NewCampaignVBox" type="VBoxContainer" parent="NewCampaign/MarginContainer/MarginContainer/VBoxContainer/ScrollContainer"]
 margin_right = 512.0
-margin_bottom = 78.0
+margin_bottom = 148.0
 size_flags_horizontal = 3
 custom_constants/separation = 8
 alignment = 1
@@ -773,7 +772,7 @@ follow_focus = true
 
 [node name="SG" type="GridContainer" parent="Settings/MC/MC/VB/SC"]
 margin_right = 512.0
-margin_bottom = 294.0
+margin_bottom = 320.0
 size_flags_horizontal = 3
 custom_constants/vseparation = 10
 custom_constants/hseparation = 8
@@ -813,6 +812,22 @@ text = "Sound Effects Volume"
 align = 2
 
 [node name="SFXSlider" type="HSlider" parent="Settings/MC/MC/VB/SC/SG"]
+margin_left = 260.0
+margin_top = 40.0
+margin_right = 512.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+tick_count = 10
+
+[node name="Label8" type="Label" parent="Settings/MC/MC/VB/SC/SG"]
+margin_top = 41.0
+margin_right = 252.0
+margin_bottom = 55.0
+size_flags_horizontal = 3
+text = "Beeps Volume"
+align = 2
+
+[node name="BeepsSlider" type="HSlider" parent="Settings/MC/MC/VB/SC/SG"]
 margin_left = 260.0
 margin_top = 40.0
 margin_right = 512.0
@@ -939,6 +954,7 @@ expand_icon = true
 [node name="Credits" type="CenterContainer" parent="." groups=[
 "PrimaryMenuElement",
 ]]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -1033,7 +1049,8 @@ Icons from the noun project [thenounproject.com]
  * Infinity by Dmitry Mirolyubov from the Noun Project
  * replace by Sophia Bai from the Noun Project
  * Next by shashank singh from the Noun Project
- * congratulations by IOHK Design Department from the Noun Project"
+ * congratulations by IOHK Design Department from the Noun Project
+ * Recipe Book by Royyan Wijaya from the Noun Project"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Credits/MC/MC/VB"]
 margin_top = 354.0
@@ -1121,7 +1138,7 @@ margin_left = 116.0
 margin_right = 395.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 256, 0 )
-max_length = 30
+max_length = 20
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1228,6 +1245,7 @@ margin_top = 76.0
 margin_right = 859.0
 margin_bottom = 561.0
 rect_min_size = Vector2( 720, 485 )
+custom_colors/font_color_bg = Color( 0.7, 0.7, 0.7, 1 )
 tab_align = 0
 
 [node name="tmp" parent="CampaignEditor/MarginContainer/MarginContainer/VBoxContainer/TabContainer" instance=ExtResource( 1 )]
@@ -1419,10 +1437,10 @@ margin_bottom = 14.0
 text = "Color:"
 
 [node name="ColorPicker" type="ColorPicker" parent="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_left = 212.0
-margin_top = 230.0
-margin_right = 520.0
-margin_bottom = 642.0
+margin_left = 268.0
+margin_top = 286.0
+margin_right = 576.0
+margin_bottom = 698.0
 edit_alpha = false
 presets_enabled = false
 presets_visible = false
@@ -1834,85 +1852,43 @@ Music by Adérito Silva: Rareness of Existence, Naval Proeminence, Phyllodia"
 align = 2
 valign = 2
 
-[node name="Sfx" parent="." instance=ExtResource( 32 )]
-
-[connection signal="mouse_entered" from="MainMenu/MarginContainer/MarginContainer/VBoxContainer/NewCampaign" to="Sfx/Click" method="play"]
 [connection signal="pressed" from="MainMenu/MarginContainer/MarginContainer/VBoxContainer/NewCampaign" to="MainMenu" method="_on_NewCampaign_pressed"]
-[connection signal="mouse_entered" from="MainMenu/MarginContainer/MarginContainer/VBoxContainer/LoadButton" to="Sfx/Click" method="play"]
 [connection signal="pressed" from="MainMenu/MarginContainer/MarginContainer/VBoxContainer/LoadButton" to="MainMenu" method="_on_Load_pressed"]
-[connection signal="mouse_entered" from="MainMenu/MarginContainer/MarginContainer/VBoxContainer/SettingsButton" to="Sfx/Click" method="play"]
 [connection signal="pressed" from="MainMenu/MarginContainer/MarginContainer/VBoxContainer/SettingsButton" to="MainMenu" method="_on_Settings_pressed"]
-[connection signal="mouse_entered" from="MainMenu/MarginContainer/MarginContainer/VBoxContainer/EditorButton" to="Sfx/Click" method="play"]
 [connection signal="pressed" from="MainMenu/MarginContainer/MarginContainer/VBoxContainer/EditorButton" to="MainMenu" method="_on_Editor_pressed"]
-[connection signal="mouse_entered" from="MainMenu/MarginContainer/MarginContainer/VBoxContainer/CreditsButton" to="Sfx/Click" method="play"]
 [connection signal="pressed" from="MainMenu/MarginContainer/MarginContainer/VBoxContainer/CreditsButton" to="MainMenu" method="_on_Credits_pressed"]
-[connection signal="mouse_entered" from="MainMenu/MarginContainer/MarginContainer/VBoxContainer/ExitButton" to="Sfx/Click" method="play"]
 [connection signal="pressed" from="MainMenu/MarginContainer/MarginContainer/VBoxContainer/ExitButton" to="MainMenu" method="_on_Exit_pressed"]
 [connection signal="pressed" from="CampaignManager/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Import" to="CampaignManager/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Import" method="_on_Import_pressed"]
-[connection signal="mouse_entered" from="CampaignManager/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/New" to="Sfx/Click" method="play"]
 [connection signal="pressed" from="CampaignManager/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/New" to="CampaignManager/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/New" method="_on_New_pressed"]
-[connection signal="mouse_entered" from="CampaignManager/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Back" to="Sfx/Click" method="play"]
 [connection signal="pressed" from="CampaignManager/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Back" to="MainMenu" method="_on_Back_pressed"]
-[connection signal="pressed" from="CampaignManager/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Back" to="Sfx/No" method="play"]
 [connection signal="confirmed" from="CampaignManager/CenterContainer/ConfirmDeleteDialog" to="CampaignManager/CenterContainer/ConfirmDeleteDialog" method="_on_ConfirmDeleteDialog_confirmed"]
-[connection signal="mouse_entered" from="NewCampaign/MarginContainer/MarginContainer/VBoxContainer/ScrollContainer/NewCampaignVBox/Container/Campaign2/HBoxContainer/Play" to="Sfx/Click" method="play"]
-[connection signal="mouse_entered" from="NewCampaign/MarginContainer/MarginContainer/VBoxContainer/ScrollContainer/NewCampaignVBox/Container/Campaign2/HBoxContainer/Sandbox" to="Sfx/Click" method="play"]
-[connection signal="mouse_entered" from="NewCampaign/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Back" to="Sfx/Click" method="play"]
 [connection signal="pressed" from="NewCampaign/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Back" to="MainMenu" method="_on_Back_pressed"]
-[connection signal="pressed" from="NewCampaign/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Back" to="Sfx/No" method="play"]
 [connection signal="confirmed" from="NewCampaign/CenterContainer/ConfirmDeleteDialog" to="NewCampaign/CenterContainer/ConfirmDeleteDialog" method="_on_ConfirmDeleteDialog_confirmed"]
-[connection signal="mouse_entered" from="LoadGame/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Back" to="Sfx/Click" method="play"]
 [connection signal="pressed" from="LoadGame/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Back" to="MainMenu" method="_on_Back_pressed"]
-[connection signal="pressed" from="LoadGame/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Back" to="Sfx/No" method="play"]
 [connection signal="value_changed" from="Settings/MC/MC/VB/SC/SG/MusicSlider" to="Settings" method="_on_MusicSlider_value_changed"]
-[connection signal="mouse_entered" from="Settings/MC/MC/VB/SC/SG/TutorialButton" to="Sfx/Click" method="play"]
-[connection signal="mouse_entered" from="Settings/MC/MC/VB/SC/SG/SunButton" to="Sfx/Click" method="play"]
-[connection signal="mouse_entered" from="Settings/MC/MC/VB/SC/SG/HideButton" to="Sfx/Click" method="play"]
-[connection signal="mouse_entered" from="Settings/MC/MC/VB/SC/SG/ShakeButton" to="Sfx/Click" method="play"]
-[connection signal="mouse_entered" from="Settings/MC/MC/VB/SC/SG/FullscreenButton" to="Sfx/Click" method="play"]
+[connection signal="changed" from="Settings/MC/MC/VB/SC/SG/SFXSlider" to="Settings" method="_on_SFXSlider_changed"]
+[connection signal="changed" from="Settings/MC/MC/VB/SC/SG/BeepsSlider" to="Settings" method="_on_BeepsSlider_changed"]
 [connection signal="toggled" from="Settings/MC/MC/VB/SC/SG/FullscreenButton" to="Settings" method="_on_FullscreenButton_toggled"]
-[connection signal="mouse_entered" from="Settings/MC/MC/VB/HBoxContainer/Back" to="Sfx/Click" method="play"]
 [connection signal="pressed" from="Settings/MC/MC/VB/HBoxContainer/Back" to="Settings" method="_on_Back_pressed"]
-[connection signal="pressed" from="Settings/MC/MC/VB/HBoxContainer/Back" to="Sfx/No" method="play"]
-[connection signal="mouse_entered" from="Credits/MC/MC/VB/HBoxContainer/Back" to="Sfx/Click" method="play"]
 [connection signal="pressed" from="Credits/MC/MC/VB/HBoxContainer/Back" to="MainMenu" method="_on_Back_pressed"]
-[connection signal="pressed" from="Credits/MC/MC/VB/HBoxContainer/Back" to="Sfx/No" method="play"]
 [connection signal="value_changed" from="CampaignEditor/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/GridContainer/HBoxContainer/Missions" to="CampaignEditor/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/GridContainer/HBoxContainer/Missions" method="_on_HSlider_value_changed"]
-[connection signal="mouse_entered" from="CampaignEditor/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/GridContainer/CustomResource" to="Sfx/Click" method="play"]
-[connection signal="mouse_entered" from="CampaignEditor/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/GridContainer/Save" to="Sfx/Click" method="play"]
 [connection signal="pressed" from="CampaignEditor/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/GridContainer/Save" to="CampaignEditor/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/GridContainer/Save" method="_on_Save_pressed"]
-[connection signal="mouse_entered" from="CampaignEditor/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/GridContainer/CustomRecipy" to="Sfx/Click" method="play"]
-[connection signal="mouse_entered" from="CampaignEditor/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/GridContainer/Discard" to="Sfx/Click" method="play"]
 [connection signal="pressed" from="CampaignEditor/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/GridContainer/Discard" to="CampaignEditor/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/GridContainer/Discard" method="_on_Discard_pressed"]
-[connection signal="pressed" from="CampaignEditor/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/GridContainer/Discard" to="Sfx/No" method="play"]
-[connection signal="mouse_entered" from="CampaignEditor/MarginContainer/MarginContainer/VBoxContainer/TabContainer/tmp/MissionContainer/GridContainer2/HBoxContainer/GoalButton" to="Sfx/Click" method="play"]
-[connection signal="mouse_entered" from="CampaignEditor/MarginContainer/MarginContainer/VBoxContainer/TabContainer/tmp/MissionContainer/GridContainer2/HBoxContainer/WarningButton" to="Sfx/Click" method="play"]
-[connection signal="mouse_entered" from="CampaignEditor/MarginContainer/MarginContainer/VBoxContainer/TabContainer/tmp/MissionContainer/GridContainer2/HBoxContainer2/Above" to="Sfx/Click" method="play"]
-[connection signal="mouse_entered" from="CampaignEditor/MarginContainer/MarginContainer/VBoxContainer/TabContainer/tmp/MissionContainer/GridContainer2/HBoxContainer2/Below" to="Sfx/Click" method="play"]
 [connection signal="about_to_show" from="CampaignEditor/CustomResourceDialog" to="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/VBoxContainer/TextureRect" method="_on_CustomResourceDialog_about_to_show"]
 [connection signal="text_changed" from="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/GridContainer/LineEdit" to="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/VBoxContainer/TextureRect" method="_on_LineEdit_text_changed"]
 [connection signal="item_selected" from="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/GridContainer/SymbolButton" to="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/VBoxContainer/TextureRect" method="_on_SymbolButton_item_selected"]
 [connection signal="item_selected" from="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/GridContainer/ModeButton" to="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/VBoxContainer/TextureRect" method="_on_ModeButton_item_selected"]
-[connection signal="mouse_entered" from="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Save" to="Sfx/Click" method="play"]
 [connection signal="pressed" from="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Save" to="CampaignEditor/CustomResourceDialog" method="_on_Save_pressed"]
-[connection signal="mouse_entered" from="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Discard" to="Sfx/Click" method="play"]
 [connection signal="pressed" from="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Discard" to="CampaignEditor/CustomResourceDialog" method="_on_Discard_pressed"]
-[connection signal="pressed" from="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Discard" to="Sfx/No" method="play"]
-[connection signal="mouse_entered" from="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Delete" to="Sfx/Click" method="play"]
 [connection signal="pressed" from="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Delete" to="CampaignEditor/CustomResourceDialog" method="_on_Delete_pressed"]
-[connection signal="pressed" from="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Delete" to="Sfx/No" method="play"]
 [connection signal="color_changed" from="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/ColorPicker" to="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/VBoxContainer/TextureRect" method="_on_ColorPicker_color_changed"]
 [connection signal="value_changed" from="CampaignEditor/CustomRecipeDialog/MarginContainer/VBoxContainer/TabContainer/Factory/VBoxContainer/GridContainer/HBoxContainer/NumberOut" to="CampaignEditor/CustomRecipeDialog/MarginContainer/VBoxContainer/TabContainer/Factory/VBoxContainer/GridContainer/HBoxContainer/NumberOut" method="_on_HSlider_value_changed"]
 [connection signal="value_changed" from="CampaignEditor/CustomRecipeDialog/MarginContainer/VBoxContainer/TabContainer/Factory/VBoxContainer/GridContainer/HBoxContainer2/TimeOut" to="CampaignEditor/CustomRecipeDialog/MarginContainer/VBoxContainer/TabContainer/Factory/VBoxContainer/GridContainer/HBoxContainer2/TimeOut" method="_on_HSlider_value_changed"]
-[connection signal="mouse_entered" from="CampaignEditor/CustomRecipeDialog/MarginContainer/VBoxContainer/HBoxContainer/Save" to="Sfx/Click" method="play"]
 [connection signal="pressed" from="CampaignEditor/CustomRecipeDialog/MarginContainer/VBoxContainer/HBoxContainer/Save" to="CampaignEditor/CustomRecipeDialog" method="_on_Save_pressed"]
-[connection signal="mouse_entered" from="CampaignEditor/CustomRecipeDialog/MarginContainer/VBoxContainer/HBoxContainer/Discard" to="Sfx/Click" method="play"]
 [connection signal="pressed" from="CampaignEditor/CustomRecipeDialog/MarginContainer/VBoxContainer/HBoxContainer/Discard" to="CampaignEditor/CustomRecipeDialog" method="_on_Discard_pressed"]
-[connection signal="pressed" from="CampaignEditor/CustomRecipeDialog/MarginContainer/VBoxContainer/HBoxContainer/Discard" to="Sfx/No" method="play"]
 [connection signal="confirmed" from="CampaignEditor/DiscardConfirmationDialog" to="CampaignEditor/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/GridContainer/Discard" method="_on_DiscardConfirmationDialog_confirmed"]
 [connection signal="confirmed" from="CampaignEditor/OverwriteConfirmationDialog" to="CampaignEditor/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/GridContainer/Save" method="_on_OverwriteConfirmationDialog_confirmed"]
 
 [editable path="NewCampaign/MarginContainer/MarginContainer/VBoxContainer/ScrollContainer/NewCampaignVBox/Container/Campaign2"]
 [editable path="CampaignEditor/MarginContainer/MarginContainer/VBoxContainer/TabContainer/tmp"]
 [editable path="CampaignEditor/MarginContainer/MarginContainer/VBoxContainer/TabContainer/tmp/MissionContainer/InputGridContainer/Input0"]
-[editable path="Sfx"]

@@ -3,6 +3,9 @@ extends Node2D
 const RING_RADIUS := 40
 const RING_WIDTH := 20
 
+var transmutes = []
+var transmute_lane = []
+
 func _ready():
 	var rings = 0
 	for c in get_children():
@@ -11,6 +14,11 @@ func _ready():
 	setup_sol()
 
 # Note: Changing level does not affect this - only need to do it once
+# Lane 0: Sink of all items
+# Lame 7: Source of H
+# Lanes 1,2: Transmute #1
+# Lanes 3,4: Transmute #2
+# Lanes 5,6: Transmute #3
 func setup_sol():
 	var fancy_sol = get_parent().get_node("Sol")
 	fancy_sol.visible = Global.settings["fancy_sun"]
@@ -29,13 +37,29 @@ func update_transmute():
 		if sol.get_lane(i).lane_content != null:
 			sol.get_lane(i).deregister_resource()
 			
+	transmutes.clear()
+	transmute_lane.clear()
+	for i in range(Global.MAX_TRANSMUTE):
+		transmutes.append("None")
+		transmute_lane.append(null)
+			
 	var next_out := 1
 	var next_in := 2
+	var n_transmute := 0
 	for r in Global.recipies:
 		if Global.recipies[r]["factory"] == true:
 			continue
+		
+		n_transmute += 1
+		if n_transmute > Global.MAX_TRANSMUTE:
+			print("ERROR: more than ",Global.MAX_TRANSMUTE," transmutations")
+			break
+			
 		var tranmute_from = Global.recipies[r]["input"][0]
 		var transmute_to = r
+		
+		transmutes[n_transmute-1] = transmute_to
+		transmute_lane[n_transmute-1] = sol.get_lane(next_out)
 		
 		sol.get_lane(next_out).register_resource(transmute_to, null)
 		sol.get_lane(next_out).forbid_send = true

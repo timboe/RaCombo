@@ -3,6 +3,7 @@ extends HBoxContainer
 # These will only be valid in-game
 onready var sl : Node2D = get_tree().get_root().find_node("SaveLoad", true, false)
 onready var id : WindowDialog = get_tree().get_root().find_node("InfoDialog", true, false) 
+onready var main_menu : CenterContainer = get_tree().get_root().find_node("MainMenu", true, false) 
 
 var save_number : int = -1
 
@@ -73,8 +74,10 @@ func _on_DeleteConfirmationDialog_confirmed():
 	file.open(Global.GAME_SAVE_FILE, File.WRITE)
 	file.store_string(JSON.print(Global.saves))
 	file.close()
-	if id:
-		id.update_diag()
+	if id and id.has_method("update_diag"):
+		id.update_diag() # In game
+	elif main_menu and main_menu.has_method("show_menu"):
+		main_menu.show_menu("LoadGame") # from main menu
 
 func _on_OverwriteConfirmationDialog_confirmed():
 	sl.save(save_number)

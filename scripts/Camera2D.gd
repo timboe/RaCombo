@@ -22,13 +22,23 @@ func _ready():
 	set_process_unhandled_input(true)
 
 func _unhandled_input(event):
+	var change = false
 	if event is InputEventMouseButton and event.is_pressed():
-		if event.button_index == BUTTON_WHEEL_UP and zoom.x > 0.05:
+		if event.button_index == BUTTON_WHEEL_UP and zoom.x > 0.5:
 			zoom /= 1.1
+			change = true
 		if event.button_index == BUTTON_WHEEL_DOWN and zoom.x < 2.0:
 			zoom *= 1.1
+			change = true
 	if event is InputEventMouseMotion and Input.is_action_pressed("ui_mouse_pan"):
 		global_position -= (event.relative * zoom)
+		change = true
+	if change:
+		var zoom_mod = clamp(zoom.x, 1.0, 2.0) / 1.5
+		var w : float = ProjectSettings.get_setting("display/window/size/width") * zoom_mod
+		var h : float = ProjectSettings.get_setting("display/window/size/height") * 1.3 * zoom_mod
+		global_position.x = clamp(global_position.x, -w, w)
+		global_position.y = clamp(global_position.y, -h, h)
 
 func _process(delta):
 	apply_shake(delta)

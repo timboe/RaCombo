@@ -28,11 +28,11 @@ func _on_Save_pressed():
 		warn_diag.popup_centered()
 		return
 		
-#	if campaign_name.text == "Main Campaign":
-#		warn_diag.dialog_text = "Cannot overwrite the 'Main Campaign'\n\n"
-#		warn_diag.dialog_text += "Please choose a different name."
-#		warn_diag.popup_centered()
-#		return
+	if campaign_name.text == "Main Campaign":
+		warn_diag.dialog_text = "Cannot overwrite the 'Main Campaign'\n\n"
+		warn_diag.dialog_text += "Please choose a different name."
+		warn_diag.popup_centered()
+		#return
 		
 	if campaign_name.text == "":
 		warn_diag.dialog_text = "Please choose a campaign name."

@@ -5,6 +5,7 @@ onready var camera_node : Camera2D = get_tree().get_root().find_node("Camera2D",
 onready var rs : Node2D = get_tree().get_root().find_node("RingSystem", true, false)
 onready var button_group : ButtonGroup = get_tree().get_root().find_node("BuildMode", true, false).group
 onready var id = get_tree().get_root().find_node("InfoDialog", true, false) 
+onready var spacefield = get_tree().get_root().find_node("spacefield", true, false) 
 onready var pause : Button = get_tree().get_root().find_node("Pause", true, false) 
 onready var cam : Camera2D = get_tree().get_root().find_node("Camera2D", true, false) 
 onready var outlines : Button = get_tree().get_root().find_node("Outlines", true, false) 
@@ -12,8 +13,6 @@ onready var outlines : Button = get_tree().get_root().find_node("Outlines", true
 var prev_ring : Node2D = null
 var ring : Node2D = null
 var cursor : Vector2
-
-const HALF_SIZE = Vector2(512,300)
 
 func _ready():
 	set_process_unhandled_input(true)
@@ -42,11 +41,8 @@ func _unhandled_input(event):
 	if mode_inject:
 		injection = button.inj_node
 	
-	cursor = event.global_position 
-	cursor -= HALF_SIZE
-	cursor *= camera_node.zoom
-	cursor += HALF_SIZE
-	cursor += camera_node.global_position 
+	cursor = spacefield.get_global_mouse_position()
+	$Sprite.position = cursor
 	
 	var dist : float = round( abs( cursor.distance_to( centre_node.position ) ) )
 	var ring_index : int = int(dist / rs.RING_RADIUS) - 1 

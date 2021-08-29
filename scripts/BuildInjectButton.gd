@@ -2,7 +2,7 @@ extends Button
 
 onready var id = get_tree().get_root().find_node("InfoDialog", true, false) 
 
-onready var inj_node = get_tree().get_root().find_node("Injector"+String(int(name)), true, false).get_child(1)
+onready var inj_node = get_tree().get_root().find_node("Injector"+String(int(name)), true, false).get_node("InjectorMm")
 
 func _on_Button_toggled(button_pressed):
 	if button_pressed:

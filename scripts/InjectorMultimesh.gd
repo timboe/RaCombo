@@ -15,7 +15,8 @@ export(bool) var placed = false
 
 onready var outlines : Button = get_tree().get_root().find_node("Outlines", true, false)
 onready var injector_button = get_tree().get_root().find_node("InjectorButton" + String(int(get_parent().name)), true, false)
-onready var guide_lines : Node2D = get_parent().find_node("InjectorLines")
+onready var guide_lines : Node2D = get_parent().get_node("InjectorLines")
+onready var blip_a : AudioStreamPlayer = get_tree().get_root().find_node("BlipA", true, false)
 
 func serialise() -> Dictionary:
 	var d = {}
@@ -107,6 +108,7 @@ func hint_resource(var attached_ring : Node2D, var ring_lane : int):
 	guide_lines.update()
 	guide_lines.visible = true if outlines.pressed else false
 	
+	
 func stop_hint_resource():
 	if not placed:
 		ring = ""
@@ -128,7 +130,6 @@ func setup_resource_at_hint():
 	injector_button.pressed = false
 	injector_button.disabled = true
 	# Propagate the change
-	print("T3")
 	$"/root/Game/SomethingChanged".something_changed()
 	
 # Called when a lane rejects the input
@@ -146,4 +147,5 @@ func _physics_process(delta):
 	transform.origin.x += delta * linear_velocity
 	if transform.origin.x > 0:
 		transform.origin.x -= linear_velocity * set_period
-		get_node(ring).add_to_ring(1.5 * PI, lane) # Always add new elements at the top
+		if get_node(ring).add_to_ring(1.5 * PI, lane): # Always add new elements at the top
+			blip_a.play()

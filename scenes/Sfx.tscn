@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://resources/405548__raclure__cancel-miss-chime.wav" type="AudioStream" id=1]
 [ext_resource path="res://resources/399934__waveplay-old__short-click-snap-perc.wav" type="AudioStream" id=2]
 [ext_resource path="res://resources/Thud-SoundBible.com-395560493.wav" type="AudioStream" id=3]
 [ext_resource path="res://resources/462249__silverillusionist__victory-sound-2.wav" type="AudioStream" id=4]
+[ext_resource path="res://resources/336912__the-sacha-rush__blip5.wav" type="AudioStream" id=6]
+[ext_resource path="res://resources/336928__the-sacha-rush__blip3.wav" type="AudioStream" id=7]
+[ext_resource path="res://resources/336929__the-sacha-rush__blip2.wav" type="AudioStream" id=8]
+[ext_resource path="res://resources/336911__the-sacha-rush__blip4.wav" type="AudioStream" id=9]
 
 [node name="Sfx" type="Node"]
 
@@ -14,9 +18,28 @@ bus = "Sfx"
 
 [node name="Click" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
+bus = "Sfx"
 
 [node name="No" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
+bus = "Sfx"
 
 [node name="Victory" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+bus = "Sfx"
+
+[node name="BlipA" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+bus = "Blip"
+
+[node name="BlipB" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+bus = "Blip"
+
+[node name="BlipC" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+bus = "Blip"
+
+[node name="BlipD" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+bus = "Blip"

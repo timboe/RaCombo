@@ -58,5 +58,42 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Jump" type="Label" parent="."]
+margin_top = 74.0
+margin_right = 512.0
+margin_bottom = 88.0
+text = "Jump to Level:"
+
+[node name="LevelsContainer" type="HBoxContainer" parent="."]
+margin_top = 96.0
+margin_right = 512.0
+margin_bottom = 128.0
+custom_constants/separation = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="L1" type="Button" parent="LevelsContainer"]
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+size_flags_horizontal = 0
+text = "1"
+expand_icon = true
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelsContainer2" type="HBoxContainer" parent="."]
+margin_top = 136.0
+margin_right = 512.0
+margin_bottom = 136.0
+custom_constants/separation = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="HBoxContainer/Play" to="HBoxContainer/Play" method="_on_Play_pressed"]
 [connection signal="pressed" from="HBoxContainer/Sandbox" to="HBoxContainer/Sandbox" method="_on_Sandbox_pressed"]
+[connection signal="pressed" from="LevelsContainer/L1" to="LevelsContainer/L1" method="_on_Level_pressed"]

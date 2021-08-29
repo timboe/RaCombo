@@ -28,6 +28,7 @@ var points_vec = PoolVector2Array()
 
 onready var id : WindowDialog = get_tree().get_root().find_node("InfoDialog", true, false) 
 onready var rule_changer : Node2D = get_tree().get_root().find_node("RuleChanger", true, false) 
+onready var rocket : AudioStreamPlayer = get_node("Rocket")
 onready var ring = find_parent("Ring*")
 onready var something_changed_node = $"/root/Game/SomethingChanged"
 
@@ -80,6 +81,7 @@ func _ready():
 	ship_color = PoolColorArray([Color(0.6, 0.6, 0.6, 1.0)])
 	built = false
 	launch = false
+	rocket.volume_db = linear2db(Global.settings["sfx"] * 0.01)
 	set_physics_process(false)
 
 func _draw():
@@ -131,6 +133,7 @@ func depart():
 	deregister_provider(null)
 	id.update_diag()
 	launch = true
+	rocket.play()
 	# TODO improve flyaway...
 	$Tween.interpolate_method(self, "set_radius_mod", 0.0, SHIP_DEPART_RADIUS + base_radius,
 		SHIP_DEPART_TIME, Tween.TRANS_SINE, Tween.EASE_IN)

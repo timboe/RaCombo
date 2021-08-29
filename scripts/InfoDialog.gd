@@ -4,6 +4,7 @@ onready var shields = get_tree().get_root().find_node("Shields", true, false)
 onready var save_vbox = get_tree().get_root().find_node("SaveVBox", true, false) 
 onready var load_vbox = get_tree().get_root().find_node("LoadVBox", true, false) 
 onready var save_load = get_tree().get_root().find_node("SaveLoad", true, false) 
+onready var ring_system = get_tree().get_root().find_node("RingSystem", true, false) 
 
 var current_building : Node2D  = null
 var current_ring : Node2D = null
@@ -19,6 +20,8 @@ var sb_orange := StyleBoxFlat.new()
 var tut_current : int = 0
 var tut_max : int =  0
 var show_mission_after_tut : bool = false
+
+var first : bool
 
 func _ready():
 	sb_gray.bg_color = Color.gray
@@ -69,7 +72,7 @@ func toggle_menu_diag():
 		window_title = "Menu"
 		var show_export : bool = (Global.sandbox or Global.game_finished)
 		$MenuContainer/Container/GridContainer/Mission.visible = !show_export
-		$MenuContainer/Container/GridContainer/Export.visible = show_export
+		$MenuContainer/Container/GridContainer/Exported.visible = show_export
 	else:
 		print("toggle menu off")
 		hide_diag()
@@ -83,18 +86,20 @@ func show_named_diag(var n : String):
 	var node = find_node(n+"Container")
 	node.visible = true
 	page = n
-	window_title = n+" Settings"
+	window_title = n
 	if has_method("update_"+n+"_diag"):
+		first = true
 		call("update_"+n+"_diag")
 		
 # Used to refresh the page when it is being displyed
 func update_diag():
+	first = false
 	if current_ring != null:
 		update_ring_diag()
 	elif current_building != null:
 		update_building_diag()
-	elif page == "Export":
-		update_Export_diag()
+	elif page == "Exported":
+		update_Exported_diag()
 	elif page == "Load":
 		update_Load_diag()
 	else:
@@ -130,6 +135,7 @@ func update_Tutorial_diag():
 	$"TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/7/ColorRect_above".visible = Global.factories_pull_from_above
 	$"TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/7/Label_below".visible = !Global.factories_pull_from_above
 	$"TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/7/ColorRect_below".visible = !Global.factories_pull_from_above	
+
 func update_Save_diag():
 	window_title = "Save Game"
 	update_SaveLoad_common(save_vbox)
@@ -150,12 +156,11 @@ func update_SaveLoad_common(var vbox):
 		vbox.add_child(inst, true)
 		vbox.add_child(HSeparator.new())
 
-func update_Export_diag():
-	var newly_opened = (window_title != "Export")
-	window_title = "Export"
+func update_Exported_diag():
+	#TODO live updating isn't working well
 #	if not "H" in Global.exported:
 #		Global.exported["H"] = 50
-	var g = $ExportContainer/VBox/ExportedResourceGridSC/ExportedResourcesGrid
+	var g = $ExportedContainer/VBox/ExportedResourceGridSC/ExportedResourcesGrid
 	for i in range(0, g.get_child_count(), 2):
 		var n : int = 0
 		var res = g.get_child(i).name
@@ -163,7 +168,7 @@ func update_Export_diag():
 			n = min(Global.exported[res], 100000)
 		var current : float = g.get_child(i + 1).get_child(0).value
 		var add = max(1, round((n - current) * 0.01))
-		if newly_opened:
+		if first:
 			current = n
 		elif current != n:
 			current += add
@@ -196,9 +201,26 @@ func leet_color(var n : int) -> StyleBoxFlat:
 	else:
 		return sb_orange
 
+func include_recipe(var r : String ):
+	if not Global.sandbox:
+		var this_level = Global.mission["recipies"]
+		if not r in this_level:
+			return false
+	return true
+
 func update_Sol_diag():
 	window_title = "Sol"
-	$SolContainer/VBoxContainer/GridContainer/LIcon1.texture = Global.data["H"]["texture"]
+	$UpdateTimer.start()
+	$SolContainer/VBoxContainer/GridContainer/HIcon.texture = Global.data["H"]["texture"]
+	for i in range(3):
+		var amount = get_node("SolContainer/VBoxContainer/GridContainer/TransAmount"+String(i+1))
+		var icon = get_node("SolContainer/VBoxContainer/GridContainer/TransIcon"+String(i+1))
+		if ring_system.transmutes[i] != "None" and include_recipe(ring_system.transmutes[i]):
+			amount.text = "x" + String(ring_system.transmute_lane[i].items_in_lane)
+			icon.texture = Global.data[ ring_system.transmutes[i] ]["texture"]
+		else:
+			amount.text = "x0"
+			icon.texture = Global.data["None"]["texture"]
 	
 func update_Mission_diag():
 	window_title = "Current Mission"
@@ -302,8 +324,10 @@ func _on_UpdateTimer_timeout():
 	if current_building != null:
 		for mm in get_tree().get_nodes_in_group("InfoMultimeshGroup"):
 			mm.update_visible()
-	elif page == "Export":
-		update_Export_diag()
+	elif page == "Exported":
+		update_Exported_diag()
+	elif page == "Sol":
+		update_Sol_diag()
 
 func _on_Sandbox_pressed():
 	show_named_diag("Sandbox")
@@ -324,8 +348,8 @@ func _on_Back_pressed():
 	else:
 		toggle_menu_diag()
 
-func _on_Export_pressed():
-	show_named_diag("Export")
+func _on_Exported_pressed():
+	show_named_diag("Exported")
 
 func _on_Save_pressed():
 	show_named_diag("Save")
@@ -343,4 +367,19 @@ func _on_Next_pressed():
 func _on_Prev_pressed():
 	tut_current -= 1 
 	update_Tutorial_diag()
+
+func _on_AllRecipes_pressed():
+	show_named_diag("All Recipes")
+
+func _on_ClearAll_pressed():
+	hide_diag()
+	for r in get_tree().get_nodes_in_group("RingGroup"):
+		if r.name == "Ring0":
+			continue
+		r.reset()
+	$"/root/Game/SomethingChanged".something_changed()
+	for c in get_tree().get_nodes_in_group("RingContentGroup"):
+		c.update_content()
+
+
 

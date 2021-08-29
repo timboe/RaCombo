@@ -1,6 +1,9 @@
 extends Node2D
 
 onready var ring := find_parent("Ring*") as Node2D
+onready var blip_b := get_tree().get_root().find_node("BlipB", true, false) as AudioStreamPlayer
+onready var blip_c := get_tree().get_root().find_node("BlipC", true, false) as AudioStreamPlayer
+onready var blip_d := get_tree().get_root().find_node("BlipD", true, false) as AudioStreamPlayer
 onready var something_changed_node = $"/root/Game/SomethingChanged"
 
 var input_factory_required = [] # Number of items required per input for factory mode
@@ -168,7 +171,20 @@ func lane_system_changed():
 	if mode == Global.BUILDING_UNSET: # Called on all buildings by SomethingChanged
 		return
 	var something_changed = false
-	# Input
+	# Remove invalid inputs
+	for input_idx in range(input_lanes.size()):
+		var required_content = input_content[input_idx]
+		for l in input_lanes[input_idx]:
+			var lane_is_valid = (l.lane_content == required_content)
+			if not lane_is_valid:
+				input_lanes[input_idx].erase(l)
+				something_changed = true
+	# Remove invalid outputs
+	if output_lane != null and not "Ship" in output_lane.name and output_lane.lane_content != output_content:
+		output_lane = null
+		something_changed = true
+				
+	# Process new Input
 	if mode == Global.BUILDING_FACTORY:
 		# We check the two outermost rings for input
 		var distance : int = 0 # One or two. Factories can reach over 1 ring
@@ -276,6 +292,7 @@ func _physics_process(_delta):
 			var accepted = output_lane.try_send(global_rotation, Global.OUTWARDS)
 			if accepted:
 				output_storage -= 1
+				blip_b.play()
 	elif mode == Global.BUILDING_INSERTER:
 		# Inputs
 		if output_storage < Global.MAX_STORAGE:
@@ -286,6 +303,7 @@ func _physics_process(_delta):
 			var accepted = output_lane.try_send(global_rotation, Global.INWARDS)
 			if accepted:
 				output_storage -= 1
+				blip_c.play()
 	elif mode == Global.BUILDING_FACTORY:
 		# Inputs
 		for i in range(input_lanes.size()):
@@ -305,6 +323,7 @@ func _physics_process(_delta):
 			var accepted : bool = output_lane.try_send(global_rotation, direction)
 			if accepted:
 				output_storage -= 1
+				blip_d.play()
 
 # Called asynchronously when try_capture succedes 
 func add_item(var lane : MultiMeshInstance2D):

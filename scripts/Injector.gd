@@ -1,8 +1,9 @@
 extends Node2D
+tool
 
 const c = Color(1,1,1)
 
-onready var mm : MultiMeshInstance2D = get_parent().get_child(1)
+onready var mm : MultiMeshInstance2D = get_parent().get_node("InjectorMm")
 var r_scr = load("res://scripts/Ring.gd").new()
 
 func _draw():

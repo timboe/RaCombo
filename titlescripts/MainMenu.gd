@@ -22,8 +22,15 @@ func _ready():
 		setings.set_default()
 	if Global.settings["fullscreen"] != OS.window_fullscreen:
 		OS.window_fullscreen = Global.settings["fullscreen"]
+	print("Set fullscreen to ",Global.settings["fullscreen"])
 	print("loaded with music ", Global.settings["music"])
 	Music.volume_db = linear2db(Global.settings["music"] * 0.01)
+	Music.start_music()
+	for c in Sfx.get_children():
+		if "Blip" in c.name:
+			c.volume_db = linear2db(Global.settings["beeps"] * 0.01)
+		else:
+			c.volume_db = linear2db(Global.settings["sfx"] * 0.01)
 	show_menu("MainMenu")
 
 func load_from_disk(var file_path) -> Dictionary:
@@ -67,6 +74,14 @@ func NewCampaign(var _extra):
 		var campaign = load("res://scenes/NewCampaignSelector.tscn").instance()
 		new_campaign.get_node("Container").add_child(campaign)
 		campaign.get_node("CampaignName").text = camp
+		var levels = campaign.get_node("LevelsContainer")
+		var levels2 = campaign.get_node("LevelsContainer2")
+		var l1 = levels.get_node("L1")
+		var missions_in_campaign = Global.campaigns[camp]["missions"].size()
+		for i in range(2,missions_in_campaign+1):
+			var new_l = l1.duplicate(DUPLICATE_SCRIPTS|DUPLICATE_SIGNALS)
+			new_l.text = String(i)
+			levels.add_child(new_l) if i <= 10 else levels2.add_child(new_l)
 
 func CampaignEditor(var extra):
 	foot_label.visible = false
@@ -86,6 +101,9 @@ func LoadGame(var _extra):
 		inst.name = String(key)
 		load_vbox.add_child(inst, true)
 		load_vbox.add_child(HSeparator.new())
+		
+	if len(Global.saves) == 0:
+		show_menu("MainMenu")
 		
 func Settings(var _extra):
 	setings.show_settings()

@@ -3,6 +3,7 @@ extends Node2D
 const POINTS := 32
 
 onready var id = get_tree().get_root().find_node("InfoDialog", true, false) 
+onready var cam = get_tree().get_root().find_node("Camera2D", true, false) 
 onready var ring = find_parent("Ring*")
 onready var rotation_node = find_parent("Rotation")
 
@@ -222,6 +223,8 @@ func _on_TextureButton_gui_input(event):
 		match event.button_index:
 			BUTTON_LEFT:
 				id.show_building_diag(self)
+				return
 			BUTTON_RIGHT:
 				configure_building()
-				
+				return
+	cam._unhandled_input(event)

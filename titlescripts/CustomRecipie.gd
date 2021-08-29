@@ -106,7 +106,7 @@ func _on_Save_pressed():
 		d["factory"] = true
 		Global.recipies[shown_for] = d
 	elif tab == 2:
-		# Only three things can be transmute. Count (excluding the current thing)
+		# Only MAX_TRANSMUTE (currently 3) things can be transmute. Count (excluding the current thing)
 		var where_used = {}
 		var current_transmutes = ""
 		for r in Global.recipies:
@@ -116,7 +116,7 @@ func _on_Save_pressed():
 				var inpt = Global.recipies[r]["input"][0]
 				where_used[ inpt ] = r
 				current_transmutes += r + Global.data[r]["mode"] + " "
-		if where_used.size() >= 3:
+		if where_used.size() >= Global.MAX_TRANSMUTE:
 			warn_diag.dialog_text = "Cannot have more than three transmutation recipies.\n\n"
 			warn_diag.dialog_text += "Remove transmutation from one of " + current_transmutes + "first"
 			warn_diag.popup_centered()

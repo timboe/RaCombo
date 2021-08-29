@@ -21,6 +21,7 @@ config/windows_native_icon="res://images/ico.ico"
 
 Global="*res://scripts/Global.gd"
 Music="*res://scenes/Music.tscn"
+Sfx="*res://scenes/Sfx.tscn"
 
 [display]
 

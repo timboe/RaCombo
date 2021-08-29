@@ -124,10 +124,10 @@ func do_load():
 		new_factory.get_node("FactoryProcess").add_to_group("FactoryProcessGroup", true)
 		# TODO this is hanging?
 		# TODO make ring un-fillable
-#			for l in parent_ring.get_lanes():
-#				print("set to ",l.name)
-##				l.set_range_fillable(satelite_data["factory_angle_start"], satelite_data["factory_angle_end"], false)
-#		print("Factory ",new_factory.name," placed")
+		for l in parent_ring.get_lanes():
+			if "deleted" in l.name or not is_instance_valid(l):
+				continue
+			l.set_range_fillable(satelite_data["factory_angle_start"], satelite_data["factory_angle_end"], false)
 	# Fourth ships
 	var all_ships_data = Global.request_load["saved_ships"]
 	for s in all_ships_data:

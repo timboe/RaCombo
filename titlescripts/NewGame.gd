@@ -28,3 +28,12 @@ func _on_Sandbox_pressed():
 	Global.factories_pull_from_above = true
 	Global.sandbox = true
 	Global.goto_scene("res://scenes/ShieldGen.tscn")
+
+func _on_Level_pressed():
+	new_game_common()
+	Global.campaign = dict
+	Global.level = int(text)-1
+	print("Starting from level " , Global.level)
+	# Rings, lanes, factories_pull_from_above - will be read from campaign missions data
+	Global.sandbox = false
+	Global.goto_scene("res://scenes/ShieldGen.tscn")

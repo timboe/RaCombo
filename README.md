@@ -29,6 +29,7 @@ Assets:
  * replace by Sophia Bai from the Noun Project
  * Next by shashank singh from the Noun Project
  * congratulations by IOHK Design Department from the Noun Project
+ * Recipe Book by Royyan Wijaya from the Noun Project
  https://opengameart.org/content/space-backgrounds-0
 
  Music by <a href="/users/aderitosilva-18974644/?tab=audio&amp;utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=audio&amp;utm_content=4314">AderitoSilva</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=4314">Pixabay</a>
@@ -43,3 +44,10 @@ still to do
  https://freesound.org/people/SilverIllusionist/sounds/462249/
 
  Rocket by Maxim Kulikov from the Noun Project
+ keyboard button by AB Designs from the Noun Project
+ mouse scroll by Hoang Loi from the Noun Project
+
+
+ https://freesound.org/people/Quistard/sounds/237753/
+
+ https://freesound.org/people/The-Sacha-Rush/sounds/336928/ (1-10)

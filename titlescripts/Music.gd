@@ -4,8 +4,12 @@ extends AudioStreamPlayer
 var tracks = []
 var current : int
 var R = RandomNumberGenerator.new()
+var started = false
 
-func _ready():
+func start_music():
+	if started:
+		return
+	started = true
 	current = 0
 	tracks.append(load("res://resources/ader-da-silva-rareness-of-existence-4314.ogg"))
 	tracks.append(load("res://resources/ader-da-silva-phyllodia-1451.ogg"))

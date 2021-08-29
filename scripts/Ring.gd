@@ -13,8 +13,11 @@ export(Array, float) var radius_array
 export(float) var angular_velocity
 export(int) var n
 
+var portal = null
+
 onready var thud : AudioStreamPlayer = get_tree().get_root().find_node("Thud",true,false)
 onready var factory_template = $Rotation/FactoryTemplate
+
 
 func serialise() -> Dictionary:
 	var d := {}
@@ -27,6 +30,7 @@ func serialise() -> Dictionary:
 	d["angular_velocity"] = angular_velocity
 	d["n"] = n
 	d["lanes"] = set_lanes
+	d["portal"] = portal.visible
 	#
 	for lane in get_lanes():
 		d[lane.name] = lane.serialise()
@@ -46,6 +50,7 @@ func deserialise(var d : Dictionary):
 	angular_velocity = d["angular_velocity"]
 	n = d["n"]
 	set_lanes = d["lanes"]
+	portal.visible = d["portal"]
 	#
 	for lane in get_lanes():
 		if "deleted" in lane.name: 
@@ -74,7 +79,17 @@ func reset():
 		f.remove()
 	$"/root/Game/SomethingChanged".something_changed()
 	
-func add_to_ring(var angle : float, var lane : int):
+func lane_system_changed():
+	var active_injectors = false
+	for lane in get_lanes():
+		for node_string in lane.lane_provinance:
+			var n = get_node(node_string)
+			if "Injector" in n.name:
+				active_injectors = true
+				break
+	portal.visible = active_injectors
+	
+func add_to_ring(var angle : float, var lane : int) -> bool:
 	var angle_mod = angle - $Rotation.rotation
 	return get_lane(lane).add_to_ring(angle_mod)
 
@@ -135,6 +150,8 @@ func set_radius(var r : float):
 		angular_velocity *= 0.8 # Hack - stopSol ring rorating too fast
 	var circ : float = 2.0 * PI * r
 	n = circ * DENSITY
+	portal = get_tree().get_root().find_node("Portal" + String(int(name)),true,false)
+	portal.transform.origin.y = -r - (LANE_OFFSET*1.5)
 
 # TODO rename this to init or something
 func setup_resource(var r : float):

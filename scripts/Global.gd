@@ -9,6 +9,7 @@ const MAX_RINGS := 11
 const MAX_LANES := 4
 const SAVE_FORMAT_VERSION = 1
 const CAMPAIGN_FORMAT_VERSION = 1
+const MAX_TRANSMUTE = 3
 
 const GAME_SAVE_FILE := "user://save_data.json"
 const SETTINGS_SAVE_FILE := "user://settings.json"
@@ -69,36 +70,34 @@ func _ready():
 	current_scene = root.get_child(root.get_child_count() - 1)
 
 func populate_data():
-	if data == null or recipies == null:
-		recipies = campaign["recipies"]
-		data = campaign["resources"]
-		for r in data:
-			data[r]["color"] = Color(data[r]["color_hex"])
+	recipies = campaign["recipies"]
+	data = campaign["resources"]
+	for r in data:
+		data[r]["color"] = Color(data[r]["color_hex"])
 			
 func set_basics():
-	if data == null or recipies == null:
-		recipies = {}
-		data = {}
-		var none = {}
-		none["color_hex"] = "ff000000"
-		none["mode"] = ""
-		none["shape"] = "circle"
-		none["special"] = true
-		var sol = {}
-		sol["color_hex"] = "ff000000"
-		sol["mode"] = ""
-		sol["shape"] = "circle"
-		sol["special"] = true
-		var H = {}
-		H["color_hex"] = "ffda1717"
-		H["mode"] = "+"
-		H["shape"] = "circle"
-		H["special"] = false
-		Global.data["None"] = none
-		Global.data["Sol"] = sol
-		Global.data["H"] = H
-		for r in data:
-			data[r]["color"] = Color(data[r]["color_hex"])
+	recipies = {}
+	data = {}
+	var none = {}
+	none["color_hex"] = "ff000000"
+	none["mode"] = ""
+	none["shape"] = "circle"
+	none["special"] = true
+	var sol = {}
+	sol["color_hex"] = "ff000000"
+	sol["mode"] = ""
+	sol["shape"] = "circle"
+	sol["special"] = true
+	var H = {}
+	H["color_hex"] = "ffda1717"
+	H["mode"] = "+"
+	H["shape"] = "circle"
+	H["special"] = false
+	Global.data["None"] = none
+	Global.data["Sol"] = sol
+	Global.data["H"] = H
+	for r in data:
+		data[r]["color"] = Color(data[r]["color_hex"])
 			
 func goto_scene(path):
 	call_deferred("_deferred_goto_scene", path)
