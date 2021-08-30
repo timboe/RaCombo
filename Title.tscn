@@ -1003,7 +1003,7 @@ follow_focus = true
 
 [node name="VB" type="VBoxContainer" parent="Credits/MC/MC/VB/SC"]
 margin_right = 446.0
-margin_bottom = 711.0
+margin_bottom = 728.0
 
 [node name="Label" type="Label" parent="Credits/MC/MC/VB/SC/VB"]
 margin_right = 446.0
@@ -1245,7 +1245,7 @@ margin_top = 76.0
 margin_right = 859.0
 margin_bottom = 561.0
 rect_min_size = Vector2( 720, 485 )
-custom_colors/font_color_bg = Color( 0.7, 0.7, 0.7, 1 )
+custom_colors/font_color_bg = Color( 0.701961, 0.701961, 0.701961, 1 )
 tab_align = 0
 
 [node name="tmp" parent="CampaignEditor/MarginContainer/MarginContainer/VBoxContainer/TabContainer" instance=ExtResource( 1 )]
@@ -1437,10 +1437,10 @@ margin_bottom = 14.0
 text = "Color:"
 
 [node name="ColorPicker" type="ColorPicker" parent="CampaignEditor/CustomResourceDialog/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_left = 268.0
-margin_top = 286.0
-margin_right = 576.0
-margin_bottom = 698.0
+margin_left = 280.0
+margin_top = 298.0
+margin_right = 588.0
+margin_bottom = 710.0
 edit_alpha = false
 presets_enabled = false
 presets_visible = false
@@ -1508,6 +1508,7 @@ margin_top = 40.0
 margin_right = 520.0
 margin_bottom = 310.0
 rect_min_size = Vector2( 500, 270 )
+custom_colors/font_color_bg = Color( 0.7, 0.7, 0.7, 1 )
 tab_align = 0
 
 [node name="No Recipe" type="MarginContainer" parent="CampaignEditor/CustomRecipeDialog/MarginContainer/VBoxContainer/TabContainer"]
