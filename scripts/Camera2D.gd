@@ -30,8 +30,15 @@ func _unhandled_input(event):
 		if event.button_index == BUTTON_WHEEL_DOWN and zoom.x < 2.0:
 			zoom *= 1.1
 			change = true
+	elif event is InputEventMagnifyGesture:
+		var z = clamp(zoom * event.factor, 0.5, 2.0)
+		zoom = Vector2(z, z)
+		change = true
 	if event is InputEventMouseMotion and Input.is_action_pressed("ui_mouse_pan"):
 		global_position -= (event.relative * zoom)
+		change = true
+	elif event is InputEventPanGesture:
+		global_position += (event.delta * zoom)
 		change = true
 	if change:
 		var zoom_mod = clamp(zoom.x, 1.0, 2.0) / 1.5
