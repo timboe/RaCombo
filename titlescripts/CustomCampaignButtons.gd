@@ -22,20 +22,20 @@ func _on_Save_pressed():
 				bad_missions += ", "
 			bad_missions += c.name
 	if bad_missions != "":
-		warn_diag.dialog_text = "Problems with the configuration!\n\n"
-		warn_diag.dialog_text += "Fix issues on the following missions before saving.\n\n"
+		warn_diag.dialog_text = tr("ui_config_issue_1")+"\n\n"
+		warn_diag.dialog_text += tr("ui_config_issue_2")+"\n\n"
 		warn_diag.dialog_text += bad_missions
 		warn_diag.popup_centered()
 		return
 		
-	if campaign_name.text == "Main Campaign":
-		warn_diag.dialog_text = "Cannot overwrite the 'Main Campaign'\n\n"
-		warn_diag.dialog_text += "Please choose a different name."
+	if campaign_name.text == "ui_main_campaign" or campaign_name.text == "Main Campaign": 
+		warn_diag.dialog_text = tr("ui_overwrite_main_1") + "\n\n"
+		warn_diag.dialog_text += tr("ui_overwrite_main_2")
 		warn_diag.popup_centered()
 		#return
 		
 	if campaign_name.text == "":
-		warn_diag.dialog_text = "Please choose a campaign name."
+		warn_diag.dialog_text = tr("ui_no_campaign_name")
 		warn_diag.popup_centered()
 		return
 		

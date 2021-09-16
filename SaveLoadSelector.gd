@@ -10,9 +10,9 @@ var save_number : int = -1
 func _ready():
 	save_number = name.to_int()
 	var data = Global.saves[name]
-	$VBox/Grid/Save.text = "Autosave" if data["autosave"] else "Save %04d" % save_number
+	$VBox/Grid/Save.text = tr("ui_autosave") if data["autosave"] else tr("ui_save")+" %04d" % save_number
 	$VBox/Grid/Camapign.text = data["campaign_name"]
-	$VBox/Grid/Level.text = "Sandbox" if  data["sandbox"] else "Level %d" % data["level"]
+	$VBox/Grid/Level.text = tr("ui_sandbox") if  data["sandbox"] else tr("ui_level") + " %d" % data["level"]
 	var h : int = int(data["time_played"]) / 3600
 	var remainder : int = int(data["time_played"]) % 3600
 	var m = remainder / 60
@@ -26,7 +26,7 @@ func _ready():
 			var tex = ImageTexture.new()
 			tex.create_from_image(image, 0)
 			$TextureRect.texture = tex
-	$VBox/Grid/Time.text = "Time %02d:%02d:%02d" % [h,m,s] 
+	$VBox/Grid/Time.text = tr("ui_time") + " %02d:%02d:%02d" % [h,m,s] 
 	if get_parent().name == "SaveVBox":
 		$VBox/HBox/Overwrite.visible = true
 		$VBox/HBox/Load.visible = false
@@ -38,11 +38,11 @@ func _ready():
 
 
 func _on_Overwrite_pressed():
-	$OverwriteConfirmationDialog.dialog_text = "Please confirm overwriting Save %04d" % save_number
+	$OverwriteConfirmationDialog.dialog_text = tr("ui_confirm_overwrite") + " %04d" % save_number
 	$OverwriteConfirmationDialog.popup_centered()
 
 func _on_Delete_pressed():
-	$DeleteConfirmationDialog.dialog_text = "Please confirm deleting Save %04d" % save_number
+	$DeleteConfirmationDialog.dialog_text = tr("ui_confirm_delete")+" %04d" % save_number
 	$DeleteConfirmationDialog.popup_centered()
 
 

@@ -1,0 +1,1136 @@
+keys,en,de,es,fr,id,it,ja,ko,pl,pt_BR,ru,vi,zh
+ui_new_campaign,New Campaign,Neue Kampagne,Nueva campaña,Nouvelle campagne,Kampanye baru,Nuova campagna.,新しいキャンペーン,새로운 캠페인,Nowa kampania,Nova campanha,Новая кампания,Chien dich moi,新竞选人员
+ui_load_game,Load Game,Spiel laden,Juego de carga,Chargement du jeu,Muatkan game,Caricare il gioco,ロードゲーム,로드 게임,Wczytaj grę,Carregar jogo,Загрузить игру,Tải trò chơi,加载游戏
+ui_settings,Settings,Einstellungen,Ajustes,Paramètres,Pengaturan,Impostazioni,設定,설정,Ustawienia,Definições,Настройки,Cài đặt,设置
+ui_campaign_manager,Campaign Manager,Kampagnen-Manager,Director de campaña,Directeur de campagne,Manajer Kampanye,Gestore della campagna,キャンペーンマネージャー,캠페인 관리자,Menadżer kampanii,Gerente de campanha,Менеджер кампании,Quản lý chiến dịch,竞选经理
+ui_credits,Credits,Kreditschriften,Créditos,Crédits,Kredit,Titoli di coda,クレジット,크레딧,Kredyty,Créditos,Кредиты,Tín dụng,学分
+ui_exit_desktop,Exit to Desktop,Beenden Sie den Desktop,Salida al escritorio,Sortie sur le bureau,Keluar ke desktop,Esci dal desktop.,デスクトップを終了します,바탕 화면을 종료하십시오,Wyjdź na pulpit.,Saia para a área de trabalho,Выход на рабочий стол,Thoát khỏi máy tính để bàn.,退出到桌面
+ui_copy_to_clipboard,Copy to Clipboard,In die Zwischenablage kopieren,Copiar al portapapeles,Copier dans le presse-papier,Menyalin ke clipboard,Copia negli appunti,クリップボードにコピー,클립 보드에 복사,Skopiuj do schowka,Copiar para área de transferência,Скопировать в буфер обмена,Sao chép vào clipboard,复制到剪贴板
+ui_edit,Edit,Bearbeiten,Editar,Éditer,Edit,Modificare,編集,편집하다,Edytować,Editar,Редактировать,Chỉnh sửa,编辑
+ui_delete,Delete,Löschen,Borrar,Effacer,Menghapus,Elimina,消去,삭제,Kasować,Excluir,Удалить,Xóa bỏ,删除
+ui_import_from_clipboard,Import from Clipboard,Import aus der Zwischenablage,Importar desde Portapapeles,Importation de presse-papiers,Impor dari Clipboard,Importa dagli Appunti,クリップボードからのインポート,클립 보드에서 가져 오기,Import ze schowka,Importar da área de transferência,Импорт из буфера обмена,Nhập từ clipboard.,从剪贴板导入
+ui_back,Back,Zurück,atrás,Arrière,Kembali,Di ritorno,戻る,뒤,Plecy,Voltar,Назад,Mặt sau,后退
+ui_play_campaign,Play Campaign,Spielkampagne,Campaña de juego,Campagne de jeu,Bermain kampanye,Gioca a Campagna.,プレイキャンペーン,재생 캠페인,Zagraj w kampanię,Play Campanha,Играть в кампанию,Chơi chiến dịch,播放竞选活动
+ui_play_sandbox,Play Sandbox,Sandbox spielen,Play Sandbox,Baby-sable,Mainkan Sandbox.,Gioca a Sandbox.,サンドボックスをプレイします,샌드 박스를 재생하십시오,Odtwórz piaskownica,Play Sandbox.,Играть в песочницу,Chơi Sandbox.,玩沙箱
+ui_jump_to_level,Jump to Level:,Springe zu Level:,Saltar al nivel:,Aller au niveau:,Langsung ke level:,Salta al livello:,レベルへジャンプ：,수평으로 이동 :,Przejdź do poziomu:,Saltar para o nível:,Перейти к уровню:,Chuyển đến cấp độ:,跳到级别：
+ui_sandbox,Sandbox,Sandkasten,Salvadera,bac à sable,Bak pasir,Sandbox,サンドボックス,모래 상자,Piaskownica,Caixa de areia,Песочница,Sandbox.,沙箱
+ui_main_campaign,Main Campaign,Hauptkampagne.,Campaña principal,Campagne principale,Kampanye Utama,Principale campagna.,メインキャンペーン,주요 캠페인,Główna kampania,Campanha principal,Главная кампания,Chiến dịch chính,主要运动
+ui_load,Load,Belastung,Carga,Charge,Memuat,Carico,ロード,짐,Obciążenie,Carga,Нагрузка,Trọng tải,加载
+ui_overwrite,Overwrite,Überschreiben,Sobrescribir,Écraser,Timpa,Sovrascrivere,上書きする,덮어 쓰기,Przepisać,Substituir,Переписать,Ghi đè,覆盖
+ui_music_volume,Music Volume:,Musiklautstärke:,Volumen de la música:,Volume de la musique:,Volume musik:,Volume musicale:,音楽ボリューム：,음악 볼륨 :,Głośność muzyki:,Volume da música:,Объем музыки:,Âm lượng nhạc:,音乐卷：
+ui_sfx_volume,Sound Effects Volume:,Sound-Effekt-Volumen:,Volumen de efectos de sonido:,Volume des effets sonores:,Volume efek suara:,Volume effetti sonori:,効果音量：,음향 효과 볼륨 :,Głośność efektów dźwiękowych:,Volume de efeitos sonoros:,Объем звуковых эффектов:,Khối lượng hiệu ứng âm thanh:,音效卷：
+ui_beeps_volume,Beeps Volume:,Pieptöne Volume:,Volumen de los pitidos:,Volume des bips:,Volume berbunyi bip:,BEEPS Volume:,ビープ音のボリューム：,신호음 볼륨 :,Głośność:,VOLUME DE BEEPS:,Объем звуковых сигналов:,Âm lượng tiếng bíp:,发出哔哔声：
+ui_tutorial_enabled,Tutorial Enabled:,TUTORIAL aktiviert:,Tutorial habilitado:,Didacticiel activé:,Tutorial Diaktifkan:,Tutorial abilitato:,チュートリアルが有効になっている：,자습서 사용 :,Samouczek włączony:,Tutorial habilitado:,Учебник включен:,Hướng dẫn được bật:,启用教程：
+ui_fancy_sun,Fancy Sun Graphics:,Fancy Sun Graphics:,Gráficos Sun Fancy:,Fantaisie Sun Graphics:,Graphics Sun Fancy:,Fancy Sun Graphics:,ファンシーサングラフィックス：,멋진 태양 그래픽 :,Fancy Sun Graphics:,Gráficos de sol extravagantes:,Fancy Sun Graphics:,Đồ họa mặt trời lạ mắt:,花哨的太阳图形：
+ui_auto_hide_ui,Auto-hide User Interface:,Benutzeroberfläche automatisch ausblenden:,Interfaz de usuario de Ocultar auto:,Masquer automatiquement l'interface utilisateur:,Antarmuka Pengguna Sembunyikan Otomatis:,Interfaccia utente Auto-Hide:,ユーザーインターフェイスを自動非表示にします。,사용자 인터페이스 자동 숨기기 :,Auto-Ukryj interfejs użytkownika:,Interface de usuário de ocultar automaticamente:,Интерфейс пользователя Auto-Hide:,Giao diện người dùng tự động ẩn:,自动隐藏用户界面：
+ui_screen_shake,Screen Shake:,Screen Shake:,Shake Shake:,Screen Shake:,Screen Shake:,Screen Shake:,スクリーンシェーク：,화면 쉐이크 :,Wstrząsnąć ekranem:,Tremor da tela:,Экран встряхивание:,Lắc màn hình:,屏幕摇：
+ui_fullscreen,Fullscreen:,Vollbildschirm:,Pantalla completa:,Plein écran:,Layar penuh:,A schermo intero:,全画面表示：,전체 화면 :,Pełny ekran:,Tela cheia:,Полноэкранный:,Toàn màn hình:,全屏：
+ui_hints_editor,Hints Editor,Hinweise Herausgeber,Editor de sugerencias,Idéditeur,Editor Petunjuk,Suggerimenti editor,ヒント編集者,힌트 편집기,Wskazówka Edytora,Dicas Editor,Редактор подсказки,Biên tập gợi ý,提示编辑
+ui_hint,Hint,Hinweis,Insinuación,Indice,Petunjuk,Suggerimento,ヒント,힌트,Wskazówka,Dica,Намекать,Gợi ý,暗示
+ui_resource_editor,Resource Editor,Ressourceneditor,Editor de recursos,Éditeur de ressources,Editor sumber daya,Resource Editor.,リソースエディタ,자원 편집기,Edytor zasobów,Editor de recursos.,Редактор ресурсов,Trình chỉnh sửa tài nguyên.,资源编辑器
+ui_name,Name,Name,Nombre,Nom,Nama,Nome,名前,이름,Nazwa,Nome,Имя,Tên,姓名
+ui_name_colon,Name:,Name:,Nombre:,Nom:,Nama:,Nome:,名前：,이름:,Nazwa:,Nome:,Имя:,Tên:,姓名：
+ui_symbol,Symbol:,Symbol:,Símbolo:,Symbole:,Simbol:,Simbolo:,シンボル：,상징:,Symbol:,Símbolo:,Условное обозначение:,Biểu tượng:,象征：
+ui_sign,Sign:,Unterschrift:,Firmar:,Signe:,Tanda:,Cartello:,サイン：,징후:,Znak:,Sinal:,Подписать:,Ký tên:,标志：
+ui_save,Save,Speichern,Ahorrar,sauvegarder,Menyimpan,Salva,保存する,구하다,Zapisać,Salve ,Сохранить,Cứu,节省
+ui_discard,Discard,Verwerfen,Descarte,Jeter,Membuang,Scartare,破棄,버리다,Odrzucać,Descartar,Отказаться,Loại bỏ.,丢弃
+ui_colour,Colour,Farbe,Color,Couleur,Warna,Colore,色,색상,Kolor,Cor,Цвет,Màu sắc,颜色
+ui_preview,Preview,Vorschau,Avance,Aperçu,Pratinjau,Anteprima,プレビュー,시사,Zapowiedź,Pré-visualização,Предварительный просмотр,Xem trước,预览
+ui_discard_changes,Discard Changes,Änderungen verwerfen,Descartar los cambios,Annuler les modifications,Membuang perubahan,Non salvare le modifiche,変更を破棄,변경 사항을 취소,Odrzucać zmiany,Descartar mudanças,Отменить изменения,Loại bỏ những thay đổi,放弃更改
+ui_no_recipe,No Recipe,Kein Rezept,Sin receta,Aucune recette,Tidak ada resep,Nessuna ricetta,レシピなし,조리법 없음,Bez przepisu,Nenhuma receita,Нет рецепта,Không có công thức,没有食谱
+ui_factory,Factory,Fabrik,Fábrica,Usine,Pabrik,Fabbrica,工場,공장,Fabryka,Fábrica,Фабрика,Xưởng sản xuất,工厂
+ui_transmute,Transmute,Verwandeln,Transmutar,Transmuter,Mengubah,Trasmutare,変わる,변하게 하다,Przeobrazić,Transmutar,Передавать,Biến đổi.,传动
+ui_factory_inputs,Factory Inputs,Werkseingänge,Entradas de fábrica,Entrées d'usine,Input pabrik,Ingressi di fabbrica,工場入力,공장 입력,Wejścia fabryczne,Entradas de fábrica,Заводские входы,Đầu vào nhà máy,工厂输入
+ui_no_recipe_full,No Recipe. Resource must be supplied on an input lane.,Kein Rezept Ressource muss auf einer Eingabespur geliefert werden.,No hay receta. El recurso debe ser suministrado en un carril de entrada.,Pas de recette. La ressource doit être fournie sur une voie d'entrée.,Tidak ada resep. Sumber daya harus dipasok pada jalur input.,Nessuna ricetta La risorsa deve essere fornita su una corsia di input.,レシピはありません。入力レーンにリソースを指定する必要があります。,조리법 없음. 자원은 입력 차선에 제공되어야합니다.,Bez przepisu. Zasób musi być dostarczany na pasie wejściowym.,Nenhuma receita. O recurso deve ser fornecido em uma pista de entrada.,Нет рецепта. Ресурс должен поставляться на входной полосе.,Không có công thức. Tài nguyên phải được cung cấp trên một làn đầu vào.,没有食谱。必须在输入通道上提供资源。
+ui_input,Input,Eingang,Aporte,Saisir,Memasukkan,Ingresso,入力,입력,Wejście,Entrada,Вход,Đầu vào,输入
+ui_input_colon,Input:,Eingang:,Aporte:,Saisir:,Memasukkan:,Ingresso:,入力：,입력:,Wejście:,Entrada:,Вход:,Đầu vào:,输入：
+ui_rate,Rate,Rate,Índice,Taux,Kecepatan,Valutare,割合,비율,Wskaźnik,Avaliar,Темп,Tỷ lệ,速度
+ui_number,Number,Nummer,Número,Nombre,Nomor,Numero,番号,숫자,Numer,Número,Число,Con số,数字
+ui_number_colon,Number:,Nummer:,Número:,Nombre:,Nomor:,Numero:,番号：,숫자:,Numer:,Número:,Число:,Con số:,数字：
+ui_factory_output,Factory Output,Werkseingang,Salida de fábrica,Sortie d'usine,Output pabrik,Uscita di fabbrica,工場出荷,공장 출력,Wyjście fabryczne,Saída de fábrica,Заводская вывод,Sản lượng nhà máy,工厂输出
+ui_time_s,Time (s),Zeit (en),Tiempo (s),Temps (s),Waktu),Tempo (i),時間（S）,시간 (들),Czas (y),Tempo (s),Время (ы),Thời gian,时间（s）
+ui_choose_transmute,Choose resource to transmute from.,"Wählen Sie Ressource, um von zu transformieren.",Elija el recurso para transmutar de.,Choisissez la ressource à transmettre à partir de.,Pilih sumber daya untuk mentransmisikan dari.,Scegli la risorsa da trasmutare.,送信するリソースを選択します。,전송할 자원을 선택하십시오.,"Wybierz zasób, aby przemienić.",Escolha o recurso para transmutar.,Выберите ресурс для передачи.,Chọn tài nguyên để biến từ.,选择资源传输。
+ui_cannot_transmute,"Only ""+"" resouces can be created via transmutation.","Nur ""+"" Resouces können über Transmutation erstellt werden.","Solo se pueden crear recursos ""+"" a través de la transmutación.","Seules les résines ""+"" peuvent être créées via la transmutation.","Hanya ""+"" resouore yang dapat dibuat melalui transmutasi.","Solo le risorse ""+"" possono essere create tramite la trasmutazione.","""+""リセーチは変換によって作成することができます。","전용 ""+""전용 재구성은 변환을 통해 생성 될 수 있습니다.","Tylko zasięg ""+"" można utworzyć poprzez transmutację.","Apenas ""+"" resoradores podem ser criados via transmutação.",Только «+» резоусы могут быть созданы через трансмутацию.,"Chỉ có thể tạo lại ""+"" có thể được tạo thông qua biến đổi.",只能通过嬗变创建“+”remces。
+ui_warning,Warning!,Warnung!,¡Advertencia!,Avertissement!,Peringatan!,Avvertimento!,警告！,경고!,Ostrzeżenie!,Aviso!,Предупреждение!,Cảnh báo!,警告！
+ui_confirmation,Confirmation,Bestätigung,Confirmación,Confirmation,Konfirmasi,Conferma,確認,확인,Potwierdzenie,Confirmação,Подтверждение,Xác nhận,确认
+ui_all_will_be_discarded,All changes will be discarded.,Alle Änderungen werden verworfen.,Todos los cambios serán descartados.,Tous les changements seront jetés.,Semua perubahan akan dibuang.,Tutte le modifiche verranno scartate.,すべての変更は破棄されます。,모든 변경 사항이 삭제됩니다.,Wszystkie zmiany zostaną odrzucone.,Todas as alterações serão descartadas.,Все изменения будут отброшены.,Tất cả các thay đổi sẽ bị loại bỏ.,所有更改都将被丢弃。
+ui_ok,OK,OK,OK,d'accord,oke,ok,わかった,좋아요,ok,OK,Ok,VÂNG,好的
+ui_cancel,Cancel,Abbrechen,Cancelar,Annuler,Membatalkan,Annulla,キャンセル,취소,Anulować,Cancelar,Отмена,Hủy bỏ,取消
+ui_overwrite_campaign,This will overwrite the existing campaign with the same name.,Dadurch wird die vorhandene Kampagne mit demselben Namen überschrieben.,Esto sobrescribirá la campaña existente con el mismo nombre.,Cela écrasera la campagne existante avec le même nom.,Ini akan menimpa kampanye yang ada dengan nama yang sama.,Questo sovrascriverà la campagna esistente con lo stesso nome.,これにより、既存のキャンペーンが同じ名前で上書きされます。,이렇게하면 기존 캠페인을 같은 이름으로 덮어 씁니다.,Spowoduje to zastąpienie istniejącej kampanii o tej samej nazwie.,Isso sobrescreverá a campanha existente com o mesmo nome.,Это перезапишет существующую кампанию с тем же именем.,Điều này sẽ ghi đè lên chiến dịch hiện có với cùng tên.,这将覆盖具有相同名称的现有广告系列。
+ui_missions,Missions:,Missionen:,Misiones:,Missions:,Misi:,Missioni:,ミッション：,임무 :,Misje:,Missões:,Миссии:,Nhiệm vụ:,任务：
+ui_campaign_name,Campaign Name:,Kampagnenname:,Nombre de campaña:,Nom de la campagne:,Nama Kampanye:,Nome della campagna:,キャンペーン名：,캠페인 이름 :,Nazwa kampanii:,Nome da campanha:,Название кампании:,Tên chiến dịch:,竞选名称：
+ui_resources_editor,Resources Editor,Ressourcen-Editor,Editor de recursos,Éditeur de ressources,Editor Sumber Daya,Risorse Editor.,リソースエディタ,리소스 편집기,Edytor zasobów.,Editor de recursos.,Регистрация ресурсов,Trình chỉnh sửa tài nguyên,资源编辑器
+ui_recipe_editor,Recipe Editor,Rezept-Editor,Editor de recetas,Éditeur de recette,Editor Resep.,Recipe Editor.,レシピエディタ,레시피 편집기,Redaktor receptury,Editor de receita,Редактор рецепта,Trình chỉnh sửa công thức,食谱编辑器
+ui_mission_requirements,Mission Requirements and Settings,Missionsanforderungen und -einstellungen,Requisitos de la Misión y Configuraciones,Exigences et paramètres de mission,Persyaratan dan Pengaturan Misi,Requisiti e impostazioni di missione,ミッション要件と設定,임무 요구 사항 및 설정,Wymagania dotyczące misji i ustawienia,Requisitos e configurações da missão,Требования к миссии и настройки,Yêu cầu và cài đặt nhiệm vụ,任务要求和设置
+ui_level_hints,Level Hints:,Level-Hinweise:,Sugerencias de nivel:,Conseils de niveau:,Petunjuk Tingkat:,Suggerimenti di livello:,レベルのヒント：,레벨 힌트 :,Wskazówki na poziomie:,Dicas de nível:,Уровень подсказки:,Gợi ý cấp độ:,水平提示：
+ui_set_hints,Set Hints,Hinweise einstellen,Establecer consejos,Définir des indices,Atur Petunjuk,Imposta suggerimenti,ヒントを設定します,힌트를 설정하십시오,Ustaw wskazówki,Set dicas,Установить подсказки,Đặt gợi ý,设置提示
+ui_goal_colon,Goal:,Ziel:,Objetivo:,But:,Sasaran:,Obiettivo:,ゴール：,목표:,Bramka:,Meta:,Цель:,Ghi bàn:,目标：
+ui_amount_colon,Amount:,Betragen:,Monto:,Montant:,Jumlah:,Quantità:,額：,양:,Ilość:,Quantia:,Количество:,Số lượng:,数量：
+ui_factories_collect,Factories Collect:,Fabriken sammeln:,Fábricas recogen:,Usines collectées:,Pabrik mengumpulkan:,Le fabbriche raccolgono:,工場収集：,공장 수집 :,Fabryki zbierają:,Fábricas coletam:,Заводы собирают:,Các nhà máy thu thập:,工厂收集：
+ui_from_above,From Above,Von oben,Desde arriba,D'en haut,Dari atas,Da sopra,上から,위에서,Z góry,De cima,Сверху,Từ phía trên,从上面
+ui_from_below,From Below,Von unten,Desde abajo,Par le bas,Dari bawah,Da sotto,下から,밑에서부터,Od dołu,De baixo,Снизу,Từ phía dưới,从下面
+ui_available_rings,Available Rings:,Verfügbare Ringe:,Anillos disponibles:,Anneaux disponibles:,Cincin yang tersedia:,Anelli disponibili:,利用可能なリング：,사용 가능한 반지 :,Dostępne pierścienie:,Anéis disponíveis:,Доступные кольца:,Nhẫn có sẵn:,可用环：
+ui_available_lanes,Available Lanes:,Verfügbare Gassen:,LANES DISPONIBLES:,Lanes disponibles:,LANES TERSEDIA:,LANE DISPONIBILI:,利用可能な車線：,사용 가능한 레인 :,Dostępne ścieżki:,LANES DISPONÍVEIS:,Доступные полосы:,Làn đường khả dụng:,可用的车道：
+ui_input_resources,Input Resources,Input-Ressourcen,Recursos de entrada,Ressources d'entrée,Input Sumber Daya,Risorse di input,入力リソース,입력 리소스,Zasoby wejściowe.,Recursos de entrada,Входные ресурсы,Tài nguyên đầu vào,输入资源
+ui_available_recipes,Available Recipes,Verfügbare Rezepte,Recetas disponibles,Recettes disponibles,Resep yang tersedia,Ricette disponibili,利用可能なレシピ,사용 가능한 조리법,Dostępne przepisy,Receitas disponíveis,Доступные рецепты,Công thức nấu ăn có sẵn,可用的食谱
+ui_enabled,Enabled,Ermöglicht,Activado,Activée,Diaktifkan,Abilitato,有効,활성화,Włączony,Habilitado,Включено,Đã bật,启用
+ui_time,Time,Zeit,Tiempo,Temps,Waktu,Tempo,時間,시간,Czas,Tempo,Время,Thời gian,时间
+ui_output,Output,Ausgabe,Producción,Sortir,Keluaran,Produzione,出力,산출,Wyjście,Saída,Выход,Đầu ra.,输出
+ui_notes,Notes,Anmerkungen,Notas,Remarques,Catatan,Appunti,ノート,노트,Notatki,Notas,Примечания,GHI CHÚ,笔记
+ui_product,Product,Produkt,Producto,Produit,Produk,Prodotto,製品,제품,Produkt,produtos,Продукт,Sản phẩm,产品
+ui_input1,Input 1,Eingang 1,Entrada 1,Entrée 1,Input 1.,Input 1.,入力1,입력 1.,Wejście 1.,Entrada 1.,Вход 1.,Đầu vào 1.,输入1
+ui_input2,Input 2,Eingang 2.,Entrada 2,Entrée 2,Input 2.,Input 2.,入力2,입력 2.,Wejście 2.,Entrada 2.,Вход 2,Đầu vào 2.,输入2
+ui_input3,Input 3,Eingang 3,Entrada 3,Entrée 3,Input 3.,Ingresso 3.,入力3,입력 3.,Wejście 3.,Entrada 3.,Вход 3.,Đầu vào 3.,输入3.
+ui_input4,Input 4,Eingang 4,Entrada 4,Entrée 4,Input 4.,Input 4.,入力4,입력 4.,Wejście 4.,Entrada 4.,Вход 4,Đầu vào 4.,输入4.
+ui_build,Build,Bauen,Construir,Construire,Membangun,Costruire,建てる,짓다,Budować,Construir,Строить,Xây dựng,建造
+ui_mission,Mission,Mission,Misión,Mission,Misi,Missione,ミッション,사명,Misja,Missão,Миссия,Sứ mệnh,使命
+ui_ring,Ring,Ring,Anillo,Anneau,Cincin,Squillo,指輪,반지,Dzwonić,Anel,Звенеть,Nhẫn,戒指
+ui_lanes,Lanes,Bahnen,Carriles,Voies,Lanes.,Corsie,レーン,레인,Lanes.,LANES,Полосы,Lanes.,车道
+ui_satelites,Satelites,Satellite,Satelites,Satellites,Satelit,Satelliti,衛星,위성 인,Satelity,Satélites,Satelites.,Satelites.,卫星
+ui_remove_all_lanes_sat,Remove All Lanes And Satellites,Entfernen Sie alle Bahnen und Satelliten,Retire todos los carriles y satélites.,Supprimer toutes les voies et satellites,Hapus semua jalur dan satelit,Rimuovi tutte le corsie e i satelliti,すべての車線と衛星を取り除きます,모든 레인과 위성을 제거하십시오,Usuń wszystkie ścieżki i satelity,Remova todas as faixas e satélites,Удалить все полосы и спутники,Loại bỏ tất cả các làn và vệ tinh,删除所有车道和卫星
+ui_extractor,Extractor,Extraktor,Extractor,Extracteur,Alat pengambilan sari,Estrattore,抽出器,추출기,Ekstraktor,Extrator.,Экстрактор,Expressor.,提取器
+ui_inserter,Inserter,Unverbessert,Insertador,Inséril,Inserter.,Inseritore,挿入器,삽입자,Inserter.,Inserter.,Напротив,Bảo lãnh,插入者
+ui_factory,Factory,Fabrik,Fábrica,Usine,Pabrik,Fabbrica,工場,공장,Fabryka,Fábrica,Фабрика,Xưởng sản xuất,工厂
+ui_remove_satellite,Remove Satellite,Satelliten entfernen.,Eliminar satélite,Supprimer le satellite,Hapus satelit,Rimuovi il satellite,衛星を削除してください,위성을 제거하십시오,Usuń satelitę,Remover satélite,Удалить спутник,Hủy bỏ vệ tinh,去除卫星
+ui_inputs,Inputs,Inputs,Insumos,Contributions,Input,Ingressi,入力,입력,Wejście,Entradas,Входные данные,Đầu vào.,输入
+ui_reset_satellite,Reset Satellite,Satelliten zurücksetzen.,Restablecer satélite,Réinitialiser satellite,Setel ulang satelit,Ripristina satellite,衛星をリセットします,재설정 위성,Zresetuj satelitę,Redefinir satélite,Сбросить спутник,Đặt lại vệ tinh,重置卫星
+ui_save_game,Save Game,Spiel speichern,Guardar partida,Sauvegarder la partie,Simpan permainan,Salva il gioco,ゲームを保存する,게임을 저장,Zapisz grę,Salvar jogo,Сохранить игру,Lưu trò chơi,保存游戏
+ui_exported,Exported,Exportiert,Exportado,Exporté,Diekspor,Esportato,輸出された,수출,Eksportowany,Exportado,Экспортируется,Xuất khẩu,出口
+ui_tutorial,Tutorial,Lernprogramm,Tutorial,Didacticiel,Tutorial.,Tutorial,チュートリアル,지도 시간,Instruktaż,Tutorial,Руководство,Hướng dẫn,教程
+ui_clear_all_rings,Clear All Rings,Alle Ringe löschen,Borrar todos los anillos,Effacer toutes les bagues,Bersihkan semua cincin,Cancella tutti gli anelli,すべてのリングをクリアします,모든 반지를 지우십시오,Wyczyść wszystkie pierścienie.,Limpar todos os anéis,Очистить все кольца,Xóa tất cả nhẫn,清除所有戒指
+ui_all_recipes,All Recipes,Alle Rezepte,Todas las recetas,Toutes les recettes,Semua resep,Tutte le ricette,すべてのレシピ,모든 요리법,Wszystkie przepisy,Todas as receitas,Все рецепты,Tất cả các công thức nấu ăn,所有食谱
+ui_exit_to_title,Exit to Title,Beenden Sie den Titel,Salir al título,Sortie au titre,Keluar ke Judul,Esci dal titolo,タイトルを終了します,제목으로 나가십시오,Wyjdź do tytułu,Saia para o título.,Выход в заголовок,Thoát khỏi tiêu đề,退出标题
+ui_rings,Rings,Ringe,Anillos,Anneaux,Cincin,Anelli,r r,반지,Rings.,argolas,Колец,Nhẫn,戒指
+ui_satellite_factories_collect,Satellite Factories Collect From...,Satellitenfabriken sammeln von ...,Fábricas satelitales recogen de ...,Les usines de satellite collectent de ...,Pabrik satelit mengumpulkan dari ...,Le fabbriche satellitari raccolgono da ...,衛星工場から集まります...,위성 공장 수집 ...,Fabryki satelitarne zbierają z ...,Fábricas de satélite coletam de ...,Спутниковые заводы собирают из ...,Các nhà máy vệ tinh thu thập từ ...,卫星工厂收集......
+ui_above,Above,Über,Encima,Dessus,Di atas,Al di sopra,その上,위에,Nad,Acima de,Выше,Bên trên,以上
+ui_below,Below,Unter,Debajo,Au dessous de,Di bawah,Sotto,未満,아래에,Poniżej,Abaixo,Ниже,Phía dưới,以下
+ui_transmutations,Transmutations,Transmutationen,Transmutaciones,Transmutations,Transmutasi,Trasmutazione,変換,전환,Przekładki,Transmutações.,Трансмитация,Chuyển đổi,传输
+ui_rings_colon,Rings:,Ringe:,Anillos:,Anneaux:,Cincin:,Anelli:,リング：,반지 :,Pierścienie:,Argolas:,Кольца:,Nhẫn:,戒指：
+ui_lanes_colon,Lanes:,Bahnen:,LANES:,Lanes:,LANES:,LANE:,レーン：,차선 :,Lanes:,LANES:,Полосы:,Làn đường:,车道：
+ui_mission_colon,Mission:,Mission:,Misión:,Mission:,Misi:,Missione:,ミッション：,사명:,Misja:,Missão:,Миссия:,Sứ mệnh:,使命：
+ui_new_resources,New Resources,Neue Ressourcen,Nuevos recursos,Nouvelles ressources,Sumber Daya Baru,Nuove risorse,新しいリソース,새로운 자원,Nowe zasoby,Novos recursos.,Новые ресурсы,Tài nguyên mới,新资源
+ui_new_recipes,New Recipes,Neue Rezepte,Nuevas recetas,Nouvelles recettes,Resep baru,Nuove ricette,新しいレシピ,새로운 요리법,Nowe przepisy,Novas receitas,Новые рецепты,Bí quyết mới,新食谱
+ui_goal,Goal,Ziel,Objetivo,But,Sasaran,Obiettivo,ゴール,목표,Bramka,Meta,Цель,Ghi bàn,目标
+ui_hints,Hints,Hinweise,Sugerencia,Conseils,Petunjuk,Suggerimenti,ヒント,힌트,Poradnik,Sugestões,Подсказки,HINTS.,暗示
+ui_exported_resources,Exported Resources,Exportierte Ressourcen,Recursos exportados,Ressources exportées,Sumber Daya Ekspor,Risorse esportate,エクスポートされたリソース,내 보낸 자원,Eksportowane zasoby,Recursos Exportados,Экспортированные ресурсы,Xuất khẩu tài nguyên,出口资源
+ui_new_save,New Save,NEUE SAVE.,Nuevo guardar,Nouvelle sauvegarde,SIMPAN BARU,Nuovo Salva,新しい退保,새 저장,Nowy Zapisz,Novo salvar,Новое сохранение,TIẾT KIỆM MỚI,新拯救
+ui_show_tutorial,Show Tutorial:,Tutorial anzeigen:,Tutorial de presentación:,Montrer le tutoriel:,Tunjukkan tutorial:,Mostra tutorial:,チュートリアルを表示：,튜토리얼 표시 :,Pokaż samouczek:,Mostrar tutorial:,Показать учебное пособие:,Chương trình hướng dẫn:,显示教程：
+ui_previous,Previous,Vorherige,Anterior,Précédent,Sebelumnya,Precedente,前,이전의,Poprzedni,Anterior,Предыдущий,Trước,以前的
+ui_next,Next,Nächste,próximo,Prochain,Lanjut,Prossimo,次,다음,Następny,Próximo,Следующий,Kế tiếp,下一个
+ui_c_f,"Campaign
+Finished!","Kampagne
+Fertig!","Campaña
+¡Finalizado!","Campagne
+Fini!","Kampanye
+Selesai!","Campagna
+Finito!","運動
+終了した！","운동
+완성 된!","Kampania
+Skończone!","Campanha
+Finalizado!","Кампания
+Законченный!","Chiến dịch
+Hoàn thành!","活动
+完成的！"
+ui_congratulations,Congratulations!,Herzliche Glückwünsche!,¡Felicidades!,Toutes nos félicitations!,Selamat!,Congratulazioni!,おめでとう！,축하합니다!,Gratulacje!,Parabéns!,Поздравляю!,Xin chúc mừng!,恭喜！
+ui_finished in,Finished in:,Beendet in:,Terminado en:,Terminé en:,Selesai dalam:,Finito in:,完成しました：,완료 :,Zakończono:,Terminando em:,Закончено в:,Hoàn thành:,完成：
+ui_hours,"hours,","Std,","horas,","les heures,","jam,","ore,",時間、,"시간,","godziny,","horas,","часы,","giờ,",小时，
+ui_minutes,"minutes,","Protokoll,","minutos,","minutes,","menit,","minuti,",分、,"분,","minuty,","minutos,","минуты,","phút,",分钟，
+ui_seconds,seconds.,Sekunden.,segundos.,secondes.,detik.,secondi.,秒数,초.,sekundy.,segundos.,секунды.,giây.,秒。
+ui_s,s,n,s,s,d,s,秒数,s,s,s,ы,s,秒
+ui_config_issue_1,Problems with the configuration!,Probleme mit der Konfiguration!,¡Problemas con la configuración!,Problèmes avec la configuration!,Masalah dengan konfigurasi!,Problemi con la configurazione!,構成に関する問題！,구성 문제!,Problemy z konfiguracją!,Problemas com a configuração!,Проблемы с конфигурацией!,Vấn đề với cấu hình!,配置问题！
+ui_config_issue_2,Fix issues on the following missions before saving.,"Fixieren Sie Probleme auf den folgenden Missionen, bevor Sie speichern.",Solucione los problemas en las siguientes misiones antes de ahorrar.,Résoudre les problèmes sur les missions suivantes avant d'économiser.,Perbaiki masalah pada misi berikut sebelum menabung.,Risolvi problemi sulle seguenti missioni prima del salvataggio.,保存する前に、次のミッションの問題を修正してください。,저장하기 전에 다음과 같은 임무에서 문제를 해결하십시오.,Zaprawiają problemy z następującymi misjami przed zapisaniem.,Corrigir problemas nas seguintes missões antes de salvar.,Исправить проблемы по следующим миссиям перед сохранением.,Khắc phục sự cố về các nhiệm vụ sau trước khi lưu.,保存前修复以下任务问题。
+ui_overwrite_main_1,Cannot overwrite the 'Main Campaign',"Kann die ""Hauptkampagne"" nicht überschreiben können",No se puede sobrescribir la 'campaña principal',"Ne peut pas écraser la ""campagne principale""",Tidak dapat menimpa 'kampanye utama',"Non può sovrascrivere la ""campagna principale""",'メインキャンペーン'を上書きできません,'메인 캠페인'을 덮어 쓸 수 없습니다.,"Nie można zastąpić ""głównej kampanii""",Não pode sobrescrever a 'campanha principal',Не может перезаписать «основную кампанию»,Không thể ghi đè lên 'Chiến dịch chính',不能覆盖'主竞选活动'
+ui_overwrite_main_2,Please choose a different name.,Bitte wählen Sie einen anderen Namen.,"Por favor, elija un nombre diferente.",Veuillez choisir un nom différent.,Silakan pilih nama yang berbeda.,Si prega di scegliere un nome diverso.,別の名前を選択してください。,다른 이름을 선택하십시오.,Wybierz inną nazwę.,"Por favor, escolha um nome diferente.","Пожалуйста, выберите другое имя.",Vui lòng chọn một tên khác.,请选择不同的名称。
+ui_no_campaign_name,Please choose a campaign name.,Bitte wählen Sie einen Kampagnennamen.,"Por favor, elija un nombre de campaña.",Veuillez choisir un nom de campagne.,Silakan pilih nama kampanye.,Si prega di scegliere un nome di campagna.,キャンペーン名を選択してください。,캠페인 이름을 선택하십시오.,Wybierz nazwę kampanii.,"Por favor, escolha um nome de campanha.","Пожалуйста, выберите название кампании.",Vui lòng chọn một tên chiến dịch.,请选择竞选名称。
+ui_n_transmute_1,Cannot have more than three transmutation recipies.,Kann nicht mehr als drei Transmutationsrezepte haben.,No puede tener más de tres recetas de transmutación.,Ne peut avoir plus de trois recettes de transmutation.,Tidak dapat memiliki lebih dari tiga penerima transmutasi.,Non può avere più di tre ricette di trasmutazione.,3つ以上の変換レシピを持つことはできません。,3 개 이상의 변환 레시피를 가질 수 없습니다.,Nie może mieć więcej niż trzech przepisów transmisji.,Não pode ter mais de três recompensas de transmutação.,Не может иметь более трех получателей трансмутации.,Không thể có nhiều hơn ba người nhận truyền.,不能有三个以上的嬗变谱。
+ui_n_transmute_2,Remove a transmutation first from one of:,Entfernen Sie zuerst eine Transmutation von einem von:,Eliminar una transmutación primero desde uno de:,Supprimer une transmutation d'abord d'une des:,Hapus transmutasi pertama dari salah satu:,Rimuovere prima una trasmutazione da uno dei:,次のいずれかから最初に変換を取り除きます。,전송을 먼저 제거하십시오.,Wyjmij najpierw transmutację z jednego z:,Remova uma transmutação primeiro de um de:,Снимите трансмутацию сначала от одного из:,Xóa một biến đổi đầu tiên từ một trong:,首先从以下之一删除嬗变：
+ui_which_transmute_1,Each input can be used for a single transmute.,Jeder Eingang kann für eine einzelne Transmission verwendet werden.,Cada entrada se puede utilizar para una sola transmutación.,Chaque entrée peut être utilisée pour un seul transmutage.,Setiap input dapat digunakan untuk transmute tunggal.,Ogni ingresso può essere utilizzato per una singola trasmuta.,各入力は単一の送信に使用できます。,각 입력은 단일 전송에 사용할 수 있습니다.,Każde wejście może być używane do pojedynczego transmisji.,Cada entrada pode ser usada para um único transmute.,Каждый вход может быть использован для одной передачи.,Mỗi đầu vào có thể được sử dụng cho một biến đơn.,每个输入都可用于单个传输。
+ui_which_transmute_2,Remove:,Entfernen:,Eliminar:,Supprimer:,Menghapus:,Rimuovere:,削除する：,제거하다:,Usunąć:,Retirar:,Удалять:,Di dời:,消除：
+ui_which_transmute_3,From transmuting into:,Von der Umsetzung in:,De transmutar en:,De la transmission dans:,Dari mentransmisikan ke:,Dalla trasmuta in:,変換から：,다음으로 전환하는 것,Od transmisji do:,De transmitir em:,От передачи в:,Từ việc biến đổi thành:,从透射到：
+ui_named_resource,New resource must have a name.,Neue Ressource muss einen Namen haben.,El nuevo recurso debe tener un nombre.,La nouvelle ressource doit avoir un nom.,Sumber daya baru harus memiliki nama.,La nuova risorsa deve avere un nome.,新しいリソースに名前が必要です。,새 리소스에는 이름이 있어야합니다.,Nowy zasób musi mieć nazwę.,Novo recurso deve ter um nome.,Новый ресурс должен иметь имя.,Tài nguyên mới phải có tên.,新资源必须具有名称。
+ui_h_positive,H must be a +ve signed resource.,H muss eine + ve-ressource sein.,H debe ser un recurso firmado A + VE.,H doit être une ressource signée + ve.,H harus menjadi + sumber daya yang ditandatangani.,H deve essere una risorsa firmata A + VE.,hは+ VE署名されたリソースでなければなりません。,h는 + VE 서명 된 자원이어야합니다.,H musi być podpisany zasobem + ve.,H deve ser um recurso de + ve.,H должен быть подписанный ресурс + ve.,H phải là một tài nguyên đã ký của A + đã ký.,H必须是A + VE签名的资源。
+ui_delete_h,Cannot delete the H resource.,Die H-Ressource kann nicht löschen.,No se puede eliminar el recurso H.,Ne peut pas supprimer la ressource h.,Tidak dapat menghapus sumber daya h.,Impossibile eliminare la risorsa H.,Hリソースを削除できません。,H 자원을 삭제할 수 없습니다.,Nie można usunąć zasobu H.,Não é possível excluir o recurso H.,Не удается удалить ресурс H.,Không thể xóa tài nguyên H.,无法删除H资源。
+ui_recipe_active,Recipe active,Rezept aktiv,Receta activa,Recette active,Resep aktif,Ricetta attiva,レシピアクティブ,레시피 능동적 인,Receptura aktywna,Receita ativa,Рецепт активный,Công thức hoạt động,食谱活动
+ui_required_to_make,Required to make: ,"Erforderlich, um zu machen:",Requerido para hacer:,Nécessaire pour faire:,Diperlukan untuk membuat:,Richiesto per fare:,作るために必要です：,만드는 데 필요한 :,Wymagane do wykonania:,Necessário para fazer:,Требуется сделать:,Cần thiết để thực hiện:,需要做：
+ui_cannot_reach_goal_1,The goal cannot be reached given the current configuration.,Das Ziel kann anhand der aktuellen Konfiguration nicht erreicht werden.,No se puede llegar a la meta dada la configuración actual.,L'objectif ne peut pas être atteint compte tenu de la configuration actuelle.,Tujuannya tidak dapat dihubungi dengan konfigurasi saat ini.,L'obiettivo non può essere raggiunto data la configurazione corrente.,現在の設定を考えると目標に達することはできません。,현재 구성이 주어지면 목표에 도달 할 수 없습니다.,"Celem nie można osiągnąć, biorąc pod uwagę aktualną konfigurację.",O objetivo não pode ser alcançado dada a configuração atual.,"Цель не может быть достигнута, учитывая текущую конфигурацию.",Mục tiêu không thể đạt được với cấu hình hiện tại.,考虑到当前配置，无法达到目标。
+ui_cannot_reach_goal_2,Add the following resources to input lanes (or add derived resources):,"Fügen Sie die folgenden Ressourcen hinzu, um die Input-Lanes (oder leitete Ressourcen hinzufügen):",Agregue los siguientes recursos a los carriles de entrada (o agregue recursos derivados):,Ajoutez les ressources suivantes aux voies de saisie (ou ajoutez des ressources dérivées):,Tambahkan sumber daya berikut ke lanes input (atau tambahkan sumber daya turunan):,Aggiungere le seguenti risorse per inserire le corsie (o aggiungere risorse derivate):,入力レーンに次のリソースを追加します（または派生リソースを追加）。,입력 레인 (또는 파생 리소스 추가)에 다음 리소스를 추가하십시오.,"Dodaj następujące zasoby, aby wprowadzić ścieżki (lub dodać zasoby pochodne):",Adicione os seguintes recursos para inserir faixas (ou adicionar recursos derivados):,Добавьте следующие ресурсы для ввода полос (или добавить производные ресурсы):,Thêm các tài nguyên sau vào các làn đầu vào (hoặc thêm tài nguyên dẫn xuất):,将以下资源添加到输入通道（或添加派生资源）：
+ui_tutorial_welcome,Tutorial: Welcome to Spherifactory!,Tutorial: Willkommen bei Sphärifactory!,Tutorial: ¡Bienvenido a Sfherifactory!,Tutoriel: Bienvenue à Spherifactory!,Tutorial: Selamat datang di Spherifactory!,TUTORIAL: Benvenuto a Spheractory!,チュートリアル：Spherifactoryへようこそ！,튜토리얼 : Spherifactory에 오신 것을 환영합니다!,Tutorial: Witamy w sferyfaktycznym!,Tutorial: Bem-vindo à Spherifatory!,Учебник: Добро пожаловать в сферифакты!,Hướng dẫn: Chào mừng bạn đến với Spherifactory!,教程：欢迎来到马术！
+ui_tutorial_message,Tutorial: Message ,Tutorial: Nachricht.,Tutorial: Mensaje,Tutoriel: message,Tutorial: Pesan,Tutorial: Message.,チュートリアル：メッセージ,튜토리얼 : 메시지,Tutorial: Wiadomość,Tutorial: Mensagem,Учебник: сообщение,Hướng dẫn: Tin nhắn,教程：消息
+ui_current_mission,Current Mission,Derzeitige Mission,Misión actual,Mission actuelle,Misi saat ini,Missione attuale,現在のミッション,현재 미션,Obecna misja,Missão atual,Текущая задача,Nhiệm vụ hiện tại,当前任务
+ui_of,of,von,de,de,dari,di,の,NS,z,do,из,của,的
+ui_language,Language,Sprache,Idioma,Langue,Bahasa,Lingua,言語,언어,Język,Língua,Язык,Ngôn ngữ,语
+ui_delete_campaign,Delete campaign:,Kampagne löschen:,Eliminar campaña:,Supprimer la campagne:,Hapus kampanye:,Elimina campagna:,キャンペーンを削除します。,캠페인 삭제 :,Usuń kampanię:,Excluir campanha:,Удалить кампанию:,Xóa chiến dịch:,删除广告系列：
+ui_copied_to_clipboard,Campaign Copied to Clipboard,Kampagne in die Zwischenablage kopiert,Campaña copiada al portapapeles.,Campagne copiée dans le presse-papier,Kampanye disalin ke clipboard,Campagna copiata negli Appunti,キャンペーンがクリップボードにコピーされました,캠페인은 클립 보드에 복사되었습니다,Kampania skopiowana do schowka,Campanha copiada para a área de transferência,Кампания скопирована в буфер обмена,Chiến dịch sao chép vào clipboard,广告系列复制到剪贴板
+ui_cannot_delete_main,Cannot delete the main campaign,Die Hauptkampagne kann nicht löschen,No se puede eliminar la campaña principal,Ne peut pas supprimer la campagne principale,Tidak dapat menghapus kampanye utama,Non è possibile eliminare la campagna principale,メインキャンペーンを削除できません,주요 캠페인을 삭제할 수 없습니다,Nie można usunąć głównej kampanii,Não é possível excluir a campanha principal,Не может удалить главную кампанию,Không thể xóa chiến dịch chính,无法删除主要广告系列
+ui_confirm_overwrite,Please confirm overwriting Save,Bitte überprüfen Sie das Überschreiben Speichern,Por favor confirme la sobrescritura Guardar,S'il vous plaît confirmer écraser Enregistrer,Harap Konfirmasikan Overwriting Simpan,Si prega di confermare la sovrascrittura Salva,上書き保存を確認してください,덮어 쓰기를 확인하십시오,Proszę potwierdzić nadpisanie Zapisz,"Por favor, confirme salvar sobrescrevendo","Пожалуйста, подтвердите перезапись Сохранить",Vui lòng xác nhận ghi đè Lưu lại,请确认覆盖保存
+ui_confirm_delete,Please confirm deleting Save,Bitte bestätigen Sie das Löschen Speichern,"Por favor, confirme la eliminación de guardado",S'il vous plaît confirmer la suppression de sauvegarder,Harap Konfirmasikan Menghapus Simpan,Si prega di confermare l'eliminazione Salva,削除を確認してください,저장 삭제를 확인하십시오,Potwierdź usuwanie Zapisz,"Por favor, confirme a exclusão de salvar","Пожалуйста, подтвердите удаление сохранения",Vui lòng xác nhận Save Save,请确认删除保存
+ui_level,Level,Niveau,Nivel,Niveau,Tingkat,Livello,レベル,수준,Poziom,Nível,Уровень,Cấp độ,等级
+ui_autosave,Autosave,Autosave,Autosavo,Transmettre,Penyimpanan otomatis,Autosave,aut aut,자동 저장,AutoSave.,Salvamento automático,Автосохранение,Autosave.,自动保存
+ui_goal_resource,Goal resource,Torressource,Recurso de meta,Ressource de but,Sumber Daya Tujuan,Risorse obiettivo,目標リソース,목표 자원,Zasób bramki,Recurso de meta,Цель ресурса,Tài nguyên mục tiêu,目标资源
+ui_always_required,Always required,Immer erforderlich,Siempre requerido,Toujours nécessaire,Selalu diminta,Sempre richiesto,常に必要です,항상 필요합니다,Zawsze wymagany,Sempre obrigatório,Всегда требуется,Luôn luôn yêu cầu,总是要求
+ui_on_input_lane,On input lane,Auf der Eingangspur,En el carril de entrada,Sur la voie d'entrée,Pada input lane.,Sulla corsia di input,入力車線に,입력 레인에서,Na pasie wejściowym,Na faixa de entrada,На входной полосе,Trên làn đầu vào,在输入车道上
+ui_required,Required,Erforderlich,Requerido,Obligatoire,Yg dibutuhkan,Necessario,必須,필수의,Wymagany,Obrigatório,Необходимый,Yêu cầu,必需的
+ui_show,Show,Zeigen,Show,Spectacle,Menunjukkan,Spettacolo,見せる,보여 주다,Pokazać,Mostrar,Показать,Chỉ,展示
+ui_close,Close,Nah dran,Cerrar,proche,Menutup,Chiudere,選ぶ,닫다,Blisko,Fechar,Закрывать,Gần,关闭
+,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+tut_0,"CAMERA CONTROLS
+
+Move the camera:
+  - With the W,A,S,D keys,
+  - With the Arrow keys,
+  - By holding the middle mouse button and moving the mouse.
+
+Zoom the camera in and out with:
+  - The Q and E keys,
+  - The mouse's scroll wheel.","Kamerakontrollen
+
+Bewegen Sie die Kamera:
+  - mit den W, A, S, D-Tasten,
+  - mit den Pfeiltasten,
+  - indem Sie die mittlere Maustaste halten und die Maus bewegen.
+
+Zoom Die Kamera in und aus mit:
+  - die Q- und E-Tasten,
+  - Das Scrollrad der Maus.","Controles de la cámara
+
+Mueve la cámara:
+  - Con las teclas W, A, S, D,
+  - con las teclas de flecha,
+  - Sosteniendo el botón del ratón medio y moviendo el mouse.
+
+Zoom la cámara dentro y fuera con:
+  - Las teclas Q y E,
+  - La rueda de desplazamiento del mouse.","Contrôles de la caméra
+
+Déplacez la caméra:
+  - avec les touches W, A, S, D,
+  - avec les touches fléchées,
+  - En maintenant le bouton du milieu de la souris et en déplaçant la souris.
+
+Zoomez l'appareil photo dans et vers l'extérieur avec:
+  - les clés Q et E,
+  - La roue de défilement de la souris.","Kontrol Kamera.
+
+Pindahkan kamera:
+  - dengan tombol W, A, S, D,
+  - dengan tombol panah,
+  - Dengan memegang tombol tengah mouse dan menggerakkan mouse.
+
+Zoom kamera masuk dan keluar dengan:
+  - Tombol Q dan E,
+  - Roda gulir mouse.","Controlli della fotocamera.
+
+Sposta la fotocamera:
+  - Con i tasti W, A, S, D,
+  - Con i tasti freccia,
+  - Tenendo il pulsante centrale del mouse e spostando il mouse.
+
+Zoom con la fotocamera dentro e fuori con:
+  - I tasti Q ed E,
+  - La ruota di scorrimento del mouse.","カメラコントロール
+
+カメラを移動します。
+   -  w、a、s、dキー、
+   - 矢印キーでは、
+   - マウスの中央ボタンを押しながらマウスを動かします。
+
+カメラをズームインしてからズームインしてください。
+   -  QとEキー
+   - マウスのスクロールホイール。","카메라 컨트롤
+
+카메라 이동 :
+  - W, A, S, D 키로,
+  - 화살표 키로,
+  - 가운데 마우스 버튼을 누르고 마우스를 움직이게하십시오.
+
+카메라를 입력하고 밖으로 나가십시오.
+  - Q 및 E 키,
+  - 마우스의 스크롤 휠.","Sterowanie kamerami
+
+Przenieś aparat:
+  - z klucze W, A, S, D,
+  - za pomocą klawiszy strzałek
+  - Przytrzymując środkowy przycisk myszy i przesuwając mysz.
+
+Powiększ aparat wraz z:
+  - Klucze Q i E,
+  - Koło przewijania myszy.","Controles da câmera
+
+Mova a câmera:
+  - Com as teclas W, A, S, D,
+  - Com as teclas de seta,
+  - Segurando o botão do meio do mouse e movendo o mouse.
+
+Zoom a câmera dentro e para fora com:
+  - as chaves Q e E,
+  - Roda de rolagem do rato.","Управление камерой
+
+Переместить камеру:
+  - с ключами W, A, S, D,
+  - с клавишами со стрелками,
+  - Удерживая среднюю кнопку мыши и перемещая мышь.
+
+Увеличивайте камеру в и выйти с:
+  - Q и E ключи,
+  - колесо прокрутки мыши.","Điều khiển máy ảnh
+
+Di chuyển máy ảnh:
+  - Với các phím W, A, S, D,
+  - với các phím mũi tên,
+  - Bằng cách giữ nút chuột giữa và di chuyển chuột.
+
+Thu phóng máy ảnh vào và ra với:
+  - Phím Q và E,
+  - Bánh xe cuộn của chuột.","相机控件
+
+移动相机：
+   - 用W，A，S，D键，
+   - 带箭头键，
+   - 通过握住鼠标按钮并移动鼠标。
+
+缩放相机进出：
+   -  Q和E键，
+   - 鼠标的滚轮。"
+tut_1,"RESOURCES
+
+The sun provides an unlimited supply of the [H+] resource. Other basic resources will need to be imported.
+
+Resources with a [+] sign always move outwards, away from the Sun.
+
+Resources with a [-] sign always move inwards, towards the Sun.","RESSOURCEN
+
+Die Sonne bietet eine unbegrenzte Versorgung der [H +] -Ressource. Andere grundlegende Ressourcen müssen importiert werden.
+
+Ressourcen mit einem [+] Zeichen bewegen sich immer nach außen, abseits der Sonne.
+
+Ressourcen mit einem [-] Zeichen bewegen sich immer nach innen in Richtung Sonne.","RECURSOS
+
+El sol proporciona un suministro ilimitado del recurso [H +]. Otros recursos básicos deberán ser importados.
+
+Los recursos con un signo [+] siempre se mueven hacia afuera, alejado del sol.
+
+Los recursos con un signo [-] siempre se mueven hacia adentro, hacia el sol.","RESSOURCES
+
+Le soleil fournit une offre illimitée de la ressource [H +]. D'autres ressources de base devront être importées.
+
+Les ressources avec un signe [+] déménagent toujours vers l'extérieur, loin du soleil.
+
+Les ressources avec un signe [-] se déplacent toujours vers l'intérieur, vers le soleil.","SUMBER DAYA
+
+Matahari menyediakan pasokan tak terbatas dari sumber daya [H +]. Sumber daya dasar lainnya perlu diimpor.
+
+Sumber daya dengan tanda [+] selalu bergerak ke luar, jauh dari Matahari.
+
+Sumber daya dengan tanda [-] selalu bergerak ke dalam, ke arah Matahari.","Risorse
+
+Il sole fornisce una fornitura illimitata della risorsa [H +]. Altre risorse di base dovranno essere importate.
+
+Le risorse con un segno [+] si spostano sempre verso l'esterno, lontano dal sole.
+
+Le risorse con un segno [-] si spostano sempre verso l'interno, verso il sole.","資力
+
+太陽は[H +]リソースの無制限の供給を提供します。他の基本的なリソースをインポートする必要があります。
+
+[+]記号を持つリソースは、常に太陽から離れて外側に移動します。
+
+[ - ]記号を持つリソースは、常に太陽に向かって内側に移動します。","자원
+
+Sun은 [H +] 자원을 무제한으로 제공합니다. 다른 기본 리소스를 가져와야합니다.
+
+[+] 기호가있는 리소스는 항상 밖으로 나아갔습니다.
+
+[-] 기호가있는 자원은 항상 안쪽으로 움직입니다.","SUROWCE
+
+Słońce zapewnia nieograniczoną dostawę zasobów [H +]. Inne podstawowe zasoby wymagają importowania.
+
+Zasoby za pomocą znaku [+] zawsze poruszają się na zewnątrz, z dala od Słońca.
+
+Zasoby z znakiem [-] zawsze poruszają się do wewnątrz, w kierunku Słońca.","RECURSOS
+
+O sol fornece uma oferta ilimitada do recurso [H +]. Outros recursos básicos precisarão ser importados.
+
+Recursos com um sinal [+] sempre se movem para fora, longe do sol.
+
+Recursos com um sinal [] sempre se movem para dentro, em direção ao sol.","РЕСУРСЫ
+
+Солнце обеспечивает неограниченный запас ресурса [H +]. Другие основные ресурсы должны быть импортированы.
+
+Ресурсы со знаком [+] всегда двигаются наружу от солнца.
+
+Ресурсы с [-] знаком всегда движутся внутрь, к Солнцу.","TÀI NGUYÊN
+
+Mặt trời cung cấp một nguồn cung cấp không giới hạn tài nguyên [H +]. Các tài nguyên cơ bản khác sẽ cần phải được nhập khẩu.
+
+Tài nguyên với một dấu hiệu [+] luôn di chuyển ra ngoài, cách xa ánh nắng mặt trời.
+
+Tài nguyên với một dấu hiệu [-] luôn di chuyển vào trong, về phía Mặt trời.","资源
+
+太阳提供了无限制的[H +]资源。需要导入其他基本资源。
+
+使用[+]标志的资源总是向外向外移动，远离太阳。
+
+使用[ - ]标志的资源总是向内移动到太阳。"
+tut_2,"RINGS AND LANES
+
+The sun is surrounded by a system of rings, and each ring is divided into a number of lanes,
+
+Each lane can only carry a single resource.
+
+Satelites are built on rings, and extend over all of the ring's lanes. Each satelite will reduce the number of resources which can fit around the ring.
+
+Click on a ring to manage its lanes and satelites.","Ringe und Bahnen
+
+Die Sonne ist von einem System von Ringen umgeben, und jeder Ring ist in eine Reihe von Bahnen unterteilt,
+
+Jede Spur kann nur eine einzige Ressource tragen.
+
+Satelite sind auf Ringen gebaut und erstrecken sich über alle Ringspuren. Jeder Satellit verringert die Anzahl der Ressourcen, die um den Ring herum passen können.
+
+Klicken Sie auf einen Ring, um seine Bahnen und Satelliten zu verwalten.","Anillos y carriles
+
+El sol está rodeado por un sistema de anillos, y cada anillo se divide en una serie de carriles,
+
+Cada carril solo puede llevar un solo recurso.
+
+Los satélites están construidos sobre los anillos, y se extienden sobre todos los carriles del anillo. Cada satélite reducirá la cantidad de recursos que pueden caber alrededor del anillo.
+
+Haga clic en un anillo para administrar sus carriles y satelites.","Bagues et voies
+
+Le soleil est entouré d'un système de bagues et chaque bague est divisée en plusieurs voies,
+
+Chaque voie ne peut transporter qu'une seule ressource.
+
+Les satellites sont construits sur des anneaux et s'étendent sur toutes les voies de la bague. Chaque satellite réduira le nombre de ressources pouvant s'adapter à la bague.
+
+Cliquez sur une bague pour gérer ses voies et ses satellites.","Cincin dan lanes.
+
+Matahari dikelilingi oleh sistem cincin, dan setiap cincin dibagi menjadi beberapa jalur,
+
+Setiap jalur hanya dapat membawa sumber daya tunggal.
+
+Satelit dibangun di atas cincin, dan memperluas semua jalur cincin. Setiap satelit akan mengurangi jumlah sumber daya yang dapat muat di sekitar cincin.
+
+Klik pada cincin untuk mengelola jalur dan satelitnya.","Anelli e corsie
+
+Il sole è circondato da un sistema di anelli e ogni anello è diviso in un numero di corsie,
+
+Ogni corsia può svolgere solo una singola risorsa.
+
+Satelliti sono costruiti su anelli e si estendono su tutte le corsie dell'anello. Ogni satelite ridurrà il numero di risorse che possono adattarsi attorno all'anello.
+
+Clicca su un anello per gestire le sue corsie e satelliti.","リングとレーン
+
+太陽はリングのシステムに囲まれ、各リングは数の車線に分けられます。
+
+各車線は単一のリソースしか持ち運ぶことができません。
+
+衛星はリング上に構築されており、リングのすべての車線に及ぶ。各衛星は、リングの周りに収まる可能性があるリソースの数を減らすでしょう。
+
+リングをクリックして車線と衛星を管理します。","반지와 차선
+
+태양은 링의 시스템으로 둘러싸여 있으며 각 링은 여러 차선으로 나뉘어져 있습니다.
+
+각 차선은 단일 리소스 만 수행 할 수 있습니다.
+
+위성 물질은 링 위에 지어졌으며 모든 링의 차선을 통해 확장됩니다. 각 위성은 링 주위에 맞을 수있는 자원 수를 줄일 수 있습니다.
+
+링을 클릭하여 차선 및 위성 요소를 관리하십시오.","Pierścienie i ścieżki
+
+Słońce jest otoczony systemem pierścieni, a każdy pierścień jest podzielony na wiele pasów,
+
+Każdy pas może prowadzić tylko jedno zasób.
+
+Satelity są zbudowane na pierścieniach i rozciągają się na wszystkich pasach pierścieniowych. Każda satelita zmniejszy liczbę zasobów, które mogą pasować do pierścienia.
+
+Kliknij pierścień, aby zarządzać swoimi ścieżkami i satelitami.","Anéis e pistas
+
+O sol é cercado por um sistema de anéis, e cada anel é dividido em uma série de faixas,
+
+Cada faixa só pode levar um único recurso.
+
+Os satélites são construídos em anéis e se estendem sobre todas as faixas do anel. Cada satelite reduzirá o número de recursos que podem caber em torno do anel.
+
+Clique em um anel para gerenciar suas faixas e satélites.","Кольца и полосы
+
+Солнце окружено системой колец, и каждое кольцо разделено на ряд полос,
+
+Каждый переулок может иметь только один ресурс.
+
+Satelites построен на кольцах и простирается над всеми полосами кольца. Каждый Satelite уменьшит количество ресурсов, которые могут поместиться вокруг кольца.
+
+Нажмите на кольцо, чтобы управлять своими полосами и спутниками.","Nhẫn và làn đường.
+
+Mặt trời được bao quanh bởi một hệ thống reo, và mỗi vòng được chia thành một số làn đường,
+
+Mỗi làn chỉ có thể mang một tài nguyên duy nhất.
+
+Satelites được xây dựng trên các vòng và mở rộng trên tất cả các làn đường của vòng. Mỗi satelite sẽ làm giảm số lượng tài nguyên có thể phù hợp xung quanh vòng.
+
+Nhấp vào một vòng để quản lý làn đường và satelites của nó.","戒指和车道
+
+太阳被一个环包围，每个环都分成了多个车道，
+
+每个车道只能携带单个资源。
+
+卫星建立在环上，并延伸到所有戒指的车道上。每个卫星将减少可以在环周围装配的资源数量。
+
+单击戒指以管理其车道和卫星。"
+tut_3_0,"SATELITES: EXTACTOR
+
+Satelites in Extractor mode move [+] resources.
+
+TIP: After having assigned a mode to one Satelite, right-click on another to assign it to the same mode.
+  
+[+] resources move from ring below to the ring above.","Satelliten: Extraktor
+
+Satelite im Extraktionsmodus verschieben [+] Ressourcen.
+
+Tipp: Nachdem Sie einen Modus zu einem Satelliten zugewiesen haben, klicken Sie mit der rechten Maustaste auf eine andere, um sie dem gleichen Modus zuzuweisen.
+  
+[+] Ressourcen bewegen sich vom Ring unten zum Ring oben.","Satelites: extactor
+
+Los satélites en modo extractor se mueven [+] los recursos.
+
+Sugerencia: después de haber asignado un modo a un satélite, haga clic con el botón derecho en otro para asignarlo al mismo modo.
+  
+[+] Los recursos se mueven de un anillo debajo al anillo de arriba.","Satellites: Extacteur
+
+Satellites en mode extracteur Déplacez les ressources [+].
+
+Conseil: Après avoir attribué un mode à un satellite, cliquez avec le bouton droit de la souris sur un autre pour l'attribuer au même mode.
+  
+[+] Les ressources se déplacent de l'anneau ci-dessous sur la bague ci-dessus.","Satelit: Extactor.
+
+Satelit dalam mode ekstraktor memindahkan sumber daya [+].
+
+Tip: Setelah menetapkan mode ke satu satelit, klik kanan pada yang lain untuk menetapkannya ke mode yang sama.
+  
+[+] Sumber daya bergerak dari cincin di bawah ke cincin di atas.","Satelliti: Exstactor.
+
+Satelliti in modalità Extractor Move [+] Risorse.
+
+Suggerimento: dopo aver assegnato una modalità a un satelite, fare clic con il tasto destro del mouse su un altro per assegnarlo alla stessa modalità.
+  
+[+] Le risorse si spostano dall'anello sotto all'anello sopra.","Satelites：エクステクター
+
+Extractor Modeの飽和度[+]リソースを移動します。
+
+ヒント：1つのサテライトにモードを割り当てた後、別のモードを右クリックして同じモードに割り当てます。
+  
+[+]リソースは下のリングから上のリングに移動します。","위성 세트 : extactor.
+
+추출기 모드의 위성 인은 [+] 자원을 이동합니다.
+
+팁 : 하나의 위성에 모드를 할당 한 후 다른 모드로 마우스 오른쪽 버튼으로 클릭하여 동일한 모드로 할당합니다.
+  
+[+] 자원은 아래 벨소리에서 위의 링으로 이동합니다.","Satelity: Extsctor.
+
+Satelites w trybie wyciągowym Przenieś zasoby [+].
+
+Wskazówka: Po przypisaniu trybu do jednego satelitu kliknij prawym przyciskiem myszy inny, aby przypisać go do tego samego trybu.
+  
+[+] Zasoby przechodzą z pierścienia poniżej do pierścienia powyżej.","Satélites: Extator.
+
+Satélites no modo de extrator movimentação [+] recursos.
+
+Dica: Depois de ter atribuído um modo a um satelite, clique com o botão direito do mouse em outro para atribuí-lo ao mesmo modo.
+  
+[+] recursos se movem do anel abaixo para o anel acima.","Satelites: Extault.
+
+Стелты в режиме экстрактора перемещают [+] ресурсы.
+
+Совет: После присвоения режима на один Satelite щелкните правой кнопкой мыши по другому, чтобы назначить его в тот же режим.
+  
+[+] Ресурсы перемещаются с кольца ниже на кольцо выше.","Satelites: Extriveor.
+
+Satelites trong chế độ Extractor di chuyển [+] tài nguyên.
+
+Mẹo: Sau khi đã gán một chế độ cho một satelite, nhấp chuột phải vào cái khác để gán nó cho cùng một chế độ.
+  
+[+] Tài nguyên di chuyển từ vòng bên dưới đến vòng trên.","卫星：extontor.
+
+提取器模式中的卫星移动[+]资源。
+
+提示：将模式分配给一个卫星后，右键单击另一个卫星以将其分配给同一模式。
+  
+[+]资源从下面的环移动到上面的环。"
+tut_3_1,"If built on the first ring, it will extract [+] resources from the Sun.","Wenn auf dem ersten Ring aufgebaut, wird es [+] Ressourcen von der Sonne extrahiert.","Si se construye en el primer anillo, extraerá [+] recursos del Sol.","Si construit sur la première bague, il extraire [+] ressources du Soleil.","Jika dibangun di atas cincin pertama, itu akan mengekstrak sumber daya [+] dari Matahari.","Se costruito sul primo anello, estrae [+] risorse dal sole.",最初のリング上に構築されている場合は、太陽から[+]リソースを抽出します。,첫 번째 링에 내장 된 경우 태양의 [+] 자원을 추출합니다.,Jeśli zbudowany na pierwszym pierścieniu wyodrębnie [+] zasobów ze słońca.,"Se construído no primeiro anel, ele extrairá [+] recursos do sol.","Если настроен на первом кольце, он будет извлекать [+] ресурсы от Солнца.","Nếu được xây dựng trên vòng đầu tiên, nó sẽ trích xuất [+] tài nguyên từ Mặt trời.",如果建于第一圈，它将从太阳中提取[+]资源。
+tut_3_2,"If built on the outermost ring, it will export the [+] resource.","Wenn auf dem äußersten Ring erstellt, exportiert es die Ressource [+].","Si se basa en el anillo más externo, exportará el recurso [+].","Si construit sur la bague la plus externe, il exporte la ressource [+].","Jika dibangun di atas cincin terluar, itu akan mengekspor sumber daya [+].","Se costruito sull'anello più esterno, esporterà la risorsa [+].",最も外側のリング上に構築されている場合は、[+]リソースをエクスポートします。,최 외곽 링 위에 내장 된 경우 [+] 자원을 내보낼 것입니다.,Jeśli zbudowany na zewnętrznym pierścieniu wyeksportuje zasób [+].,"Se construído no anel mais externo, ele exportará o [+] recurso.","Если встроен на внешнее кольцо, он экспортирует ресурс [+].","Nếu được xây dựng trên vòng ngoài cùng, nó sẽ xuất tài nguyên [+].",如果构建在最外圈，它将导出[+]资源。
+tut_4,"MISSIONS AND EXPORTS
+
+Each mission tasks you to produce and export a certain number of a [+] resource using Extractor satelites on the outermost ring. 
+
+Example, to export [H+] with only one Ring.
+ - Click the Build Satelite button on the left of the screen
+ - Place some unassigned satelites in Ring 1
+ - Click the unassigned satelites and configure them as [H+] Extractor
+
+Extractor satelites in the outermost ring will load the [+] resource into ships and launch these into space.","Missionen und Exporte.
+
+Jedes Missionsaufgaben Sie erstellen und exportieren Sie eine bestimmte Anzahl von [+] -Ressourcen mit Extraktor-Satelliten auf dem äußersten Ring.
+
+Beispiel, um [H +] mit nur einem Ring zu exportieren.
+ - Klicken Sie auf der linken Seite des Bildschirms auf die Schaltfläche ""Satelite""
+ - Legen Sie einige nicht zugewiesene Satelliten in Ring 1
+ - Klicken Sie auf die nicht zugewiesenen Satelliten und konfigurieren Sie sie als [H +] -Tauger
+
+Der Extraktor Satelite im äußersten Ring lädt die Ressource [+] in Schiffe und starten diese in den Raum.","Misiones y exportaciones
+
+Cada misión lo demora y exporta un cierto número de un recurso [+] utilizando los satélites extractores en el anillo más externo.
+
+Ejemplo, para exportar [H +] con un solo anillo.
+ - Haga clic en el botón Crear satélite a la izquierda de la pantalla
+ - Coloque algunos satélites no asignados en el anillo 1
+ - Haga clic en los satélites no asignados y configúrelos como extractor [H +]
+
+Los satélites extractores en el anillo más externo cargarán el recurso [+] en los buques y lanzará estos en el espacio.","Missions et exportations
+
+Chaque mission vous permet de produire et d'exporter un certain nombre de ressources [+] à l'aide de satellites d'extracteur sur la bague la plus externe.
+
+Exemple, à exporter [H +] avec un seul anneau.
+ - Cliquez sur le bouton Build Satelite à gauche de l'écran.
+ - Placez des satellites non attribués dans la bague 1
+ - Cliquez sur les satellites non attribués et configurez-les comme [H +] extracteur
+
+Les satellites d'extracteur dans la bague la plus externe chargeront la ressource [+] dans les navires et les lanceront dans l'espace.","Misi dan Ekspor
+
+Setiap misi tugas Anda untuk memproduksi dan mengekspor sejumlah sumber daya [+] yang menggunakan satelit ekstraktor pada cincin terluar.
+
+Contoh, untuk mengekspor [H +] dengan hanya satu cincin.
+ - Klik tombol Build Satelite di sebelah kiri layar
+ - Tempatkan beberapa satelit yang belum ditetapkan dalam cincin 1
+ - Klik satelit yang belum ditetapkan dan konfigurasikan sebagai ekstraktor [H +]
+
+Satelit ekstraktor di cincin terluar akan memuat sumber daya [+] ke dalam kapal dan meluncurkannya ke dalam ruang.","Missioni ed esportazioni
+
+Ogni missione ti consente di produrre ed esportare un certo numero di una risorsa [+] utilizzando Extractor Satellites sull'anello più esterno.
+
+Esempio, per esportare [H +] con un solo anello.
+ - Fare clic sul pulsante Build Satelite a sinistra dello schermo
+ - Metti alcuni satelliti non assegnati in anello 1
+ - fare clic sui satelliti non assegnati e configurarli come estrattore [h +]
+
+L'estrattore satelliti nell'anello più esterno caricherà la risorsa [+] in navi e lanciateli nello spazio.","ミッションと輸出
+
+各ミッションは、最も外側のリング上の抽出維持具を使用して、特定の数のA [+]リソースを作成してエクスポートすることをタスクします。
+
+例、[H +]を1つのリングだけでエクスポートする。
+  - 画面の左側の[SateLiteの構築]ボタンをクリックします。
+  - 指輪1に割り当てられていないサテライトを配置します
+  - 未割り当てのSATELITEをクリックし、それらを[H +]抽出器として構成します。
+
+最外側のリングの抽出器の飽和物質は[+]リソースを船にロードし、これらを空間に打ち上げます。","임무 및 수출
+
+각 임무는 최 외곽 링에서 추출기 위성 인을 사용하여 특정 수의 [+] 자원의 일정 수를 생산하고 내보내는 것입니다.
+
+예, [H +]를 하나의 링으로 내보내려면 [H +]를 내보낼 수 있습니다.
+ - 화면 왼쪽에있는 빌드 위성 버튼을 클릭하십시오.
+ - 링 1에 조사되지 않은 위성을 놓습니다
+ - 할당되지 않은 위성 요소를 클릭하고 [H +] 추출기로 구성하십시오.
+
+최 외곽 링의 추출기 위성 인은 [+] 자원을 배송하고 공간으로 출시합니다.","Misje i eksport
+
+Każde zadania misji, które wyprodukujesz i wyeksportować pewną liczbę [+] zasobów przy użyciu Satelitów Extractor na zewnętrznym pierścieniu.
+
+Przykład, aby wyeksportować [H +] tylko jednym pierścieniem.
+ - Kliknij przycisk Build Satelite po lewej stronie ekranu
+ - Umieść niektóre nieprzypisane satelity w Ring 1
+ - Kliknij nieprzypisane Satelity i skonfiguruj je jako [H +] Extractor
+
+Extractor Satelites w zewnętrznym pierścieniu załadują zasoby [+] do statków i uruchom je w przestrzeń.","Missões e exportações
+
+Cada missão funciona para produzir e exportar um certo número de [+] recurso usando os satélites do extrator no anel externo.
+
+Exemplo, para exportar [H +] com apenas um anel.
+ - Clique no botão Build Satelite à esquerda da tela
+ - Coloque alguns satélites não atribuídos no anel 1
+ - Clique nos satélites não atribuídos e configure-os como [H +] Extrator
+
+Os satélites do extrator no anel ultraperiférico carregarão o [+] recurso em navios e lançarão estes no espaço.","Миссии и экспорт
+
+Каждая задача миссии, которую вы создаете и экспортируете определенное количество [+] ресурса с использованием спутников экстрактора на внешнее кольцо.
+
+Пример, чтобы экспортировать [H +] только с одним кольцом.
+ - Нажмите кнопку «Создать Satelite» слева от экрана
+ - Поместите несколько неназначенных спутников в кольце 1
+ - Нажмите неназначенные спутники и настройте их в виде экстрактора [H +]
+
+Вытяжные спутники в самом внешнем кольце будут загружать ресурс [+] на корабли и запустить их в космос.","Nhiệm vụ và xuất khẩu
+
+Mỗi nhiệm vụ Nhiệm vụ bạn sản xuất và xuất một số lượng nhất định tài nguyên [+] bằng cách sử dụng trình trích xuất Extractor trên vòng ngoài cùng.
+
+Ví dụ, để xuất [H +] chỉ với một vòng.
+ - Nhấp vào nút Xây dựng Satelite ở bên trái màn hình
+ - Đặt một số satelites chưa được gán trong vòng 1
+ - Nhấp vào satelites chưa được chỉ định và định cấu hình chúng là [H +] Extractor
+
+Trình trích xuất Satelites trong vòng ngoài cùng sẽ tải tài nguyên [+] vào tàu và khởi chạy chúng vào không gian.","任务和出口
+
+每项任务都会在最外圈上使用提取器卫星在生产和导出一定数量的A [+]资源。
+
+示例，仅使用一个环导出[H +]。
+  - 单击屏幕左侧的“构建Satelite”按钮
+  - 在戒指1中放置一些未分配的卫星
+  - 单击未分配的卫星并将其配置为[H +]提取器
+
+最外面环中的提取器卫星将加载[+]资源进入船舶并将其发射到空间中。"
+tut_5,"INJECTORS
+
+Some resources are supplied as inputs to your factory, available injectors are shown in the menu on the left.
+
+Choose an unassigned injector and click on a ring with a free lane to assign the injector to the lane.
+
+To move an injector, first click on the current ring and clear the lane.","Injektoren
+
+Einige Ressourcen werden als Eingaben in Ihre Fabrik geliefert, verfügbare Injektoren werden im Menü auf der linken Seite angezeigt.
+
+Wählen Sie einen nicht zugewiesenen Injektor und klicken Sie auf einen Ring mit einer freien Spur, um den Injektor der Spur zuzuordnen.
+
+Um einen Injektor zu verschieben, klicken Sie zuerst auf den aktuellen Ring und löschen Sie die Spur.","Inyectores
+
+Algunos recursos se suministran como entradas a su fábrica, los inyectores disponibles se muestran en el menú de la izquierda.
+
+Elija un inyector sin asignar y haga clic en un anillo con un carril libre para asignar el inyector al carril.
+
+Para mover un inyector, primero haga clic en el anillo actual y borre el carril.","Injecteurs
+
+Certaines ressources sont fournies en tant qu'entrées de votre usine, les injecteurs disponibles sont affichés dans le menu de gauche.
+
+Choisissez un injecteur non attribué et cliquez sur une bague avec une voie libre pour assigner l'injecteur à la voie.
+
+Pour déplacer un injecteur, cliquez d'abord sur la bague actuelle et effacez la voie.","Injektor
+
+Beberapa sumber daya dipasok sebagai input ke pabrik Anda, injektor yang tersedia ditampilkan di menu di sebelah kiri.
+
+Pilih injektor yang belum ditentukan dan klik pada cincin dengan jalur bebas untuk menetapkan injektor ke jalur.
+
+Untuk memindahkan injektor, klik Pertama pada cincin saat ini dan kosongkan jalur.","Iniettori
+
+Alcune risorse sono fornite come ingressi alla tua fabbrica, gli iniettori disponibili sono mostrati nel menu a sinistra.
+
+Scegli un iniettore non assegnato e fai clic su un anello con una corsia gratuita per assegnare l'iniettore alla corsia.
+
+Per spostare un iniettore, fai prima clic sull'anello corrente e cancella la corsia.","注射器
+
+ファクトリへの入力としてのリソースの中には、いくつかのリソースが提供され、空きのメニューに表示されます。
+
+割り当てられていないインジェクタを選択して、空き車線を持つリングをクリックして、インジェクタをレーンに割り当てます。
+
+インジェクタを移動するには、まず現在のリングをクリックして車線をクリアします。","인젝터
+
+일부 리소스가 공장에 입력으로 제공되면 사용 가능한 인젝터가 왼쪽의 메뉴에 표시됩니다.
+
+할당되지 않은 인젝터를 선택하고 자유 차선이있는 링을 클릭하여 인젝터를 레인에 할당하십시오.
+
+인젝터를 이동하려면 현재 링을 먼저 클릭하고 레인을 지우십시오.","Wtryskiwacze
+
+Niektóre zasoby są dostarczane jako wejścia do fabryki, dostępne są wtryskiwacze w menu po lewej stronie.
+
+Wybierz nieprzypisany wtryskiwacz i kliknij pierścień z wolnym pasem, aby przypisać wtryskiwacz do pasa.
+
+Aby przenieść wtryskiwacz, najpierw kliknij bieżący pierścień i wyczyść pas.","Injetores
+
+Alguns recursos são fornecidos como entradas para sua fábrica, os injetores disponíveis são mostrados no menu à esquerda.
+
+Escolha um injetor não atribuído e clique em um anel com uma faixa gratuita para atribuir o injetor à faixa.
+
+Para mover um injetor, primeiro clique no anel atual e limpe a faixa.","Инжекторы
+
+Некоторые ресурсы поставляются в качестве входных данных на ваш завод, доступные инжекторы отображаются в меню слева.
+
+Выберите неназначенного инжектора и нажмите на кольцо с бесплатной полосой, чтобы назначить инжектор на переулок.
+
+Чтобы переместить инжектор, сначала нажмите на текущее кольцо и очистите полосу.","Kim tiêm
+
+Một số tài nguyên được cung cấp dưới dạng đầu vào cho nhà máy của bạn, các kim phun có sẵn được hiển thị trong menu bên trái.
+
+Chọn một kim phun chưa được gán và nhấp vào một vòng có làn đường miễn phí để gán cho đầu phun với làn đường.
+
+Để di chuyển một đầu phun, lần đầu tiên nhấp vào vòng hiện tại và xóa làn đường.","注射器
+
+一些资源作为工厂的输入提供，可用的注射器显示在左侧的菜单中。
+
+选择未分配的注射器，然后单击带有免费车道的环，将注射器分配给车道。
+
+要移动注射器，请首先单击当前环并清除通道。"
+tut_6_0,"SATELITES: INSERTERS
+
+Satelites in Inserter mode move [-] resources.
+
+ [-] resources are moved from the ring above to the ring below.","Satelliten: Insertiere.
+
+Sateliten im Inserter-Modus verschieben [-] Ressourcen.
+
+ [-] Ressourcen werden vom Ring über den Ring nach unten verschoben.","Satelites: inserciones
+
+Los satélites en modo insertador se mueven [-] recursos.
+
+ [-] Los recursos se mueven desde el anillo superior al anillo de abajo.","Satellites: Inserteurs
+
+Satellites en mode inserteur Move [-] Ressources.
+
+ [-] Les ressources sont déplacées de la bague située au-dessus de l'anneau ci-dessous.","Satelit: Inserters.
+
+Satelit dalam mode Inserter memindahkan sumber daya [-].
+
+ [-] Sumber daya dipindahkan dari cincin di atas ke atas cincin di bawah ini.","Satelliti: inseritori
+
+Satelitoti in modalità inserita Sposta [-] Risorse.
+
+ [-] Le risorse vengono spostate dall'anello sopra all'anello sottostante.","サテライト：挿入者
+
+挿入器モードでのゼライト[ - ]リソース。
+
+ [ - ]リソースは上のリングから下のリングに移動されます。","위성 세트 : inserters.
+
+싱터 모드에서의 위성 인은 [-] 자원을 이동합니다.
+
+ 리소스가 위의 링에서 아래 링으로 이동합니다.","Satelity: Inserters.
+
+Satelites w trybie inserter przenoszą [-] zasoby.
+
+ [-] Zasoby są przenoszone z pierścienia powyżej do pierścienia poniżej.","Satélites: Inseradores
+
+Satélites no modo de inserção Mova [-] recursos.
+
+ [-] Recursos são movidos do anel acima para o anel abaixo.","Satelites: вкладыши
+
+Satelites в Inserter Mode Move [-] Ресурсы.
+
+ [-] Ресурсы перемещаются с кольца выше на кольцо ниже.","Satelites: chèn
+
+Satelites trong chế độ bảo vệ di chuyển [-] tài nguyên.
+
+ [-] Tài nguyên được di chuyển từ vòng trên đến vòng bên dưới.","卫星：插入者
+
+在插入器模式中的卫星移动[ - ]资源。
+
+ [ - ]资源从上面的环移动到下面的环。"
+tut_6_1,"If built on the first ring, the [-] resource will be thrown into the sun.
+
+Some [-] resources will transmute  if they are thrown into the sun, others are destroyed.","Wenn auf dem ersten Ring aufgebaut, wird die Ressource [-] in die Sonne geworfen.
+
+Einige [-] Ressourcen werden übertragen, wenn sie in die Sonne geworfen werden, andere werden zerstört.","Si se construye en el primer anillo, el recurso [-] se lanzará al sol.
+
+Algunos [-] los recursos transmutarán si se arrojan al sol, otros se destruyen.","Si elle est construite sur la première bague, la ressource [-] sera lancée au soleil.
+
+Certaines ressources [-] transmettent si elles sont jetées au soleil, d'autres sont détruites.","Jika dibangun di atas dering pertama, sumber daya [-] akan dibuang ke matahari.
+
+Beberapa [-] sumber daya akan mentransmisikan jika mereka dilemparkan ke matahari, yang lain hancur.","Se costruito sul primo anello, la [-] risorsa sarà gettata nel sole.
+
+Alcune [-] risorse traslimineranno se vengono gettate nel sole, altri vengono distrutti.","最初のリング上に構築されている場合は、[ - ]リソースが太陽にスローされます。
+
+いくつかの[ - ]リソースがそれらが太陽に投入された場合、他のものは破壊されます。","첫 번째 링에 내장 된 경우 [-] 자원이 태양에 던져집니다.
+
+일부 [-] 자원이 태양에 던져지면 다른 사람들이 파괴되면 다른 자원이 전염 될 것입니다.","Jeśli zostanie zbudowany na pierwszym pierścieniu, zasób [-] zostanie wrzucony do słońca.
+
+Niektóre [-] zasoby przemieniają się, jeśli zostaną rzucone w słońce, inni są zniszczeni.","Se construído no primeiro anel, o recurso [-] será jogado no sol.
+
+Alguns recursos [] serão transmitidos se forem jogados no sol, outros são destruídos.","Если настроен на первом кольце, ресурс [-] будет брошен в солнце.
+
+Некоторые ресурсы [-] будут передавать, если они брошены на солнце, другие разрушены.","Nếu được xây dựng trên vòng đầu tiên, tài nguyên [-] sẽ được ném vào mặt trời.
+
+Một số tài nguyên [-] sẽ biến nếu chúng bị ném vào mặt trời, những tài nguyên khác bị phá hủy.","如果构建在第一环上，[ - ]资源将被抛入太阳。
+
+一些[ - ]资源将转移到太阳中，其他人会被摧毁。"
+tut_7_above,"SATELITES: FACTORIES
+
+Satelites in Factory mode combine resources together into a new resource. The factory will:
+  - Collect up to four resources, depending on the recipe.
+  - Resources are collected from the lanes in the two rings above the factory.
+  - Deposit a constructed [+] resource into the ring above.
+  - Deposit a constructed [-] resource into the ring below.
+        
+Each recipy specifies the number of each input resource required, the amount of the output resource produced, and the time taken.","Satelliten: Fabriken
+
+Satelite im Fabrikmodus kombinieren Ressourcen in eine neue Ressource. Die Fabrik wird:
+  - Senden Sie bis zu vier Ressourcen, je nach Rezept.
+  - Ressourcen werden aus den Bahnen in den beiden Ringen oberhalb der Fabrik gesammelt.
+  - Zahlen Sie eine konstruierte Ressource [+] in den Ring oben ein.
+  - Zahlen Sie eine konstruierte [-] -Ressource in den Ring unten ein.
+        
+Jeder Empfänger gibt die Anzahl der erforderlichen Anteilsressourcen an, die Menge der erzeugten Ausgangsressource und der Zeit.","Satelites: Fábricas
+
+Los satélites en modo de fábrica combinan los recursos juntos en un nuevo recurso. La fábrica será:
+  - Recopilar hasta cuatro recursos, dependiendo de la receta.
+  - Los recursos se recogen de los carriles en los dos anillos sobre la fábrica.
+  - Deposite un recurso construido [+] en el anillo anterior.
+  - Deposite un recurso construido [-] en el anillo de abajo.
+        
+Cada destinata especifica el número de cada recurso de entrada requerido, la cantidad del recurso de salida producido y el tiempo necesario.","Satellites: usines
+
+Les satellites en mode usine combinent des ressources ensemble dans une nouvelle ressource. L'usine va:
+  - Recueillir jusqu'à quatre ressources, en fonction de la recette.
+  - Les ressources sont collectées dans les voies des deux anneaux au-dessus de l'usine.
+  - Déposez une ressource [+] construite dans la bague ci-dessus.
+  - Déposez une ressource [-] construite dans l'anneau ci-dessous.
+        
+Chaque recevant spécifie le nombre de chaque ressource d'entrée requise, le montant de la ressource de sortie produite et le temps pris.","Satelit: Pabrik.
+
+Satelit dalam mode pabrik menggabungkan sumber daya bersama menjadi sumber daya baru. Pabrik akan:
+  - Kumpulkan hingga empat sumber daya, tergantung resepnya.
+  - Sumber daya dikumpulkan dari jalur di dua cincin di atas pabrik.
+  - Setor sumber daya yang dibangun [+] ke dalam cincin di atas.
+  - Setor sumber daya yang dibangun ke dalam cincin di bawah ini.
+        
+Setiap penerti menentukan jumlah masing-masing sumber daya input yang diperlukan, jumlah sumber daya output yang dihasilkan, dan waktu yang diambil.","Satelliti: fabbriche
+
+Satelliti in modalità di fabbrica combinano le risorse insieme in una nuova risorsa. La fabbrica sarà:
+  - Raccogliere fino a quattro risorse, a seconda della ricetta.
+  - Le risorse vengono raccolte dalle corsie nei due anelli sopra la fabbrica.
+  - Depositare una risorsa [+] costruita nell'anello sopra.
+  - Depositare una risorsa costruita [-] nell'anello sottostante.
+        
+Ogni destinata specifica il numero di ciascuna risorsa di input richiesta, la quantità della risorsa di uscita prodotta e il tempo impiegato.","サテライト：工場
+
+工場モードの衛星は、リソースを新しいリソースにまとめます。工場は：
+   - レシピに応じて、最大4つのリソースを集めてください。
+   - 工場の上の2つのリングのレーンからリソースが収集されます。
+   - 上記のリングに構築された[+]リソースを入金します。
+   - 下のリングに構築された[ - ]リソースを入金してください。
+        
+各recipyは、必要な各入力リソースの数、生成された出力リソースの量、および時間を指定します。","위성 물물 : 공장
+
+공장 모드의 위성 요소는 자원을 새 리소스로 함께 결합합니다. 공장은 다음과 같습니다.
+  - 조리법에 따라 최대 4 개의 리소스를 수집하십시오.
+  - 공장 위의 두 링의 차선에서 리소스가 수집됩니다.
+  - 위의 링에 건설 된 [+] 자원을 보관하십시오.
+  - 아래의 벨소리에 건설 된 [-] 자원을 보관하십시오.
+        
+각 refery는 필요한 각 입력 자원의 수, 생성 된 출력 자원의 양과 시간을 취하는 시간을 지정합니다.","Satelity: fabryki
+
+Satelity w trybie fabrycznym łączą zasoby razem w nowy zasób. Fabryka będzie:
+  - Zbierz do czterech zasobów, w zależności od receptury.
+  - Zasoby są gromadzone z pasów pasowych w dwóch pierścieniach powyżej fabryki.
+  - Wpłać skonstruowany zasób [+] do pierścienia powyżej.
+  - Wpłać skonstruowany [-] zasobów do pierścienia poniżej.
+        
+Każda recepcja określa liczbę wymaganych zasobów wejściowych, ilość wyprodukowanego zasobu wyjściowego i podjęty czas.","Satélites: fábricas
+
+Os satélites no modo de fábrica combinam recursos juntos em um novo recurso. A fábrica vai:
+  - Recolha até quatro recursos, dependendo da receita.
+  - Recursos são coletados das faixas nos dois anéis acima da fábrica.
+  - Depositar um recurso [+] construído no anel acima.
+  - Depositar um recurso [-] construído no anel abaixo.
+        
+Cada recíblica especifica o número de cada recurso de entrada requerido, o valor do recurso de saída produzido e o tempo gasto.","Satelites: фабрики
+
+Satelites в заводском режиме объединяет ресурсы вместе в новый ресурс. Завод будет:
+  - Соберите до четырех ресурсов, в зависимости от рецепта.
+  - Ресурсы собираются из переулков в двух кольцах над заводом.
+  - Разместите построенный [+] ресурс в кольце выше.
+  - Депозит построен [-] ресурс в кольце ниже.
+        
+Каждая рецепта определяет количество каждого требуемого входного ресурса, объем выпускаемого ресурса, и время взятых.","Satelites: Nhà máy
+
+Satelites trong chế độ nhà máy kết hợp các tài nguyên với nhau thành một tài nguyên mới. Nhà máy sẽ:
+  - Thu thập tối đa bốn tài nguyên, tùy thuộc vào công thức.
+  - Tài nguyên được thu thập từ làn đường trong hai vòng trên nhà máy.
+  - Gửi tài nguyên [+] được xây dựng vào vòng trên.
+  - Gửi một tài nguyên [-] được xây dựng vào vòng bên dưới.
+        
+Mỗi người nhận xác định số lượng mỗi tài nguyên đầu vào cần thiết, lượng tài nguyên đầu ra được tạo ra và thời gian thực hiện.","卫星：工厂
+
+工厂模式中的卫星将资源结合在一起进入新资源。工厂将：
+   - 根据配方收集最多四个资源。
+   - 在工厂的两个戒指中从车道中收集资源。
+   - 将构造的[+]资源存入上面的环。
+   - 将构造的[ - ]资源存入下面的环。
+        
+每个谱指定所需的每个输入资源的数量，所产生的输出资源的量以及所花费的时间。"
+tut_7_below,"SATELITES: FACTORIES
+
+Satelites in Factory mode combine resources together into a new resource. The factory will:
+  - Collect up to four resources, depending on the recipe.
+  - Resources are collected from the lanes in the two rings below the factory.
+  - Deposit a constructed [+] resource into the ring above.
+  - Deposit a constructed [-] resource into the ring below.
+        
+Each recipy specifies the number of each input resource required, the amount of the output resource produced, and the time taken.","Satelliten: Fabriken
+
+Satelite im Fabrikmodus kombinieren Ressourcen in eine neue Ressource. Die Fabrik wird:
+  - Senden Sie bis zu vier Ressourcen, je nach Rezept.
+  - Ressourcen werden aus den Bahnen in den beiden Ringen unterhalb der Fabrik gesammelt.
+  - Zahlen Sie eine konstruierte Ressource [+] in den Ring oben ein.
+  - Zahlen Sie eine konstruierte [-] -Ressource in den Ring unten ein.
+        
+Jeder Empfänger gibt die Anzahl der erforderlichen Anteilsressourcen an, die Menge der erzeugten Ausgangsressource und der Zeit.","Satelites: Fábricas
+
+Los satélites en modo de fábrica combinan los recursos juntos en un nuevo recurso. La fábrica será:
+  - Recopilar hasta cuatro recursos, dependiendo de la receta.
+  - Los recursos se recogen de los carriles en los dos anillos debajo de la fábrica.
+  - Deposite un recurso construido [+] en el anillo anterior.
+  - Deposite un recurso construido [-] en el anillo de abajo.
+        
+Cada destinata especifica el número de cada recurso de entrada requerido, la cantidad del recurso de salida producido y el tiempo necesario.","Satellites: usines
+
+Les satellites en mode usine combinent des ressources ensemble dans une nouvelle ressource. L'usine va:
+  - Recueillir jusqu'à quatre ressources, en fonction de la recette.
+  - Les ressources sont collectées dans les voies des deux anneaux sous l'usine.
+  - Déposez une ressource [+] construite dans la bague ci-dessus.
+  - Déposez une ressource [-] construite dans l'anneau ci-dessous.
+        
+Chaque recevant spécifie le nombre de chaque ressource d'entrée requise, le montant de la ressource de sortie produite et le temps pris.","Satelit: Pabrik.
+
+Satelit dalam mode pabrik menggabungkan sumber daya bersama menjadi sumber daya baru. Pabrik akan:
+  - Kumpulkan hingga empat sumber daya, tergantung resepnya.
+  - Sumber daya dikumpulkan dari jalur di dua cincin di bawah pabrik.
+  - Setor sumber daya yang dibangun [+] ke dalam cincin di atas.
+  - Setor sumber daya yang dibangun ke dalam cincin di bawah ini.
+        
+Setiap penerti menentukan jumlah masing-masing sumber daya input yang diperlukan, jumlah sumber daya output yang dihasilkan, dan waktu yang diambil.","Satelliti: fabbriche
+
+Satelliti in modalità di fabbrica combinano le risorse insieme in una nuova risorsa. La fabbrica sarà:
+  - Raccogliere fino a quattro risorse, a seconda della ricetta.
+  - Le risorse vengono raccolte dalle corsie nei due anelli sotto la fabbrica.
+  - Depositare una risorsa [+] costruita nell'anello sopra.
+  - Depositare una risorsa costruita [-] nell'anello sottostante.
+        
+Ogni destinata specifica il numero di ciascuna risorsa di input richiesta, la quantità della risorsa di uscita prodotta e il tempo impiegato.","サテライト：工場
+
+工場モードの衛星は、リソースを新しいリソースにまとめます。工場は：
+   - レシピに応じて、最大4つのリソースを集めてください。
+   - 工場の下の2つのリングのレーンからリソースが収集されます。
+   - 上記のリングに構築された[+]リソースを入金します。
+   - 下のリングに構築された[ - ]リソースを入金してください。
+        
+各recipyは、必要な各入力リソースの数、生成された出力リソースの量、および時間を指定します。","위성 물물 : 공장
+
+공장 모드의 위성 요소는 자원을 새 리소스로 함께 결합합니다. 공장은 다음과 같습니다.
+  - 조리법에 따라 최대 4 개의 리소스를 수집하십시오.
+  - 리소스는 공장 아래의 두 링의 차선에서 수집됩니다.
+  - 위의 링에 건설 된 [+] 자원을 보관하십시오.
+  - 아래의 벨소리에 건설 된 [-] 자원을 보관하십시오.
+        
+각 refery는 필요한 각 입력 자원의 수, 생성 된 출력 자원의 양과 시간을 취하는 시간을 지정합니다.","Satelity: fabryki
+
+Satelity w trybie fabrycznym łączą zasoby razem w nowy zasób. Fabryka będzie:
+  - Zbierz do czterech zasobów, w zależności od receptury.
+  - Zasoby są gromadzone z pasów pasowych w dwóch pierścieniach poniżej fabryki.
+  - Wpłać skonstruowany zasób [+] do pierścienia powyżej.
+  - Wpłać skonstruowany [-] zasobów do pierścienia poniżej.
+        
+Każda recepcja określa liczbę wymaganych zasobów wejściowych, ilość wyprodukowanego zasobu wyjściowego i podjęty czas.","Satélites: fábricas
+
+Os satélites no modo de fábrica combinam recursos juntos em um novo recurso. A fábrica vai:
+  - Recolha até quatro recursos, dependendo da receita.
+  - Recursos são coletados das faixas nos dois anéis abaixo da fábrica.
+  - Depositar um recurso [+] construído no anel acima.
+  - Depositar um recurso [-] construído no anel abaixo.
+        
+Cada recíblica especifica o número de cada recurso de entrada requerido, o valor do recurso de saída produzido e o tempo gasto.","Satelites: фабрики
+
+Satelites в заводском режиме объединяет ресурсы вместе в новый ресурс. Завод будет:
+  - Соберите до четырех ресурсов, в зависимости от рецепта.
+  - Ресурсы собираются из переулков в двух кольцах ниже завода.
+  - Разместите построенный [+] ресурс в кольце выше.
+  - Депозит построен [-] ресурс в кольце ниже.
+        
+Каждая рецепта определяет количество каждого требуемого входного ресурса, объем выпускаемого ресурса, и время взятых.","Satelites: Nhà máy
+
+Satelites trong chế độ nhà máy kết hợp các tài nguyên với nhau thành một tài nguyên mới. Nhà máy sẽ:
+  - Thu thập tối đa bốn tài nguyên, tùy thuộc vào công thức.
+  - Tài nguyên được thu thập từ làn đường trong hai chiếc nhẫn bên dưới nhà máy.
+  - Gửi tài nguyên [+] được xây dựng vào vòng trên.
+  - Gửi một tài nguyên [-] được xây dựng vào vòng bên dưới.
+        
+Mỗi người nhận xác định số lượng mỗi tài nguyên đầu vào cần thiết, lượng tài nguyên đầu ra được tạo ra và thời gian thực hiện.","卫星：工厂
+
+工厂模式中的卫星将资源结合在一起进入新资源。工厂将：
+   - 根据配方收集最多四个资源。
+   - 资源从工厂下面的两个戒指中从车道中收集。
+   - 将构造的[+]资源存入上面的环。
+   - 将构造的[ - ]资源存入下面的环。
+        
+每个谱指定所需的每个输入资源的数量，所产生的输出资源的量以及所花费的时间。"
+tut_8,"TRANSMUTATION
+
+Some [-] resources can be transmuted into a different [+] resource by discarding them into the Sun.
+
+Click on the sun to see possible transmuations.","TRANSMUTATION
+
+Einige Ressourcen von [-] können in eine andere [+] -Ressource übertragen werden, indem sie sie in die Sonne verworfen.
+
+Klicken Sie auf die Sonne, um mögliche Übertragungen zu sehen.","TRANSMUTACIÓN
+
+Algunos recursos [-] se pueden transmutar en un recurso [+ +] diferente al descartarlos en el sol.
+
+Haga clic en el sol para ver posibles transmisiones.","TRANSMUTATION
+
+Certaines ressources [-] peuvent être transmutées dans une autre ressource [+] différente en les éliminant au soleil.
+
+Cliquez sur le soleil pour voir les transmuations possibles.","PERUBAHAN
+
+Beberapa Sumber daya dapat ditransmutasikan ke dalam sumber daya [+] yang berbeda dengan membuangnya ke dalam Matahari.
+
+Klik pada matahari untuk melihat kemungkinan transmuatasi.","TRASMUTAZIONE
+
+Alcune [-] risorse possono essere trasmutate in una risorsa [+] diversa scartandole nel sole.
+
+Clicca sul sole per vedere possibili trasmano.","変換
+
+いくつかの[ - ]リソースは、それらを太陽に捨てることによって別の[+]リソースに送信することができます。
+
+太陽をクリックして、可能な変数を確認します。","변성
+
+일부 [-] 자원은 태양으로 삭제하여 다른 [+] 자원으로 전송 될 수 있습니다.
+
+가능한 능력을 보려면 태양을 클릭하십시오.","TRANSMUTACJA
+
+Niektóre [-] zasoby można przełączyć do innego zasobu [+], odrzucając je do Słońca.
+
+Kliknij Słońce, aby zobaczyć możliwe transmuacje.","TRANSMUTAÇÃO
+
+Alguns recursos [-] podem ser transmutados em um recurso diferente [+] descartando-os ao sol.
+
+Clique no sol para ver possíveis transmissões.","Трансмутация
+
+Некоторые ресурсы [-] могут быть переданы в другой [+] ресурс, отбросив их в Солнце.
+
+Нажмите на солнце, чтобы увидеть возможные переключения.","Trộn
+
+Một số tài nguyên [-] có thể được chuyển thành một tài nguyên [+] khác bằng cách loại bỏ chúng thành Mặt trời.
+
+Nhấp vào mặt trời để thấy sự giãn truyền có thể.","嬗变
+
+可以通过将它们丢弃到太阳中传输到不同的[+]资源中的一些[ - ]资源。
+
+单击Sun以查看可能的帧间。"
+,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+hint_1_1,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+hint_1_2,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+hint_1_3,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+hint_2_1,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+hint_2_2,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+hint_2_3,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+hint_3_1,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+hint_3_2,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+hint_3_3,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+hint_4_1,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+hint_4_2,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+hint_4_3,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+hint_5_1,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+hint_5_2,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+hint_5_3,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+hint_6_1,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+hint_6_2,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+hint_6_3,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+hint_7_1,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+hint_7_2,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+hint_7_3,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+hint_8_1,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+hint_8_2,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+hint_8_3,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+hint_9_1,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+hint_9_2,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+hint_9_3,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+hint_10_1,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+hint_10_2,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+hint_10_3,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!

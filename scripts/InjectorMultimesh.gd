@@ -74,7 +74,7 @@ func set_properties_internal():
 	texture = load("res://images/"+Global.data[set_resource]["shape"]+".png")
 	normal_map = load("res://images/"+Global.data[set_resource]["shape"]+"_n.png")
 	var per_sec : float = 1.0 / set_period
-	injector_button.text = String(stepify(per_sec,0.5)) + "/s"
+	injector_button.text = String(stepify(per_sec,0.5)) + "/" + tr("ui_s")
 	injector_button.icon = Global.data[set_resource]["texture"]
 	injector_button.visible = (set_resource != "None")
 	if placed:

@@ -13,7 +13,7 @@ func _on_Copy_pressed():
 	var name = get_parent().get_parent().get_node(\"CampaignName\").text
 	var dict : Dictionary = Global.campaigns[name]
 	OS.set_clipboard(JSON.print(dict))
-	info.dialog_text = \"Campaign Copied to Clipboard\"
+	info.dialog_text = tr(\"ui_copied_to_clipboard\")
 	info.popup_centered()
 "
 
@@ -34,12 +34,12 @@ onready var info : AcceptDialog = find_parent(\"CampaignManager\").find_node(\"I
 
 func _on_Delete_pressed():
 	var cname = get_parent().get_parent().get_node(\"CampaignName\").text
-	if cname == \"Main Campaign\":
-		info.dialog_text = \"Cannot delete the main campaign.\"
+	if cname == \"Main Campaign\" or cname == \"ui_main_campaign\":
+		info.dialog_text = tr(\"ui_cannot_delete_main\")
 		info.popup_centered()
 	else:
 		confirm.campaign = cname
-		confirm.dialog_text = \"Delete campaign:\\n\\n\" + confirm.campaign 
+		confirm.dialog_text = tr(\"ui_delete_campaign\")+ \"\\n\\n\" + tr(confirm.campaign) 
 		confirm.popup_centered()
 "
 
@@ -75,7 +75,7 @@ margin_right = 170.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 170, 32 )
 size_flags_horizontal = 0
-text = "Copy to Clipboard"
+text = "ui_copy_to_clipboard"
 icon = ExtResource( 2 )
 expand_icon = true
 script = SubResource( 1 )
@@ -89,7 +89,7 @@ margin_right = 278.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 100, 32 )
 size_flags_horizontal = 0
-text = "Edit"
+text = "ui_edit"
 icon = ExtResource( 1 )
 expand_icon = true
 script = SubResource( 2 )
@@ -103,7 +103,7 @@ margin_right = 386.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 100, 32 )
 size_flags_horizontal = 0
-text = "Delete"
+text = "ui_delete"
 icon = ExtResource( 3 )
 expand_icon = true
 script = SubResource( 3 )

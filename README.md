@@ -30,6 +30,7 @@ Assets:
  * Next by shashank singh from the Noun Project
  * congratulations by IOHK Design Department from the Noun Project
  * Recipe Book by Royyan Wijaya from the Noun Project
+ * hint by Adrien Coquet from the Noun Project
  https://opengameart.org/content/space-backgrounds-0
 
  Music by <a href="/users/aderitosilva-18974644/?tab=audio&amp;utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=audio&amp;utm_content=4314">AderitoSilva</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=4314">Pixabay</a>

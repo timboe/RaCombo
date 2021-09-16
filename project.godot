@@ -107,6 +107,11 @@ ui_mouse_pan={
  ]
 }
 
+[locale]
+
+translations=PoolStringArray( "res://language/spherifactory_language_matrix.de.translation", "res://language/spherifactory_language_matrix.en.translation", "res://language/spherifactory_language_matrix.es.translation", "res://language/spherifactory_language_matrix.fr.translation", "res://language/spherifactory_language_matrix.id.translation", "res://language/spherifactory_language_matrix.it.translation", "res://language/spherifactory_language_matrix.ja.translation", "res://language/spherifactory_language_matrix.ko.translation", "res://language/spherifactory_language_matrix.pl.translation", "res://language/spherifactory_language_matrix.pt_BR.translation", "res://language/spherifactory_language_matrix.ru.translation", "res://language/spherifactory_language_matrix.vi.translation", "res://language/spherifactory_language_matrix.zh.translation" )
+locale_filter=[ 0, [  ] ]
+
 [rendering]
 
 environment/default_clear_color=Color( 0, 0, 0, 1 )

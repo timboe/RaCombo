@@ -2,8 +2,8 @@ extends WindowDialog
 
 onready var warn_diag : AcceptDialog = find_parent("CampaignEditor").find_node("WarningDialog", true, false)
 onready var tab_container : TabContainer = find_node("TabContainer", true, false)
-onready var factory_tab : MarginContainer = find_node("Factory", true, false)
-onready var transmute_tab : MarginContainer = find_node("Transmute", true, false)
+onready var factory_tab : MarginContainer = find_node("ui_factory", true, false)
+onready var transmute_tab : MarginContainer = find_node("ui_transmute", true, false)
 onready var name_lineedit : LineEdit = find_node("NameLineEdit", true, false)
 onready var campaign_editor : CenterContainer = find_parent("CampaignEditor")
 
@@ -117,16 +117,16 @@ func _on_Save_pressed():
 				where_used[ inpt ] = r
 				current_transmutes += r + Global.data[r]["mode"] + " "
 		if where_used.size() >= Global.MAX_TRANSMUTE:
-			warn_diag.dialog_text = "Cannot have more than three transmutation recipies.\n\n"
-			warn_diag.dialog_text += "Remove transmutation from one of " + current_transmutes + "first"
+			warn_diag.dialog_text = tr("ui_n_transmute_1") + "\n\n"
+			warn_diag.dialog_text += tr("ui_n_transmute_2 ") + current_transmutes
 			warn_diag.popup_centered()
 			return
 		# Each input can only be used once
 		var transmute_input = transmute_tab.find_node("TransmuteOptionButton",true,false).get_selected_metadata()
 		if transmute_input in where_used:
-			warn_diag.dialog_text = "Each input can be used for a single transmute.\n\n"
-			warn_diag.dialog_text += "Remove " + transmute_input + Global.data[transmute_input]["mode"]
-			warn_diag.dialog_text += " from transmuting into " + where_used[transmute_input] + Global.data[where_used[transmute_input]]["mode"] + " first."
+			warn_diag.dialog_text = tr("ui_which_transmute_1") + "\n\n"
+			warn_diag.dialog_text += tr("ui_which_transmute_2") + transmute_input + Global.data[transmute_input]["mode"] + "\n\n"
+			warn_diag.dialog_text += tr("ui_which_transmute_3") + where_used[transmute_input] + Global.data[where_used[transmute_input]]["mode"] + " first."
 			warn_diag.popup_centered()
 			return
 		var d := {}

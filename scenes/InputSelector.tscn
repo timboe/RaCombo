@@ -6,7 +6,7 @@
 script/source = "extends Label
 
 func _ready():
-	text = \"Input \" + String( get_parent().name.to_int() + 1 )
+	text = String( get_parent().name.to_int() + 1 ) + \":\"
 "
 
 [sub_resource type="GDScript" id=2]
@@ -62,52 +62,67 @@ __meta__ = {
 
 [node name="Input" type="Label" parent="."]
 margin_top = 3.0
-margin_right = 50.0
+margin_right = 51.0
 margin_bottom = 17.0
-text = "Input 0:"
+text = "ui_input"
+
+[node name="Input2" type="Label" parent="."]
+margin_left = 55.0
+margin_top = 3.0
+margin_right = 67.0
+margin_bottom = 17.0
+text = "0:"
 script = SubResource( 1 )
 
 [node name="OptionButton" type="OptionButton" parent="." groups=[
 "ResRecUpdateGroup",
 ]]
-margin_left = 54.0
-margin_right = 118.0
+margin_left = 71.0
+margin_right = 135.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 64, 16 )
 script = SubResource( 2 )
 
 [node name="Margin" type="MarginContainer" parent="."]
-margin_left = 122.0
-margin_right = 138.0
+margin_left = 139.0
+margin_right = 155.0
 margin_bottom = 20.0
 custom_constants/margin_left = 16
 
 [node name="Rate" type="Label" parent="."]
-margin_left = 142.0
+margin_left = 159.0
 margin_top = 3.0
-margin_right = 170.0
+margin_right = 202.0
 margin_bottom = 17.0
-text = "Rate"
+text = "ui_rate"
 
 [node name="N" type="Label" parent="."]
-margin_left = 174.0
+margin_left = 206.0
 margin_top = 3.0
-margin_right = 206.0
+margin_right = 238.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 32, 0 )
 text = "2.0"
 align = 2
 
 [node name="s" type="Label" parent="."]
-margin_left = 210.0
+margin_left = 242.0
 margin_top = 3.0
-margin_right = 222.0
+margin_right = 247.0
 margin_bottom = 17.0
-text = "/s"
+text = "/"
+align = 2
+
+[node name="s2" type="Label" parent="."]
+margin_left = 251.0
+margin_top = 3.0
+margin_right = 276.0
+margin_bottom = 17.0
+text = "ui_s"
 align = 2
 
 [node name="RateSlider" type="HSlider" parent="."]
-margin_left = 226.0
+margin_left = 280.0
 margin_right = 344.0
 margin_bottom = 16.0
 size_flags_horizontal = 3

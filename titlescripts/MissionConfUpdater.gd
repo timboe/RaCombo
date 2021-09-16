@@ -33,14 +33,14 @@ func update_configuration():
 			continue
 		if not input_resource in input_lanes:
 			input_lanes.append(input_resource)
-			add_required_resource(input_resource, "On input lane")
+			add_required_resource(input_resource, tr("ui_on_input_lane"))
 			
 	# H is always available
 	input_lanes.append("H")
-	add_required_resource("H", "Always required")
+	add_required_resource("H", tr("ui_always_required"))
 	
 	# Now we recursivly make sure that we can make the target object
-	add_required_resource(goal, "Goal resource")
+	add_required_resource(goal, tr("ui_goal_resource"))
 	recursive_check(goal)
 	
 	# And add any resources from manual recipies
@@ -51,16 +51,16 @@ func update_configuration():
 			continue
 		if "delete" in c.name:
 			continue
-		add_required_resource(c.name, "Recipe active")
+		add_required_resource(c.name, "ui_recipe_active")
 		for input_resource in Global.recipies[c.name]["input"]:
-			add_required_resource(input_resource, "Required to make "+c.name+Global.data[c.name]["mode"])
+			add_required_resource(input_resource, tr("ui_required_to_make")+c.name+Global.data[c.name]["mode"])
 		
 	set_required(recipies_node, required_recipies)
 	set_required(resource_node, required_resources)
 	
 	if missing.size():
-		pd.dialog_text = "The goal cannot be reached given the current configuration.\n\n"
-		pd.dialog_text += "Add the following resources to input lanes (or add derived resources)\n\n"
+		pd.dialog_text = tr("ui_cannot_reach_goal_1") + "\n\n"
+		pd.dialog_text += tr("ui_cannot_reach_goal_2") + "\n\n"
 		for m in missing:
 			pd.dialog_text += m + Global.data[m]["mode"] + "  "
 	warning_button.visible = missing.size() > 0
@@ -76,9 +76,9 @@ func recursive_check(var r : String):
 		if not r in missing and r != "Sol":
 			missing.append(r)
 		return
-	add_required_recipy(r, "Required")
+	add_required_recipy(r, tr("ui_required"))
 	for input_resource in Global.recipies[r]["input"]:
-		add_required_resource(input_resource, "Required to make "+r+Global.data[r]["mode"])
+		add_required_resource(input_resource, tr("ui_required_to_make")+r+Global.data[r]["mode"])
 		recursive_check(input_resource)
 	
 func add_required_resource(var r : String, var reason : String):

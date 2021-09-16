@@ -39,7 +39,7 @@ func change_level(var level, var with_popup := true):
 		gui_mission.visible = true
 		gui_goal.texture = Global.data[ Global.mission["goal"] ]["texture"]
 		gui_remaining.text = "x" + String(Global.remaining)
-		gui_mission_label.text = "Mission " + String(level + 1)
+		gui_mission_label.text = tr("ui_mission_colon") + String(level + 1)
 		rings = Global.mission["rings"]
 		lanes = Global.mission["lanes"]
 		from_above = Global.mission["factories_collect_above"]
@@ -90,7 +90,7 @@ func deposit(var resource : String, var amount : int):
 		set_process(true)
 
 func get_tutorial_range() -> Array:
-	if Global.sandbox or Global.campaign["name"] != "Main Campaign":
+	if Global.sandbox or Global.campaign["name"] != "ui_main_campaign":
 		return [-1,-1]
 	match Global.level:
 		0: return [0,5]

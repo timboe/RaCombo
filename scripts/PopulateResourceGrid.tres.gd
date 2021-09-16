@@ -46,7 +46,7 @@ func update_grid_factory_allrecipes():
 	for l in range(Global.level+1):
 		all_recipes_level = l
 		var lab = Label.new()
-		lab.text = "Level "+String(l+1)
+		lab.text = tr("ui_level") + " " + String(l+1)
 		var hs1 = HSeparator.new()
 		var hs2 = HSeparator.new()
 		var hs3 = HSeparator.new()

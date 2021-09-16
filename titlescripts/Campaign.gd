@@ -3,6 +3,7 @@ extends CenterContainer
 onready var campaign_name : LineEdit = find_node("CampaignName",true,false)
 onready var missions_in_campaign : HSlider = find_node("Missions",true,false)
 onready var tab_container : TabContainer = find_node("TabContainer", true, false)
+onready var hints : WindowDialog = find_node("Hints", true, false)
 
 func reset():
 	Global.campaign = null
@@ -41,7 +42,7 @@ func dedictionise_internal(var load_campaign : Dictionary) -> bool:
 	if not "name" in load_campaign:
 		return false
 	
-	campaign_name.text = load_campaign["name"]
+	campaign_name.text = tr(load_campaign["name"])
 
 	if not "missions" in load_campaign:
 		return false
@@ -64,6 +65,10 @@ func dedictionise_internal(var load_campaign : Dictionary) -> bool:
 				return false
 		
 		var new_tab = tab_container.get_node(String(mission_number + 1))
+		
+		hints.hints_array[mission_number].clear()
+		hints.hints_array[mission_number].append_array( mission["hints"] )
+		
 		mission_number += 1
 		
 		var g = new_tab.find_node("GoalButton")
@@ -114,9 +119,12 @@ func dictionise() -> Dictionary:
 	var result := {}
 	
 	result["name"] = campaign_name.text
+	if result["name"] == tr("ui_main_campaign"):
+		result["name"] = "ui_main_caampaign"
 	result["version"] = Global.CAMPAIGN_FORMAT_VERSION
 	
 	var missions := []
+	var mission_number = 0
 	for mission in tab_container.get_children():
 		var mission_dict := {}
 		mission_dict["goal"] = mission.find_node("GoalButton").get_selected_metadata()
@@ -149,7 +157,11 @@ func dictionise() -> Dictionary:
 			if c is CheckBox and c.pressed:
 				resources.append(c.name)
 		mission_dict["resources"] = resources
+		#
+		mission_dict["hints"] = hints.hints_array[mission_number]
+		#
 		missions.append(mission_dict)
+		mission_number += 1
 	result["missions"] = missions
 	
 	result["recipies"] = Global.recipies

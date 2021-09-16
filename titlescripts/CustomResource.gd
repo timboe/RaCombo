@@ -30,11 +30,11 @@ func show_for(var resource):
 
 func _on_Save_pressed():
 	if nme.text == "":
-		warn_diag.dialog_text = "New resource must have a name"
+		warn_diag.dialog_text = tr("ui_named_resource")
 		warn_diag.popup_centered()
 		return
 	if nme.text == "H" and mode.get_selected_metadata() == "-":
-		warn_diag.dialog_text = "H must be a +ve signed resource"
+		warn_diag.dialog_text = tr("ui_h_positive")
 		warn_diag.popup_centered()
 		return
 	var d = {}
@@ -53,7 +53,7 @@ func _on_Discard_pressed():
 func _on_Delete_pressed():
 	var resource = nme.text
 	if resource == "H":
-		warn_diag.dialog_text = "Cannot delete the H resource"
+		warn_diag.dialog_text = tr("ui_delete_h")
 		warn_diag.popup_centered()
 		return
 	if resource in Global.data:

@@ -31,6 +31,8 @@ func _ready():
 			c.volume_db = linear2db(Global.settings["beeps"] * 0.01)
 		else:
 			c.volume_db = linear2db(Global.settings["sfx"] * 0.01)
+	$MarginContainer/MarginContainer/VBoxContainer/LanguageButton.lang = Global.settings["lang"]
+	TranslationServer.set_locale(Global.settings["lang"])
 	show_menu("MainMenu")
 
 func load_from_disk(var file_path) -> Dictionary:

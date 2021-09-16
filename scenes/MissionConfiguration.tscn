@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://resources/ScrollContainerCustomStyle.tres" type="StyleBox" id=1]
 [ext_resource path="res://resources/FactorySandboxButtonGroup.tres" type="ButtonGroup" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://titlescripts/PopulateRecipiesGrid.tres.gd" type="Script" id=5]
 [ext_resource path="res://scenes/InputSelector.tscn" type="PackedScene" id=6]
 [ext_resource path="res://titlescripts/MissionConfUpdater.gd" type="Script" id=7]
+[ext_resource path="res://titlescripts/SetHints.gd" type="Script" id=8]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends OptionButton
@@ -69,17 +70,40 @@ script = ExtResource( 7 )
 
 [node name="Section1" type="HBoxContainer" parent="MissionContainer"]
 margin_right = 1000.0
-margin_bottom = 14.0
+margin_bottom = 20.0
+custom_constants/separation = 8
 
 [node name="Section1a" type="Label" parent="MissionContainer/Section1"]
-margin_right = 221.0
-margin_bottom = 14.0
-text = "Mission Requiremens and Settings"
+margin_top = 3.0
+margin_right = 162.0
+margin_bottom = 17.0
+text = "ui_mission_requirements"
+
+[node name="MarginContainer" type="MarginContainer" parent="MissionContainer/Section1"]
+margin_left = 170.0
+margin_right = 738.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="MissionContainer/Section1"]
+margin_left = 746.0
+margin_top = 3.0
+margin_right = 833.0
+margin_bottom = 17.0
+text = "ui_level_hints"
+
+[node name="SetHints" type="Button" parent="MissionContainer/Section1"]
+margin_left = 841.0
+margin_right = 1000.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 159, 0 )
+text = "ui_set_hints"
+script = ExtResource( 8 )
 
 [node name="GridContainer2" type="GridContainer" parent="MissionContainer"]
-margin_top = 22.0
+margin_top = 28.0
 margin_right = 1000.0
-margin_bottom = 66.0
+margin_bottom = 72.0
 custom_constants/vseparation = 8
 custom_constants/hseparation = 8
 columns = 3
@@ -94,15 +118,15 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MissionContainer/GridContainer2/HBoxContainer"]
 margin_top = 3.0
-margin_right = 33.0
+margin_right = 85.0
 margin_bottom = 17.0
-text = "Goal:"
+text = "ui_goal_colon"
 
 [node name="GoalButton" type="OptionButton" parent="MissionContainer/GridContainer2/HBoxContainer" groups=[
 "ResRecUpdateGroup",
 ]]
-margin_left = 37.0
-margin_right = 101.0
+margin_left = 89.0
+margin_right = 153.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 64, 16 )
 script = SubResource( 1 )
@@ -122,8 +146,8 @@ __meta__ = {
 }
 
 [node name="WarningPlaceholder" type="Container" parent="MissionContainer/GridContainer2/HBoxContainer"]
-margin_left = 105.0
-margin_right = 137.0
+margin_left = 157.0
+margin_right = 189.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 32, 0 )
 __meta__ = {
@@ -131,23 +155,23 @@ __meta__ = {
 }
 
 [node name="Amount" type="Label" parent="MissionContainer/GridContainer2/HBoxContainer"]
-margin_left = 141.0
+margin_left = 193.0
 margin_top = 3.0
-margin_right = 196.0
+margin_right = 301.0
 margin_bottom = 17.0
-text = "Amount:"
+text = "ui_amount_colon"
 
 [node name="N" type="Label" parent="MissionContainer/GridContainer2/HBoxContainer"]
-margin_left = 200.0
+margin_left = 305.0
 margin_top = 3.0
-margin_right = 232.0
+margin_right = 337.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 32, 0 )
 text = "75"
 align = 2
 
 [node name="GoalAmountSlider" type="HSlider" parent="MissionContainer/GridContainer2/HBoxContainer"]
-margin_left = 236.0
+margin_left = 341.0
 margin_right = 484.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
@@ -178,7 +202,7 @@ margin_top = 3.0
 margin_right = 158.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
-text = "Factories Collect... "
+text = "ui_factories_collect"
 align = 2
 
 [node name="Above" type="Button" parent="MissionContainer/GridContainer2/HBoxContainer2"]
@@ -189,7 +213,7 @@ size_flags_horizontal = 3
 toggle_mode = true
 pressed = true
 group = ExtResource( 2 )
-text = "From Above"
+text = "ui_from_above"
 
 [node name="Below" type="Button" parent="MissionContainer/GridContainer2/HBoxContainer2"]
 margin_left = 325.0
@@ -198,7 +222,7 @@ margin_bottom = 20.0
 size_flags_horizontal = 3
 toggle_mode = true
 group = ExtResource( 2 )
-text = "From Below"
+text = "ui_from_below"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="MissionContainer/GridContainer2"]
 margin_top = 28.0
@@ -208,21 +232,21 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MissionContainer/GridContainer2/HBoxContainer3"]
 margin_top = 1.0
-margin_right = 104.0
+margin_right = 111.0
 margin_bottom = 15.0
-text = "Available Rings: "
+text = "ui_available_rings"
 
 [node name="N" type="Label" parent="MissionContainer/GridContainer2/HBoxContainer3"]
-margin_left = 108.0
+margin_left = 115.0
 margin_top = 1.0
-margin_right = 127.0
+margin_right = 134.0
 margin_bottom = 15.0
 rect_min_size = Vector2( 19, 0 )
 text = "1"
 align = 2
 
 [node name="RingsSlider" type="HSlider" parent="MissionContainer/GridContainer2/HBoxContainer3"]
-margin_left = 131.0
+margin_left = 138.0
 margin_right = 484.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
@@ -253,21 +277,21 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MissionContainer/GridContainer2/HBoxContainer4"]
 margin_top = 1.0
-margin_right = 107.0
+margin_right = 114.0
 margin_bottom = 15.0
-text = "Available Lanes: "
+text = "ui_available_lanes"
 
 [node name="N" type="Label" parent="MissionContainer/GridContainer2/HBoxContainer4"]
-margin_left = 111.0
+margin_left = 118.0
 margin_top = 1.0
-margin_right = 130.0
+margin_right = 137.0
 margin_bottom = 15.0
 rect_min_size = Vector2( 19, 0 )
 text = "1"
 align = 2
 
 [node name="LanesSlider" type="HSlider" parent="MissionContainer/GridContainer2/HBoxContainer4"]
-margin_left = 134.0
+margin_left = 141.0
 margin_right = 484.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
@@ -280,26 +304,26 @@ ticks_on_borders = true
 script = ExtResource( 4 )
 
 [node name="HSectionSeparator" type="HBoxContainer" parent="MissionContainer"]
-margin_top = 74.0
+margin_top = 80.0
 margin_right = 1000.0
-margin_bottom = 88.0
+margin_bottom = 94.0
 custom_constants/separation = 16
 
 [node name="Section" type="Label" parent="MissionContainer/HSectionSeparator"]
-margin_right = 104.0
+margin_right = 120.0
 margin_bottom = 14.0
-text = "Input Resources"
+text = "ui_input_resources"
 
 [node name="HSeparator" type="HSeparator" parent="MissionContainer/HSectionSeparator"]
-margin_left = 120.0
+margin_left = 136.0
 margin_right = 1000.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 
 [node name="InputGridContainer" type="GridContainer" parent="MissionContainer"]
-margin_top = 96.0
+margin_top = 102.0
 margin_right = 1000.0
-margin_bottom = 172.0
+margin_bottom = 178.0
 custom_constants/vseparation = 8
 custom_constants/hseparation = 8
 columns = 3
@@ -366,26 +390,26 @@ margin_right = 1000.0
 margin_bottom = 76.0
 
 [node name="HSectionSeparator2" type="HBoxContainer" parent="MissionContainer"]
-margin_top = 180.0
+margin_top = 186.0
 margin_right = 1000.0
-margin_bottom = 194.0
+margin_bottom = 200.0
 custom_constants/separation = 16
 
 [node name="Section" type="Label" parent="MissionContainer/HSectionSeparator2"]
-margin_right = 116.0
+margin_right = 127.0
 margin_bottom = 14.0
-text = "Available Recipies"
+text = "ui_available_recipes"
 
 [node name="HSeparator" type="HSeparator" parent="MissionContainer/HSectionSeparator2"]
-margin_left = 132.0
+margin_left = 143.0
 margin_right = 1000.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MissionContainer"]
-margin_top = 202.0
+margin_top = 208.0
 margin_right = 1000.0
-margin_bottom = 302.0
+margin_bottom = 308.0
 rect_min_size = Vector2( 0, 100 )
 custom_styles/bg = ExtResource( 1 )
 __meta__ = {
@@ -417,137 +441,137 @@ columns = 9
 script = ExtResource( 5 )
 
 [node name="KeepEnabled" type="Label" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
-margin_right = 50.0
+margin_right = 69.0
 margin_bottom = 14.0
-text = "Enabled"
+text = "ui_enabled"
 
 [node name="KeepTime" type="Label" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
-margin_left = 66.0
-margin_right = 98.0
+margin_left = 85.0
+margin_right = 133.0
 margin_bottom = 14.0
-text = "Time"
+text = "ui_time"
 
 [node name="KeepOutput" type="Label" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
-margin_left = 114.0
-margin_right = 159.0
+margin_left = 149.0
+margin_right = 209.0
 margin_bottom = 14.0
-text = "Output"
+text = "ui_output"
 
 [node name="KeepEquals" type="MarginContainer" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
-margin_left = 175.0
-margin_right = 175.0
+margin_left = 225.0
+margin_right = 225.0
 margin_bottom = 14.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="KeepInput0" type="Label" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
-margin_left = 191.0
-margin_right = 237.0
+margin_left = 241.0
+margin_right = 300.0
 margin_bottom = 14.0
-text = "Input 1"
+text = "ui_input1"
 
 [node name="KeepInput1" type="Label" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
-margin_left = 253.0
-margin_right = 299.0
+margin_left = 316.0
+margin_right = 375.0
 margin_bottom = 14.0
-text = "Input 2"
+text = "ui_input2"
 
 [node name="KeepInput2" type="Label" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
-margin_left = 315.0
-margin_right = 361.0
+margin_left = 391.0
+margin_right = 450.0
 margin_bottom = 14.0
-text = "Input 3"
+text = "ui_input3"
 
 [node name="KeepInput3" type="Label" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
-margin_left = 377.0
-margin_right = 423.0
+margin_left = 466.0
+margin_right = 525.0
 margin_bottom = 14.0
-text = "Input 4"
+text = "ui_input4"
 
 [node name="KeepNotes" type="Label" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
-margin_left = 439.0
-margin_right = 477.0
+margin_left = 541.0
+margin_right = 595.0
 margin_bottom = 14.0
-text = "Notes"
+text = "ui_notes"
 
 [node name="KeepHSeparator" type="HSeparator" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
 margin_top = 18.0
-margin_right = 50.0
+margin_right = 69.0
 margin_bottom = 22.0
 
 [node name="KeepHSeparator2" type="HSeparator" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
-margin_left = 66.0
+margin_left = 85.0
 margin_top = 18.0
-margin_right = 98.0
+margin_right = 133.0
 margin_bottom = 22.0
 
 [node name="KeepHSeparator3" type="HSeparator" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
-margin_left = 114.0
+margin_left = 149.0
 margin_top = 18.0
-margin_right = 159.0
+margin_right = 209.0
 margin_bottom = 22.0
 
 [node name="KeepEquals2" type="MarginContainer" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
-margin_left = 175.0
+margin_left = 225.0
 margin_top = 18.0
-margin_right = 175.0
+margin_right = 225.0
 margin_bottom = 22.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="KeepHSeparator5" type="HSeparator" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
-margin_left = 191.0
+margin_left = 241.0
 margin_top = 18.0
-margin_right = 237.0
+margin_right = 300.0
 margin_bottom = 22.0
 
 [node name="KeepHSeparator6" type="HSeparator" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
-margin_left = 253.0
+margin_left = 316.0
 margin_top = 18.0
-margin_right = 299.0
+margin_right = 375.0
 margin_bottom = 22.0
 
 [node name="KeepHSeparator7" type="HSeparator" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
-margin_left = 315.0
+margin_left = 391.0
 margin_top = 18.0
-margin_right = 361.0
+margin_right = 450.0
 margin_bottom = 22.0
 
 [node name="KeepHSeparator8" type="HSeparator" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
-margin_left = 377.0
+margin_left = 466.0
 margin_top = 18.0
-margin_right = 423.0
+margin_right = 525.0
 margin_bottom = 22.0
 
 [node name="KeepHSeparator9" type="HSeparator" parent="MissionContainer/ScrollContainer/MarginContainer/RecipiesGridContainer"]
-margin_left = 439.0
+margin_left = 541.0
 margin_top = 18.0
-margin_right = 477.0
+margin_right = 595.0
 margin_bottom = 22.0
 
 [node name="HSectionSeparator3" type="HBoxContainer" parent="MissionContainer"]
-margin_top = 310.0
+margin_top = 316.0
 margin_right = 1000.0
-margin_bottom = 324.0
+margin_bottom = 330.0
 custom_constants/separation = 16
 
 [node name="Section" type="Label" parent="MissionContainer/HSectionSeparator3"]
-margin_right = 120.0
+margin_right = 127.0
 margin_bottom = 14.0
-text = "Available Resorces"
+text = "ui_available_recipes"
 
 [node name="HSeparator" type="HSeparator" parent="MissionContainer/HSectionSeparator3"]
-margin_left = 136.0
+margin_left = 143.0
 margin_right = 1000.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 
 [node name="ScrollContainer2" type="ScrollContainer" parent="MissionContainer"]
-margin_top = 332.0
+margin_top = 338.0
 margin_right = 1000.0
-margin_bottom = 432.0
+margin_bottom = 438.0
 rect_min_size = Vector2( 0, 100 )
 custom_styles/bg = ExtResource( 1 )
 __meta__ = {
@@ -577,37 +601,37 @@ columns = 3
 script = ExtResource( 3 )
 
 [node name="KeepEnabled" type="Label" parent="MissionContainer/ScrollContainer2/MarginContainer/ResourceGridContainer"]
-margin_right = 50.0
+margin_right = 69.0
 margin_bottom = 14.0
-text = "Enabled"
+text = "ui_enabled"
 
 [node name="KeepProduct" type="Label" parent="MissionContainer/ScrollContainer2/MarginContainer/ResourceGridContainer"]
-margin_left = 66.0
-margin_right = 115.0
+margin_left = 85.0
+margin_right = 152.0
 margin_bottom = 14.0
-text = "Product"
+text = "ui_product"
 
 [node name="KeepNotes" type="Label" parent="MissionContainer/ScrollContainer2/MarginContainer/ResourceGridContainer"]
-margin_left = 131.0
-margin_right = 169.0
+margin_left = 168.0
+margin_right = 222.0
 margin_bottom = 14.0
-text = "Notes"
+text = "ui_notes"
 
 [node name="KeepHSeparator" type="HSeparator" parent="MissionContainer/ScrollContainer2/MarginContainer/ResourceGridContainer"]
 margin_top = 18.0
-margin_right = 50.0
+margin_right = 69.0
 margin_bottom = 22.0
 
 [node name="KeepHSeparator2" type="HSeparator" parent="MissionContainer/ScrollContainer2/MarginContainer/ResourceGridContainer"]
-margin_left = 66.0
+margin_left = 85.0
 margin_top = 18.0
-margin_right = 115.0
+margin_right = 152.0
 margin_bottom = 22.0
 
 [node name="KeepHSeparator3" type="HSeparator" parent="MissionContainer/ScrollContainer2/MarginContainer/ResourceGridContainer"]
-margin_left = 131.0
+margin_left = 168.0
 margin_top = 18.0
-margin_right = 169.0
+margin_right = 222.0
 margin_bottom = 22.0
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
@@ -628,6 +652,7 @@ dialog_text = "The goal cannot be reached given the current configuration.
 
 Add the following resources to input lanes (or add derived resources)"
 
+[connection signal="pressed" from="MissionContainer/Section1/SetHints" to="MissionContainer/Section1/SetHints" method="_on_SetHints_pressed"]
 [connection signal="item_selected" from="MissionContainer/GridContainer2/HBoxContainer/GoalButton" to="MissionContainer/GridContainer2/HBoxContainer/GoalButton" method="_on_GoalButton_item_selected"]
 [connection signal="pressed" from="MissionContainer/GridContainer2/HBoxContainer/WarningButton" to="MissionContainer" method="_on_WarningButton_pressed"]
 [connection signal="value_changed" from="MissionContainer/GridContainer2/HBoxContainer/GoalAmountSlider" to="MissionContainer/GridContainer2/HBoxContainer/GoalAmountSlider" method="_on_HSlider_value_changed"]

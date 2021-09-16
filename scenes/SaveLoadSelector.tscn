@@ -66,7 +66,7 @@ margin_right = 128.0
 margin_bottom = 56.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Overrwrite"
+text = "ui_overwrite"
 icon = ExtResource( 4 )
 expand_icon = true
 
@@ -75,7 +75,7 @@ margin_right = 128.0
 margin_bottom = 56.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Load"
+text = "ui_load"
 icon = ExtResource( 2 )
 expand_icon = true
 
@@ -85,7 +85,7 @@ margin_right = 261.0
 margin_bottom = 56.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Delete"
+text = "ui_delete"
 icon = ExtResource( 1 )
 expand_icon = true
 

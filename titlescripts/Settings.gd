@@ -1,5 +1,7 @@
 extends CenterContainer
 
+onready var lang_menu : MenuButton = get_tree().get_root().find_node("LanguageButton", true, false)
+
 func show_settings():
 	$MC/MC/VB/SC/SG/FullscreenButton.pressed = OS.window_fullscreen
 	$MC/MC/VB/SC/SG/SunButton.pressed = Global.settings["fancy_sun"]
@@ -19,6 +21,7 @@ func set_default():
 	Global.settings["hide"] = false
 	Global.settings["fullscreen"] = OS.window_fullscreen
 	Global.settings["tutorial"] = true
+	Global.settings["lang"] = "en"
 	
 func _on_FullscreenButton_toggled(button_pressed):
 	OS.window_fullscreen = button_pressed
@@ -32,6 +35,7 @@ func _on_Back_pressed():
 	Global.settings["shake"] = $MC/MC/VB/SC/SG/ShakeButton.pressed
 	Global.settings["hide"] = $MC/MC/VB/SC/SG/HideButton.pressed
 	Global.settings["tutorial"] = $MC/MC/VB/SC/SG/TutorialButton.pressed
+	Global.settings["lang"] = lang_menu.lang
 	
 	var file = File.new()
 	file.open(Global.SETTINGS_SAVE_FILE, File.WRITE)

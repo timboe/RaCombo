@@ -112,19 +112,19 @@ func update_Win_diag():
 	var remainder : int = int(Global.time_played) % 3600
 	var m = remainder / 60
 	var s = remainder % 60
-	window_title = "Congratulations!"
-	$WinContainer/VBox/FinishedText.text = Global.campaign["name"] + " Finished in:\n\n"
-	$WinContainer/VBox/FinishedText.text += String(h) + " hours, "
-	$WinContainer/VBox/FinishedText.text += String(m) + " minutes, "
-	$WinContainer/VBox/FinishedText.text += String(s) + " seconds. "
+	window_title = tr("ui_congratulations")
+	$WinContainer/VBox/FinishedText.text = tr(Global.campaign["name"]) + " " + tr("ui_finished in") + "\n\n"
+	$WinContainer/VBox/FinishedText.text += String(h) + tr("ui_hours")
+	$WinContainer/VBox/FinishedText.text += String(m) + tr("ui_minutes")
+	$WinContainer/VBox/FinishedText.text += String(s) + tr("ui_seconds")
 	$WinContainer/Confetti1.emitting = true
 	$WinContainer/Confetti2.emitting = true
 
 func update_Tutorial_diag():
 	if tut_current == 0:
-		window_title = "Tutorial: Welcome to Spherifactory!"
+		window_title = tr("ui_tutorial_welcome")
 	else:
-		window_title = "Tutorial: Message " + String(tut_current + 1)
+		window_title = tr("ui_tutorial_message") + " " + String(tut_current + 1)
 	$TutorialContainer/VBox/HBox/ShowTutorialCheckbox.pressed = Global.settings["tutorial"]
 	for t in get_tree().get_nodes_in_group("TutorialGroup"):
 		var cur : bool  = (t.name == String(tut_current))
@@ -137,11 +137,11 @@ func update_Tutorial_diag():
 	$"TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/7/ColorRect_below".visible = !Global.factories_pull_from_above	
 
 func update_Save_diag():
-	window_title = "Save Game"
+	window_title = tr("ui_save_game")
 	update_SaveLoad_common(save_vbox)
 
 func update_Load_diag():
-	window_title = "Load Game"
+	window_title = tr("ui_load_game")
 	update_SaveLoad_common(load_vbox)
 	
 func update_SaveLoad_common(var vbox):
@@ -223,13 +223,13 @@ func update_Sol_diag():
 			icon.texture = Global.data["None"]["texture"]
 	
 func update_Mission_diag():
-	window_title = "Current Mission"
-	$MissionContainer/VBox/CampaignName.text = Global.campaign["name"]
+	window_title = tr("ui_current_mission")
+	$MissionContainer/VBox/CampaignName.text = tr(Global.campaign["name"])
 	var level_str = String(Global.level + 1) + " of " + String(Global.campaign["missions"].size())
 	$MissionContainer/VBox/InfoGrid/MissionNumber.text = level_str
 	$MissionContainer/VBox/InfoGrid/Rings.text = String(Global.rings - 1) # Avoid Sol
 	$MissionContainer/VBox/InfoGrid/Lanes.text = String(Global.lanes)
-	var from_above_str = "From above" if Global.factories_pull_from_above else "From below"
+	var from_above_str = tr("ui_from_above") if Global.factories_pull_from_above else tr("ui_from_below")
 	$MissionContainer/VBox/InfoGrid/FromAbove.text = from_above_str
 	var goal_res = Global.mission["goal"]
 	var goal_amount = Global.mission["goal_amount"]
@@ -319,6 +319,26 @@ func update_Sandbox_diag():
 	$SandboxContainer/VBoxContainer/FactoryBehaviour/Above.pressed = Global.factories_pull_from_above
 	$SandboxContainer/VBoxContainer/Lane/LanesSlider.value = Global.lanes
 	$SandboxContainer/VBoxContainer/Ring/RingsSlider.value = Global.rings - 1
+	
+func update_Hints_diag():
+	var scram_options = ["*", "!", "?", "#"] 
+	var scram = scram_options[ randi() % scram_options.size() ]
+	var scrambied : Array
+	for i in range(3):
+		var processed : String
+		for c in Global.mission["hints"][i]:
+			if c == " ":
+				scram = scram_options[ randi() % scram_options.size() ]
+				processed += " "
+			else:
+				processed += scram
+		scrambied.append(processed)
+	$HintsContainer/VBoxContainer/HBox1/HintEdit1.text = scrambied[0]
+	$HintsContainer/VBoxContainer/HBox2/HintEdit2.text = scrambied[1]
+	$HintsContainer/VBoxContainer/HBox3/HintEdit3.text = scrambied[2]
+	$HintsContainer/VBoxContainer/HBox1/Show1.disabled = false
+	$HintsContainer/VBoxContainer/HBox2/Show2.disabled = true
+	$HintsContainer/VBoxContainer/HBox3/Show3.disabled = true
 
 func _on_UpdateTimer_timeout():
 	if current_building != null:
@@ -381,5 +401,20 @@ func _on_ClearAll_pressed():
 	for c in get_tree().get_nodes_in_group("RingContentGroup"):
 		c.update_content()
 
+func _on_Hints_pressed():
+	show_named_diag("Hints")
 
 
+func _on_Show1_pressed():
+	$HintsContainer/VBoxContainer/HBox1/Show1.disabled = true
+	$HintsContainer/VBoxContainer/HBox2/Show2.disabled = false
+	$HintsContainer/VBoxContainer/HBox1/HintEdit1.text = Global.mission["hints"][0]
+
+func _on_Show2_pressed():
+	$HintsContainer/VBoxContainer/HBox2/Show2.disabled = true
+	$HintsContainer/VBoxContainer/HBox3/Show3.disabled = false
+	$HintsContainer/VBoxContainer/HBox2/HintEdit2.text = Global.mission["hints"][1]
+
+func _on_Show3_pressed():
+	$HintsContainer/VBoxContainer/HBox3/Show3.disabled = true
+	$HintsContainer/VBoxContainer/HBox3/HintEdit3.text = Global.mission["hints"][2]

@@ -6,7 +6,7 @@
 script/source = "extends Label
 
 func _ready():
-	text = \"Input \" + String( get_parent().name.to_int() + 1 )
+	text = String( get_parent().name.to_int() + 1 ) + \":\"
 "
 
 [node name="HBoxContainer1" type="HBoxContainer"]
@@ -20,17 +20,27 @@ __meta__ = {
 
 [node name="Input" type="Label" parent="."]
 margin_top = 3.0
-margin_right = 50.0
+margin_right = 51.0
 margin_bottom = 17.0
-text = "Input 0:"
+text = "ui_input"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Input2" type="Label" parent="."]
+margin_left = 59.0
+margin_top = 3.0
+margin_right = 75.0
+margin_bottom = 17.0
+text = " 0:"
 script = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="OptionButton" type="OptionButton" parent="."]
-margin_left = 58.0
-margin_right = 122.0
+margin_left = 83.0
+margin_right = 147.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 64, 16 )
 text = "None"
@@ -41,8 +51,8 @@ __meta__ = {
 }
 
 [node name="Margin" type="MarginContainer" parent="."]
-margin_left = 130.0
-margin_right = 146.0
+margin_left = 155.0
+margin_right = 171.0
 margin_bottom = 20.0
 custom_constants/margin_left = 16
 __meta__ = {
@@ -50,19 +60,19 @@ __meta__ = {
 }
 
 [node name="Number" type="Label" parent="."]
-margin_left = 154.0
+margin_left = 179.0
 margin_top = 3.0
-margin_right = 206.0
+margin_right = 288.0
 margin_bottom = 17.0
-text = "Number"
+text = "ui_number_colon"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="N" type="Label" parent="."]
-margin_left = 214.0
+margin_left = 296.0
 margin_top = 3.0
-margin_right = 246.0
+margin_right = 328.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 32, 0 )
 text = "1"
@@ -72,7 +82,7 @@ __meta__ = {
 }
 
 [node name="NumberSlider" type="HSlider" parent="."]
-margin_left = 254.0
+margin_left = 336.0
 margin_right = 480.0
 margin_bottom = 16.0
 size_flags_horizontal = 3

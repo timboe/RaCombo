@@ -36,7 +36,7 @@ margin_right = 200.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 200, 32 )
 size_flags_horizontal = 0
-text = "Play Campaign"
+text = "ui_play_campaign"
 icon = ExtResource( 1 )
 expand_icon = true
 script = ExtResource( 3 )
@@ -50,7 +50,7 @@ margin_right = 408.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 200, 32 )
 size_flags_horizontal = 0
-text = "Play Sandbox"
+text = "ui_play_sandbox"
 icon = ExtResource( 2 )
 expand_icon = true
 script = ExtResource( 3 )
@@ -62,7 +62,7 @@ __meta__ = {
 margin_top = 74.0
 margin_right = 512.0
 margin_bottom = 88.0
-text = "Jump to Level:"
+text = "ui_jump_to_level"
 
 [node name="LevelsContainer" type="HBoxContainer" parent="."]
 margin_top = 96.0
