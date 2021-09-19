@@ -177,16 +177,16 @@ func lane_cleared(var lane_or_ship : Node2D):
 func set_descriptive_name():
 	descriptive_name = "#" + String(name.to_int()) + ": "
 	if mode == Global.BUILDING_UNSET:
-		descriptive_name += "Unassigned Satelite"
+		descriptive_name += tr("ui_unasigned_satellite")
 	else:
 		descriptive_name += recipy
 		descriptive_name += Global.data[recipy]["mode"]
 	if mode == Global.BUILDING_FACTORY:
-		descriptive_name += " " + "Factory"
+		descriptive_name += " " + tr("ui_factory")
 	elif mode == Global.BUILDING_INSERTER:
-		descriptive_name += " " + "Inserter"
+		descriptive_name += " " + tr("ui_inserter")
 	elif mode == Global.BUILDING_EXTRACTOR:
-		descriptive_name += " " + "Extractor"
+		descriptive_name += " " + tr("ui_extractor") 
 
 func setup_resource(var i_radius : float, var o_radius : float, var _span : float):
 	inner_radius = i_radius
@@ -216,7 +216,6 @@ func _on_NewShip_timeout():
 	$FactoryProcess.ship = sr.get_child(0)
 	$FactoryProcess.ship.configure_ship(recipy, self)
 	id.update_diag()
-
 
 func _on_TextureButton_gui_input(event):
 	if event is InputEventMouseButton and event.pressed:

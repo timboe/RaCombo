@@ -323,6 +323,7 @@ func _physics_process(_delta):
 			var accepted : bool = output_lane.try_send(global_rotation, direction)
 			if accepted:
 				output_storage -= 1
+				check_factory_production()
 				blip_d.play()
 
 # Called asynchronously when try_capture succedes 
@@ -345,6 +346,8 @@ func check_factory_production():
 	for i in range(input_storage.size()):
 		if input_storage[i] < input_factory_required[i]:
 			return
+	if output_storage == Global.MAX_STORAGE:
+		return
 	# Make newnew item
 	for i in range(input_storage.size()):
 		input_storage[i] -= input_factory_required[i]
@@ -354,4 +357,5 @@ func _on_Timer_timeout():
 	output_storage += output_amount
 	if output_storage == output_amount and output_lane == null: # If first thing we made
 		lane_system_changed()
+	output_storage = min(output_storage, Global.MAX_STORAGE)
 	check_factory_production()

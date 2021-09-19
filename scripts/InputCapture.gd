@@ -13,6 +13,7 @@ onready var outlines : Button = get_tree().get_root().find_node("Outlines", true
 var prev_ring : Node2D = null
 var ring : Node2D = null
 var cursor : Vector2
+var is_pan = false
 
 func _ready():
 	set_process_unhandled_input(true)
@@ -71,9 +72,13 @@ func _unhandled_input(event):
 					injection.hint_resource(ring, free_lane)
 
 		prev_ring = ring
+		
+	# Click down sensor
+	if event is InputEventMouseButton and event.pressed and (event.button_index == 1 or event.button_index == 2):
+		is_pan = false
 
 	# Left click
-	if event is InputEventMouseButton and ring != null and event.pressed and event.button_index == 1:
+	if event is InputEventMouseButton and ring != null and not event.pressed and event.button_index == 1 and not is_pan:
 		if button == null: # Select ring (but not the Sol ring)
 			if ring.ring_number == 0:
 				print("Show sol diag")
@@ -90,7 +95,7 @@ func _unhandled_input(event):
 			print("Set injection")
 			
 	# Right click
-	if event is InputEventMouseButton and event.pressed and event.button_index == 2:
+	if event is InputEventMouseButton and not event.pressed and event.button_index == 2 and not is_pan:
 		if mode_build or mode_inject:
 			button.pressed = false
 			Global.last_pressed = null

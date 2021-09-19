@@ -91,7 +91,7 @@ func set_basics():
 	var H = {}
 	H["color_hex"] = "ffda1717"
 	H["mode"] = "+"
-	H["shape"] = "circle"
+	H["shape"] = "gem_0"
 	H["special"] = false
 	Global.data["None"] = none
 	Global.data["Sol"] = sol

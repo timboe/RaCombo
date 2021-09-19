@@ -1,4 +1,4 @@
-[gd_scene load_steps=122 format=2]
+[gd_scene load_steps=130 format=2]
 
 [ext_resource path="res://scripts/BinLane.gd" type="Script" id=1]
 [ext_resource path="res://resources/NewBuildingButtonGroup.tres" type="ButtonGroup" id=2]
@@ -67,6 +67,11 @@
 [ext_resource path="res://images/t8.png" type="Texture" id=65]
 [ext_resource path="res://images/book.png" type="Texture" id=66]
 [ext_resource path="res://images/hint.png" type="Texture" id=67]
+[ext_resource path="res://images/camera.png" type="Texture" id=68]
+[ext_resource path="res://images/gems.png" type="Texture" id=69]
+[ext_resource path="res://images/gem_0.png" type="Texture" id=70]
+[ext_resource path="res://images/sol_mask.png" type="Texture" id=71]
+[ext_resource path="res://images/gem_0_n.png" type="Texture" id=72]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends ItemList
@@ -679,6 +684,18 @@ adjustment_saturation = 8.0
 
 [sub_resource type="OpenSimplexNoise" id=54]
 
+[sub_resource type="SpatialMaterial" id=55]
+
+[sub_resource type="QuadMesh" id=56]
+material = SubResource( 55 )
+size = Vector2( 10, 10 )
+
+[sub_resource type="MultiMesh" id=57]
+instance_count = 20
+visible_instance_count = 20
+mesh = SubResource( 56 )
+transform_2d_array = PoolVector2Array( 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0 )
+
 [node name="Game" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -950,7 +967,6 @@ __meta__ = {
 }
 
 [node name="FactoryContainer" type="MarginContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog"]
-visible = false
 margin_right = 445.0
 margin_bottom = 420.0
 rect_min_size = Vector2( 455, 420 )
@@ -967,7 +983,7 @@ visible = false
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 447.0
-margin_bottom = 412.0
+margin_bottom = 427.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 6
@@ -1110,19 +1126,17 @@ columns = 9
 script = ExtResource( 23 )
 
 [node name="Set" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer"]
-visible = false
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 447.0
-margin_bottom = 412.0
+margin_bottom = 427.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 6
+custom_constants/separation = 4
 
 [node name="Inputs" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set"]
-visible = false
 margin_right = 439.0
-margin_bottom = 186.0
+margin_bottom = 235.0
 custom_constants/separation = 6
 
 [node name="Inputs" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs"]
@@ -1334,16 +1348,33 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Output" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set"]
+[node name="FactoryProgressBar" type="ProgressBar" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs"]
+margin_top = 192.0
 margin_right = 439.0
-margin_bottom = 88.0
+margin_bottom = 213.0
+max_value = 1.0
+
+[node name="HSeparator3" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Inputs"]
+margin_top = 219.0
+margin_right = 439.0
+margin_bottom = 235.0
+rect_min_size = Vector2( 355, 0 )
+custom_constants/separation = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Output" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set"]
+margin_top = 239.0
+margin_right = 439.0
+margin_bottom = 327.0
 rect_min_size = Vector2( 355, 0 )
 custom_constants/separation = 6
 
 [node name="Output" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Output"]
 margin_right = 439.0
 margin_bottom = 18.0
-text = "ui_save_game"
+text = "ui_output"
 
 [node name="OutAndShip" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/Output"]
 margin_top = 24.0
@@ -1449,9 +1480,9 @@ texture = ExtResource( 19 )
 script = ExtResource( 7 )
 
 [node name="HSeparator2" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set"]
-margin_top = 94.0
+margin_top = 331.0
 margin_right = 439.0
-margin_bottom = 110.0
+margin_bottom = 347.0
 rect_min_size = Vector2( 355, 0 )
 custom_constants/separation = 16
 __meta__ = {
@@ -1459,9 +1490,9 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set"]
-margin_top = 116.0
+margin_top = 351.0
 margin_right = 439.0
-margin_bottom = 148.0
+margin_bottom = 383.0
 rect_min_size = Vector2( 355, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1494,7 +1525,44 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set"]
+margin_top = 387.0
+margin_right = 439.0
+margin_bottom = 419.0
+rect_min_size = Vector2( 355, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Rotate" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/HBoxContainer2"]
+margin_right = 217.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 0, 32 )
+size_flags_horizontal = 3
+text = "ui_follow_satellite"
+icon = ExtResource( 68 )
+expand_icon = true
+script = SubResource( 23 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="blank" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/HBoxContainer2"]
+margin_left = 221.0
+margin_right = 439.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 0, 32 )
+size_flags_horizontal = 3
+text = "???"
+icon = ExtResource( 14 )
+expand_icon = true
+script = SubResource( 23 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="MenuContainer" type="MarginContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog"]
+visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 455, 420 )
@@ -1828,10 +1896,10 @@ text = "ui_lanes"
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer"]
 margin_top = 24.0
 margin_right = 439.0
-margin_bottom = 158.0
+margin_bottom = 164.0
 rect_min_size = Vector2( 355, 0 )
-custom_constants/vseparation = 6
-custom_constants/hseparation = 6
+custom_constants/vseparation = 12
+custom_constants/hseparation = 12
 columns = 7
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1844,16 +1912,16 @@ margin_bottom = 41.0
 text = "1:"
 
 [node name="HIcon" type="TextureRect" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer/GridContainer"]
-margin_left = 17.0
-margin_right = 81.0
+margin_left = 23.0
+margin_right = 87.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 expand = true
 
 [node name="Inf" type="TextureRect" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer/GridContainer"]
-margin_left = 87.0
+margin_left = 99.0
 margin_top = 16.0
-margin_right = 137.0
+margin_right = 163.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 32, 32 )
 size_flags_vertical = 4
@@ -1862,8 +1930,8 @@ expand = true
 stretch_mode = 7
 
 [node name="VSeparator" type="VSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer/GridContainer"]
-margin_left = 143.0
-margin_right = 159.0
+margin_left = 175.0
+margin_right = 191.0
 margin_bottom = 64.0
 custom_constants/separation = 16
 __meta__ = {
@@ -1871,99 +1939,125 @@ __meta__ = {
 }
 
 [node name="Trans1" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer/GridContainer"]
-margin_left = 165.0
+margin_left = 203.0
 margin_top = 23.0
-margin_right = 176.0
+margin_right = 214.0
 margin_bottom = 41.0
 text = "2:"
 
 [node name="TransIcon1" type="TextureRect" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer/GridContainer"]
-margin_left = 182.0
-margin_right = 246.0
+margin_left = 226.0
+margin_right = 290.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 expand = true
 
-[node name="TransAmount1" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer/GridContainer"]
-margin_left = 252.0
-margin_top = 23.0
-margin_right = 302.0
-margin_bottom = 41.0
-rect_min_size = Vector2( 50, 0 )
-text = "x0"
+[node name="Count1" type="Container" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer/GridContainer"]
+margin_left = 302.0
+margin_right = 366.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mm" type="MultiMeshInstance2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer/GridContainer/Count1" groups=[
+"InfoMultimeshGroup",
+]]
+multimesh = SubResource( 19 )
+texture = ExtResource( 19 )
+script = ExtResource( 7 )
 
 [node name="Trans2" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer/GridContainer"]
-margin_top = 93.0
+margin_top = 99.0
 margin_right = 11.0
-margin_bottom = 111.0
+margin_bottom = 117.0
 text = "3:"
 
 [node name="TransIcon2" type="TextureRect" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer/GridContainer"]
-margin_left = 17.0
-margin_top = 70.0
-margin_right = 81.0
-margin_bottom = 134.0
+margin_left = 23.0
+margin_top = 76.0
+margin_right = 87.0
+margin_bottom = 140.0
 rect_min_size = Vector2( 64, 64 )
 expand = true
 
-[node name="TransAmount2" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer/GridContainer"]
-margin_left = 87.0
-margin_top = 93.0
-margin_right = 137.0
-margin_bottom = 111.0
-rect_min_size = Vector2( 50, 0 )
-text = "x0"
+[node name="Count2" type="Container" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer/GridContainer"]
+margin_left = 99.0
+margin_top = 76.0
+margin_right = 163.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 64, 64 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mm" type="MultiMeshInstance2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer/GridContainer/Count2" groups=[
+"InfoMultimeshGroup",
+]]
+multimesh = SubResource( 19 )
+texture = ExtResource( 19 )
+script = ExtResource( 7 )
 
 [node name="VSeparator2" type="VSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer/GridContainer"]
-margin_left = 143.0
-margin_top = 70.0
-margin_right = 159.0
-margin_bottom = 134.0
+margin_left = 175.0
+margin_top = 76.0
+margin_right = 191.0
+margin_bottom = 140.0
 custom_constants/separation = 16
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Trans3" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer/GridContainer"]
-margin_left = 165.0
-margin_top = 93.0
-margin_right = 176.0
-margin_bottom = 111.0
+margin_left = 203.0
+margin_top = 99.0
+margin_right = 214.0
+margin_bottom = 117.0
 text = "3:"
 
 [node name="TransIcon3" type="TextureRect" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer/GridContainer"]
-margin_left = 182.0
-margin_top = 70.0
-margin_right = 246.0
-margin_bottom = 134.0
+margin_left = 226.0
+margin_top = 76.0
+margin_right = 290.0
+margin_bottom = 140.0
 rect_min_size = Vector2( 64, 64 )
 expand = true
 
-[node name="TransAmount3" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer/GridContainer"]
-margin_left = 252.0
-margin_top = 93.0
-margin_right = 302.0
-margin_bottom = 111.0
-rect_min_size = Vector2( 50, 0 )
-text = "x0"
+[node name="Count3" type="Container" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer/GridContainer"]
+margin_left = 302.0
+margin_top = 76.0
+margin_right = 366.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 64, 64 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mm" type="MultiMeshInstance2D" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer/GridContainer/Count3" groups=[
+"InfoMultimeshGroup",
+]]
+multimesh = SubResource( 19 )
+texture = ExtResource( 19 )
+script = ExtResource( 7 )
 
 [node name="HSeparator2" type="HSeparator" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer"]
-margin_top = 164.0
+margin_top = 170.0
 margin_right = 439.0
-margin_bottom = 180.0
+margin_bottom = 186.0
 custom_constants/separation = 16
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Transmut" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer"]
-margin_top = 186.0
+margin_top = 192.0
 margin_right = 439.0
-margin_bottom = 204.0
+margin_bottom = 210.0
 text = "ui_transmutations"
 
 [node name="TransmuteGridSC" type="ScrollContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/SolContainer/VBoxContainer"]
-margin_top = 210.0
+margin_top = 216.0
 margin_right = 439.0
 margin_bottom = 404.0
 rect_min_size = Vector2( 355, 180 )
@@ -1978,7 +2072,7 @@ __meta__ = {
 "UIGridsGroup",
 ]]
 margin_right = 439.0
-margin_bottom = 194.0
+margin_bottom = 188.0
 mouse_filter = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -2423,7 +2517,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="All RecipesContainer" type="MarginContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog"]
+[node name="AllRecipesContainer" type="MarginContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog"]
 visible = false
 margin_right = 120.0
 margin_bottom = 30.0
@@ -2436,14 +2530,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBox" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/All RecipesContainer"]
+[node name="VBox" type="VBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/AllRecipesContainer"]
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 447.0
 margin_bottom = 412.0
 custom_constants/separation = 8
 
-[node name="RecipeGrid" type="ScrollContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/All RecipesContainer/VBox"]
+[node name="RecipeGrid" type="ScrollContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/AllRecipesContainer/VBox"]
 margin_right = 439.0
 margin_bottom = 332.0
 size_flags_horizontal = 3
@@ -2452,7 +2546,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AllRecipesGrid" type="GridContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/All RecipesContainer/VBox/RecipeGrid" groups=[
+[node name="AllRecipesGrid" type="GridContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/AllRecipesContainer/VBox/RecipeGrid" groups=[
 "UIGridsGroup",
 ]]
 margin_right = 439.0
@@ -2467,14 +2561,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBottomBox" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/All RecipesContainer/VBox"]
+[node name="HBottomBox" type="HBoxContainer" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/AllRecipesContainer/VBox"]
 margin_top = 340.0
 margin_right = 439.0
 margin_bottom = 404.0
 custom_constants/separation = 8
 alignment = 2
 
-[node name="Back" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/All RecipesContainer/VBox/HBottomBox"]
+[node name="Back" type="Button" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/AllRecipesContainer/VBox/HBottomBox"]
 margin_left = 289.0
 margin_right = 439.0
 margin_bottom = 64.0
@@ -2728,16 +2822,7 @@ custom_constants/separation = 8
 [node name="Label" type="Label" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/0"]
 margin_right = 431.0
 margin_bottom = 167.0
-text = "CAMERA CONTROLS
-
-Move the camera:
-  - With the W,A,S,D keys,
-  - With the Arrow keys,
-  - By holding the middle mouse button and moving the mouse.
-
-Zoom the camera in and out with:
-  - The Q and E keys,
-  - The mouse's scroll wheel."
+text = "tut_0"
 autowrap = true
 
 [node name="ColorRect" type="TextureRect" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/0"]
@@ -2961,15 +3046,7 @@ autowrap = true
 margin_top = 209.0
 margin_right = 431.0
 margin_bottom = 410.0
-text = "SATELITES: FACTORIES
-
-Satelites in Factory mode combine resources together into a new resource. The factory will:
-  - Collect up to four resources, depending on the recipe.
-  - Resources are collected from the lanes in the two rings below the factory.
-  - Deposit a constructed [+] resource into the ring above.
-  - Deposit a constructed [-] resource into the ring below.
-	
-Each recipy specifies the number of each input resource required, the amount of the output resource produced, and the time taken."
+text = "tut_7_below"
 autowrap = true
 
 [node name="ColorRect_above" type="TextureRect" parent="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/TutorialContainer/VBox/TutorialContainerSC/TutorialVBox/7"]
@@ -3434,7 +3511,6 @@ __meta__ = {
 }
 
 [node name="CentreNode" type="Node2D" parent="."]
-visible = false
 position = Vector2( 512, 300 )
 
 [node name="PortalSystem" type="Node2D" parent="CentreNode"]
@@ -3828,6 +3904,11 @@ visible = false
 material = SubResource( 50 )
 texture = SubResource( 52 )
 
+[node name="Sol_light" type="Light2D" parent="CentreNode"]
+position = Vector2( 0.943848, 0 )
+scale = Vector2( 0.85, 0.85 )
+texture = ExtResource( 71 )
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 53 )
 
@@ -3876,6 +3957,23 @@ autostart = true
 
 [node name="Sfx" parent="." instance=ExtResource( 51 )]
 
+[node name="gems" type="Sprite" parent="."]
+position = Vector2( 1354.65, 549.412 )
+scale = Vector2( 0.46613, 0.46613 )
+texture = ExtResource( 69 )
+
+[node name="gem_0" type="Sprite" parent="gems"]
+modulate = Color( 1, 0, 0, 1 )
+position = Vector2( 454.578, -645.501 )
+texture = ExtResource( 70 )
+normal_map = ExtResource( 72 )
+
+[node name="MultiMeshInstance2D" type="MultiMeshInstance2D" parent="gems"]
+position = Vector2( 1041.5, -113.232 )
+multimesh = SubResource( 57 )
+texture = ExtResource( 70 )
+normal_map = ExtResource( 72 )
+
 [connection signal="ready" from="." to="RuleChanger" method="_on_Game_ready"]
 [connection signal="hide" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="hide_diag"]
 [connection signal="popup_hide" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="hide_diag"]
@@ -3910,6 +4008,7 @@ autostart = true
 [connection signal="mouse_entered" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/HBoxContainer/Remove" to="Sfx/Click" method="play"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/HBoxContainer/Remove" to="Sfx/No" method="play"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/HBoxContainer/Remove" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/HBoxContainer/Remove" method="_on_Remove_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/FactoryContainer/Set/HBoxContainer2/Rotate" to="Camera2D" method="_on_Rotate_pressed"]
 [connection signal="mouse_entered" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer/Save" to="Sfx/Click" method="play"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer/Save" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Save_pressed"]
 [connection signal="mouse_entered" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/MenuContainer/Container/GridContainer/Load" to="Sfx/Click" method="play"]
@@ -3949,9 +4048,9 @@ autostart = true
 [connection signal="mouse_entered" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/HintsContainer/VBoxContainer/BackToMission" to="Sfx/Click" method="play"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/HintsContainer/VBoxContainer/BackToMission" to="Sfx/No" method="play"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/HintsContainer/VBoxContainer/BackToMission" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="_on_Mission_pressed"]
-[connection signal="mouse_entered" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/All RecipesContainer/VBox/HBottomBox/Back" to="Sfx/Click" method="play"]
-[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/All RecipesContainer/VBox/HBottomBox/Back" to="Sfx/No" method="play"]
-[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/All RecipesContainer/VBox/HBottomBox/Back" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="hide_diag"]
+[connection signal="mouse_entered" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/AllRecipesContainer/VBox/HBottomBox/Back" to="Sfx/Click" method="play"]
+[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/AllRecipesContainer/VBox/HBottomBox/Back" to="Sfx/No" method="play"]
+[connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/AllRecipesContainer/VBox/HBottomBox/Back" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="hide_diag"]
 [connection signal="mouse_entered" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/ExportedContainer/VBox/HBoxContainer/Close" to="Sfx/Click" method="play"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/ExportedContainer/VBox/HBoxContainer/Close" to="Sfx/No" method="play"]
 [connection signal="pressed" from="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog/ExportedContainer/VBox/HBoxContainer/Close" to="CanvasLayer/UI/InfoUI/CenterContainer/InfoDialog" method="hide_diag"]

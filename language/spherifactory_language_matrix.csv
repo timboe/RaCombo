@@ -50,7 +50,7 @@ ui_number_colon,Number:,Nummer:,Número:,Nombre:,Nomor:,Numero:,番号：,숫자
 ui_factory_output,Factory Output,Werkseingang,Salida de fábrica,Sortie d'usine,Output pabrik,Uscita di fabbrica,工場出荷,공장 출력,Wyjście fabryczne,Saída de fábrica,Заводская вывод,Sản lượng nhà máy,工厂输出
 ui_time_s,Time (s),Zeit (en),Tiempo (s),Temps (s),Waktu),Tempo (i),時間（S）,시간 (들),Czas (y),Tempo (s),Время (ы),Thời gian,时间（s）
 ui_choose_transmute,Choose resource to transmute from.,"Wählen Sie Ressource, um von zu transformieren.",Elija el recurso para transmutar de.,Choisissez la ressource à transmettre à partir de.,Pilih sumber daya untuk mentransmisikan dari.,Scegli la risorsa da trasmutare.,送信するリソースを選択します。,전송할 자원을 선택하십시오.,"Wybierz zasób, aby przemienić.",Escolha o recurso para transmutar.,Выберите ресурс для передачи.,Chọn tài nguyên để biến từ.,选择资源传输。
-ui_cannot_transmute,"Only ""+"" resouces can be created via transmutation.","Nur ""+"" Resouces können über Transmutation erstellt werden.","Solo se pueden crear recursos ""+"" a través de la transmutación.","Seules les résines ""+"" peuvent être créées via la transmutation.","Hanya ""+"" resouore yang dapat dibuat melalui transmutasi.","Solo le risorse ""+"" possono essere create tramite la trasmutazione.","""+""リセーチは変換によって作成することができます。","전용 ""+""전용 재구성은 변환을 통해 생성 될 수 있습니다.","Tylko zasięg ""+"" można utworzyć poprzez transmutację.","Apenas ""+"" resoradores podem ser criados via transmutação.",Только «+» резоусы могут быть созданы через трансмутацию.,"Chỉ có thể tạo lại ""+"" có thể được tạo thông qua biến đổi.",只能通过嬗变创建“+”remces。
+ui_cannot_transmute,"Only ""+"" resources can be created via transmutation.","Nur ""+"" -Ressourcen können über Transmutation erstellt werden.","Solo se pueden crear recursos ""+"" a través de la transmutación.","Seules les ressources ""+"" peuvent être créées via la transmutation.","Hanya sumber daya ""+"" yang dapat dibuat melalui transmutasi.","Solo le risorse ""+"" possono essere create tramite trasmutazione.","""+""リソースのみが変換を介して作成できます。","""+""리소스 만 트랜스미션을 통해 생성 할 수 있습니다.","Tylko ""+"" zasoby można utworzyć poprzez transmutację.","Apenas ""+"" Recursos podem ser criados via transmutação.",Только «+» ресурсы могут быть созданы через трансмутацию.,"Chỉ có tài nguyên ""+"" có thể được tạo thông qua Transmesting.",只能通过嬗变创建“+”资源。
 ui_warning,Warning!,Warnung!,¡Advertencia!,Avertissement!,Peringatan!,Avvertimento!,警告！,경고!,Ostrzeżenie!,Aviso!,Предупреждение!,Cảnh báo!,警告！
 ui_confirmation,Confirmation,Bestätigung,Confirmación,Confirmation,Konfirmasi,Conferma,確認,확인,Potwierdzenie,Confirmação,Подтверждение,Xác nhận,确认
 ui_all_will_be_discarded,All changes will be discarded.,Alle Änderungen werden verworfen.,Todos los cambios serán descartados.,Tous les changements seront jetés.,Semua perubahan akan dibuang.,Tutte le modifiche verranno scartate.,すべての変更は破棄されます。,모든 변경 사항이 삭제됩니다.,Wszystkie zmiany zostaną odrzucone.,Todas as alterações serão descartadas.,Все изменения будут отброшены.,Tất cả các thay đổi sẽ bị loại bỏ.,所有更改都将被丢弃。
@@ -100,7 +100,7 @@ ui_tutorial,Tutorial,Lernprogramm,Tutorial,Didacticiel,Tutorial.,Tutorial,チュ
 ui_clear_all_rings,Clear All Rings,Alle Ringe löschen,Borrar todos los anillos,Effacer toutes les bagues,Bersihkan semua cincin,Cancella tutti gli anelli,すべてのリングをクリアします,모든 반지를 지우십시오,Wyczyść wszystkie pierścienie.,Limpar todos os anéis,Очистить все кольца,Xóa tất cả nhẫn,清除所有戒指
 ui_all_recipes,All Recipes,Alle Rezepte,Todas las recetas,Toutes les recettes,Semua resep,Tutte le ricette,すべてのレシピ,모든 요리법,Wszystkie przepisy,Todas as receitas,Все рецепты,Tất cả các công thức nấu ăn,所有食谱
 ui_exit_to_title,Exit to Title,Beenden Sie den Titel,Salir al título,Sortie au titre,Keluar ke Judul,Esci dal titolo,タイトルを終了します,제목으로 나가십시오,Wyjdź do tytułu,Saia para o título.,Выход в заголовок,Thoát khỏi tiêu đề,退出标题
-ui_rings,Rings,Ringe,Anillos,Anneaux,Cincin,Anelli,r r,반지,Rings.,argolas,Колец,Nhẫn,戒指
+ui_rings,Rings,Ringe,Anillos,Anneaux,Cincin,Anelli,リング,반지,Rings.,argolas,Колец,Nhẫn,戒指
 ui_satellite_factories_collect,Satellite Factories Collect From...,Satellitenfabriken sammeln von ...,Fábricas satelitales recogen de ...,Les usines de satellite collectent de ...,Pabrik satelit mengumpulkan dari ...,Le fabbriche satellitari raccolgono da ...,衛星工場から集まります...,위성 공장 수집 ...,Fabryki satelitarne zbierają z ...,Fábricas de satélite coletam de ...,Спутниковые заводы собирают из ...,Các nhà máy vệ tinh thu thập từ ...,卫星工厂收集......
 ui_above,Above,Über,Encima,Dessus,Di atas,Al di sopra,その上,위에,Nad,Acima de,Выше,Bên trên,以上
 ui_below,Below,Unter,Debajo,Au dessous de,Di bawah,Sotto,未満,아래에,Poniżej,Abaixo,Ниже,Phía dưới,以下
@@ -142,7 +142,7 @@ ui_config_issue_2,Fix issues on the following missions before saving.,"Fixieren 
 ui_overwrite_main_1,Cannot overwrite the 'Main Campaign',"Kann die ""Hauptkampagne"" nicht überschreiben können",No se puede sobrescribir la 'campaña principal',"Ne peut pas écraser la ""campagne principale""",Tidak dapat menimpa 'kampanye utama',"Non può sovrascrivere la ""campagna principale""",'メインキャンペーン'を上書きできません,'메인 캠페인'을 덮어 쓸 수 없습니다.,"Nie można zastąpić ""głównej kampanii""",Não pode sobrescrever a 'campanha principal',Не может перезаписать «основную кампанию»,Không thể ghi đè lên 'Chiến dịch chính',不能覆盖'主竞选活动'
 ui_overwrite_main_2,Please choose a different name.,Bitte wählen Sie einen anderen Namen.,"Por favor, elija un nombre diferente.",Veuillez choisir un nom différent.,Silakan pilih nama yang berbeda.,Si prega di scegliere un nome diverso.,別の名前を選択してください。,다른 이름을 선택하십시오.,Wybierz inną nazwę.,"Por favor, escolha um nome diferente.","Пожалуйста, выберите другое имя.",Vui lòng chọn một tên khác.,请选择不同的名称。
 ui_no_campaign_name,Please choose a campaign name.,Bitte wählen Sie einen Kampagnennamen.,"Por favor, elija un nombre de campaña.",Veuillez choisir un nom de campagne.,Silakan pilih nama kampanye.,Si prega di scegliere un nome di campagna.,キャンペーン名を選択してください。,캠페인 이름을 선택하십시오.,Wybierz nazwę kampanii.,"Por favor, escolha um nome de campanha.","Пожалуйста, выберите название кампании.",Vui lòng chọn một tên chiến dịch.,请选择竞选名称。
-ui_n_transmute_1,Cannot have more than three transmutation recipies.,Kann nicht mehr als drei Transmutationsrezepte haben.,No puede tener más de tres recetas de transmutación.,Ne peut avoir plus de trois recettes de transmutation.,Tidak dapat memiliki lebih dari tiga penerima transmutasi.,Non può avere più di tre ricette di trasmutazione.,3つ以上の変換レシピを持つことはできません。,3 개 이상의 변환 레시피를 가질 수 없습니다.,Nie może mieć więcej niż trzech przepisów transmisji.,Não pode ter mais de três recompensas de transmutação.,Не может иметь более трех получателей трансмутации.,Không thể có nhiều hơn ba người nhận truyền.,不能有三个以上的嬗变谱。
+ui_n_transmute_1,Cannot have more than three transmutation recipes.,Kann nicht mehr als drei Transmutationsrezepte haben.,No puede tener más de tres recetas de transmutación.,Ne peut avoir plus de trois recettes de transmutation.,Tidak dapat memiliki lebih dari tiga resep transmutasi.,Non può avere più di tre ricette di trasmutazione.,3つ以上の変換レシピを持つことはできません。,3 개 이상의 변환 조리법을 가질 수 없습니다.,Nie może mieć więcej niż trzech receptur transmutacyjnych.,Não pode ter mais de três receitas de transmutação.,Не может иметь более трех рецептов трансмутации.,Không thể có nhiều hơn ba công thức biến đổi.,不能有三个以上的嬗变配方。
 ui_n_transmute_2,Remove a transmutation first from one of:,Entfernen Sie zuerst eine Transmutation von einem von:,Eliminar una transmutación primero desde uno de:,Supprimer une transmutation d'abord d'une des:,Hapus transmutasi pertama dari salah satu:,Rimuovere prima una trasmutazione da uno dei:,次のいずれかから最初に変換を取り除きます。,전송을 먼저 제거하십시오.,Wyjmij najpierw transmutację z jednego z:,Remova uma transmutação primeiro de um de:,Снимите трансмутацию сначала от одного из:,Xóa một biến đổi đầu tiên từ một trong:,首先从以下之一删除嬗变：
 ui_which_transmute_1,Each input can be used for a single transmute.,Jeder Eingang kann für eine einzelne Transmission verwendet werden.,Cada entrada se puede utilizar para una sola transmutación.,Chaque entrée peut être utilisée pour un seul transmutage.,Setiap input dapat digunakan untuk transmute tunggal.,Ogni ingresso può essere utilizzato per una singola trasmuta.,各入力は単一の送信に使用できます。,각 입력은 단일 전송에 사용할 수 있습니다.,Każde wejście może być używane do pojedynczego transmisji.,Cada entrada pode ser usada para um único transmute.,Каждый вход может быть использован для одной передачи.,Mỗi đầu vào có thể được sử dụng cho một biến đơn.,每个输入都可用于单个传输。
 ui_which_transmute_2,Remove:,Entfernen:,Eliminar:,Supprimer:,Menghapus:,Rimuovere:,削除する：,제거하다:,Usunąć:,Retirar:,Удалять:,Di dời:,消除：
@@ -165,19 +165,43 @@ ui_cannot_delete_main,Cannot delete the main campaign,Die Hauptkampagne kann nic
 ui_confirm_overwrite,Please confirm overwriting Save,Bitte überprüfen Sie das Überschreiben Speichern,Por favor confirme la sobrescritura Guardar,S'il vous plaît confirmer écraser Enregistrer,Harap Konfirmasikan Overwriting Simpan,Si prega di confermare la sovrascrittura Salva,上書き保存を確認してください,덮어 쓰기를 확인하십시오,Proszę potwierdzić nadpisanie Zapisz,"Por favor, confirme salvar sobrescrevendo","Пожалуйста, подтвердите перезапись Сохранить",Vui lòng xác nhận ghi đè Lưu lại,请确认覆盖保存
 ui_confirm_delete,Please confirm deleting Save,Bitte bestätigen Sie das Löschen Speichern,"Por favor, confirme la eliminación de guardado",S'il vous plaît confirmer la suppression de sauvegarder,Harap Konfirmasikan Menghapus Simpan,Si prega di confermare l'eliminazione Salva,削除を確認してください,저장 삭제를 확인하십시오,Potwierdź usuwanie Zapisz,"Por favor, confirme a exclusão de salvar","Пожалуйста, подтвердите удаление сохранения",Vui lòng xác nhận Save Save,请确认删除保存
 ui_level,Level,Niveau,Nivel,Niveau,Tingkat,Livello,レベル,수준,Poziom,Nível,Уровень,Cấp độ,等级
-ui_autosave,Autosave,Autosave,Autosavo,Transmettre,Penyimpanan otomatis,Autosave,aut aut,자동 저장,AutoSave.,Salvamento automático,Автосохранение,Autosave.,自动保存
+ui_autosave,Autosave,Autosave,Autosavo,Transmettre,Penyimpanan otomatis,Autosave,自動保存,자동 저장,AutoSave.,Salvamento automático,Автосохранение,Autosave.,自动保存
 ui_goal_resource,Goal resource,Torressource,Recurso de meta,Ressource de but,Sumber Daya Tujuan,Risorse obiettivo,目標リソース,목표 자원,Zasób bramki,Recurso de meta,Цель ресурса,Tài nguyên mục tiêu,目标资源
 ui_always_required,Always required,Immer erforderlich,Siempre requerido,Toujours nécessaire,Selalu diminta,Sempre richiesto,常に必要です,항상 필요합니다,Zawsze wymagany,Sempre obrigatório,Всегда требуется,Luôn luôn yêu cầu,总是要求
 ui_on_input_lane,On input lane,Auf der Eingangspur,En el carril de entrada,Sur la voie d'entrée,Pada input lane.,Sulla corsia di input,入力車線に,입력 레인에서,Na pasie wejściowym,Na faixa de entrada,На входной полосе,Trên làn đầu vào,在输入车道上
 ui_required,Required,Erforderlich,Requerido,Obligatoire,Yg dibutuhkan,Necessario,必須,필수의,Wymagany,Obrigatório,Необходимый,Yêu cầu,必需的
 ui_show,Show,Zeigen,Show,Spectacle,Menunjukkan,Spettacolo,見せる,보여 주다,Pokazać,Mostrar,Показать,Chỉ,展示
 ui_close,Close,Nah dran,Cerrar,proche,Menutup,Chiudere,選ぶ,닫다,Blisko,Fechar,Закрывать,Gần,关闭
+ui_follow_satellite,Follow Satellite,Folgen Sie dem Satellit.,Seguir satélite,Suivre le satellite,Ikuti satelit,Segui il satellite,衛星をフォローする,Satellite를 따르십시오,Śledź satelita,Siga o satélite,Следуйте спутником,Theo vệ tinh,遵循卫星
+ui_menu,Menu,Speisekarte,Menú,Menu,Tidak bisa,Menù,メニュー,메뉴,Menu,Cardápio,Меню,Thực đơn,菜单
+ui_sol,Sol,Sol,Sol,Sol,Sol.,Sol,ソル,솔,Sol,Sol,Соль,Sol.,索尔
+ui_unasigned_satellite,Unassigned Satellite,Nicht zugewiesener Satellit.,Satélite no asignado,Satellite non assigné,Satelit yang belum ditentukan,Satellite non assegnato,割り当てられていない衛星,할당되지 않은 위성,Nieprzypisany satelita,Satélite não atribuído,Неназначенный спутник,Vệ tinh không được gán,未分配的卫星
 ,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
 ,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
 ,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
 ,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
 ,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
 ,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
 tut_0,"CAMERA CONTROLS
 
 Move the camera:
@@ -381,15 +405,15 @@ The sun is surrounded by a system of rings, and each ring is divided into a numb
 
 Each lane can only carry a single resource.
 
-Satelites are built on rings, and extend over all of the ring's lanes. Each satelite will reduce the number of resources which can fit around the ring.
+Satellites are built on rings, and extend over all of the ring's lanes. Each satellite will reduce the number of resources which can fit around the ring.
 
-Click on a ring to manage its lanes and satelites.","Ringe und Bahnen
+Click on a ring to manage its lanes and satellites.","Ringe und Bahnen
 
 Die Sonne ist von einem System von Ringen umgeben, und jeder Ring ist in eine Reihe von Bahnen unterteilt,
 
 Jede Spur kann nur eine einzige Ressource tragen.
 
-Satelite sind auf Ringen gebaut und erstrecken sich über alle Ringspuren. Jeder Satellit verringert die Anzahl der Ressourcen, die um den Ring herum passen können.
+Satelliten sind auf Ringen gebaut und erstrecken sich über alle Ringspuren. Jeder Satelliten reduziert die Anzahl der Ressourcen, die um den Ring herum passen können.
 
 Klicken Sie auf einen Ring, um seine Bahnen und Satelliten zu verwalten.","Anillos y carriles
 
@@ -397,9 +421,9 @@ El sol está rodeado por un sistema de anillos, y cada anillo se divide en una s
 
 Cada carril solo puede llevar un solo recurso.
 
-Los satélites están construidos sobre los anillos, y se extienden sobre todos los carriles del anillo. Cada satélite reducirá la cantidad de recursos que pueden caber alrededor del anillo.
+Los satélites están construidos en los anillos, y se extienden sobre todos los carriles del anillo. Cada satélite reducirá la cantidad de recursos que pueden caber alrededor del anillo.
 
-Haga clic en un anillo para administrar sus carriles y satelites.","Bagues et voies
+Haga clic en un anillo para administrar sus carriles y satélites.","Bagues et voies
 
 Le soleil est entouré d'un système de bagues et chaque bague est divisée en plusieurs voies,
 
@@ -413,7 +437,7 @@ Matahari dikelilingi oleh sistem cincin, dan setiap cincin dibagi menjadi bebera
 
 Setiap jalur hanya dapat membawa sumber daya tunggal.
 
-Satelit dibangun di atas cincin, dan memperluas semua jalur cincin. Setiap satelit akan mengurangi jumlah sumber daya yang dapat muat di sekitar cincin.
+Satelit dibangun di atas cincin, dan memperpanjang semua jalur cincin. Setiap satelit akan mengurangi jumlah sumber daya yang dapat muat di sekitar cincin.
 
 Klik pada cincin untuk mengelola jalur dan satelitnya.","Anelli e corsie
 
@@ -421,9 +445,9 @@ Il sole è circondato da un sistema di anelli e ogni anello è diviso in un nume
 
 Ogni corsia può svolgere solo una singola risorsa.
 
-Satelliti sono costruiti su anelli e si estendono su tutte le corsie dell'anello. Ogni satelite ridurrà il numero di risorse che possono adattarsi attorno all'anello.
+I satelliti sono costruiti su anelli e si estendono su tutte le corsie dell'anello. Ogni satellite ridurrà il numero di risorse che possono adattarsi attorno all'anello.
 
-Clicca su un anello per gestire le sue corsie e satelliti.","リングとレーン
+Clicca su un anello per gestire le sue corsie e i suoi satelliti.","リングとレーン
 
 太陽はリングのシステムに囲まれ、各リングは数の車線に分けられます。
 
@@ -437,15 +461,15 @@ Clicca su un anello per gestire le sue corsie e satelliti.","リングとレー�
 
 각 차선은 단일 리소스 만 수행 할 수 있습니다.
 
-위성 물질은 링 위에 지어졌으며 모든 링의 차선을 통해 확장됩니다. 각 위성은 링 주위에 맞을 수있는 자원 수를 줄일 수 있습니다.
+위성은 링 위에 지어졌으며 모든 링의 차선을 확장합니다. 각 위성은 반지 주위에 맞을 수있는 자원 수를 줄일 수 있습니다.
 
-링을 클릭하여 차선 및 위성 요소를 관리하십시오.","Pierścienie i ścieżki
+LANES 및 Satellites를 관리하려면 링을 클릭하십시오.","Pierścienie i ścieżki
 
 Słońce jest otoczony systemem pierścieni, a każdy pierścień jest podzielony na wiele pasów,
 
 Każdy pas może prowadzić tylko jedno zasób.
 
-Satelity są zbudowane na pierścieniach i rozciągają się na wszystkich pasach pierścieniowych. Każda satelita zmniejszy liczbę zasobów, które mogą pasować do pierścienia.
+Satelity są zbudowane na pierścieniach i rozciągają się na wszystkich pasach pierścieniowych. Każdy satelita zmniejszy liczbę zasobów, które mogą pasować do pierścienia.
 
 Kliknij pierścień, aby zarządzać swoimi ścieżkami i satelitami.","Anéis e pistas
 
@@ -453,7 +477,7 @@ O sol é cercado por um sistema de anéis, e cada anel é dividido em uma série
 
 Cada faixa só pode levar um único recurso.
 
-Os satélites são construídos em anéis e se estendem sobre todas as faixas do anel. Cada satelite reduzirá o número de recursos que podem caber em torno do anel.
+Os satélites são construídos em anéis e se estendem sobre todas as faixas do anel. Cada satélite reduzirá o número de recursos que podem caber em torno do anel.
 
 Clique em um anel para gerenciar suas faixas e satélites.","Кольца и полосы
 
@@ -461,7 +485,7 @@ Clique em um anel para gerenciar suas faixas e satélites.","Кольца и п�
 
 Каждый переулок может иметь только один ресурс.
 
-Satelites построен на кольцах и простирается над всеми полосами кольца. Каждый Satelite уменьшит количество ресурсов, которые могут поместиться вокруг кольца.
+Спутники построены на кольцах и проходят через все полосы кольца. Каждый спутник уменьшит количество ресурсов, которые могут поместиться вокруг кольца.
 
 Нажмите на кольцо, чтобы управлять своими полосами и спутниками.","Nhẫn và làn đường.
 
@@ -469,90 +493,90 @@ Mặt trời được bao quanh bởi một hệ thống reo, và mỗi vòng đ
 
 Mỗi làn chỉ có thể mang một tài nguyên duy nhất.
 
-Satelites được xây dựng trên các vòng và mở rộng trên tất cả các làn đường của vòng. Mỗi satelite sẽ làm giảm số lượng tài nguyên có thể phù hợp xung quanh vòng.
+Các vệ tinh được xây dựng trên các vòng và mở rộng trên tất cả các làn đường của vòng. Mỗi vệ tinh sẽ làm giảm số lượng tài nguyên có thể phù hợp xung quanh vòng.
 
-Nhấp vào một vòng để quản lý làn đường và satelites của nó.","戒指和车道
+Nhấp vào một vòng để quản lý làn đường và vệ tinh của nó.","戒指和车道
 
 太阳被一个环包围，每个环都分成了多个车道，
 
 每个车道只能携带单个资源。
 
-卫星建立在环上，并延伸到所有戒指的车道上。每个卫星将减少可以在环周围装配的资源数量。
+卫星建在圆环上，并延伸到所有戒指的车道上。每个卫星将减少可以围绕环形的资源数量。
 
-单击戒指以管理其车道和卫星。"
-tut_3_0,"SATELITES: EXTACTOR
+单击环以管理其车道和卫星。"
+tut_3_0,"SATELITES: EXTRACTOR
 
-Satelites in Extractor mode move [+] resources.
+Satellites in Extractor mode move [+] resources.
 
-TIP: After having assigned a mode to one Satelite, right-click on another to assign it to the same mode.
+TIP: After having assigned a mode to one Satellite, right-click on another to assign it to the same mode.
   
-[+] resources move from ring below to the ring above.","Satelliten: Extraktor
+[+] resources move from ring below to the ring above.","Satelliten: Extraktor.
 
-Satelite im Extraktionsmodus verschieben [+] Ressourcen.
+Satelliten im Extraktor-Modus verschieben [+] Ressourcen.
 
-Tipp: Nachdem Sie einen Modus zu einem Satelliten zugewiesen haben, klicken Sie mit der rechten Maustaste auf eine andere, um sie dem gleichen Modus zuzuweisen.
+Tipp: Nachdem Sie einen Modus an einen Satelliten zugewiesen haben, klicken Sie mit der rechten Maustaste auf eine andere, um sie dem gleichen Modus zuzuweisen.
   
-[+] Ressourcen bewegen sich vom Ring unten zum Ring oben.","Satelites: extactor
+[+] Ressourcen bewegen sich vom Ring unten zum Ring oben.","Satelites: extractor
 
 Los satélites en modo extractor se mueven [+] los recursos.
 
 Sugerencia: después de haber asignado un modo a un satélite, haga clic con el botón derecho en otro para asignarlo al mismo modo.
   
-[+] Los recursos se mueven de un anillo debajo al anillo de arriba.","Satellites: Extacteur
+[+] Los recursos se mueven de un anillo debajo al anillo de arriba.","Satellites: extracteur
 
 Satellites en mode extracteur Déplacez les ressources [+].
 
-Conseil: Après avoir attribué un mode à un satellite, cliquez avec le bouton droit de la souris sur un autre pour l'attribuer au même mode.
+Conseil: après avoir attribué un mode à un satellite, cliquez avec le bouton droit de la souris sur un autre pour l'attribuer au même mode.
   
-[+] Les ressources se déplacent de l'anneau ci-dessous sur la bague ci-dessus.","Satelit: Extactor.
+[+] Les ressources se déplacent de l'anneau ci-dessous sur la bague ci-dessus.","Satelit: Extractor.
 
 Satelit dalam mode ekstraktor memindahkan sumber daya [+].
 
 Tip: Setelah menetapkan mode ke satu satelit, klik kanan pada yang lain untuk menetapkannya ke mode yang sama.
   
-[+] Sumber daya bergerak dari cincin di bawah ke cincin di atas.","Satelliti: Exstactor.
+[+] Sumber daya bergerak dari cincin di bawah ke cincin di atas.","Satelliti: estrattore.
 
-Satelliti in modalità Extractor Move [+] Risorse.
+I satelliti in modalità estrattore spostano [+] risorse.
 
-Suggerimento: dopo aver assegnato una modalità a un satelite, fare clic con il tasto destro del mouse su un altro per assegnarlo alla stessa modalità.
+Suggerimento: dopo aver assegnato una modalità a un satellite, fare clic con il tasto destro del mouse su un altro per assegnarlo alla stessa modalità.
   
-[+] Le risorse si spostano dall'anello sotto all'anello sopra.","Satelites：エクステクター
+[+] Le risorse si spostano dall'anello sotto all'anello sopra.","サテライト：抽出器
 
-Extractor Modeの飽和度[+]リソースを移動します。
+Extractor Modeの衛星は[+]リソースを移動します。
 
-ヒント：1つのサテライトにモードを割り当てた後、別のモードを右クリックして同じモードに割り当てます。
+ヒント：1つの衛星にモードを割り当てた後、別のモードを右クリックして同じモードに割り当てます。
   
-[+]リソースは下のリングから上のリングに移動します。","위성 세트 : extactor.
+[+]リソースは下のリングから上のリングに移動します。","위성 인 : 추출기
 
-추출기 모드의 위성 인은 [+] 자원을 이동합니다.
+추출기 모드의 위성은 [+] 자원을 이동합니다.
 
-팁 : 하나의 위성에 모드를 할당 한 후 다른 모드로 마우스 오른쪽 버튼으로 클릭하여 동일한 모드로 할당합니다.
+팁 : 모드를 하나의 위성에 할당 한 후 다른 모드로 할당하려면 다른 위성을 마우스 오른쪽 단추로 클릭하십시오.
   
-[+] 자원은 아래 벨소리에서 위의 링으로 이동합니다.","Satelity: Extsctor.
+[+] 자원은 아래 벨소리에서 위의 링으로 이동합니다.","Satelity: Extractor.
 
-Satelites w trybie wyciągowym Przenieś zasoby [+].
+Satelity w trybie wyciągowym przenoszą się [+] zasobów.
 
-Wskazówka: Po przypisaniu trybu do jednego satelitu kliknij prawym przyciskiem myszy inny, aby przypisać go do tego samego trybu.
+Wskazówka: Po przydzieleniu trybu do jednego satelity, kliknij prawym przyciskiem myszy inny, aby przypisać go do tego samego trybu.
   
-[+] Zasoby przechodzą z pierścienia poniżej do pierścienia powyżej.","Satélites: Extator.
+[+] Zasoby przechodzą z pierścienia poniżej do pierścienia powyżej.","Satélites: Extrator
 
 Satélites no modo de extrator movimentação [+] recursos.
 
-Dica: Depois de ter atribuído um modo a um satelite, clique com o botão direito do mouse em outro para atribuí-lo ao mesmo modo.
+Dica: Depois de ter atribuído um modo a um satélite, clique com o botão direito do mouse em outro para atribuí-lo ao mesmo modo.
   
-[+] recursos se movem do anel abaixo para o anel acima.","Satelites: Extault.
+[+] recursos se movem do anel abaixo para o anel acima.","Стелты: экстрактор
 
-Стелты в режиме экстрактора перемещают [+] ресурсы.
+Satellites в режиме экстрактора перемещается [+] ресурсы.
 
-Совет: После присвоения режима на один Satelite щелкните правой кнопкой мыши по другому, чтобы назначить его в тот же режим.
+Совет: после присвоения режима к одному спутнику щелкните правой кнопкой мыши по другому, чтобы назначить его в тот же режим.
   
-[+] Ресурсы перемещаются с кольца ниже на кольцо выше.","Satelites: Extriveor.
+[+] Ресурсы перемещаются с кольца ниже на кольцо выше.","Satelites: extractor.
 
-Satelites trong chế độ Extractor di chuyển [+] tài nguyên.
+Các vệ tinh trong chế độ Extractor di chuyển [+] Tài nguyên.
 
-Mẹo: Sau khi đã gán một chế độ cho một satelite, nhấp chuột phải vào cái khác để gán nó cho cùng một chế độ.
+Mẹo: Sau khi đã gán một chế độ cho một vệ tinh, nhấp chuột phải vào cái khác để gán nó vào cùng chế độ.
   
-[+] Tài nguyên di chuyển từ vòng bên dưới đến vòng trên.","卫星：extontor.
+[+] Tài nguyên di chuyển từ vòng bên dưới đến vòng trên.","卫星：提取器
 
 提取器模式中的卫星移动[+]资源。
 
@@ -563,122 +587,122 @@ tut_3_1,"If built on the first ring, it will extract [+] resources from the Sun.
 tut_3_2,"If built on the outermost ring, it will export the [+] resource.","Wenn auf dem äußersten Ring erstellt, exportiert es die Ressource [+].","Si se basa en el anillo más externo, exportará el recurso [+].","Si construit sur la bague la plus externe, il exporte la ressource [+].","Jika dibangun di atas cincin terluar, itu akan mengekspor sumber daya [+].","Se costruito sull'anello più esterno, esporterà la risorsa [+].",最も外側のリング上に構築されている場合は、[+]リソースをエクスポートします。,최 외곽 링 위에 내장 된 경우 [+] 자원을 내보낼 것입니다.,Jeśli zbudowany na zewnętrznym pierścieniu wyeksportuje zasób [+].,"Se construído no anel mais externo, ele exportará o [+] recurso.","Если встроен на внешнее кольцо, он экспортирует ресурс [+].","Nếu được xây dựng trên vòng ngoài cùng, nó sẽ xuất tài nguyên [+].",如果构建在最外圈，它将导出[+]资源。
 tut_4,"MISSIONS AND EXPORTS
 
-Each mission tasks you to produce and export a certain number of a [+] resource using Extractor satelites on the outermost ring. 
+Each mission tasks you to produce and export a certain number of a [+] resource using Extractor satellites on the outermost ring. 
 
 Example, to export [H+] with only one Ring.
- - Click the Build Satelite button on the left of the screen
- - Place some unassigned satelites in Ring 1
- - Click the unassigned satelites and configure them as [H+] Extractor
+ - Click the Build Satellite button on the left of the screen
+ - Place some unassigned satellites in Ring 1
+ - Click the unassigned satellites and configure them as [H+] Extractor
 
-Extractor satelites in the outermost ring will load the [+] resource into ships and launch these into space.","Missionen und Exporte.
+Extractor satellites in the outermost ring will load the [+] resource into ships and launch these into space.","Missionen und Exporte.
 
-Jedes Missionsaufgaben Sie erstellen und exportieren Sie eine bestimmte Anzahl von [+] -Ressourcen mit Extraktor-Satelliten auf dem äußersten Ring.
+Jede Missionsaufgaben Sie erstellen und exportieren Sie eine bestimmte Anzahl von [+] -Ressourcen mit Extraktor-Satelliten auf dem äußersten Ring.
 
 Beispiel, um [H +] mit nur einem Ring zu exportieren.
- - Klicken Sie auf der linken Seite des Bildschirms auf die Schaltfläche ""Satelite""
- - Legen Sie einige nicht zugewiesene Satelliten in Ring 1
- - Klicken Sie auf die nicht zugewiesenen Satelliten und konfigurieren Sie sie als [H +] -Tauger
+ - Klicken Sie auf der linken Seite des Bildschirms auf die Schaltfläche ""Satelliten""
+ - Platzieren Sie einige nicht zugewiesene Satelliten in Ring 1
+ - Klicken Sie auf die nicht zugewiesenen Satelliten und konfigurieren Sie sie als [H +] -Stauscher
 
-Der Extraktor Satelite im äußersten Ring lädt die Ressource [+] in Schiffe und starten diese in den Raum.","Misiones y exportaciones
+Extraktor-Satelliten im äußersten Ring laden die Ressource [+] in Schiffe und starten diese in den Raum.","Misiones y exportaciones
 
-Cada misión lo demora y exporta un cierto número de un recurso [+] utilizando los satélites extractores en el anillo más externo.
+Cada misión lo tarda como para producir y exportar un cierto número de un recurso [+] utilizando satélites extractores en el anillo más externo.
 
 Ejemplo, para exportar [H +] con un solo anillo.
- - Haga clic en el botón Crear satélite a la izquierda de la pantalla
+ - Haga clic en el botón Build Satellite a la izquierda de la pantalla
  - Coloque algunos satélites no asignados en el anillo 1
  - Haga clic en los satélites no asignados y configúrelos como extractor [H +]
 
-Los satélites extractores en el anillo más externo cargarán el recurso [+] en los buques y lanzará estos en el espacio.","Missions et exportations
+Los satélites extractores en el anillo más externo cargarán el [+] recurso en los buques y lanzarán estos en el espacio.","Missions et exportations
 
 Chaque mission vous permet de produire et d'exporter un certain nombre de ressources [+] à l'aide de satellites d'extracteur sur la bague la plus externe.
 
 Exemple, à exporter [H +] avec un seul anneau.
- - Cliquez sur le bouton Build Satelite à gauche de l'écran.
+ - Cliquez sur le bouton Build Satellite à gauche de l'écran.
  - Placez des satellites non attribués dans la bague 1
  - Cliquez sur les satellites non attribués et configurez-les comme [H +] extracteur
 
 Les satellites d'extracteur dans la bague la plus externe chargeront la ressource [+] dans les navires et les lanceront dans l'espace.","Misi dan Ekspor
 
-Setiap misi tugas Anda untuk memproduksi dan mengekspor sejumlah sumber daya [+] yang menggunakan satelit ekstraktor pada cincin terluar.
+Setiap misi tugas Anda untuk memproduksi dan mengekspor sejumlah sumber daya [+] menggunakan satelit extractor pada cincin terluar.
 
 Contoh, untuk mengekspor [H +] dengan hanya satu cincin.
- - Klik tombol Build Satelite di sebelah kiri layar
- - Tempatkan beberapa satelit yang belum ditetapkan dalam cincin 1
- - Klik satelit yang belum ditetapkan dan konfigurasikan sebagai ekstraktor [H +]
+ - Klik tombol Build Satellite di sebelah kiri layar
+ - Tempatkan beberapa satelit tanpa syarat di Ring 1
+ - Klik satelit yang belum ditentukan dan konfigurasikan sebagai ekstraktor [H +]
 
-Satelit ekstraktor di cincin terluar akan memuat sumber daya [+] ke dalam kapal dan meluncurkannya ke dalam ruang.","Missioni ed esportazioni
+Satelit extractor di cincin terluar akan memuat sumber daya [+] ke dalam kapal dan meluncurkan ini ke luar angkasa.","Missioni ed esportazioni
 
-Ogni missione ti consente di produrre ed esportare un certo numero di una risorsa [+] utilizzando Extractor Satellites sull'anello più esterno.
+Ogni missione ti consente di produrre ed esportare un certo numero di una risorsa [+] utilizzando i satelliti di aspirazione sull'anello più esterno.
 
 Esempio, per esportare [H +] con un solo anello.
- - Fare clic sul pulsante Build Satelite a sinistra dello schermo
- - Metti alcuni satelliti non assegnati in anello 1
- - fare clic sui satelliti non assegnati e configurarli come estrattore [h +]
+ - Fare clic sul pulsante Build Satellite sulla sinistra dello schermo
+ - Metti alcuni satelliti non assegnati nell'anello 1
+ - Fare clic sui satelliti non assegnati e configurarli come estrattore [H +]
 
-L'estrattore satelliti nell'anello più esterno caricherà la risorsa [+] in navi e lanciateli nello spazio.","ミッションと輸出
+I satelliti estrattori nell'anello più esterno caricheranno la risorsa [+] nelle navi e avviali nello spazio.","ミッションと輸出
 
-各ミッションは、最も外側のリング上の抽出維持具を使用して、特定の数のA [+]リソースを作成してエクスポートすることをタスクします。
+各ミッションは、最も外側のリング上の抽出衛星を使用して特定の数の[+]リソースを作成してエクスポートすることをタスクします。
 
 例、[H +]を1つのリングだけでエクスポートする。
-  - 画面の左側の[SateLiteの構築]ボタンをクリックします。
-  - 指輪1に割り当てられていないサテライトを配置します
-  - 未割り当てのSATELITEをクリックし、それらを[H +]抽出器として構成します。
+  - 画面左側の[衛星の作成]ボタンをクリックします
+  - リング1に割り当てられていない衛星を置きます
+  - 未割り当ての衛星をクリックして[H +]抽出者として構成します
 
-最外側のリングの抽出器の飽和物質は[+]リソースを船にロードし、これらを空間に打ち上げます。","임무 및 수출
+最外輪の抽出器衛星は[+]リソースを船にロードし、これらを空間に打ち上げます。","임무 및 수출
 
-각 임무는 최 외곽 링에서 추출기 위성 인을 사용하여 특정 수의 [+] 자원의 일정 수를 생산하고 내보내는 것입니다.
+각 임무는 최 외곽 링에서 추출기 위성을 사용하여 특정 수의 수의 [+] 자원을 생산하고 내보내는 것입니다.
 
 예, [H +]를 하나의 링으로 내보내려면 [H +]를 내보낼 수 있습니다.
  - 화면 왼쪽에있는 빌드 위성 버튼을 클릭하십시오.
  - 링 1에 조사되지 않은 위성을 놓습니다
- - 할당되지 않은 위성 요소를 클릭하고 [H +] 추출기로 구성하십시오.
+ - 할당되지 않은 위성을 클릭하고 [H +] 추출기로 구성하십시오.
 
-최 외곽 링의 추출기 위성 인은 [+] 자원을 배송하고 공간으로 출시합니다.","Misje i eksport
+Outermost 링의 추출기 위성은 [+] 자원을 배송하고 공간으로 출시합니다.","Misje i eksport
 
-Każde zadania misji, które wyprodukujesz i wyeksportować pewną liczbę [+] zasobów przy użyciu Satelitów Extractor na zewnętrznym pierścieniu.
+Każda zadanie misji, które wytwarzasz i wyeksportować określoną liczbę [+] zasobów przy użyciu satelitów wyciągowych na zewnętrznym pierścieniu.
 
 Przykład, aby wyeksportować [H +] tylko jednym pierścieniem.
- - Kliknij przycisk Build Satelite po lewej stronie ekranu
+ - Kliknij przycisk Buduj satelitę po lewej stronie ekranu
  - Umieść niektóre nieprzypisane satelity w Ring 1
- - Kliknij nieprzypisane Satelity i skonfiguruj je jako [H +] Extractor
+ - Kliknij nieprzypisane satelity i skonfiguruj je jako [H +] Extractor
 
-Extractor Satelites w zewnętrznym pierścieniu załadują zasoby [+] do statków i uruchom je w przestrzeń.","Missões e exportações
+Satelity ekstraktor w najbardziej zewnętrznym pierścieniu załadują zasoby [+] do statków i uruchom je w przestrzeń.","Missões e exportações
 
-Cada missão funciona para produzir e exportar um certo número de [+] recurso usando os satélites do extrator no anel externo.
+Cada missão assiná-lo para produzir e exportar um certo número de [+] recurso usando satélites do extrator no anel externo.
 
 Exemplo, para exportar [H +] com apenas um anel.
- - Clique no botão Build Satelite à esquerda da tela
+ - Clique no botão Build Satellite à esquerda da tela
  - Coloque alguns satélites não atribuídos no anel 1
  - Clique nos satélites não atribuídos e configure-os como [H +] Extrator
 
-Os satélites do extrator no anel ultraperiférico carregarão o [+] recurso em navios e lançarão estes no espaço.","Миссии и экспорт
+Os satélites do extrator no anel externo carregarão o [+] recurso em navios e iniciarão estes no espaço.","Миссии и экспорт
 
-Каждая задача миссии, которую вы создаете и экспортируете определенное количество [+] ресурса с использованием спутников экстрактора на внешнее кольцо.
+Каждая задача миссии, которую вы создаете и экспортируете определенное количество ресурсов [+] с использованием спутников экстрактор на внешнее кольцо.
 
 Пример, чтобы экспортировать [H +] только с одним кольцом.
- - Нажмите кнопку «Создать Satelite» слева от экрана
- - Поместите несколько неназначенных спутников в кольце 1
+ - Нажмите кнопку «Создать спутниковую кнопку слева от экрана»
+ - Поместите несколько неназначенных спутников в RING 1
  - Нажмите неназначенные спутники и настройте их в виде экстрактора [H +]
 
-Вытяжные спутники в самом внешнем кольце будут загружать ресурс [+] на корабли и запустить их в космос.","Nhiệm vụ và xuất khẩu
+Спутники экстрактор в самом внешнем кольце будут загружать ресурс [+] на суда и запустить их в космос.","Nhiệm vụ và xuất khẩu
 
-Mỗi nhiệm vụ Nhiệm vụ bạn sản xuất và xuất một số lượng nhất định tài nguyên [+] bằng cách sử dụng trình trích xuất Extractor trên vòng ngoài cùng.
+Mỗi nhiệm vụ Nhiệm vụ bạn sản xuất và xuất một số lượng nhất định tài nguyên [+] bằng cách sử dụng các vệ tinh Extractor trên vòng ngoài cùng.
 
 Ví dụ, để xuất [H +] chỉ với một vòng.
- - Nhấp vào nút Xây dựng Satelite ở bên trái màn hình
- - Đặt một số satelites chưa được gán trong vòng 1
- - Nhấp vào satelites chưa được chỉ định và định cấu hình chúng là [H +] Extractor
+ - Nhấp vào nút Xây dựng vệ tinh ở bên trái màn hình
+ - Đặt một số vệ tinh chưa được gán trong vòng 1
+ - Nhấp vào các vệ tinh chưa được gán và định cấu hình chúng là [H +] Extractor
 
-Trình trích xuất Satelites trong vòng ngoài cùng sẽ tải tài nguyên [+] vào tàu và khởi chạy chúng vào không gian.","任务和出口
+Các vệ tinh Extractor trong vòng ngoài cùng sẽ tải tài nguyên [+] vào tàu và khởi chạy chúng vào không gian.","任务和出口
 
-每项任务都会在最外圈上使用提取器卫星在生产和导出一定数量的A [+]资源。
+每个任务都会在最外圈上使用提取器卫星在生产和导出一定数量的A [+]资源。
 
 示例，仅使用一个环导出[H +]。
-  - 单击屏幕左侧的“构建Satelite”按钮
-  - 在戒指1中放置一些未分配的卫星
+  - 单击屏幕左侧的“构建卫星”按钮
+  - 将一些未分配的卫星放在戒指1中
   - 单击未分配的卫星并将其配置为[H +]提取器
 
-最外面环中的提取器卫星将加载[+]资源进入船舶并将其发射到空间中。"
+最外圈中的提取器卫星将加载[+]资源进入船舶并将其发射到空间中。"
 tut_5,"INJECTORS
 
 Some resources are supplied as inputs to your factory, available injectors are shown in the menu on the left.
@@ -760,39 +784,39 @@ Chọn một kim phun chưa được gán và nhấp vào một vòng có làn �
 要移动注射器，请首先单击当前环并清除通道。"
 tut_6_0,"SATELITES: INSERTERS
 
-Satelites in Inserter mode move [-] resources.
+Satellites in Insert mode move [-] resources.
 
  [-] resources are moved from the ring above to the ring below.","Satelliten: Insertiere.
 
-Sateliten im Inserter-Modus verschieben [-] Ressourcen.
+Satelliten im Insert-Modus verschieben [-] Ressourcen.
 
  [-] Ressourcen werden vom Ring über den Ring nach unten verschoben.","Satelites: inserciones
 
-Los satélites en modo insertador se mueven [-] recursos.
+Satélites en modo inserto Mover [-] Recursos.
 
  [-] Los recursos se mueven desde el anillo superior al anillo de abajo.","Satellites: Inserteurs
 
-Satellites en mode inserteur Move [-] Ressources.
+Satellites en mode insert Move [-] Ressources.
 
  [-] Les ressources sont déplacées de la bague située au-dessus de l'anneau ci-dessous.","Satelit: Inserters.
 
-Satelit dalam mode Inserter memindahkan sumber daya [-].
+Satelit dalam mode Sisipkan memindahkan sumber daya [-].
 
  [-] Sumber daya dipindahkan dari cincin di atas ke atas cincin di bawah ini.","Satelliti: inseritori
 
-Satelitoti in modalità inserita Sposta [-] Risorse.
+I satelliti in modalità insert Move [-] Risorse.
 
  [-] Le risorse vengono spostate dall'anello sopra all'anello sottostante.","サテライト：挿入者
 
-挿入器モードでのゼライト[ - ]リソース。
+挿入モードの衛星[ - ]リソース。
 
  [ - ]リソースは上のリングから下のリングに移動されます。","위성 세트 : inserters.
 
-싱터 모드에서의 위성 인은 [-] 자원을 이동합니다.
+인서트 모드의 위성은 [-] 자원을 이동합니다.
 
  리소스가 위의 링에서 아래 링으로 이동합니다.","Satelity: Inserters.
 
-Satelites w trybie inserter przenoszą [-] zasoby.
+Satelity w trybie Wstaw przenoszą [-] zasoby.
 
  [-] Zasoby są przenoszone z pierścienia powyżej do pierścienia poniżej.","Satélites: Inseradores
 
@@ -800,15 +824,15 @@ Satélites no modo de inserção Mova [-] recursos.
 
  [-] Recursos são movidos do anel acima para o anel abaixo.","Satelites: вкладыши
 
-Satelites в Inserter Mode Move [-] Ресурсы.
+Спутники в режиме вставки Переместить [-] Ресурсы.
 
  [-] Ресурсы перемещаются с кольца выше на кольцо ниже.","Satelites: chèn
 
-Satelites trong chế độ bảo vệ di chuyển [-] tài nguyên.
+Các vệ tinh trong chế độ chèn di chuyển [-] tài nguyên.
 
  [-] Tài nguyên được di chuyển từ vòng trên đến vòng bên dưới.","卫星：插入者
 
-在插入器模式中的卫星移动[ - ]资源。
+插入模式下的卫星移动[ - ]资源。
 
  [ - ]资源从上面的环移动到下面的环。"
 tut_6_1,"If built on the first ring, the [-] resource will be thrown into the sun.
@@ -840,29 +864,29 @@ Một số tài nguyên [-] sẽ biến nếu chúng bị ném vào mặt trời
 一些[ - ]资源将转移到太阳中，其他人会被摧毁。"
 tut_7_above,"SATELITES: FACTORIES
 
-Satelites in Factory mode combine resources together into a new resource. The factory will:
+Satellites in Factory mode combine resources together into a new resource. The factory will:
   - Collect up to four resources, depending on the recipe.
   - Resources are collected from the lanes in the two rings above the factory.
   - Deposit a constructed [+] resource into the ring above.
   - Deposit a constructed [-] resource into the ring below.
         
-Each recipy specifies the number of each input resource required, the amount of the output resource produced, and the time taken.","Satelliten: Fabriken
+Each recipe specifies the number of each input resource required, the amount of the output resource produced, and the time taken.","Satelliten: Fabriken
 
-Satelite im Fabrikmodus kombinieren Ressourcen in eine neue Ressource. Die Fabrik wird:
+Satelliten im Fabrikmodus kombinieren Ressourcen zusammen zu einer neuen Ressource. Die Fabrik wird:
   - Senden Sie bis zu vier Ressourcen, je nach Rezept.
   - Ressourcen werden aus den Bahnen in den beiden Ringen oberhalb der Fabrik gesammelt.
   - Zahlen Sie eine konstruierte Ressource [+] in den Ring oben ein.
   - Zahlen Sie eine konstruierte [-] -Ressource in den Ring unten ein.
         
-Jeder Empfänger gibt die Anzahl der erforderlichen Anteilsressourcen an, die Menge der erzeugten Ausgangsressource und der Zeit.","Satelites: Fábricas
+Jedes Rezept gibt die Anzahl der erforderlichen Anteilsressourcen an, wobei der Betrag der erzeugten Ausgangsressource und der Zeit ergreift wird.","Satelites: Fábricas
 
-Los satélites en modo de fábrica combinan los recursos juntos en un nuevo recurso. La fábrica será:
+Los satélites en modo de fábrica combinan recursos juntos en un nuevo recurso. La fábrica será:
   - Recopilar hasta cuatro recursos, dependiendo de la receta.
   - Los recursos se recogen de los carriles en los dos anillos sobre la fábrica.
   - Deposite un recurso construido [+] en el anillo anterior.
   - Deposite un recurso construido [-] en el anillo de abajo.
         
-Cada destinata especifica el número de cada recurso de entrada requerido, la cantidad del recurso de salida producido y el tiempo necesario.","Satellites: usines
+Cada receta especifica el número de cada recurso de entrada requerido, la cantidad del recurso de salida producido y el tiempo necesario.","Satellites: usines
 
 Les satellites en mode usine combinent des ressources ensemble dans une nouvelle ressource. L'usine va:
   - Recueillir jusqu'à quatre ressources, en fonction de la recette.
@@ -870,7 +894,7 @@ Les satellites en mode usine combinent des ressources ensemble dans une nouvelle
   - Déposez une ressource [+] construite dans la bague ci-dessus.
   - Déposez une ressource [-] construite dans l'anneau ci-dessous.
         
-Chaque recevant spécifie le nombre de chaque ressource d'entrée requise, le montant de la ressource de sortie produite et le temps pris.","Satelit: Pabrik.
+Chaque recette spécifie le nombre de chaque ressource d'entrée requise, le montant de la ressource de sortie produite et le temps pris.","Satelit: Pabrik.
 
 Satelit dalam mode pabrik menggabungkan sumber daya bersama menjadi sumber daya baru. Pabrik akan:
   - Kumpulkan hingga empat sumber daya, tergantung resepnya.
@@ -878,15 +902,15 @@ Satelit dalam mode pabrik menggabungkan sumber daya bersama menjadi sumber daya 
   - Setor sumber daya yang dibangun [+] ke dalam cincin di atas.
   - Setor sumber daya yang dibangun ke dalam cincin di bawah ini.
         
-Setiap penerti menentukan jumlah masing-masing sumber daya input yang diperlukan, jumlah sumber daya output yang dihasilkan, dan waktu yang diambil.","Satelliti: fabbriche
+Setiap resep menentukan jumlah setiap sumber daya input yang diperlukan, jumlah sumber daya output yang dihasilkan, dan waktu yang diambil.","Satelliti: fabbriche
 
-Satelliti in modalità di fabbrica combinano le risorse insieme in una nuova risorsa. La fabbrica sarà:
+I satelliti in modalità fabbrica combinano le risorse insieme in una nuova risorsa. La fabbrica sarà:
   - Raccogliere fino a quattro risorse, a seconda della ricetta.
   - Le risorse vengono raccolte dalle corsie nei due anelli sopra la fabbrica.
   - Depositare una risorsa [+] costruita nell'anello sopra.
   - Depositare una risorsa costruita [-] nell'anello sottostante.
         
-Ogni destinata specifica il numero di ciascuna risorsa di input richiesta, la quantità della risorsa di uscita prodotta e il tempo impiegato.","サテライト：工場
+Ogni ricetta specifica il numero di ciascuna risorsa in ingresso richiesta, la quantità della risorsa di uscita prodotta e il tempo impiegato.","サテライト：工場
 
 工場モードの衛星は、リソースを新しいリソースにまとめます。工場は：
    - レシピに応じて、最大4つのリソースを集めてください。
@@ -894,15 +918,15 @@ Ogni destinata specifica il numero di ciascuna risorsa di input richiesta, la qu
    - 上記のリングに構築された[+]リソースを入金します。
    - 下のリングに構築された[ - ]リソースを入金してください。
         
-各recipyは、必要な各入力リソースの数、生成された出力リソースの量、および時間を指定します。","위성 물물 : 공장
+各レシピは、必要な各入力リソースの数、生成された出力リソースの量、および実行された時間を指定します。","위성 물물 : 공장
 
-공장 모드의 위성 요소는 자원을 새 리소스로 함께 결합합니다. 공장은 다음과 같습니다.
+공장 모드의 위성은 자원을 새 자원으로 결합합니다. 공장은 다음과 같습니다.
   - 조리법에 따라 최대 4 개의 리소스를 수집하십시오.
   - 공장 위의 두 링의 차선에서 리소스가 수집됩니다.
   - 위의 링에 건설 된 [+] 자원을 보관하십시오.
   - 아래의 벨소리에 건설 된 [-] 자원을 보관하십시오.
         
-각 refery는 필요한 각 입력 자원의 수, 생성 된 출력 자원의 양과 시간을 취하는 시간을 지정합니다.","Satelity: fabryki
+각 래서 피는 필요한 각 입력 자원의 수, 생성 된 출력 자원의 양과 시간을 취하는 시간을 지정합니다.","Satelity: fabryki
 
 Satelity w trybie fabrycznym łączą zasoby razem w nowy zasób. Fabryka będzie:
   - Zbierz do czterech zasobów, w zależności od receptury.
@@ -910,31 +934,31 @@ Satelity w trybie fabrycznym łączą zasoby razem w nowy zasób. Fabryka będzi
   - Wpłać skonstruowany zasób [+] do pierścienia powyżej.
   - Wpłać skonstruowany [-] zasobów do pierścienia poniżej.
         
-Każda recepcja określa liczbę wymaganych zasobów wejściowych, ilość wyprodukowanego zasobu wyjściowego i podjęty czas.","Satélites: fábricas
+Każda receptura określa liczbę wymaganych danych zasobów wejściowych, ilość wytworzonego zasobu wyjściowego i podjęty czas.","Satélites: fábricas
 
-Os satélites no modo de fábrica combinam recursos juntos em um novo recurso. A fábrica vai:
+Satélites no modo de fábrica combinam recursos juntos em um novo recurso. A fábrica vai:
   - Recolha até quatro recursos, dependendo da receita.
   - Recursos são coletados das faixas nos dois anéis acima da fábrica.
   - Depositar um recurso [+] construído no anel acima.
   - Depositar um recurso [-] construído no anel abaixo.
         
-Cada recíblica especifica o número de cada recurso de entrada requerido, o valor do recurso de saída produzido e o tempo gasto.","Satelites: фабрики
+Cada receita especifica o número de cada recurso de entrada requerido, o valor do recurso de saída produzido e o tempo gasto.","Satelites: фабрики
 
-Satelites в заводском режиме объединяет ресурсы вместе в новый ресурс. Завод будет:
+Спутники в заводском режиме объединяются ресурсы вместе в новый ресурс. Завод будет:
   - Соберите до четырех ресурсов, в зависимости от рецепта.
   - Ресурсы собираются из переулков в двух кольцах над заводом.
   - Разместите построенный [+] ресурс в кольце выше.
   - Депозит построен [-] ресурс в кольце ниже.
         
-Каждая рецепта определяет количество каждого требуемого входного ресурса, объем выпускаемого ресурса, и время взятых.","Satelites: Nhà máy
+Каждый рецепт определяет количество каждого требуемого входного ресурса, объем выпускаемого выводящего ресурса, а также принятое время.","Satelites: Nhà máy
 
-Satelites trong chế độ nhà máy kết hợp các tài nguyên với nhau thành một tài nguyên mới. Nhà máy sẽ:
+Các vệ tinh trong chế độ nhà máy kết hợp các tài nguyên với nhau thành một tài nguyên mới. Nhà máy sẽ:
   - Thu thập tối đa bốn tài nguyên, tùy thuộc vào công thức.
   - Tài nguyên được thu thập từ làn đường trong hai vòng trên nhà máy.
   - Gửi tài nguyên [+] được xây dựng vào vòng trên.
   - Gửi một tài nguyên [-] được xây dựng vào vòng bên dưới.
         
-Mỗi người nhận xác định số lượng mỗi tài nguyên đầu vào cần thiết, lượng tài nguyên đầu ra được tạo ra và thời gian thực hiện.","卫星：工厂
+Mỗi công thức chỉ định số lượng mỗi tài nguyên đầu vào cần thiết, lượng tài nguyên đầu ra được tạo ra và thời gian thực hiện.","卫星：工厂
 
 工厂模式中的卫星将资源结合在一起进入新资源。工厂将：
    - 根据配方收集最多四个资源。
@@ -942,32 +966,32 @@ Mỗi người nhận xác định số lượng mỗi tài nguyên đầu vào 
    - 将构造的[+]资源存入上面的环。
    - 将构造的[ - ]资源存入下面的环。
         
-每个谱指定所需的每个输入资源的数量，所产生的输出资源的量以及所花费的时间。"
+每个配方指定所需的每个输入资源的数量，所产生的输出资源的量以及所花费的时间。"
 tut_7_below,"SATELITES: FACTORIES
 
-Satelites in Factory mode combine resources together into a new resource. The factory will:
+Satellites in Factory mode combine resources together into a new resource. The factory will:
   - Collect up to four resources, depending on the recipe.
   - Resources are collected from the lanes in the two rings below the factory.
   - Deposit a constructed [+] resource into the ring above.
   - Deposit a constructed [-] resource into the ring below.
         
-Each recipy specifies the number of each input resource required, the amount of the output resource produced, and the time taken.","Satelliten: Fabriken
+Each recipe specifies the number of each input resource required, the amount of the output resource produced, and the time taken.","Satelliten: Fabriken
 
-Satelite im Fabrikmodus kombinieren Ressourcen in eine neue Ressource. Die Fabrik wird:
+Satelliten im Fabrikmodus kombinieren Ressourcen zusammen zu einer neuen Ressource. Die Fabrik wird:
   - Senden Sie bis zu vier Ressourcen, je nach Rezept.
   - Ressourcen werden aus den Bahnen in den beiden Ringen unterhalb der Fabrik gesammelt.
   - Zahlen Sie eine konstruierte Ressource [+] in den Ring oben ein.
   - Zahlen Sie eine konstruierte [-] -Ressource in den Ring unten ein.
         
-Jeder Empfänger gibt die Anzahl der erforderlichen Anteilsressourcen an, die Menge der erzeugten Ausgangsressource und der Zeit.","Satelites: Fábricas
+Jedes Rezept gibt die Anzahl der erforderlichen Anteilsressourcen an, wobei der Betrag der erzeugten Ausgangsressource und der Zeit ergreift wird.","Satelites: Fábricas
 
-Los satélites en modo de fábrica combinan los recursos juntos en un nuevo recurso. La fábrica será:
+Los satélites en modo de fábrica combinan recursos juntos en un nuevo recurso. La fábrica será:
   - Recopilar hasta cuatro recursos, dependiendo de la receta.
   - Los recursos se recogen de los carriles en los dos anillos debajo de la fábrica.
   - Deposite un recurso construido [+] en el anillo anterior.
   - Deposite un recurso construido [-] en el anillo de abajo.
         
-Cada destinata especifica el número de cada recurso de entrada requerido, la cantidad del recurso de salida producido y el tiempo necesario.","Satellites: usines
+Cada receta especifica el número de cada recurso de entrada requerido, la cantidad del recurso de salida producido y el tiempo necesario.","Satellites: usines
 
 Les satellites en mode usine combinent des ressources ensemble dans une nouvelle ressource. L'usine va:
   - Recueillir jusqu'à quatre ressources, en fonction de la recette.
@@ -975,7 +999,7 @@ Les satellites en mode usine combinent des ressources ensemble dans une nouvelle
   - Déposez une ressource [+] construite dans la bague ci-dessus.
   - Déposez une ressource [-] construite dans l'anneau ci-dessous.
         
-Chaque recevant spécifie le nombre de chaque ressource d'entrée requise, le montant de la ressource de sortie produite et le temps pris.","Satelit: Pabrik.
+Chaque recette spécifie le nombre de chaque ressource d'entrée requise, le montant de la ressource de sortie produite et le temps pris.","Satelit: Pabrik.
 
 Satelit dalam mode pabrik menggabungkan sumber daya bersama menjadi sumber daya baru. Pabrik akan:
   - Kumpulkan hingga empat sumber daya, tergantung resepnya.
@@ -983,15 +1007,15 @@ Satelit dalam mode pabrik menggabungkan sumber daya bersama menjadi sumber daya 
   - Setor sumber daya yang dibangun [+] ke dalam cincin di atas.
   - Setor sumber daya yang dibangun ke dalam cincin di bawah ini.
         
-Setiap penerti menentukan jumlah masing-masing sumber daya input yang diperlukan, jumlah sumber daya output yang dihasilkan, dan waktu yang diambil.","Satelliti: fabbriche
+Setiap resep menentukan jumlah setiap sumber daya input yang diperlukan, jumlah sumber daya output yang dihasilkan, dan waktu yang diambil.","Satelliti: fabbriche
 
-Satelliti in modalità di fabbrica combinano le risorse insieme in una nuova risorsa. La fabbrica sarà:
+I satelliti in modalità fabbrica combinano le risorse insieme in una nuova risorsa. La fabbrica sarà:
   - Raccogliere fino a quattro risorse, a seconda della ricetta.
   - Le risorse vengono raccolte dalle corsie nei due anelli sotto la fabbrica.
   - Depositare una risorsa [+] costruita nell'anello sopra.
   - Depositare una risorsa costruita [-] nell'anello sottostante.
         
-Ogni destinata specifica il numero di ciascuna risorsa di input richiesta, la quantità della risorsa di uscita prodotta e il tempo impiegato.","サテライト：工場
+Ogni ricetta specifica il numero di ciascuna risorsa in ingresso richiesta, la quantità della risorsa di uscita prodotta e il tempo impiegato.","サテライト：工場
 
 工場モードの衛星は、リソースを新しいリソースにまとめます。工場は：
    - レシピに応じて、最大4つのリソースを集めてください。
@@ -999,15 +1023,15 @@ Ogni destinata specifica il numero di ciascuna risorsa di input richiesta, la qu
    - 上記のリングに構築された[+]リソースを入金します。
    - 下のリングに構築された[ - ]リソースを入金してください。
         
-各recipyは、必要な各入力リソースの数、生成された出力リソースの量、および時間を指定します。","위성 물물 : 공장
+各レシピは、必要な各入力リソースの数、生成された出力リソースの量、および実行された時間を指定します。","위성 물물 : 공장
 
-공장 모드의 위성 요소는 자원을 새 리소스로 함께 결합합니다. 공장은 다음과 같습니다.
+공장 모드의 위성은 자원을 새 자원으로 결합합니다. 공장은 다음과 같습니다.
   - 조리법에 따라 최대 4 개의 리소스를 수집하십시오.
   - 리소스는 공장 아래의 두 링의 차선에서 수집됩니다.
   - 위의 링에 건설 된 [+] 자원을 보관하십시오.
   - 아래의 벨소리에 건설 된 [-] 자원을 보관하십시오.
         
-각 refery는 필요한 각 입력 자원의 수, 생성 된 출력 자원의 양과 시간을 취하는 시간을 지정합니다.","Satelity: fabryki
+각 래서 피는 필요한 각 입력 자원의 수, 생성 된 출력 자원의 양과 시간을 취하는 시간을 지정합니다.","Satelity: fabryki
 
 Satelity w trybie fabrycznym łączą zasoby razem w nowy zasób. Fabryka będzie:
   - Zbierz do czterech zasobów, w zależności od receptury.
@@ -1015,31 +1039,31 @@ Satelity w trybie fabrycznym łączą zasoby razem w nowy zasób. Fabryka będzi
   - Wpłać skonstruowany zasób [+] do pierścienia powyżej.
   - Wpłać skonstruowany [-] zasobów do pierścienia poniżej.
         
-Każda recepcja określa liczbę wymaganych zasobów wejściowych, ilość wyprodukowanego zasobu wyjściowego i podjęty czas.","Satélites: fábricas
+Każda receptura określa liczbę wymaganych danych zasobów wejściowych, ilość wytworzonego zasobu wyjściowego i podjęty czas.","Satélites: fábricas
 
-Os satélites no modo de fábrica combinam recursos juntos em um novo recurso. A fábrica vai:
+Satélites no modo de fábrica combinam recursos juntos em um novo recurso. A fábrica vai:
   - Recolha até quatro recursos, dependendo da receita.
   - Recursos são coletados das faixas nos dois anéis abaixo da fábrica.
   - Depositar um recurso [+] construído no anel acima.
   - Depositar um recurso [-] construído no anel abaixo.
         
-Cada recíblica especifica o número de cada recurso de entrada requerido, o valor do recurso de saída produzido e o tempo gasto.","Satelites: фабрики
+Cada receita especifica o número de cada recurso de entrada requerido, o valor do recurso de saída produzido e o tempo gasto.","Satelites: фабрики
 
-Satelites в заводском режиме объединяет ресурсы вместе в новый ресурс. Завод будет:
+Спутники в заводском режиме объединяются ресурсы вместе в новый ресурс. Завод будет:
   - Соберите до четырех ресурсов, в зависимости от рецепта.
   - Ресурсы собираются из переулков в двух кольцах ниже завода.
   - Разместите построенный [+] ресурс в кольце выше.
   - Депозит построен [-] ресурс в кольце ниже.
         
-Каждая рецепта определяет количество каждого требуемого входного ресурса, объем выпускаемого ресурса, и время взятых.","Satelites: Nhà máy
+Каждый рецепт определяет количество каждого требуемого входного ресурса, объем выпускаемого выводящего ресурса, а также принятое время.","Satelites: Nhà máy
 
-Satelites trong chế độ nhà máy kết hợp các tài nguyên với nhau thành một tài nguyên mới. Nhà máy sẽ:
+Các vệ tinh trong chế độ nhà máy kết hợp các tài nguyên với nhau thành một tài nguyên mới. Nhà máy sẽ:
   - Thu thập tối đa bốn tài nguyên, tùy thuộc vào công thức.
   - Tài nguyên được thu thập từ làn đường trong hai chiếc nhẫn bên dưới nhà máy.
   - Gửi tài nguyên [+] được xây dựng vào vòng trên.
   - Gửi một tài nguyên [-] được xây dựng vào vòng bên dưới.
         
-Mỗi người nhận xác định số lượng mỗi tài nguyên đầu vào cần thiết, lượng tài nguyên đầu ra được tạo ra và thời gian thực hiện.","卫星：工厂
+Mỗi công thức chỉ định số lượng mỗi tài nguyên đầu vào cần thiết, lượng tài nguyên đầu ra được tạo ra và thời gian thực hiện.","卫星：工厂
 
 工厂模式中的卫星将资源结合在一起进入新资源。工厂将：
    - 根据配方收集最多四个资源。
@@ -1047,60 +1071,60 @@ Mỗi người nhận xác định số lượng mỗi tài nguyên đầu vào 
    - 将构造的[+]资源存入上面的环。
    - 将构造的[ - ]资源存入下面的环。
         
-每个谱指定所需的每个输入资源的数量，所产生的输出资源的量以及所花费的时间。"
+每个配方指定所需的每个输入资源的数量，所产生的输出资源的量以及所花费的时间。"
 tut_8,"TRANSMUTATION
 
 Some [-] resources can be transmuted into a different [+] resource by discarding them into the Sun.
 
-Click on the sun to see possible transmuations.","TRANSMUTATION
+Click on the sun to see possible transmutations.","TRANSMUTATION
 
 Einige Ressourcen von [-] können in eine andere [+] -Ressource übertragen werden, indem sie sie in die Sonne verworfen.
 
-Klicken Sie auf die Sonne, um mögliche Übertragungen zu sehen.","TRANSMUTACIÓN
+Klicken Sie auf die Sonne, um mögliche Transmutationen zu sehen.","TRANSMUTACIÓN
 
 Algunos recursos [-] se pueden transmutar en un recurso [+ +] diferente al descartarlos en el sol.
 
-Haga clic en el sol para ver posibles transmisiones.","TRANSMUTATION
+Haga clic en el sol para ver las posibles transmutaciones.","TRANSMUTATION
 
 Certaines ressources [-] peuvent être transmutées dans une autre ressource [+] différente en les éliminant au soleil.
 
-Cliquez sur le soleil pour voir les transmuations possibles.","PERUBAHAN
+Cliquez sur le soleil pour voir les transmutations possibles.","PERUBAHAN
 
 Beberapa Sumber daya dapat ditransmutasikan ke dalam sumber daya [+] yang berbeda dengan membuangnya ke dalam Matahari.
 
-Klik pada matahari untuk melihat kemungkinan transmuatasi.","TRASMUTAZIONE
+Klik pada matahari untuk melihat kemungkinan transmutasi.","TRASMUTAZIONE
 
 Alcune [-] risorse possono essere trasmutate in una risorsa [+] diversa scartandole nel sole.
 
-Clicca sul sole per vedere possibili trasmano.","変換
+Clicca sul sole per vedere possibili trasmutazione.","変換
 
 いくつかの[ - ]リソースは、それらを太陽に捨てることによって別の[+]リソースに送信することができます。
 
-太陽をクリックして、可能な変数を確認します。","변성
+可能な変換を見るために太陽をクリックしてください。","변성
 
 일부 [-] 자원은 태양으로 삭제하여 다른 [+] 자원으로 전송 될 수 있습니다.
 
-가능한 능력을 보려면 태양을 클릭하십시오.","TRANSMUTACJA
+태양을 클릭하면 가능한 송신을 볼 수 있습니다.","TRANSMUTACJA
 
 Niektóre [-] zasoby można przełączyć do innego zasobu [+], odrzucając je do Słońca.
 
-Kliknij Słońce, aby zobaczyć możliwe transmuacje.","TRANSMUTAÇÃO
+Kliknij Słońce, aby zobaczyć możliwe transmisyjne.","TRANSMUTAÇÃO
 
 Alguns recursos [-] podem ser transmutados em um recurso diferente [+] descartando-os ao sol.
 
-Clique no sol para ver possíveis transmissões.","Трансмутация
+Clique no sol para ver possíveis transmutações.","Трансмутация
 
 Некоторые ресурсы [-] могут быть переданы в другой [+] ресурс, отбросив их в Солнце.
 
-Нажмите на солнце, чтобы увидеть возможные переключения.","Trộn
+Нажмите на солнце, чтобы увидеть возможные трансмиссии.","Trộn
 
 Một số tài nguyên [-] có thể được chuyển thành một tài nguyên [+] khác bằng cách loại bỏ chúng thành Mặt trời.
 
-Nhấp vào mặt trời để thấy sự giãn truyền có thể.","嬗变
+Nhấp vào mặt trời để thấy các cách có thể xảy ra.","嬗变
 
 可以通过将它们丢弃到太阳中传输到不同的[+]资源中的一些[ - ]资源。
 
-单击Sun以查看可能的帧间。"
+单击Sun以查看可能的转换。"
 ,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
 hint_1_1,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
 hint_1_2,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
