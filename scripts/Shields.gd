@@ -38,8 +38,8 @@ func _process(var _delta):
 	var shape : TextureRect = shield.get_node("Shape")
 	var shape_outline : TextureRect = shield.get_node("ShapeOutline")
 	shape.modulate = value["color"].contrasted()
-	shape.texture = load("res://images/"+value["shape"]+"_smooth.png")
-	shape_outline.texture = load("res://images/"+value["shape"]+"_smooth.png")
+	shape.texture = load("res://images/gems/gem_"+String(value["shape"])+".png")
+	shape_outline.texture =  load("res://images/gems/gem_"+String(value["shape"])+".png")
 	shape.visible = true
 	shape_outline.visible = true
 	shield.get_node("Sol").visible = false

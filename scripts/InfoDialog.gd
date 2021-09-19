@@ -17,6 +17,7 @@ var sb_green := StyleBoxFlat.new()
 var sb_blue := StyleBoxFlat.new()
 var sb_purple := StyleBoxFlat.new()
 var sb_orange := StyleBoxFlat.new()
+var sb_red := StyleBoxFlat.new()
 
 var tut_current : int = 0
 var tut_max : int =  0
@@ -30,9 +31,13 @@ func _ready():
 	sb_blue.bg_color = Color.blue
 	sb_purple.bg_color =  Color.purple
 	sb_orange.bg_color = Color.orange
+	sb_red.bg_color = Color.red
 	set_process(false)
 	
 func _process(delta):
+	if page == "Exported":
+		return export_process()
+	###
 	if current_building == null:
 		return
 	if not is_instance_valid(current_building):
@@ -140,8 +145,6 @@ func update_diag():
 		update_ring_diag()
 	elif current_building != null:
 		update_building_diag()
-	elif page == "Exported":
-		update_Exported_diag()
 	elif page == "Load":
 		update_Load_diag()
 	else:
@@ -200,6 +203,9 @@ func update_Exported_diag():
 	#TODO live updating isn't working well
 #	if not "H" in Global.exported:
 #		Global.exported["H"] = 50
+	set_process(true)
+
+func export_process():
 	var g = $ExportedContainer/VBox/ExportedResourceGridSC/ExportedResourcesGrid
 	for i in range(0, g.get_child_count(), 2):
 		var n : int = 0
@@ -207,7 +213,7 @@ func update_Exported_diag():
 		if res in Global.exported:
 			n = min(Global.exported[res], 100000)
 		var current : float = g.get_child(i + 1).get_child(0).value
-		var add = max(1, round((n - current) * 0.01))
+		var add = max(1, round((n - current) * 0.005))
 		if first:
 			current = n
 		elif current != n:
@@ -218,28 +224,32 @@ func update_Exported_diag():
 		g.get_child(i + 1).get_child(1).text = String(current)
 
 func leet_n(var n : int) -> int:
-	if n < 10:
-		return 10
-	elif n < 100:
+	if n < 100:
 		return 100
+	elif n < 500:
+		return 500
 	elif n < 1000:
 		return 1000
+	elif n < 5000:
+		return 5000
 	elif n < 10000:
 		return 10000
 	else:
-		return 100000
+		return n
 
 func leet_color(var n : int) -> StyleBoxFlat:
-	if n < 10:
+	if n < 100:
 		return sb_gray
-	elif n < 100:
+	elif n < 500:
 		return sb_green
 	elif n < 1000:
 		return sb_blue
-	elif n < 10000:
+	elif n < 5000:
 		return sb_purple
-	else:
+	elif n < 10000:
 		return sb_orange
+	else:
+		return sb_red
 
 func include_recipe(var r : String ):
 	if not Global.sandbox:
@@ -381,8 +391,6 @@ func _on_UpdateTimer_timeout():
 	if current_building != null or page == "Sol":
 		for mm in get_tree().get_nodes_in_group("InfoMultimeshGroup"):
 			mm.update_visible()
-	elif page == "Exported":
-		update_Exported_diag()
 
 func _on_Sandbox_pressed():
 	show_named_diag("Sandbox")

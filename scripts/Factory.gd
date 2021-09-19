@@ -218,7 +218,7 @@ func _on_NewShip_timeout():
 	id.update_diag()
 
 func _on_TextureButton_gui_input(event):
-	if event is InputEventMouseButton and event.pressed:
+	if event is InputEventMouseButton and not event.pressed:
 		match event.button_index:
 			BUTTON_LEFT:
 				id.show_building_diag(self)

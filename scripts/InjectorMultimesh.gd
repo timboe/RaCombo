@@ -53,7 +53,7 @@ func _ready():
 	multimesh = MultiMesh.new()
 	multimesh.custom_data_format = MultiMesh.CUSTOM_DATA_NONE
 	multimesh.mesh = QuadMesh.new()
-	multimesh.mesh.set_size(Vector2(10,10))
+	multimesh.mesh.set_size(Vector2(Global.GEM_SIZE,Global.GEM_SIZE))
 	multimesh.transform_format = MultiMesh.TRANSFORM_2D
 	update_resource(set_resource, set_period)
 	
@@ -71,8 +71,8 @@ func update_resource(var res, var period):
 # Called by update_resource or deserialise()	
 func set_properties_internal():
 	modulate = Global.data[set_resource]["color"]
-	texture = load("res://images/"+Global.data[set_resource]["shape"]+".png")
-	normal_map = load("res://images/"+Global.data[set_resource]["shape"]+"_n.png")
+	texture = load("res://images/gems/gem_"+String(Global.data[set_resource]["shape"])+".png")
+	normal_map = load("res://images/gems/gem_"+String(Global.data[set_resource]["shape"])+"_n.png")
 	var per_sec : float = 1.0 / set_period
 	injector_button.text = String(stepify(per_sec,0.5)) + "/" + tr("ui_s")
 	injector_button.icon = Global.data[set_resource]["texture"]

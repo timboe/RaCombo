@@ -10,7 +10,7 @@ func _ready():
 	multimesh = MultiMesh.new()
 	multimesh.custom_data_format = MultiMesh.CUSTOM_DATA_NONE
 	multimesh.mesh = QuadMesh.new()
-	multimesh.mesh.set_size(Vector2(10,10))
+	multimesh.mesh.set_size(Vector2(Global.GEM_SIZE,Global.GEM_SIZE))
 	multimesh.transform_format = MultiMesh.TRANSFORM_2D
 	multimesh.instance_count = Global.MAX_STORAGE
 	var vertical_break := int(floor(sqrt(Global.MAX_STORAGE)))
@@ -54,8 +54,8 @@ func set_resource(var _resource : String, var _factory_process, var _is_input : 
 	resource = _resource
 	factory_process = _factory_process
 	modulate = Global.data[resource]["color"]
-	texture = load("res://images/"+Global.data[resource]["shape"]+".png")
-	normal_map = load("res://images/"+Global.data[resource]["shape"]+"_n.png")
+	texture = load("res://images/gems/gem_"+String(Global.data[resource]["shape"])+".png")
+	normal_map = load("res://images/gems/gem_"+String(Global.data[resource]["shape"])+"_n.png")
 	update_visible()
 	
 func set_lane_resource(var _lane):

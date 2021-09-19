@@ -86,7 +86,7 @@ func _ready():
 	multimesh = MultiMesh.new()
 	multimesh.custom_data_format = MultiMesh.CUSTOM_DATA_8BIT
 	multimesh.mesh = QuadMesh.new()
-	multimesh.mesh.set_size(Vector2(10,10))
+	multimesh.mesh.set_size(Vector2(Global.GEM_SIZE,Global.GEM_SIZE))
 	multimesh.transform_format = MultiMesh.TRANSFORM_2D
 	
 func wrap_i(var i : int):
@@ -143,8 +143,8 @@ func register_resource(var new_resource : String, var provinance : Node):
 	if not sink:
 		lane_content = new_resource
 		modulate = Global.data[lane_content]["color"]
-		texture = load("res://images/"+Global.data[lane_content]["shape"]+".png")
-		normal_map = load("res://images/"+Global.data[lane_content]["shape"]+"_n.png")
+		texture = load("res://images/gems/gem_"+String(Global.data[lane_content]["shape"])+".png")
+		normal_map = load("res://images/gems/gem_"+String(Global.data[lane_content]["shape"])+"_n.png")
 	if provinance != null:
 		lane_provinance.append(provinance.get_path())
 	for c in get_tree().get_nodes_in_group("RingContentGroup"):

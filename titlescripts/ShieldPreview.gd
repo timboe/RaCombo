@@ -18,7 +18,7 @@ func _ready():
 	update_prieview()
 	
 func update_prieview():
-	var symbol = symb.get_selected_metadata()
+	var gem_id = symb.get_selected_metadata()
 	
 	back.bg_color = col.color
 	back.shadow_color = col.color.darkened(0.2)
@@ -30,8 +30,8 @@ func update_prieview():
 	_sign.text = mode.get_selected_metadata()
 
 	shape.modulate = col.color.contrasted()
-	shape.texture = load("res://images/"+symbol+"_smooth.png")
-	shape_outline.texture = load("res://images/"+symbol+"_smooth.png")
+	shape.texture =         load("res://images/gems/gem_"+String(gem_id)+".png")
+	shape_outline.texture = load("res://images/gems/gem_"+String(gem_id)+".png")
 
 func _on_ColorPicker_color_changed(_color):
 	 update_prieview()

@@ -24,8 +24,8 @@ var events = {}
 var last_drag_distance = 0
 var zoom_sensitivity = 10
 var zoom_speed = 0.05
-var min_zoom := 0.5
-var max_zoom := 2.0
+var min_zoom := 0.05 # 0.5
+var max_zoom := 20.0 # 2
 
 var follow_target = null
 

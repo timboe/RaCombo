@@ -7,10 +7,10 @@
 [ext_resource path="res://scripts/RingOutline.gd" type="Script" id=5]
 [ext_resource path="res://resources/advent-pro.bold.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://scripts/FactoryProcess.gd" type="Script" id=7]
-[ext_resource path="res://images/diamond.png" type="Texture" id=8]
+[ext_resource path="res://images/gems/gem_0.png" type="Texture" id=8]
 [ext_resource path="res://images/light_03.png" type="Texture" id=9]
-[ext_resource path="res://images/circle.png" type="Texture" id=10]
-[ext_resource path="res://images/sol.png" type="Texture" id=11]
+[ext_resource path="res://images/gems/gem_0_n.png" type="Texture" id=10]
+[ext_resource path="res://images/icons/sol.png" type="Texture" id=11]
 [ext_resource path="res://scripts/RingContent.gd" type="Script" id=12]
 [ext_resource path="res://scripts/RingOutlineInjectorTarget.gd" type="Script" id=13]
 [ext_resource path="res://resources/237753__quistard__firework-take-off-small-pop.wav" type="AudioStream" id=14]
@@ -179,7 +179,8 @@ visible = false
 ]]
 material = SubResource( 6 )
 multimesh = SubResource( 8 )
-texture = ExtResource( 10 )
+texture = ExtResource( 8 )
+normal_map = ExtResource( 10 )
 script = ExtResource( 1 )
 radians_per_slot = 0.0156298
 
@@ -189,6 +190,7 @@ radians_per_slot = 0.0156298
 material = SubResource( 6 )
 multimesh = SubResource( 10 )
 texture = ExtResource( 8 )
+normal_map = ExtResource( 10 )
 script = ExtResource( 1 )
 radians_per_slot = 0.0156298
 
@@ -197,7 +199,8 @@ radians_per_slot = 0.0156298
 ]]
 material = SubResource( 6 )
 multimesh = SubResource( 12 )
-texture = ExtResource( 10 )
+texture = ExtResource( 8 )
+normal_map = ExtResource( 10 )
 script = ExtResource( 1 )
 radians_per_slot = 0.0156298
 
@@ -205,7 +208,8 @@ radians_per_slot = 0.0156298
 "LaneGroup",
 ]]
 multimesh = SubResource( 14 )
-texture = ExtResource( 10 )
+texture = ExtResource( 8 )
+normal_map = ExtResource( 10 )
 script = ExtResource( 1 )
 radians_per_slot = 0.0156298
 
@@ -213,7 +217,8 @@ radians_per_slot = 0.0156298
 "LaneGroup",
 ]]
 multimesh = SubResource( 16 )
-texture = ExtResource( 10 )
+texture = ExtResource( 8 )
+normal_map = ExtResource( 10 )
 script = ExtResource( 1 )
 radians_per_slot = 0.0156298
 
@@ -221,7 +226,8 @@ radians_per_slot = 0.0156298
 "LaneGroup",
 ]]
 multimesh = SubResource( 18 )
-texture = ExtResource( 10 )
+texture = ExtResource( 8 )
+normal_map = ExtResource( 10 )
 script = ExtResource( 1 )
 radians_per_slot = 0.0156298
 
@@ -229,7 +235,8 @@ radians_per_slot = 0.0156298
 "LaneGroup",
 ]]
 multimesh = SubResource( 20 )
-texture = ExtResource( 10 )
+texture = ExtResource( 8 )
+normal_map = ExtResource( 10 )
 script = ExtResource( 1 )
 radians_per_slot = 0.0156298
 
@@ -237,7 +244,8 @@ radians_per_slot = 0.0156298
 "LaneGroup",
 ]]
 multimesh = SubResource( 22 )
-texture = ExtResource( 10 )
+texture = ExtResource( 8 )
+normal_map = ExtResource( 10 )
 script = ExtResource( 1 )
 radians_per_slot = 0.0156298
 

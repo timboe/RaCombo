@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://images/play.png" type="Texture" id=1]
-[ext_resource path="res://images/sandbox.png" type="Texture" id=2]
+[ext_resource path="res://images/icons/play.png" type="Texture" id=1]
+[ext_resource path="res://images/icons/sandbox.png" type="Texture" id=2]
 [ext_resource path="res://titlescripts/NewGame.gd" type="Script" id=3]
 
 [node name="Campaign" type="VBoxContainer"]
