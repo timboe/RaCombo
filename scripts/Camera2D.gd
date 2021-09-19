@@ -20,9 +20,11 @@ var slow_mo_count : int = 0
 var trauma := 0.0
 var time := 0.0
 
+var down_point : Vector2
+
 var events = {}
 var last_drag_distance = 0
-var zoom_sensitivity = 10
+var pan_zoom_sensitivity = 10
 var zoom_speed = 0.05
 var min_zoom := 0.05 # 0.5
 var max_zoom := 20.0 # 2
@@ -42,15 +44,18 @@ func _unhandled_input(event):
 		if event.button_index == BUTTON_WHEEL_DOWN and zoom.x < max_zoom:
 			zoom *= 1.1
 			change = true
+		down_point = event.position
 	# Pan mouse
 	if event is InputEventMouseMotion and Input.is_action_pressed("ui_mouse_pan"):
 		global_position -= event.relative.rotated(rotation) * zoom.x
-		input_capture.is_pan = true
 		change = true
+		if down_point.distance_to(event.position) > pan_zoom_sensitivity:
+			input_capture.is_pan = true
 	# Android touch
 	if event is InputEventScreenTouch:
 		if event.pressed:
 			events[event.index] = event
+			down_point = event.position
 		else:
 			events.erase(event.index)
 	if event is InputEventScreenDrag:
@@ -58,12 +63,13 @@ func _unhandled_input(event):
 		# Pan android
 		if events.size() == 1:
 			global_position -= event.relative.rotated(rotation) * zoom.x
-			input_capture.is_pan = true
 			change = true
+			if down_point.distance_to(event.position) > pan_zoom_sensitivity:
+				input_capture.is_pan = true
 		# Zoom android
 		elif events.size() == 2:
 			var drag_distance = events[0].position.distance_to(events[1].position)
-			if abs(drag_distance - last_drag_distance) > zoom_sensitivity:
+			if abs(drag_distance - last_drag_distance) > pan_zoom_sensitivity:
 				var new_zoom = (1 + zoom_speed) if drag_distance < last_drag_distance else (1 - zoom_speed)
 				new_zoom = clamp(zoom.x * new_zoom, min_zoom, max_zoom)
 				zoom = Vector2.ONE * new_zoom
