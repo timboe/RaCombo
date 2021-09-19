@@ -10,7 +10,7 @@ const MAX_LANES := 4
 const SAVE_FORMAT_VERSION = 1
 const CAMPAIGN_FORMAT_VERSION = 1
 const MAX_TRANSMUTE = 3
-const GEM_SIZE = 8
+const GEM_SIZE = 4
 
 const GAME_SAVE_FILE := "user://save_data.json"
 const SETTINGS_SAVE_FILE := "user://settings.json"

@@ -97,8 +97,9 @@ func _process(delta):
 		global_position += Vector2.DOWN * delta * MOVE_SPEED * zoom.x
 	if follow_target != null:
 		rotation = follow_target.get_global_transform().get_rotation() + PI/2.0
+		print(follow_target.position)
+		global_position = follow_target.global_position - Vector2(640,360) - Vector2(0, follow_target.ring.radius_array[0] ).rotated(rotation)
 		rotating = true
-		print("rot ", rotation)
 		
 
 func add_trauma(var amount):

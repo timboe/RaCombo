@@ -172,7 +172,6 @@ bus = "Sfx"
 [node name="Rotation" type="Node2D" parent="."]
 
 [node name="Lanes" type="Node2D" parent="Rotation"]
-visible = false
 
 [node name="Lane0" type="MultiMeshInstance2D" parent="Rotation/Lanes" groups=[
 "LaneGroup",
