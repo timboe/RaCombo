@@ -673,23 +673,25 @@ adjustment_saturation = 8.0
 pause_mode = 2
 
 [node name="UI" type="Control" parent="CanvasLayer"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 1280.0
+margin_bottom = 720.0
+mouse_filter = 2
 theme = ExtResource( 48 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="InfoUI" type="Control" parent="CanvasLayer/UI"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_right = 1280.0
+margin_bottom = 720.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/UI/InfoUI"]
-margin_right = 1024.0
-margin_bottom = 600.0
+margin_right = 1280.0
+margin_bottom = 720.0
 mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -697,11 +699,11 @@ __meta__ = {
 
 [node name="InfoDialog" type="WindowDialog" parent="CanvasLayer/UI/InfoUI/CenterContainer"]
 visible = true
-margin_left = 284.0
-margin_top = 90.0
-margin_right = 739.0
-margin_bottom = 510.0
-rect_min_size = Vector2( 455, 420 )
+margin_left = 412.0
+margin_top = 150.0
+margin_right = 867.0
+margin_bottom = 587.0
+rect_min_size = Vector2( 455, 455 )
 custom_constants/scaleborder_size = 0
 window_title = "Ring"
 resizable = true
@@ -3241,20 +3243,23 @@ process_mode = 0
 wait_time = 0.2
 
 [node name="MainUI" type="Control" parent="CanvasLayer/UI"]
+margin_right = 1280.0
+margin_bottom = 720.0
+mouse_filter = 2
 script = ExtResource( 46 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MarginContainerTop" type="MarginContainer" parent="CanvasLayer/UI/MainUI"]
-margin_right = 1020.0
+anchor_right = 1.0
 margin_bottom = 64.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/UI/MainUI/MarginContainerTop"]
-margin_right = 1020.0
+margin_right = 1280.0
 margin_bottom = 64.0
 grow_horizontal = 2
 size_flags_horizontal = 3
@@ -3263,8 +3268,8 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/MainUI/MarginContainerTop/CenterContainer"]
-margin_left = 208.0
-margin_right = 812.0
+margin_left = 338.0
+margin_right = 942.0
 margin_bottom = 64.0
 size_flags_horizontal = 3
 custom_constants/separation = 32
@@ -3346,9 +3351,8 @@ expand_icon = true
 
 [node name="MarginContainerSide" type="MarginContainer" parent="CanvasLayer/UI/MainUI"]
 pause_mode = 2
-anchor_right = 0.454
+anchor_bottom = 1.0
 margin_right = 128.0
-margin_bottom = 600.0
 mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -3356,7 +3360,7 @@ __meta__ = {
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/UI/MainUI/MarginContainerSide"]
 margin_right = 128.0
-margin_bottom = 600.0
+margin_bottom = 720.0
 grow_horizontal = 2
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -3365,9 +3369,9 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/MainUI/MarginContainerSide/CenterContainer"]
-margin_top = 28.0
+margin_top = 88.0
 margin_right = 128.0
-margin_bottom = 572.0
+margin_bottom = 632.0
 mouse_filter = 2
 custom_constants/separation = 16
 
@@ -3493,7 +3497,7 @@ __meta__ = {
 }
 
 [node name="CentreNode" type="Node2D" parent="."]
-position = Vector2( 512, 300 )
+position = Vector2( 640, 360 )
 
 [node name="PortalSystem" type="Node2D" parent="CentreNode"]
 
@@ -3907,7 +3911,7 @@ width = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 pause_mode = 2
-offset = Vector2( 512, 300 )
+offset = Vector2( 640, 360 )
 current = true
 script = ExtResource( 5 )
 noise = SubResource( 51 )
@@ -3927,6 +3931,9 @@ script = ExtResource( 12 )
 position = Vector2( 512.944, 300 )
 scale = Vector2( 0.85, 0.85 )
 texture = ExtResource( 71 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Sprite" type="Sprite" parent="InputCapture"]
 visible = false
