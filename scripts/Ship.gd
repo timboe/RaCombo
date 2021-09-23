@@ -31,6 +31,7 @@ onready var rule_changer : Node2D = get_tree().get_root().find_node("RuleChanger
 onready var rocket : AudioStreamPlayer = get_node("Rocket")
 onready var ring = find_parent("Ring*")
 onready var something_changed_node = $"/root/Game/SomethingChanged"
+onready var camera_2d := get_tree().get_root().find_node("Camera2D", true, false)
 
 func serialise() -> Dictionary:
 	var d := {}
@@ -161,6 +162,8 @@ func deposit():
 func remove(): # Note: May remove through means other than depart()
 	deregister_provider(null)
 	get_parent().queue_free()
+	if camera_2d.follow_target == self:
+		camera_2d.stop_follow()
 
 func try_send(var _angle : float, var _direction : int) -> bool:
 	if not built or output_storage >= Global.MAX_STORAGE:

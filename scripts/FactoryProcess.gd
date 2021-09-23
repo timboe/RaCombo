@@ -4,6 +4,7 @@ onready var ring := find_parent("Ring*") as Node2D
 onready var blip_b := get_tree().get_root().find_node("BlipB", true, false) as AudioStreamPlayer
 onready var blip_c := get_tree().get_root().find_node("BlipC", true, false) as AudioStreamPlayer
 onready var blip_d := get_tree().get_root().find_node("BlipD", true, false) as AudioStreamPlayer
+onready var camera_2d := get_tree().get_root().find_node("Camera2D", true, false)
 onready var something_changed_node = $"/root/Game/SomethingChanged"
 
 var input_factory_required = [] # Number of items required per input for factory mode
@@ -293,6 +294,8 @@ func _physics_process(_delta):
 			if accepted:
 				output_storage -= 1
 				blip_b.play()
+				if camera_2d.follow_target == self:
+					camera_2d.follow_to_lane(output_lane, global_rotation)
 	elif mode == Global.BUILDING_INSERTER:
 		# Inputs
 		if output_storage < Global.MAX_STORAGE:
@@ -304,6 +307,8 @@ func _physics_process(_delta):
 			if accepted:
 				output_storage -= 1
 				blip_c.play()
+				if camera_2d.follow_target == self:
+					camera_2d.follow_to_lane(output_lane, global_rotation)
 	elif mode == Global.BUILDING_FACTORY:
 		# Inputs
 		for i in range(input_lanes.size()):
@@ -325,6 +330,8 @@ func _physics_process(_delta):
 				output_storage -= 1
 				check_factory_production()
 				blip_d.play()
+				if camera_2d.follow_target == self:
+					camera_2d.follow_to_lane(output_lane, global_rotation)
 
 # Called asynchronously when try_capture succedes 
 func add_item(var lane : MultiMeshInstance2D):

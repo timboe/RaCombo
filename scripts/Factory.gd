@@ -6,6 +6,7 @@ onready var id = get_tree().get_root().find_node("InfoDialog", true, false)
 onready var cam = get_tree().get_root().find_node("Camera2D", true, false) 
 onready var ring = find_parent("Ring*")
 onready var rotation_node = find_parent("Rotation")
+onready var camera_2d := get_tree().get_root().find_node("Camera2D", true, false)
 
 export(float) var inner_radius
 export(float) var outer_radius
@@ -170,6 +171,8 @@ func remove():
 		l.set_range_fillable(factory_angle_start, factory_angle_end, true)
 	name == "deleted"
 	queue_free()
+	if camera_2d.follow_target == self:
+		camera_2d.stop_follow()
 
 func lane_cleared(var lane_or_ship : Node2D):
 	$FactoryProcess.lane_cleared(lane_or_ship)

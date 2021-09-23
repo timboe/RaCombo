@@ -103,8 +103,20 @@ func wrap_a(var f : float):
 		f -= PI*2
 	return f
 	
+func get_slot(var angle : float) -> int:
+	return int(round(wrap_a(angle) / radians_per_slot))
+	
+func get_slot_from_global_angle(var angle : float) -> int:
+	return wrap_i(round(wrap_a(angle - global_rotation) / radians_per_slot))
+		
+func get_angle(var slot : int) -> float:
+	return (2.0 * PI) * 1.0/float(multimesh.instance_count) * float(slot)
+	
+func get_ring() -> Node2D:
+	return find_parent("Ring*") as Node2D
+	
 func add_to_ring(var angle : float) -> bool:
-	var slot : int = round(wrap_a(angle) / radians_per_slot)
+	var slot : int = get_slot(angle)
 	# Try and fill up ahead
 	for i in range(slot, slot+3):
 		var i_wrap = wrap_i(i)
@@ -191,8 +203,8 @@ func get_slot_empty_and_fillable(var i : int) -> bool:
 	var c : Color = multimesh.get_instance_custom_data(i)
 	return (c.r == 0 and c.b == 1)
 
-func try_capture(var angle : float, var caller : Node, var direction : int, var distance : int = 1):
-	var i : int = wrap_i(round(wrap_a(angle - global_rotation) / radians_per_slot))
+func try_capture(var glob_angle : float, var caller : Node, var direction : int, var distance : int = 1):
+	var i : int = get_slot_from_global_angle(glob_angle)
 	var c : Color = multimesh.get_instance_custom_data(i)
 	if not (c.r == 1 and c.g == 1): #same as get_slot_filled_and_captureable
 		return
@@ -202,13 +214,13 @@ func try_capture(var angle : float, var caller : Node, var direction : int, var 
 	moving["i"] = i
 	moving["call"] = caller
 	moving["dir"] = direction
-	moving["offset"] = (2.0 * PI) * 1.0/float(multimesh.instance_count) * float(i)
+	moving["offset"] = get_angle(i)
 	moving["radius"] = radius
 	moving["target"] = radius + (ring_radius * distance) if direction == Global.OUTWARDS else radius - (ring_radius * distance)
 	in_flight.append(moving)
 	
-func try_send(var angle : float, var direction : int) -> bool:
-	var i : int = wrap_i(round(wrap_a(angle - global_rotation) / radians_per_slot))
+func try_send(var glob_angle : float, var direction : int) -> bool:
+	var i : int = get_slot_from_global_angle(glob_angle)
 	var c : Color = multimesh.get_instance_custom_data(i)
 	if not (c.r == 0 and c.b == 1): #get_slot_empty_and_fillable
 		return false
@@ -265,6 +277,14 @@ func _physics_process(var delta):
 					multimesh.set_instance_custom_data(i, Color(1,1,1,0))
 			in_flight.remove(arr_i)
 		multimesh.set_instance_transform_2d(i, t)
+
+
+func highlight(var i):
+	set_slot_filled(i, true, true)
+	var t : Transform2D = multimesh.get_instance_transform_2d(i)
+	var offset = get_angle(i)
+	t.origin = Vector2(cos(offset), sin(offset)) * (radius - 5)
+	multimesh.set_instance_transform_2d(i, t)
 
 func set_slot_filled(var i : int, var filled : bool, var capturable : bool):
 	if laneswap_target[0] != null:

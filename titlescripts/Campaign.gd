@@ -120,7 +120,7 @@ func dictionise() -> Dictionary:
 	
 	result["name"] = campaign_name.text
 	if result["name"] == tr("ui_main_campaign"):
-		result["name"] = "ui_main_caampaign"
+		result["name"] = "ui_main_campaign"
 	result["version"] = Global.CAMPAIGN_FORMAT_VERSION
 	
 	var missions := []

@@ -43,7 +43,7 @@ func _unhandled_input(event):
 		injection = button.inj_node
 	
 	cursor = spacefield.get_global_mouse_position()
-	$Sol_light.position = cursor
+	#$Sol_light.position = cursor
 	
 	var dist : float = round( abs( cursor.distance_to( centre_node.position ) ) )
 	var ring_index : int = int(dist / rs.RING_RADIUS) - 1 

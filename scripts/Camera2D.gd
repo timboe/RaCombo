@@ -29,13 +29,23 @@ var zoom_speed = 0.05
 var min_zoom := 0.05 # 0.5
 var max_zoom := 20.0 # 2
 
+
+
+### Section for advanced follow, for trailer
+var ADVANCED_FOLLOW = true
 var follow_target = null
+var follow_dict = {}
+var global_position_target : Vector2
+var ignore : bool = false
+###
 
 func _ready():
 	set_process_unhandled_input(true)
+	set_physics_process(false)
 
 func _unhandled_input(event):
 	var change = false
+
 	# Zoom mouse
 	if event is InputEventMouseButton and event.is_pressed():
 		if event.button_index == BUTTON_WHEEL_UP and zoom.x > min_zoom:
@@ -95,12 +105,120 @@ func _process(delta):
 		global_position += Vector2.UP * delta * MOVE_SPEED * zoom.x
 	elif Input.is_action_pressed("ui_down"):
 		global_position += Vector2.DOWN * delta * MOVE_SPEED * zoom.x
-	if follow_target != null:
-		rotation = follow_target.get_global_transform().get_rotation() + PI/2.0
-		print(follow_target.position)
-		global_position = follow_target.global_position - Vector2(640,360) - Vector2(0, follow_target.ring.radius_array[0] ).rotated(rotation)
-		rotating = true
 		
+	if Input.is_action_just_pressed("trail_start"):
+		if follow_target:
+			return stop_follow()
+		follow_dict.clear()
+		follow_target = get_tree().get_root().find_node("Injector0",true,false).get_node("InjectorMm")
+		follow_dict["inj_x"] = -770
+		ADVANCED_FOLLOW = true
+		set_physics_process(true)
+		#
+		#follow_target = get_tree().get_root().find_node("Ring11",true,false).get_node("Rotation/Lanes/Lane0")
+		print("Follow is ",follow_target," ", follow_target.name)
+
+### Follow cam
+
+func _physics_process(delta):
+	advanced_follow(delta) if ADVANCED_FOLLOW else follow()
+	global_position = global_position + (global_position_target - global_position) * delta * 5.0
+
+func follow():
+	rotation = follow_target.get_global_transform().get_rotation() + PI/2.0
+	global_position_target = follow_target.global_position - Vector2(640,360) - Vector2(0, follow_target.ring.radius_array[0] ).rotated(rotation)
+	rotating = true
+	
+func stop_follow():
+	rotating = false
+	rotation = 0
+	follow_target = null
+	set_physics_process(false)
+
+func advanced_follow(var delta):
+	#
+	#global_position = follow_target.global_position - Vector2(640,360) - Vector2(0, follow_target.ring.radius_array[0] ).rotated(rotation)
+	#rotating = true
+	if "Injector" in follow_target.name:
+		rotating = false
+		follow_dict["inj_x"] += follow_target.linear_velocity * delta
+		global_position_target = Vector2(follow_dict["inj_x"], -follow_target.radius)
+		if follow_dict["inj_x"] > 0:
+			# Goto LANE
+			follow_dict.clear()
+			var ring = get_node(follow_target.ring)
+			# Get the angle at the "top" where we want to add an item
+			var angle_mod = (1.5 * PI) - ring.get_node("Rotation").rotation
+			var lane = ring.get_lane(follow_target.lane)
+			var slot = lane.get_slot(angle_mod)
+			# Correct the angle mod w.r.t current rotation
+			angle_mod += ring.get_node("Rotation").rotation + (0.5 * PI)
+			follow_dict["slot"] = slot
+			follow_dict["ring"] = ring
+			follow_dict["offset"] = angle_mod
+			follow_dict["mid_flight"] = false
+			follow_target = lane
+			lane.highlight(slot)
+			print("Move to lane ", lane, " with slot ", slot," at angle ",rad2deg(angle_mod))
+	elif "Lane" in follow_target.name:
+		if get_tree().paused == false:
+			follow_dict["offset"] = fmod(follow_dict["offset"] + (delta * follow_dict["ring"].angular_velocity), PI*2)
+		rotation = follow_dict["offset"]
+		# TODO add offset for lane_slot
+		rotating = true
+		#check if in flight
+		var radius_mod = follow_target.radius
+		var in_flight_now = false
+		for in_flight in follow_target.in_flight:
+			if in_flight["i"] == follow_dict["slot"]:
+				radius_mod = in_flight["radius"]
+				in_flight_now = true
+				follow_dict["mid_flight"] = true
+				if "call" in in_flight and not "call" in follow_dict:
+					follow_dict["call"] = in_flight["call"]
+				break
+		var r = follow_target.radius + (follow_target.radius - radius_mod)
+		global_position_target = follow_target.global_position - Vector2(640,360) - Vector2(0,  + radius_mod).rotated(rotation)
+		if in_flight_now == false and follow_dict["mid_flight"] == true:
+			if "call" in follow_dict:
+				# Reached end of OUTGOING fligt, goto FACTORY
+				follow_target = follow_dict["call"]
+				follow_dict.clear()
+				print("Move to factory ",follow_target)
+			else:
+				# Reached ring
+				follow_dict["mid_flight"] = false
+				# Is there a laneswap?
+				if follow_target.laneswap_target[0] != null:
+					follow_target = follow_target.laneswap_target[0] 
+				
+	elif "Factory" in follow_target.name or "Ship" in follow_target.name:
+		rotation = follow_target.get_global_transform().get_rotation() + PI/2.0
+		global_position_target = follow_target.global_position - Vector2(640,360) - Vector2(0, follow_target.ring.radius_array[2] ).rotated(rotation)
+		rotating = true
+	
+
+func follow_to_lane(var output_lane, var glob_angle):
+	if "Ship" in output_lane.name:
+		follow_target = output_lane
+		follow_target.depart()
+		print("Moving to ship ", output_lane)
+		return
+	var slot = output_lane.get_slot_from_global_angle(glob_angle)
+	var ring = output_lane.get_ring()
+	# Correct the angle mod w.r.t current rotation
+	var angle_mod = output_lane.get_angle(slot) + ring.get_node("Rotation").rotation + (0.5 * PI)
+	follow_dict.clear()
+	follow_dict["slot"] = slot
+	follow_dict["ring"] = ring
+	follow_dict["offset"] = angle_mod
+	follow_dict["mid_flight"] = false # Technically true
+	follow_target = output_lane
+	print("Moving to lane ", output_lane)
+	#output_lane.highlight(slot)
+
+	
+###
 
 func add_trauma(var amount):
 	if Global.settings["shake"] == false:
@@ -124,5 +242,12 @@ func apply_shake(var delta : float):
 	offset_v = offset_y
 
 
-func _on_Rotate_pressed():
-	follow_target = info_dialog.current_building
+func _on_Rotate_toggled(button_pressed):
+	if ignore:
+		return
+	if button_pressed:
+		follow_target = info_dialog.current_building
+		set_physics_process(true)
+		ADVANCED_FOLLOW = false
+	else:
+		stop_follow()

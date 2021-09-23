@@ -6,6 +6,7 @@ onready var load_vbox = get_tree().get_root().find_node("LoadVBox", true, false)
 onready var save_load = get_tree().get_root().find_node("SaveLoad", true, false) 
 onready var ring_system = get_tree().get_root().find_node("RingSystem", true, false) 
 onready var progress_bar = get_tree().get_root().find_node("FactoryProgressBar", true, false) 
+onready var camera_2d := get_tree().get_root().find_node("Camera2D", true, false)
 
 var current_building : Node2D  = null
 var current_ring : Node2D = null
@@ -159,9 +160,9 @@ func update_Win_diag():
 	var s = remainder % 60
 	window_title = tr("ui_congratulations")
 	$WinContainer/VBox/FinishedText.text = tr(Global.campaign["name"]) + " " + tr("ui_finished in") + "\n\n"
-	$WinContainer/VBox/FinishedText.text += String(h) + tr("ui_hours")
-	$WinContainer/VBox/FinishedText.text += String(m) + tr("ui_minutes")
-	$WinContainer/VBox/FinishedText.text += String(s) + tr("ui_seconds")
+	$WinContainer/VBox/FinishedText.text += String(h) + " " + tr("ui_hours") + " "
+	$WinContainer/VBox/FinishedText.text += String(m) + " " + tr("ui_minutes") + " "
+	$WinContainer/VBox/FinishedText.text += String(s) + " " + tr("ui_seconds")
 	$WinContainer/Confetti1.emitting = true
 	$WinContainer/Confetti2.emitting = true
 
@@ -334,6 +335,10 @@ func update_building_diag():
 		else:
 			print("Not showing ship detaild due to ship ", ship)
 			ship_cont.visible = false
+		# Follow 
+		camera_2d.ignore = true
+		$FactoryContainer/Set/HBoxContainer2/Rotate.pressed = (camera_2d.follow_target == current_building)
+		camera_2d.ignore = false
 
 func update_ring_diag():
 	var count : int = 1
@@ -462,3 +467,17 @@ func _on_Show2_pressed():
 func _on_Show3_pressed():
 	$HintsContainer/VBoxContainer/HBox3/Show3.disabled = true
 	$HintsContainer/VBoxContainer/HBox3/HintEdit3.text = Global.mission["hints"][2]
+
+func _on_Clear_pressed():
+	current_building.reset()
+	hide_diag()
+
+
+func _on_Remove_pressed():
+	current_building.remove()
+	hide_diag()
+
+
+
+func _on_Close_pressed():
+	hide_diag()
