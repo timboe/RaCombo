@@ -12,6 +12,7 @@ export var noise : OpenSimplexNoise
 
 onready var info_dialog : WindowDialog = get_tree().get_root().find_node("InfoDialog",true,false)
 onready var input_capture : Node2D = get_tree().get_root().find_node("InputCapture",true,false)
+onready var ui : Control = get_tree().get_root().find_node("UI",true,false)
 
 const RUMBLE_OFFSET : float = 0.75
 
@@ -28,6 +29,7 @@ var pan_zoom_sensitivity = 10
 var zoom_speed = 0.05
 var min_zoom := 0.05 # 0.5
 var max_zoom := 20.0 # 2
+var zoom_target : Vector2 = zoom
 
 
 
@@ -48,11 +50,11 @@ func _unhandled_input(event):
 
 	# Zoom mouse
 	if event is InputEventMouseButton and event.is_pressed():
-		if event.button_index == BUTTON_WHEEL_UP and zoom.x > min_zoom:
-			zoom /= 1.1
+		if event.button_index == BUTTON_WHEEL_UP and zoom_target.x > min_zoom:
+			zoom_target /= 1.1
 			change = true
-		if event.button_index == BUTTON_WHEEL_DOWN and zoom.x < max_zoom:
-			zoom *= 1.1
+		if event.button_index == BUTTON_WHEEL_DOWN and zoom_target.x < max_zoom:
+			zoom_target *= 1.1
 			change = true
 		down_point = event.position
 	# Pan mouse
@@ -81,14 +83,14 @@ func _unhandled_input(event):
 			var drag_distance = events[0].position.distance_to(events[1].position)
 			if abs(drag_distance - last_drag_distance) > pan_zoom_sensitivity:
 				var new_zoom = (1 + zoom_speed) if drag_distance < last_drag_distance else (1 - zoom_speed)
-				new_zoom = clamp(zoom.x * new_zoom, min_zoom, max_zoom)
-				zoom = Vector2.ONE * new_zoom
+				new_zoom = clamp(zoom_target.x * new_zoom, min_zoom, max_zoom)
+				zoom_target = Vector2.ONE * new_zoom
 				last_drag_distance = drag_distance
 				input_capture.is_pan = true
 				change = true
 	## Update
 	if change:
-		var zoom_mod = clamp(zoom.x, 1.0, 2.0) / 1.5
+		var zoom_mod = clamp(zoom_target.x, 1.0, 2.0) / 1.5
 		var w : float = ProjectSettings.get_setting("display/window/size/width") * zoom_mod
 		var h : float = ProjectSettings.get_setting("display/window/size/height") * 1.3 * zoom_mod
 		global_position.x = clamp(global_position.x, -w, w)
@@ -97,6 +99,9 @@ func _unhandled_input(event):
 func _process(delta):
 	apply_shake(delta)
 	decay_trauma(delta)
+	
+	zoom = zoom + (zoom_target - zoom) * delta * 5.0
+	
 	if Input.is_action_pressed("ui_left"):
 		global_position += Vector2.LEFT * delta * MOVE_SPEED * zoom.x
 	elif Input.is_action_pressed("ui_right"):
@@ -106,6 +111,9 @@ func _process(delta):
 	elif Input.is_action_pressed("ui_down"):
 		global_position += Vector2.DOWN * delta * MOVE_SPEED * zoom.x
 		
+	if Input.is_action_just_pressed("toggle_ui"):
+		ui.visible = !ui.visible
+				
 	if Input.is_action_just_pressed("trail_start"):
 		if follow_target:
 			return stop_follow()
